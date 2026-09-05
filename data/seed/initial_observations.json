@@ -1,0 +1,122 @@
+[
+  {
+    "visit_date": "2026-09-12",
+    "park_id": "wonderla-chennai",
+    "day_type": "weekend",
+    "is_school_vacation": false,
+    "weather_condition": "sunny",
+    "ticket_price_paid": 1200,
+    "offer_applied": "online_10pct",
+    "observed_crowd_overall": "high",
+    "observed_wait_top_ride": 45,
+    "fasttrack_purchased": false
+  },
+  {
+    "visit_date": "2026-09-15",
+    "park_id": "wonderla-chennai",
+    "day_type": "weekday",
+    "is_school_vacation": false,
+    "weather_condition": "cloudy",
+    "ticket_price_paid": 1050,
+    "offer_applied": null,
+    "observed_crowd_overall": "low",
+    "observed_wait_top_ride": 10,
+    "fasttrack_purchased": false
+  },
+  {
+    "visit_date": "2026-09-22",
+    "park_id": "wonderla-chennai",
+    "day_type": "weekend",
+    "is_school_vacation": false,
+    "weather_condition": "light_rain",
+    "ticket_price_paid": 1200,
+    "offer_applied": null,
+    "observed_crowd_overall": "medium",
+    "observed_wait_top_ride": 25,
+    "fasttrack_purchased": true
+  },
+  {
+    "visit_date": "2026-10-02",
+    "park_id": "wonderla-chennai",
+    "day_type": "holiday",
+    "is_school_vacation": true,
+    "weather_condition": "sunny",
+    "ticket_price_paid": 1350,
+    "offer_applied": "early_bird",
+    "observed_crowd_overall": "very_high",
+    "observed_wait_top_ride": 90,
+    "fasttrack_purchased": true
+  },
+  {
+    "visit_date": "2026-10-14",
+    "park_id": "wonderla-chennai",
+    "day_type": "weekday",
+    "is_school_vacation": true,
+    "weather_condition": "heavy_rain",
+    "ticket_price_paid": 1050,
+    "offer_applied": null,
+    "observed_crowd_overall": "low",
+    "observed_wait_top_ride": 5,
+    "fasttrack_purchased": false
+  },
+  {
+    "visit_date": "2026-10-25",
+    "park_id": "wonderla-chennai",
+    "day_type": "weekend",
+    "is_school_vacation": false,
+    "weather_condition": "sunny",
+    "ticket_price_paid": 1200,
+    "offer_applied": null,
+    "observed_crowd_overall": "high",
+    "observed_wait_top_ride": 50,
+    "fasttrack_purchased": true
+  },
+  {
+    "visit_date": "2026-11-01",
+    "park_id": "wonderla-chennai",
+    "day_type": "weekend",
+    "is_school_vacation": false,
+    "weather_condition": "cloudy",
+    "ticket_price_paid": 1200,
+    "offer_applied": "online_10pct",
+    "observed_crowd_overall": "medium",
+    "observed_wait_top_ride": 30,
+    "fasttrack_purchased": false
+  },
+  {
+    "visit_date": "2026-11-12",
+    "park_id": "wonderla-chennai",
+    "day_type": "weekday",
+    "is_school_vacation": false,
+    "weather_condition": "sunny",
+    "ticket_price_paid": 1050,
+    "offer_applied": null,
+    "observed_crowd_overall": "low",
+    "observed_wait_top_ride": 15,
+    "fasttrack_purchased": false
+  },
+  {
+    "visit_date": "2026-11-20",
+    "park_id": "wonderla-chennai",
+    "day_type": "weekday",
+    "is_school_vacation": false,
+    "weather_condition": "light_rain",
+    "ticket_price_paid": 1050,
+    "offer_applied": null,
+    "observed_crowd_overall": "low",
+    "observed_wait_top_ride": 10,
+    "fasttrack_purchased": false
+  },
+  {
+    "visit_date": "2026-12-25",
+    "park_id": "wonderla-chennai",
+    "day_type": "holiday",
+    "is_school_vacation": true,
+    "weather_condition": "sunny",
+    "ticket_price_paid": 1500,
+    "offer_applied": null,
+    "observed_crowd_overall": "very_high",
+    "observed_wait_top_ride": 120,
+    "fasttrack_purchased": true
+  }
+]
