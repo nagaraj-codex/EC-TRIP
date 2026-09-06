@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from .rules_engine import predict_crowd_rules
 
 def get_ml_prediction(features: dict, ground_truth_count: int) -> dict:
@@ -9,15 +10,17 @@ def get_ml_prediction(features: dict, ground_truth_count: int) -> dict:
     """
     if ground_truth_count < 300:
         prediction = predict_crowd_rules(
-            is_weekend=features.get("is_weekend", False),
-            is_holiday=features.get("is_holiday", False),
-            is_school_vacation=features.get("is_school_vacation", False),
-            weather_condition=features.get("weather_condition", "sunny")
+            park_id=str(features.get("park_id", "wonderla-chennai")),
+            target_date_str=str(features.get("target_date_str") or features.get("date") or datetime.now().strftime("%Y-%m-%d")),
+            weather_condition=str(features.get("weather_condition", "sunny")),
+            is_holiday=bool(features.get("is_holiday", False)),
+            is_weekend=features.get("is_weekend"),
+            is_school_vacation=bool(features.get("is_school_vacation", False))
         )
         return {
-            "prediction": prediction["predicted_crowd"],
+            "prediction": prediction.get("predicted_crowd", prediction.get("crowd_level", "medium")),
             "model_type": "rules_heuristic_v1",
-            "confidence": prediction["confidence"]
+            "confidence": prediction.get("confidence", "Medium")
         }
     else:
         # Placeholder for actual ML inference load once trained.

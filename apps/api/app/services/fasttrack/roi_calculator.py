@@ -1,7 +1,7 @@
 from typing import Dict, Any
 
 def calculate_fasttrack_roi(fasttrack_price: float, expected_wait_saved_minutes: float) -> Dict[str, Any]:
-    effective_saved = max(float(expected_wait_saved_minutes), 1.0)
+    effective_saved = max(expected_wait_saved_minutes, 1.0)
     cost_per_minute = round(fasttrack_price / effective_saved, 2)
     
     if expected_wait_saved_minutes < 20:

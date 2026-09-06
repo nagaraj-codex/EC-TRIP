@@ -9,8 +9,8 @@ class PriorityEnum(str, Enum):
     MAXIMUM_RIDES = "Maximum Rides"
 
 class RecommendationRequest(BaseModel):
-    park_id: str = Field(..., example="wonderla-chennai")
-    candidate_dates: List[str] = Field(..., example=["2026-09-12", "2026-09-15"])
+    park_id: str = Field(..., examples=["wonderla-chennai"])
+    candidate_dates: List[str] = Field(..., examples=[["2026-09-12", "2026-09-15"]])
     priority: PriorityEnum = PriorityEnum.BEST_BALANCED
     budget_limit: Optional[float] = 2500.0
 

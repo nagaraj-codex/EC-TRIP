@@ -1,7 +1,7 @@
 import httpx
 import json
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Open-Meteo variables (Latitude and Longitude for Wonderla Chennai)
 # Approx coord: 12.8315, 79.9705
@@ -32,6 +32,6 @@ def update_weather_cache(data: dict, cache_dir: str = "../../../../../data/inter
     cache_file = path / "weather-now.json"
     with open(cache_file, "w") as f:
         json.dump({
-            "updated_at": datetime.utcnow().isoformat(),
+            "updated_at": datetime.now(timezone.utc).isoformat(),
             "weather": data
         }, f, indent=2)

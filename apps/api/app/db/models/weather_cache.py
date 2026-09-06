@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Float, Integer, Date, DateTime, ForeignKey
-from datetime import datetime
+from datetime import datetime, timezone
 from .park import Base
 
 class WeatherCache(Base):
@@ -12,4 +12,4 @@ class WeatherCache(Base):
     temp_max = Column(Float, nullable=False)
     precipitation_prob = Column(Float, nullable=True)
     uv_index = Column(Float, nullable=True)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc), nullable=False)

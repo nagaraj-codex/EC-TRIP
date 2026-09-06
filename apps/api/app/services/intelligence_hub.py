@@ -81,7 +81,8 @@ async def evaluate_candidate_date(
     # 6. Visit Score Computation
     time_saving = 1.0 - (crowd_points / 100.0)
     money_saving = (max_price - current_price) / max_price if max_price > 0 else 0.0
-    visit_score = calculate_visit_score(priority, time_saving, money_saving, weather["condition"])
+    weather_cond = str(weather.get("condition", "sunny"))
+    visit_score = calculate_visit_score(priority, time_saving, money_saving, weather_cond)
     
     wait_mins = int((crowd_points / 100.0) * 90)
     saved_mins = max(0, wait_mins - 5)
@@ -104,7 +105,7 @@ async def evaluate_candidate_date(
         crowd_level="high" if crowd_points > 70 else ("medium" if crowd_points > 40 else "low"),
         predicted_wait_top_ride_minutes=wait_mins,
         ticket_price=current_price,
-        weather_condition=weather["condition"],
+        weather_condition=weather_cond,
         temp_max=float(weather["temp_max"]),
         fasttrack_verdict=ft_roi["verdict"],
         cost_per_minute_saved=float(ft_roi["cost_per_minute_saved"]),

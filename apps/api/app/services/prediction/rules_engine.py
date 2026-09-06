@@ -1,14 +1,27 @@
 from datetime import datetime
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
-def predict_crowd_rules(park_id: str, target_date_str: str, weather_condition: str, is_holiday: bool = False) -> Dict[str, Any]:
-    date_obj = datetime.strptime(target_date_str, "%Y-%m-%d")
-    is_weekend = date_obj.weekday() >= 5
+def predict_crowd_rules(
+    park_id: str = "wonderla-chennai",
+    target_date_str: Optional[str] = None,
+    weather_condition: str = "sunny",
+    is_holiday: bool = False,
+    is_weekend: Optional[bool] = None,
+    is_school_vacation: bool = False
+) -> Dict[str, Any]:
+    if target_date_str:
+        try:
+            date_obj = datetime.strptime(target_date_str, "%Y-%m-%d")
+            weekend_flag = date_obj.weekday() >= 5
+        except Exception:
+            weekend_flag = bool(is_weekend)
+    else:
+        weekend_flag = bool(is_weekend)
     
     crowd_points = 20  # Base weekday crowd
     reasons = []
     
-    if is_weekend:
+    if weekend_flag:
         crowd_points += 45
         reasons.append("weekend visitor surge")
     else:
@@ -17,6 +30,10 @@ def predict_crowd_rules(park_id: str, target_date_str: str, weather_condition: s
     if is_holiday:
         crowd_points += 35
         reasons.append("public holiday")
+
+    if is_school_vacation:
+        crowd_points += 20
+        reasons.append("school vacation surge")
         
     if weather_condition == "heavy_rain":
         crowd_points -= 30
@@ -45,6 +62,7 @@ def predict_crowd_rules(park_id: str, target_date_str: str, weather_condition: s
     
     return {
         "crowd_level": crowd_level,
+        "predicted_crowd": crowd_level,
         "predicted_wait_minutes": top_ride_wait,
         "confidence": confidence,
         "reasoning": reasoning_str,

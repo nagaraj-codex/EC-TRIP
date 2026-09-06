@@ -1,19 +1,23 @@
 {
-  "css.lint.unknownAtRules": "ignore",
-  "scss.lint.unknownAtRules": "ignore",
-  "less.lint.unknownAtRules": "ignore",
-  "python.analysis.diagnosticSeverityOverrides": {
-    "reportMissingImports": "none"
-  },
-  "python.analysis.extraPaths": [
-    "apps/api"
-  ],
-  "python.autoComplete.extraPaths": [
-    "apps/api"
-  ],
-  "files.exclude": {
-    "**/__pycache__": true,
-    "**/*.pyc": true,
-    "**/__pyrefly_virtual__/**": true
-  }
+    "css.lint.unknownAtRules": "ignore",
+    "scss.lint.unknownAtRules": "ignore",
+    "less.lint.unknownAtRules": "ignore",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "none"
+    },
+    "python.analysis.extraPaths": [
+        "apps/api"
+    ],
+    "python.autoComplete.extraPaths": [
+        "apps/api"
+    ],
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true,
+        "**/__pyrefly_virtual__/**": true
+    },
+    "files.associations": {
+        "**/.github/workflows/*.yml": "yaml",
+        "**/.github/workflows/*.yaml": "yaml"
+    }
 }

@@ -25,7 +25,7 @@ async def fetch_park_features(bbox: str) -> List[Dict[str, Any]]:
     
     async with httpx.AsyncClient(timeout=5.0) as client:
         try:
-            response = await client.post(url, data=query)
+            response = await client.post(url, data={"data": query})
             response.raise_for_status()
             data = response.json()
             return data.get("elements", [])

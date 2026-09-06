@@ -20,4 +20,4 @@ def calculate_visit_score(priority: str, time_saving: float, money_saving: float
     weather_fit = WEATHER_FIT_TABLE.get(weather_condition.lower(), 0.7)
     
     score = (w_time * time_saving) + (w_money * money_saving) + (w_weather * weather_fit)
-    return round(float(score * 100.0), 1)
+    return round(score * 100.0, 1)

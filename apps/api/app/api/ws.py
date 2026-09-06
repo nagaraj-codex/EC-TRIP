@@ -24,7 +24,7 @@ class ConnectionManager:
 
     async def broadcast(self, message: Union[str, Dict[str, Any]]):
         """Broadcast payload to all active connected clients."""
-        payload_str = json.dumps(message) if isinstance(message, dict) else str(message)
+        payload_str = json.dumps(message) if isinstance(message, dict) else message
         dead_connections = []
         for connection in list(self.active_connections):
             try:

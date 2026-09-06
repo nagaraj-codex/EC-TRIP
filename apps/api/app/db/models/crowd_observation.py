@@ -1,7 +1,7 @@
 import uuid
 from sqlalchemy import Column, String, Float, Boolean, Integer, Date, DateTime, ForeignKey, Enum as SQLAlchemyEnum
 from sqlalchemy.dialects.postgresql import UUID
-from datetime import datetime
+from datetime import datetime, timezone
 from .park import Base
 import enum
 
@@ -26,4 +26,4 @@ class CrowdObservation(Base):
     fasttrack_purchased = Column(Boolean, nullable=False, default=False)
     is_verified_geofence = Column(Boolean, nullable=False, default=False)
     recaptcha_score = Column(Float, nullable=True)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), nullable=False)

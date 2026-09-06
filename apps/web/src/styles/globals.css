@@ -1,112 +1,174 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* =========================================================
+   GLOBALS.CSS - Tailwind Directives & Elite UI Components
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* -----------------------------------------
+   LAYER 1: BASE (HTML/Body Resets)
+   ----------------------------------------- */
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen;
-    background-image: 
-      radial-gradient(at 10% 10%, rgba(79, 70, 229, 0.12) 0px, transparent 50%),
-      radial-gradient(at 90% 90%, rgba(245, 158, 11, 0.08) 0px, transparent 50%),
-      radial-gradient(at 50% 50%, rgba(6, 182, 212, 0.05) 0px, transparent 60%);
+    @apply bg-slate-950 text-slate-100 font-sans antialiased;
+
+    /* Premium 3-Point Radial Gradient Background */
+    background-image:
+      radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 40%),
+      radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 40%),
+      radial-gradient(at 50% 50%, rgba(15, 23, 42, 1) 0px, transparent 100%);
     background-attachment: fixed;
+    background-color: #020617;
+    /* Slate 950 Fallback */
+  }
+
+  /* Text Selection Highlight */
+  ::selection {
+    @apply bg-blue-500/40 text-white;
   }
 }
 
+/* -----------------------------------------
+   LAYER 2: COMPONENTS (Custom UI Blocks)
+   ----------------------------------------- */
 @layer components {
-  /* Glassmorphism Containers */
+
+  /* --- Glassmorphism Architecture --- */
   .glass-panel {
-    @apply bg-slate-900/80 backdrop-blur-xl border border-slate-800/90 shadow-glass text-slate-100;
+    @apply relative overflow-hidden bg-slate-900/60 border border-white/10 shadow-2xl rounded-3xl;
+    backdrop-filter: blur(var(--glass-blur-strength));
   }
 
   .glass-card {
-    @apply bg-slate-900/60 backdrop-blur-lg border border-slate-800/70 shadow-sm hover:border-brand-500/40 hover:shadow-glow-brand transition-all duration-300;
+    @apply bg-slate-800/40 border border-white/5 rounded-2xl p-5 transition-all duration-300 ease-out;
+    backdrop-filter: blur(8px);
   }
 
-  .glass-card-light {
-    @apply bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-card-elevated hover:shadow-glass-hover hover:border-brand-300 transition-all duration-300;
+  .glass-card:hover {
+    @apply bg-slate-800/60 border-blue-500/30 shadow-[0_8px_30px_rgb(0, 0, 0, 0.5)] -translate-y-1;
   }
 
-  /* Buttons */
+  /* --- Production-Grade Buttons --- */
   .btn {
-    @apply px-5 py-3 rounded-2xl text-sm font-bold transition-all duration-200 w-full text-center flex items-center justify-center gap-2 cursor-pointer select-none active:scale-95;
+    @apply px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer select-none outline-none;
+  }
+
+  .btn:active {
+    transform: scale(0.97);
+    /* Satisfying click effect */
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-brand-600 via-brand-500 to-indigo-600 text-white shadow-glow-brand hover:from-brand-500 hover:to-indigo-500 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white border border-blue-500/50 shadow-[0_0_15px_rgba(37, 99, 235, 0.4)];
+  }
+
+  .btn-primary:hover {
+    @apply from-blue-500 to-indigo-500 shadow-[0_0_25px_rgba(37, 99, 235, 0.6)];
   }
 
   .btn-secondary {
-    @apply bg-slate-800/80 text-slate-200 border border-slate-700/80 hover:bg-slate-700 hover:text-white active:bg-slate-800;
+    @apply bg-slate-800/80 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white hover:border-slate-500;
   }
 
-  .btn-secondary-light {
-    @apply bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200/80 active:bg-slate-300;
-  }
-
-  .btn-accent {
-    @apply bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-glow-amber hover:from-amber-400 hover:to-orange-400 hover:-translate-y-0.5;
-  }
-
-  /* Form Elements */
+  /* --- Inputs & Forms --- */
   .form-label {
-    @apply block mb-1.5 font-bold text-xs uppercase tracking-wider text-slate-300;
+    @apply block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400;
   }
 
   .form-input {
-    @apply w-full p-3.5 bg-slate-900/90 border border-slate-700/90 rounded-2xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/20 transition-all;
+    @apply w-full p-4 bg-slate-950/50 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300;
   }
 
-  .form-input-light {
-    @apply w-full p-3.5 bg-white border border-slate-200 rounded-2xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-brand-600 focus:ring-4 focus:ring-brand-600/10 transition-all;
+  /* --- Typography Enhancements --- */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-200 to-slate-400;
   }
 
-  /* Radio & Selection Options */
-  .radio-option {
-    @apply flex items-start p-3.5 rounded-2xl cursor-pointer transition-all duration-200 border border-slate-800 bg-slate-900/60 hover:bg-slate-800/60 hover:border-slate-700;
-  }
-
-  .radio-option.selected {
-    @apply border-brand-500 bg-brand-950/40 ring-2 ring-brand-500/30 text-white shadow-glow-brand;
-  }
-
-  .radio-option-light {
-    @apply flex items-start p-3.5 rounded-2xl cursor-pointer transition-all duration-200 border-2 border-slate-100 bg-white hover:bg-slate-50 hover:border-slate-200;
-  }
-
-  .radio-option-light.selected {
-    @apply border-brand-600 bg-brand-50/80 ring-2 ring-brand-600/20 shadow-sm;
-  }
-
-  /* Radiant text */
-  .gradient-heading {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400 font-extrabold;
-  }
-
-  .gradient-brand-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-indigo-300 to-cyan-300 font-black;
-  }
-
-  /* Card Gradient */
-  .card-gradient {
-    @apply bg-gradient-to-br from-brand-950/70 via-slate-900/90 to-indigo-950/70 border border-brand-500/30 rounded-3xl p-5 sm:p-6 shadow-glow-brand backdrop-blur-xl;
+  .text-gradient-brand {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 font-extrabold;
   }
 }
 
-/* Custom Sleek Scrollbars */
+/* -----------------------------------------
+   LAYER 3: UTILITIES (Animations & Hacks)
+   ----------------------------------------- */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  /* Creates a sweeping light reflection effect across cards */
+  .glass-sheen {
+    position: relative;
+  }
+
+  .glass-sheen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.08), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.7s ease;
+  }
+
+  .glass-sheen:hover::after {
+    left: 150%;
+  }
+}
+
+/* --- Core Keyframes --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Stealth Scrollbars --- */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(15, 23, 42, 1);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.25);
+  background: rgba(51, 65, 85, 1);
   border-radius: 9999px;
+  border: 2px solid rgba(15, 23, 42, 1);
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.45);
+  background: rgba(71, 85, 105, 1);
 }

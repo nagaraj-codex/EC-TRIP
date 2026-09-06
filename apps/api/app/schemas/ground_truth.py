@@ -22,12 +22,12 @@ class CrowdLevel(str, Enum):
 
 class GroundTruthObservationBase(BaseModel):
     visit_date: date
-    park_id: str = Field(..., example="wonderla-chennai")
+    park_id: str = Field(..., examples=["wonderla-chennai"])
     day_type: DayType
     is_school_vacation: bool
     weather_condition: WeatherCondition
     ticket_price_paid: float = Field(..., description="The final baseline price in INR")
-    offer_applied: Optional[str] = Field(None, example="online_10pct")
+    offer_applied: Optional[str] = Field(None, examples=["online_10pct"])
     observed_crowd_overall: CrowdLevel
     observed_wait_top_ride: int = Field(..., description="Raw wait time in minutes")
     fasttrack_purchased: bool
@@ -40,4 +40,4 @@ class GroundTruthObservationResponse(GroundTruthObservationBase):
     created_at: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
