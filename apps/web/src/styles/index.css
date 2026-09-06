@@ -1,9 +1,46 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* =========================================================
+   INDEX.CSS - React Mount Point & Global Theme Variables
+   ========================================================= */
+@import './globals.css';
 
-@layer base {
-  body {
-    @apply bg-gray-50 text-gray-900;
-  }
+:root {
+  /* --- Core Brand Variables --- */
+  --queuecut-brand: #3b82f6;
+  /* Blue 500 */
+  --queuecut-accent: #10b981;
+  /* Emerald 500 */
+  --queuecut-warning: #f59e0b;
+  /* Amber 500 */
+
+  /* --- Glassmorphism Tokens --- */
+  --glass-bg-base: rgba(15, 23, 42, 0.65);
+  /* Slate 900 with transparency */
+  --glass-border-light: rgba(255, 255, 255, 0.1);
+  --glass-border-strong: rgba(255, 255, 255, 0.2);
+  --glass-blur-strength: 16px;
+
+  /* --- Telemetry / Live Status Colors --- */
+  --status-live: #ef4444;
+  /* Red 500 */
+  --status-stable: #10b981;
+  /* Emerald 500 */
+}
+
+/* --- React Root Configuration --- */
+/* Ensures the React app uses the full viewport and isolates stacking contexts */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  isolation: isolate;
+  overflow-x: hidden;
 }

@@ -1,0 +1,61 @@
+name: QueueCut Production Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-frontend:
+    name: Deploy UI to Vercel
+    runs-on: ubuntu-latest
+    # Mapping secrets to env vars resolves many local IDE linter warnings
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Official Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Configuration
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: ./apps/web
+
+      - name: Build Optimized React/Vite Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: ./apps/web
+
+      - name: Deploy to Vercel Edge Network
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: ./apps/web
+
+  deploy-backend:
+    name: Deploy FastAPI & WebSockets (Render / VPS)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Trigger Live Backend Deployment
+        # Modern FastAPI + WebSocket backends are deployed via Secure Webhooks to hosts like Render.com
+        run: |
+          if [ -z "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" ]; then
+            echo "⚠️ Notice: RENDER_DEPLOY_HOOK_URL is not set in GitHub Secrets."
+            echo "To enable zero-downtime backend deployments, add your Render/Host webhook URL."
+          else
+            echo "🚀 Triggering live FastAPI backend deployment..."
+            curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+            echo "✅ Deployment triggered successfully."
+          fi
+
+

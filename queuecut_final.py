@@ -222,4 +222,4 @@ else:
         return HTMLResponse(content=HTML_UI)
 
 if __name__ == "__main__":
-    uvicorn.run("queuecut_final:app", host="0.0.0.0", port=8000, reload=False)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
