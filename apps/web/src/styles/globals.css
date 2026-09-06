@@ -51,7 +51,7 @@
   }
 
   .glass-card:hover {
-    @apply bg-slate-800/60 border-blue-500/30 shadow-[0_8px_30px_rgb(0, 0, 0, 0.5)] -translate-y-1;
+    @apply bg-slate-800/60 border-blue-500/30 shadow-[0_8px_30px_rgba(0,0,0,0.5)] -translate-y-1;
   }
 
   /* --- Production-Grade Buttons --- */
@@ -65,11 +65,11 @@
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white border border-blue-500/50 shadow-[0_0_15px_rgba(37, 99, 235, 0.4)];
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white border border-blue-500/50 shadow-[0_0_15px_rgba(37,99,235,0.4)];
   }
 
   .btn-primary:hover {
-    @apply from-blue-500 to-indigo-500 shadow-[0_0_25px_rgba(37, 99, 235, 0.6)];
+    @apply from-blue-500 to-indigo-500 shadow-[0_0_25px_rgba(37,99,235,0.6)];
   }
 
   .btn-secondary {
