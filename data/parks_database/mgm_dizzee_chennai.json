@@ -1,0 +1,337 @@
+{
+  "park_id": "mgm-dizzee-chennai",
+  "name": "MGM Dizzee World",
+  "brand": "MGM Entertainment / MGM Group",
+  "official_website": "https://www.mgmdizzeeworld.com/",
+  "location": {
+    "address": "1/74, SH 49, East Coast Road (ECR), Muthukadu, Chennai, Tamil Nadu - 600112",
+    "coordinates": {
+      "lat": 12.826182,
+      "lon": 80.244191
+    },
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "highway": "East Coast Road (ECR)",
+    "distance_from_central": "28 km (~1 hour 15 minutes by car/cab)",
+    "nearby_landmarks": "MGM Beach Resort, Muthukadu Boat House, Kovalam Beach"
+  },
+  "contact": {
+    "phone_numbers": [
+      "+91 95 0006 3716",
+      "+91 80 6906 5555",
+      "+91 80 6979 5555"
+    ],
+    "email": "sales@mgmdizzeeworld.com",
+    "support_hours": "08:00 AM - 08:00 PM IST"
+  },
+  "operating_hours": {
+    "park_timings": {
+      "weekdays": "10:30 AM - 06:00 PM",
+      "weekends_and_holidays": "10:30 AM - 06:30 PM",
+      "notes": "Open on all 365 days including government and national holidays"
+    },
+    "water_park_schedules": {
+      "swimming_pool_and_boating": {
+        "weekdays": "12:30 PM - 05:00 PM",
+        "weekends": "12:30 PM - 05:30 PM"
+      },
+      "splash_zone_and_kids_zone": {
+        "session_1": "02:00 PM - 03:00 PM",
+        "session_2": "04:00 PM - 05:00 PM (05:30 PM on weekends)"
+      },
+      "rain_dance": {
+        "session_1": "02:00 PM - 02:20 PM",
+        "session_2": "03:00 PM - 03:20 PM",
+        "session_3_weekend_only": "04:30 PM - 05:00 PM"
+      },
+      "thunder_rock_falls": {
+        "session_1": "01:30 PM - 02:00 PM (01:00 PM on weekends)",
+        "session_2": "04:00 PM - 04:30 PM (04:00 PM - 04:20 PM on weekends)",
+        "session_3_weekend_only": "05:00 PM - 05:20 PM"
+      }
+    }
+  },
+  "ticket_pricing": {
+    "currency": "INR",
+    "gst_included": true,
+    "tax_rate": "18% GST included",
+    "packages": [
+      {
+        "name": "Jumbo Package",
+        "adult_price": 1179,
+        "child_price": 825,
+        "inclusions": "Full day unlimited access to all general Dry Rides and all Water World attractions."
+      },
+      {
+        "name": "Mega Fun Package",
+        "adult_price": 1415,
+        "child_price": 1179,
+        "inclusions": "Full day unlimited access to Dry & Water Rides + 5D Theatre + Upside Down House + D'Evil House + Vortex + 4 Carnival Game coupons."
+      },
+      {
+        "name": "Priority Pass",
+        "adult_price": 2359,
+        "child_price": 1769,
+        "inclusions": "Expedited single-entry express queue bypass for rides + Mega Fun Package privileges + Combo Food Menu + Costume Combo."
+      }
+    ],
+    "height_criteria": {
+      "adult": "Height above 4 ft 4 in (132 cm)",
+      "child": "Height between 2 ft 6 in and 4 ft 4 in (76 cm to 132 cm)",
+      "infant": "Height under 2 ft 6 in enter FREE"
+    },
+    "promotions_and_discounts": [
+      {
+        "name": "Buy 2 Get 2 Free",
+        "description": "Book 2 regular tickets and receive 2 complimentary tickets. Valid on select weekday promotional periods."
+      },
+      {
+        "name": "Buy 4 Get 2 Free",
+        "description": "Special group saver package. Buy 4 regular tickets, get 2 free."
+      },
+      {
+        "name": "College / School Student Discount",
+        "description": "25% instant discount upon presenting a valid original student ID card."
+      },
+      {
+        "name": "Group Booking Offer",
+        "description": "20% discount for organized groups of 25 or more persons."
+      },
+      {
+        "name": "Day Out @ MGM",
+        "description": "Combined package granting access to both MGM Beach Resort private beach facilities and MGM Dizzee World."
+      }
+    ],
+    "cancellation_policy": "Cancellation permitted up to 48 hours before date of visit subject to 25% cancellation penalty. Non-refundable within 48 hours."
+  },
+  "dress_code_policy": {
+    "general": "Shirts, bottoms (trousers, jeans, bermudas, three-fourths), and footwear mandatory at all times on park grounds. Offensive graphics or see-through clothes forbidden.",
+    "water_rides": "Costumes strictly mandatory. Only Synthetic, Lycra, Polyester, Spandex, or Nylon allowed. Denim and metal buttons/zippers banned. Costumes available for purchase inside."
+  },
+  "amenities_and_facilities": {
+    "parking": "Dedicated parking lot. Two-wheelers: ₹20 - ₹50; Cars/Buses/Vans: ₹50 - ₹100.",
+    "ev_charging": "1 EV charging station located at MGM Beach Resort adjacent to the parking area.",
+    "lockers_and_baggage": "Baggage counter available on a first-come, first-served basis.",
+    "food_policy": "Outside food IS permitted in MGM Dizzee World (unique policy among amusement parks).",
+    "first_aid": "On-site medical center with first aid staff.",
+    "wifi": "No public Wi-Fi inside the park. High-speed cell coverage from Jio, Airtel, and Vi.",
+    "photography": "Personal cameras and DSLRs permitted. GoPros and selfie sticks are strictly prohibited for safety."
+  },
+  "dining_venues": [
+    {
+      "name": "Surfin Food Court (Pure Vegetarian)",
+      "cuisines": "South Indian (Idli, Dosa, Vada, Uthappam), North Indian (Roti, Naan, Paneer gravies), Chinese (Fried Rice, Noodles), American (Pizzas, Burgers, Sandwiches)"
+    },
+    {
+      "name": "Dizzeeden Food Court (Non-Vegetarian)",
+      "cuisines": "Chicken Biryani, Kebabs, North Indian Chicken curries, Parottas, Fast food and Chilled Beverages"
+    }
+  ],
+  "rides_catalog": {
+    "total_rides_count": 65,
+    "adult_and_thrill_rides": [
+      {
+        "name": "Roller Coaster",
+        "type": "High Thrill Coaster",
+        "description": "Steel looping track with elevated helix drops."
+      },
+      {
+        "name": "Kamikaze Ranger",
+        "type": "Extreme Inversion",
+        "description": "Twin swinging arms that lock 360 degrees upside down."
+      },
+      {
+        "name": "Revolution",
+        "type": "Extreme Pendulum",
+        "description": "Giant spinning disc on an oscillating pendulum arm."
+      },
+      {
+        "name": "Energy Storm",
+        "type": "High Speed Spin",
+        "description": "Multi-axis spinning arms with 360-degree rotations."
+      },
+      {
+        "name": "Space Battle",
+        "type": "Aerial Interactive",
+        "description": "Soar and spin on a sci-fi aerial turntable."
+      },
+      {
+        "name": "Robo Cop",
+        "type": "Centrifugal Spin",
+        "description": "Futuristic mechanical swinging and spinning ride."
+      },
+      {
+        "name": "Wave Swinger",
+        "type": "Chair-O-Plane",
+        "description": "Elevated wave-like swinging carousel."
+      },
+      {
+        "name": "Super Trooper",
+        "type": "Hydraulic Wheel",
+        "description": "Tilted spinning gondolas lifting riders high in the air."
+      },
+      {
+        "name": "Spider Spin",
+        "type": "Octopus Style",
+        "description": "Multi-arm spinning and bouncing ride."
+      },
+      {
+        "name": "Water Coaster",
+        "type": "Aquatic Coaster",
+        "description": "Steel coaster plunging into splash run-out tracks."
+      },
+      {
+        "name": "Dashing Car",
+        "type": "Bumper Cars",
+        "description": "Electrified floor bumper cars with steering control."
+      },
+      {
+        "name": "Ferrari's Wheel",
+        "type": "Giant Ferris Wheel",
+        "description": "Massive observation wheel with ECR coastline views."
+      },
+      {
+        "name": "360 Cycle",
+        "type": "Acrobatic Bicycle",
+        "description": "Loop-the-loop bicycle where riders pedal in a vertical circle."
+      },
+      {
+        "name": "Tagada",
+        "type": "Bouncing Disc",
+        "description": "Bowl without seatbelts that bounces and rotates to music."
+      }
+    ],
+    "family_and_scenic_rides": [
+      {
+        "name": "Twister",
+        "type": "Family Spin"
+      },
+      {
+        "name": "Reindeer Coaster",
+        "type": "Gentle Family Coaster"
+      },
+      {
+        "name": "Carousel",
+        "type": "Grand Merry-Go-Round"
+      },
+      {
+        "name": "Tornado Coaster",
+        "type": "Family Coaster"
+      },
+      {
+        "name": "Balloon Race",
+        "type": "Hot Air Balloon Flight"
+      },
+      {
+        "name": "Sky Glider",
+        "type": "Cable Chairlift"
+      },
+      {
+        "name": "Star Wheels",
+        "type": "Family Wheel"
+      },
+      {
+        "name": "Jurassic Train",
+        "type": "Animatronic Dinosaur Tour"
+      },
+      {
+        "name": "Nilgiri Express",
+        "type": "Miniature Scenic Train"
+      },
+      {
+        "name": "Disco Saucer",
+        "type": "Rotating Platform"
+      }
+    ],
+    "kids_rides": [
+      {
+        "name": "Gracy Horse",
+        "type": "Gentle Horse Carousel"
+      },
+      {
+        "name": "Cup of Fun / Gracy Cups",
+        "type": "Teacups Spin"
+      },
+      {
+        "name": "Mini Ship",
+        "type": "Swinging Boat for Toddlers"
+      },
+      {
+        "name": "Baby Slumbum",
+        "type": "Mini Bumper Cars"
+      },
+      {
+        "name": "Gracy Bus",
+        "type": "Oscillating Bus"
+      },
+      {
+        "name": "Caterpillar",
+        "type": "Kids Worm Coaster"
+      },
+      {
+        "name": "Batman Jet",
+        "type": "Hydraulic Flying Jets"
+      },
+      {
+        "name": "Mini Jet",
+        "type": "Kids Aircraft"
+      },
+      {
+        "name": "Kids Bungee",
+        "type": "Trampoline Bungee"
+      }
+    ],
+    "water_park_attractions": [
+      {
+        "name": "Thunder Wave Pool",
+        "type": "Surfing Wave Pool"
+      },
+      {
+        "name": "Splash Zone",
+        "type": "Multi-tier Water Play Structure"
+      },
+      {
+        "name": "Rain Dance",
+        "type": "Dance Floor with Overhead Showers"
+      },
+      {
+        "name": "Chinnakutralam",
+        "type": "Simulated Natural Waterfall"
+      },
+      {
+        "name": "Thunder Falls",
+        "type": "Steep Water Cascades"
+      },
+      {
+        "name": "Swimming Pool",
+        "type": "Olympic Sized Freshwater Pool"
+      }
+    ],
+    "special_and_immersive_attractions": [
+      {
+        "name": "Upside Down House",
+        "type": "Gravity Illusion Walkthrough"
+      },
+      {
+        "name": "5-D Theatre",
+        "type": "Stereoscopic Movie with Sensory Effects"
+      },
+      {
+        "name": "Mirror Maze",
+        "type": "Labyrinth of Optical Reflections"
+      },
+      {
+        "name": "Vortex",
+        "type": "Spinning Tunnel Optical Illusion"
+      },
+      {
+        "name": "Devil's House",
+        "type": "Walkthrough Haunted Mansion"
+      },
+      {
+        "name": "Carnival Games",
+        "type": "Skill and Prize Booths"
+      }
+    ]
+  }
+}

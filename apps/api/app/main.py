@@ -1,0 +1,55 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from app.core.config import settings
+from app.api.routes.recommendation import router as recommendation_router
+from app.api.routes.feedback import router as feedback_router
+from app.api.routes.chat import router as chat_router
+from app.api.routes.parks import router as parks_router
+from app.api.routes.telemetry import router as telemetry_router
+from app.api.routes.itinerary import router as itinerary_router
+
+app = FastAPI(
+    title=settings.PROJECT_NAME,
+    version=settings.VERSION,
+    description="High-performance theme park crowd intelligence, dynamic tariff optimization, and FastTrack ROI engine."
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.CORS_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(recommendation_router, prefix=settings.API_V1_STR)
+app.include_router(feedback_router, prefix=settings.API_V1_STR)
+app.include_router(chat_router, prefix=settings.API_V1_STR)
+app.include_router(parks_router, prefix=settings.API_V1_STR)
+app.include_router(telemetry_router, prefix=settings.API_V1_STR)
+app.include_router(itinerary_router, prefix=settings.API_V1_STR)
+
+@app.get("/health", tags=["System"])
+def health_check():
+    return {
+        "status": "healthy",
+        "service": settings.PROJECT_NAME,
+        "version": settings.VERSION,
+        "active_parks": list(settings.PARK_COORDINATES.keys())
+    }
+
+@app.get("/", tags=["System"])
+def root():
+    return {
+        "message": "QueueCut Intelligence API is running.",
+        "documentation": "/docs",
+        "endpoints": {
+            "parks": f"{settings.API_V1_STR}/parks",
+            "recommendation": f"{settings.API_V1_STR}/recommendation/recommend",
+            "telemetry_weather": f"{settings.API_V1_STR}/telemetry/weather",
+            "telemetry_commute": f"{settings.API_V1_STR}/telemetry/commute",
+            "itinerary": f"{settings.API_V1_STR}/itinerary/generate",
+            "feedback": f"{settings.API_V1_STR}/feedback/report",
+            "chat": f"{settings.API_V1_STR}/chat/ask"
+        }
+    }

@@ -1,0 +1,941 @@
+=== PARSING: data/raw_crawls/mgm_faq.txt ===
+
+[QUESTION] Q. What are the Park Timings?
+  Operating Hours:
+  📆 Monday to Friday: 10:30 am - 06:00 pm
+  📆 Saturday, Sunday, and Public Holidays: 10:30 am - 06:30 pm
+  **Please note: We are open on all public and government holidays
+
+[QUESTION] Q. What are all the packages you have?
+  Enjoy inclusive Water and Dry Games! Tickets (Inclusive 18% GST):
+  Jumbo Package - Adult: Rs.1179, Child: Rs.825.
+  Mega Fun Package - Adult: Rs.1415, Child: Rs.1179.
+  Priority Pass - Adult: 2359, Child: 1769.
+  Adult: Height above 4'4"ft, Child: Height between 2'6"ft - 4'4"ft.
+  Timings: 10:30 am to 6:00 pm.
+
+[QUESTION] Q. Am I allowed to bring outside food and drinks to the park?
+  Guests are permitted to bring outside food to the park.
+
+[QUESTION] Q. Is the theme park open during the monsoon?
+  Yes, the theme park remains open year-round. However, for safety reasons, some outdoor rides may be non-operational during Heavy Rains.
+
+[QUESTION] Q. What types of food are available at the park?
+  The park offers multiple restaurants serving a variety of cuisines.
+  Surfin Food Court Vegetarian:
+  South Indian (Dosa, Idle, Vada, Uthappam and more), North Indian (Roti, Chapathi, Parotta and more), Fast Food (Fried Rice, Noodles), American delights (Sandwich, Burger, Pizza’s and more)
+  Dizzeeden Food Court Non-Veg:
+  North Indian (Roti, Chapathi, Parotta and more), Fast Food (Fried Rice, Noodles), American delights (Sandwich, Burger, Pizza’s and more)
+
+[QUESTION] Q. Are restaurant reservations available for events?
+  Yes, we do have Banquet Lawn Reservations for special events. Timings 6.30 PM to 10.30 PM.
+
+[QUESTION] Q. Can I exit the theme park and return on the same day without an additional charge?
+  We don't permit guests to leave and re-enter the park during operating hours.
+
+[QUESTION] Q. Are there any upcoming new attractions or shows?
+  Yes, we periodically introduce new attractions and shows to complement our existing rides.
+
+[QUESTION] Q. What attractions could be closed during my visit?
+  For safety reasons, a few rides may be closed depending on the weather.
+
+[QUESTION] Q. Which rides are suitable for children?
+  There are specific ride restrictions applicable to all attractions. You can find rides suitable for children listed here.
+  Gracy Horse
+  Cup of Fun
+  Mini Ship
+  Baby Slumbum
+  Jurrasic Train
+  Gracy Bus
+  Gracy Cup
+  Caterpiller
+  Bat Man Jet
+  He Man Jet
+
+[QUESTION] Q. Until what age is entry free at Dizzee World?
+  Adults must be over 4'4"ft, and children's height should range between 2'6"ft - 4'4"ft.
+
+[QUESTION] Q. Where is the Theme Park located?
+  1/74, SH 49, ECR, Muthukadu, Chennai, Tamil Nadu - 600112
+
+[QUESTION] Q. How much time does it take to explore the entire park?
+  To fully enjoy the park, 1 day would be ideal for your visit.
+
+[QUESTION] Q. What is the recommended attire for a day at the park? Are there any clothing restrictions?
+  To maintain our family-friendly environment and ensure safety, we have a strict dress code. Guests must wear appropriate clothing at all times, including shirts and proper footwear. Attire with offensive language or graphics is not permitted. Wearing sheer, mesh, or see-through clothing over bathing suits is also not allowed. Park entry may be refused if attire is deemed inappropriate by park management. Visitors must wear a shirt, shoes, and bottoms (shorts, pants, skirt, etc.) at all times within the theme park.
+
+[QUESTION] Q. Are your rides impacted by bad weather?
+  Our attractions and rides are designed to operate under various weather conditions. However, certain rides may remain closed based on the severity of inclement weather.
+
+[QUESTION] Q. Will I get wet on any of the rides?
+  Is there a place to change clothes? Some of our attractions and rides involve water, so there's a chance you may get wet depending on the ride. Restrooms located throughout the park are available for changing.
+
+[QUESTION] Q. Do I need to pay if I'm pregnant?
+  Yes, and please note there are ride restrictions for expectant mothers.
+
+[QUESTION] Q. My leg/arm is in a cast. Can I still use your rides?
+  Each ride has specific guidelines regarding accessibility for individuals with injuries, disabilities, or those who are pregnant.
+
+[QUESTION] Q. Do you have first aid facilities in the park?
+  Yes, we have medical centres within the park. Please ask our staff to help you locate the nearest facility.
+
+[QUESTION] Q. How long are your lines/queues?
+  Queue length varies based on the number of guests visiting the park.
+
+[QUESTION] Q. How can I retrieve a lost item?
+  We have a Lost and Found Counter within the theme park. Approach the Service Attendant at the counter, and they will assist you in locating and reclaiming your lost property.
+
+[QUESTION] Q. How is the mobile phone connectivity at the park?
+  We've made special arrangements for connectivity with Vodafone, Jio, Idea, and Airtel networks.
+
+[QUESTION] Q. Is there Wi-Fi service available at the park?
+  Currently, we do not have any Wi-Fi facility inside the park.
+
+[QUESTION] Q. Do you provide a baggage counter facility?
+  Yes, we do offer a baggage counter facility, but please note that they are limited and operate on a 'first come, first served' basis.
+
+[QUESTION] Q. How can I keep my valuables safe while in the park?
+  We recommend guests avoid bringing valuables. If possible, you can try storing them at the baggage counter.
+
+[QUESTION] Q. Can you accommodate my special dietary requests at the restaurants?
+  We provide both vegetarian and non-vegetarian meals at Surfin food court and Dizzeeden food court. If you have specific dietary needs, please communicate with the chefs at the restaurants.
+
+[QUESTION] Q. How can I discover information about the various restaurants in the park?
+  Find out more about our restaurants on the dining page.
+
+[QUESTION] Q. Can I bring my camera to the Park?
+  Guests can bring their personal cameras for leisure photography. DSLR cameras with detachable lenses are allowed, however action cameras like GoPros are not allowed. Selfie sticks are not allowed.
+
+[QUESTION] Q. What is the weather at Dizzee World?
+  It is reasonably hot during summers. In October arrives the breathtaking Monsoons. ECR, Chennai is one of the most beautiful highways in India, famous for its Private Beaches and Resorts.
+
+[QUESTION] Q. Where are the information booths located?
+  At the entrance itself in the Arrival Plaza.
+
+[QUESTION] Q. Are there any ATM facilities within the Park?
+  At present there is No ATM facilities within the theme park, we are in talks and soon it will be.
+
+[QUESTION] Q. Can I upgrade my ticket?
+  Yes, you can upgrade the tickets before entering park or after entering the park. Visit the counter near the carnival gate in the Park.
+
+[QUESTION] Q. Can I get a refund of my ticket?
+  A refund is processed only if the tickets are cancelled 48 hours prior to visit date. Refunds may be subjected to a refund charge.
+
+[QUESTION] Q. Is alcohol served at the Park?
+  No, Park regulation prohibits alcohol brought from outside. Alcohol is strictly prohibited within the theme park.
+
+[QUESTION] Q. What are the terms and conditions for a College ticket?
+  Valid student ID card to be presented to avail the Dizzee World College ticket. Only one ticket will be issued per Valid Student ID.
+
+[QUESTION] Q. How many people are required to be eligible for group bookings at MGM Dizzee World?
+  Minimum 50 people are required for group bookings.
+
+[QUESTION] Q. How many people are required to be eligible for birthday bookings at MGM Dizzee World?
+  Minimum 25 People are required for Birthday Bookings.
+
+[QUESTION] Q. What are the terms and conditions for car and bus travel options?
+  Car and bus bookings must be completed 1 day prior, by 8pm and 10pm respectively. Since car and bus services are handled by transport party partners, and not by Dizzee World, the partners will share transport details prior to travel on the date of travel only.
+
+[QUESTION] Q. Are prices inclusive or exclusive of taxes?
+  Taxes and fees will be added where applicable.
+
+[QUESTION] Q. What is the Cancellation or Refund Policy?
+  Cancellation is allowed 48 hours prior to visit date. A Cancellation Penalty of 25% on the cart content is applied prior to refund. Cancellation will not be allowed within 48 hours of the date of visit. Partial cancellations are not permitted. No refunds are admissible on cancellation or alteration of vehicle bookings.
+
+[QUESTION] Q. What is the chargeback policy?
+  Park tickets are issued only for the date of visit. These tickets cannot be used on any other date and no refunds shall be given for unused tickets. Similarly, no chargebacks are permissible on used or unused tickets. No refunds are admissible on cancellation or alteration of vehicle bookings.
+
+[QUESTION] Q. How is the money refunded if I cancel my tickets?
+  If you cancel the ticket before 48 hours the amount will be refunded to the same mode of payment which was used during the time of booking.
+
+[QUESTION] Q. Within how many days will I receive my Refund?
+  Usually, refunds are processed within 15 working days from the date of cancellation, however, reflection in your bank account may depend on various banking processes.
+
+[QUESTION] Q. What are the auto charges to reach MGM Dizzee World from Central railway station?
+  Once you arrive at Central Railway Station, you can avail a Cab ride directly to Dizzee World. Central Railway Station is approx. 1.15 Hours of 28 KM from MGM Dizzee World.
+  - Cab
+  - Private Auto
+  - Buses
+  *Please note the above mentioned cab & auto fares are subject to change as per the local cab and auto rickshaw operators.
+  For return journeys, advance booking is required and will wait outside the park main entrance.
+
+[QUESTION] Q. Are there Charging Stations for EV’s at Dizzee World?
+  Yes, there are total 1 charging stations combined present at MGM Beach Resort. Electric Vehicles are becoming more and more popular and with MGM Dizzee World always being at the forefront of sustainability practices, EV charging Stations have been set up for your convenience.
+
+[QUESTION] Q. Where can I find the EV charging Station for my Electric Car?
+  MGM Beach Resort has placed 1 EV charging station located near the Parking zone.
+
+[QUESTION] Q. Does water games have costume restrictions?
+  Yes, it's a must! Costumes are available for purchase in the park, or you can bring your own. Make a splash in the pool with Synthetic, Lycra, Polyester, Spandex, or Nylon wear for the best water fun experience!
+
+[QUESTION] Q. What are the new Water Park Timings?
+  Swimming Pool, Chinnakuttralam and Boating:
+  Monday to Friday: 12.30 PM TO 05.00 PM
+  Saturday, Sunday & Public Holidays: 12.30 PM TO 05.30 PM
+  Splash Zone, Kids Zone:
+  Monday to Friday: 2.00 PM TO 03.00 PM 04.00 PM TO 05.00 PM
+  Saturday, Sunday & Public Holidays: 02.00 PM TO 03.00 PM 04.00 PM TO 05.30 PM
+  Rain Dance:
+  Monday to Friday: 02.00 PM TO 02.20 PM 03.00 PM TO 03.20 PM
+  Saturday, Sunday & Public Holidays: 02.00 PM TO 02.20 PM 03.00 PM TO 03.20 PM 04.30 PM TO 05.00 PM
+  Thunder Rock Falls:
+  Monday to Friday: 01.30 PM TO 02.00 PM 04.00 PM TO 04.30 PM
+
+[QUESTION] Q.Do you have parking facilities? And what is the Rates?
+  Yes, we do have the parking facilities. Bike – Rs. 20, Car/Bus/Van – Rs. 50. Management will not be responsible for theft or loss of Helmet. Rates are subject to change without prior notice.
+
+[QUESTION] Q.What is the Priority Pass? What does the Priority Pass ticket include?
+  The Priority Pass ticket grants expedited single-entry access to ride express queue lines.
+  Package includes: Water and Dry Rides, 5D + Upside Down House + D’Evil House + Vortex Carnival Games Coupon (Choice of any 4 Games), Combo Food Menu, Costume Combo
+
+[QUESTION] Q.What does the Mega Fun Package include?
+  The Mega Fun Package ensures a day of fun and excitement tailored to your preferences.
+  Package includes: Water and Dry Rides, 5D + Upside Down House + D’Evil House + Vortex Carnival Games Coupon (Choice of any 4 Games)
+
+[QUESTION] Q.What does the Jumbo Package include?
+  The Jumbo Package ensures a day of fun and excitement tailored to your preferences.
+  Package includes: Water and Dry Rides
+
+[QUESTION] Q.Do you take any measure for waterborne diseases?
+  We prioritize the safety and well-being of our visitors. To ensure a hygienic and safe environment, we implement rigorous measures to prevent waterborne diseases. Our water attractions are regularly inspected, and we maintain the highest standards of water quality and cleanliness. Our dedicated team monitors water conditions, and we employ advanced filtration and sanitation systems to provide a worry-free experience. Rest assured, your health and safety are our top priorities, and we go the extra mile to make your visit enjoyable and secure.
+  FAQ & HELP
+
+[QUESTION] Q. What are the Park Timings?
+  Operating Hours:
+  📆 Monday to Friday: 10:30 am - 06:00 pm
+  📆 Saturday, Sunday, and Public Holidays: 10:30 am - 06:30 pm
+  **Please note: We are open on all public and government holidays
+
+[QUESTION] Q. What are all the packages you have?
+  Enjoy inclusive Water and Dry Games! Tickets (Inclusive 18% GST):
+  Jumbo Package - Adult: Rs.1179, Child: Rs.825.
+  Mega Fun Package - Adult: Rs.1415, Child: Rs.1179.
+  Priority Pass - Adult: 2359, Child: 1769.
+  Adult: Height above 4'4"ft, Child: Height between 2'6"ft - 4'4"ft.
+  Timings: 10:30 am to 6:00 pm.
+
+[QUESTION] Q. Am I allowed to bring outside food and drinks to the park?
+  Guests are permitted to bring outside food to the park.
+
+[QUESTION] Q. Is the theme park open during the monsoon?
+  Yes, the theme park remains open year-round. However, for safety reasons, some outdoor rides may be non-operational during Heavy Rains.
+
+[QUESTION] Q. What types of food are available at the park?
+  The park offers multiple restaurants serving a variety of cuisines.
+  Surfin Food Court Vegetarian:
+  South Indian (Dosa, Idle, Vada, Uthappam and more), North Indian (Roti, Chapathi, Parotta and more), Fast Food (Fried Rice, Noodles), American delights (Sandwich, Burger, Pizza’s and more)
+  Dizzeeden Food Court Non-Veg:
+  North Indian (Roti, Chapathi, Parotta and more), Fast Food (Fried Rice, Noodles), American delights (Sandwich, Burger, Pizza’s and more)
+
+[QUESTION] Q. Are restaurant reservations available for events?
+  Yes, we do have Banquet Lawn Reservations for special events. Timings 6.30 PM to 10.30 PM.
+
+[QUESTION] Q.Can I exit the theme park and return on the same day without an additional charge?
+  We don't permit guests to leave and re-enter the park during operating hours.
+
+[QUESTION] Q.Are there any upcoming new attractions or shows?
+  Yes, we periodically introduce new attractions and shows to complement our existing rides.
+
+[QUESTION] Q.What attractions could be closed during my visit?
+  For safety reasons, a few rides may be closed depending on the weather.
+
+[QUESTION] Q.Which rides are suitable for children?
+  There are specific ride restrictions applicable to all attractions. You can find rides suitable for children listed here.
+  Gracy Horse
+  Cup of Fun
+  Mini Ship
+  Baby Slumbum
+  Jurrasic Train
+  Gracy Bus
+  Gracy Cup
+  Caterpiller
+  Bat Man Jet
+  He Man Jet
+
+[QUESTION] Q.Until what age is entry free at Dizzee World?
+  Adults must be over 4'4"ft, and children's height should range between 2'6"ft - 4'4"ft.
+
+[QUESTION] Q.Where is the Theme Park located?
+  1/74, SH 49, ECR, Muthukadu, Chennai, Tamil Nadu - 600112
+
+[QUESTION] Q.How much time does it take to explore the entire park?
+  To fully enjoy the park, 1 day would be ideal for your visit.
+
+[QUESTION] Q.What is the recommended attire for a day at the park? Are there any clothing restrictions?
+  To maintain our family-friendly environment and ensure safety, we have a strict dress code. Guests must wear appropriate clothing at all times, including shirts and proper footwear. Attire with offensive language or graphics is not permitted. Wearing sheer, mesh, or see-through clothing over bathing suits is also not allowed. Park entry may be refused if attire is deemed inappropriate by park management. Visitors must wear a shirt, shoes, and bottoms (shorts, pants, skirt, etc.) at all times within the theme park.
+
+[QUESTION] Q.Are your rides impacted by bad weather?
+  Our attractions and rides are designed to operate under various weather conditions. However, certain rides may remain closed based on the severity of inclement weather.
+
+[QUESTION] Q.Will I get wet on any of the rides?
+  Is there a place to change clothes? Some of our attractions and rides involve water, so there's a chance you may get wet depending on the ride. Restrooms located throughout the park are available for changing.
+
+[QUESTION] Q.Do I need to pay if I'm pregnant?
+  Yes, and please note there are ride restrictions for expectant mothers.
+
+[QUESTION] Q.My leg/arm is in a cast. Can I still use your rides?
+  Each ride has specific guidelines regarding accessibility for individuals with injuries, disabilities, or those who are pregnant.
+
+[QUESTION] Q.Do you have first aid facilities in the park?
+  Yes, we have medical centres within the park. Please ask our staff to help you locate the nearest facility.
+
+[QUESTION] Q.How long are your lines/queues?
+  Queue length varies based on the number of guests visiting the park.
+
+[QUESTION] Q.How can I retrieve a lost item?
+  We have a Lost and Found Counter within the theme park. Approach the Service Attendant at the counter, and they will assist you in locating and reclaiming your lost property.
+
+[QUESTION] Q.How is the mobile phone connectivity at the park?
+  We've made special arrangements for connectivity with Vodafone, Jio, Idea, and Airtel networks.
+
+[QUESTION] Q.Is there Wi-Fi service available at the park?
+  Currently, we do not have any Wi-Fi facility inside the park.
+
+[QUESTION] Q.Do you provide a baggage counter facility?
+  Yes, we do offer a baggage counter facility, but please note that they are limited and operate on a 'first come, first served' basis.
+
+[QUESTION] Q. How can I keep my valuables safe while in the park?
+  We recommend guests avoid bringing valuables. If possible, you can try storing them at the baggage counter.
+
+[QUESTION] Q. Can you accommodate my special dietary requests at the restaurants?
+  We provide both vegetarian and non-vegetarian meals at Surfin food court and Dizzeeden food court. If you have specific dietary needs, please communicate with the chefs at the restaurants.
+
+[QUESTION] Q. How can I discover information about the various restaurants in the park?
+  Find out more about our restaurants on the dining page.
+
+[QUESTION] Q. Can I bring my camera to the Park?
+  Guests can bring their personal cameras for leisure photography. DSLR cameras with detachable lenses are allowed, however action cameras like GoPros are not allowed. Selfie sticks are not allowed.
+
+[QUESTION] Q. How is the weather at Dizzee World?
+  It is reasonably hot during summers. In October arrives the breathtaking Monsoons. ECR, Chennai is one of the most beautiful highways in India, famous for its Private Beaches and Resorts.
+
+[QUESTION] Q. Where are the information booths located?
+  At the entrance itself in the Arrival Plaza.
+
+[QUESTION] Q. Are there any ATM facilities within the Park?
+  At present there is No ATM facilities within the theme park, we are in talks and soon it will be.
+
+[QUESTION] Q.Can I upgrade my ticket?
+  Yes, you can upgrade the tickets before entering park or after entering the park. Visit the counter near the carnival gate in the Park.
+
+[QUESTION] Q.Can I get a refund of my ticket?
+  A refund is processed only if the tickets are cancelled 48 hours prior to visit date. Refunds may be subjected to a refund charge.
+
+[QUESTION] Q.Is alcohol served at the Park?
+  No, Park regulation prohibits alcohol brought from outside. Alcohol is strictly prohibited within the theme park.
+
+[QUESTION] Q.What are the terms and conditions for a College ticket?
+  Valid student ID card to be presented to avail the Dizzee World College ticket. Only one ticket will be issued per Valid Student ID.
+
+[QUESTION] Q.How many people are required to be eligible for group bookings at MGM Dizzee World?
+  Minimum 50 people are required for group bookings.
+
+[QUESTION] Q.How many people are required to be eligible for birthday bookings at MGM Dizzee World?
+  Minimum 25 People are required for Birthday Bookings.
+
+[QUESTION] Q.What are the terms and conditions for car and bus travel options?
+  Car and bus bookings must be completed 1 day prior, by 8pm and 10pm respectively. Since car and bus services are handled by transport party partners, and not by Dizzee World, the partners will share transport details prior to travel on the date of travel only.
+
+[QUESTION] Q.Are prices inclusive or exclusive of taxes?
+  Taxes and fees will be added where applicable.
+
+[QUESTION] Q.What is the Cancellation or Refund Policy?
+  Cancellation is allowed 48 hours prior to visit date. A Cancellation Penalty of 25% on the cart content is applied prior to refund. Cancellation will not be allowed within 48 hours of the date of visit. Partial cancellations are not permitted. No refunds are admissible on cancellation or alteration of vehicle bookings.
+
+[QUESTION] Q.What is the chargeback policy?
+  Park tickets are issued only for the date of visit. These tickets cannot be used on any other date and no refunds shall be given for unused tickets. Similarly, no chargebacks are permissible on used or unused tickets. No refunds are admissible on cancellation or alteration of vehicle bookings.
+
+[QUESTION] Q.How is the money refunded if I cancel my tickets?
+  If you cancel the ticket before 48 hours the amount will be refunded to the same mode of payment which was used during the time of booking.
+
+[QUESTION] Q.Within how many days will I receive my Refund?
+  Usually, refunds are processed within 15 working days from the date of cancellation, however, reflection in your bank account may depend on various banking processes.
+
+[QUESTION] Q.What are the auto charges to reach MGM Dizzee World from Central railway station?
+  Once you arrive at Central Railway Station, you can avail a Cab ride directly to Dizzee World. Central Railway Station is approx. 1.15 Hours of 28 KM from MGM Dizzee World.
+  - Cab
+  - Private Auto
+  - Buses
+  *Please note the above mentioned cab & auto fares are subject to change as per the local cab and auto rickshaw operators.
+  For return journeys, advance booking is required and will wait outside the park main entrance.
+
+[QUESTION] Q.Are there Charging Stations for EV’s at Dizzee World?
+  Yes, there are total 1 charging stations combined present at MGM Beach Resort. Electric Vehicles are becoming more and more popular and with MGM Dizzee World always being at the forefront of sustainability practices, EV charging Stations have been set up for your convenience.
+
+[QUESTION] Q.Where can I find the EV charging Station for my Electric Car?
+  MGM Beach Resort has placed 1 EV charging station located near the Parking zone.
+
+[QUESTION] Q.Does water games have costume restrictions?
+  Yes, it's a must! Costumes are available for purchase in the park, or you can bring your own. Make a splash in the pool with Synthetic, Lycra, Polyester, Spandex, or Nylon wear for the best water fun experience!
+
+[QUESTION] Q.What are the new Water Park Timings? Swimming Pool, Chinnakuttralam and Boating:
+  Monday to Friday: 12.30 PM TO 05.00 PM
+  Saturday, Sunday & Public Holidays: 12.30 PM TO 05.30 PM
+  Splash Zone, Kids Zone:
+  Monday to Friday: 2.00 PM TO 03.00 PM 04.00 PM TO 05.00 PM
+  Saturday, Sunday & Public Holidays: 02.00 PM TO 03.00 PM 04.00 PM TO 05.30 PM
+  Rain Dance:
+  Monday to Friday: 02.00 PM TO 02.20 PM 03.00 PM TO 03.20 PM
+  Saturday, Sunday & Public Holidays: 02.00 PM TO 02.20 PM 03.00 PM TO 03.20 PM 04.30 PM TO 05.00 PM
+  Thunder Rock Falls:
+  Monday to Friday: 01.30 PM TO 02.00 PM 04.00 PM TO 04.30 PM
+  Saturday, Sunday & Public Holidays: 01.00 PM TO 01.20 PM 04.00 PM TO 04.20 PM 05.00 PM TO 05.20 PM
+
+[QUESTION] Q.Do you have parking facilities? And what is the Rates?
+  Yes, we do have the parking facilities. Bike – Rs. 20, Car/Bus/Van – Rs. 50. Management will not be responsible for theft or loss of Helmet. Rates are subject to change without prior notice.
+
+[QUESTION] Q.What is the Priority Pass? What does the Priority Pass ticket include?
+  The Priority Pass ticket grants expedited single-entry access to ride express queue lines.
+  Package includes: Water and Dry Rides, 5D + Upside Down House + D’Evil House + Vortex Carnival Games Coupon (Choice of any 4 Games), Combo Food Menu, Costume Combo
+
+[QUESTION] Q.What does the Mega Fun Package include?
+  The Mega Fun Package ensures a day of fun and excitement tailored to your preferences.
+  Package includes: Water and Dry Rides, 5D + Upside Down House + D’Evil House + Vortex Carnival Games Coupon (Choice of any 4 Games)
+
+[QUESTION] Q.What does the Jumbo Package include?
+  The Jumbo Package ensures a day of fun and excitement tailored to your preferences.
+  Package includes: Water and Dry Rides
+
+[QUESTION] Q.What is the Priority Pass? What does the Priority Pass ticket include?
+  We prioritize the safety and well-being of our visitors. To ensure a hygienic and safe environment, we implement rigorous measures to prevent waterborne diseases. Our water attractions are regularly inspected, and we maintain the highest standards of water quality and cleanliness. Our dedicated team monitors water conditions, and we employ advanced filtration and sanitation systems to provide a worry-free experience. Rest assured, your health and safety are our top priorities, and we go the extra mile to make your visit enjoyable and secure.
+  FAQ & HELP
+  Park Timings and Location
+
+[QUESTION] Q. What are the Park Timings?
+  Operating Hours:
+  📆 Monday to Friday: 10:30 am - 06:00 pm
+  📆 Saturday, Sunday, and Public Holidays: 10:30 am - 06:30 pm
+  **Please note: We are open on all public and government holidays
+
+[QUESTION] Q. Where is the Theme Park located?
+  1/74, SH 49, ECR, Muthukadu, Chennai, Tamil Nadu - 600112
+
+[QUESTION] Q. What are the new Water Park Timings? Swimming Pool, Chinnakuttralam and Boating:
+  Monday to Friday: 12.30 PM TO 05.00 PM
+  Saturday, Sunday & Public Holidays: 12.30 PM TO 05.30 PM
+  Splash Zone, Kids Zone:
+  Monday to Friday: 2.00 PM TO 03.00 PM 04.00 PM TO 05.00 PM
+  Saturday, Sunday & Public Holidays: 02.00 PM TO 03.00 PM 04.00 PM TO 05.30 PM
+  Rain Dance:
+  Monday to Friday: 02.00 PM TO 02.20 PM 03.00 PM TO 03.20 PM
+  Saturday, Sunday & Public Holidays: 02.00 PM TO 02.20 PM 03.00 PM TO 03.20 PM 04.30 PM TO 05.00 PM
+  Thunder Rock Falls:
+  Monday to Friday: 01.30 PM TO 02.00 PM 04.00 PM TO 04.30 PM
+  Saturday, Sunday & Public Holidays: 01.00 PM TO 01.20 PM 04.00 PM TO 04.20 PM 05.00 PM TO 05.20 PM
+
+[QUESTION] Q. What are all the packages you have?
+  Enjoy inclusive Water and Dry Games! Tickets (Inclusive 18% GST):
+  Jumbo Package - Adult: Rs.1179, Child: Rs.825.
+  Mega Fun Package - Adult: Rs.1415, Child: Rs.1179.
+  Priority Pass - Adult: 2359, Child: 1769.
+  Adult: Height above 4'4"ft, Child: Height between 2'6"ft - 4'4"ft.
+  Timings: 10:30 am to 6:00 pm.
+
+[QUESTION] Q. What does the Mega Fun Package include?
+  The Mega Fun Package ensures a day of fun and excitement tailored to your preferences.
+  Package includes: Water and Dry Rides, 5D + Upside Down House + D’Evil House + Vortex Carnival Games Coupon (Choice of any 4 Games)
+
+[QUESTION] Q. What does the Jumbo Package include?
+  The Jumbo Package ensures a day of fun and excitement tailored to your preferences.
+  Package includes: Water and Dry Rides
+
+[QUESTION] Q. What is the Priority Pass? What does the Priority Pass ticket include?
+  The Priority Pass ticket grants expedited single-entry access to ride express queue lines.
+  Package includes: Water and Dry Rides, 5D + Upside Down House + D’Evil House + Vortex Carnival Games Coupon (Choice of any 4 Games), Combo Food Menu, Costume Combo
+
+[QUESTION] Q. Are prices inclusive or exclusive of taxes?
+  Taxes and fees will be added where applicable.
+  Food and Beverage
+
+[QUESTION] Q. Am I allowed to bring outside food and drinks to the park?
+  Food from outside is strictly not allowed at the amusement park.
+
+[QUESTION] Q. What types of food are available at the park?
+  The park offers multiple restaurants serving a variety of cuisines.
+  Surfin Food Court Vegetarian:
+  South Indian (Dosa, Idle, Vada, Uthappam and more), North Indian (Roti, Chapathi, Parotta and more), Fast Food (Fried Rice, Noodles), American delights (Sandwich, Burger, Pizza’s and more)
+  Dizzeeden Food Court Non-Veg:
+  North Indian (Roti, Chapathi, Parotta and more), Fast Food (Fried Rice, Noodles), American delights (Sandwich, Burger, Pizza’s and more)
+
+[QUESTION] Q. Are restaurant reservations available for events?
+  Yes, we do have Banquet Lawn Reservations for special events. Timings 6.30 PM to 10.30 PM.
+
+[QUESTION] Q. Can you accommodate my special dietary requests at the restaurants?
+  We provide both vegetarian and non-vegetarian meals at Surfin food court and Dizzeeden food court. If you have specific dietary needs, please communicate with the chefs at the restaurants.
+
+[QUESTION] Q. How can I discover information about the various restaurants in the park?
+  Find out more about our restaurants on the dining page.
+
+[QUESTION] Q. Is alcohol served at the Park?
+  No, Park regulation prohibits alcohol brought from outside. Alcohol is strictly prohibited within the theme park.
+  FAQ’s
+
+[QUESTION] Q. What are the Park Timings?
+  Operating Hours:
+  📆 Monday to Friday: 10:30 am - 06:00 pm
+  📆 Saturday, Sunday, and Public Holidays: 10:30 am - 06:30 pm
+  **Please note: We are open on all public and government holidays
+
+[QUESTION] Q. What are all the packages you have?
+  Enjoy inclusive Water and Dry Games! Tickets (Inclusive 18% GST):
+  Jumbo Package - Adult: Rs.1179, Child: Rs.825.
+  Mega Fun Package - Adult: Rs.1415, Child: Rs.1179.
+  Priority Pass - Adult: 2359, Child: 1769.
+  Adult: Height above 4'4"ft, Child: Height between 2'6"ft - 4'4"ft.
+  Timings: 10:30 am to 6:00 pm.
+
+[QUESTION] Q. Am I allowed to bring outside food and drinks to the park?
+  Guests are permitted to bring outside food to the park.
+
+[QUESTION] Q. Is the theme park open during the monsoon?
+  Yes, the theme park remains open year-round. However, for safety reasons, some outdoor rides may be non-operational during Heavy Rains.
+
+[QUESTION] Q. What types of food are available at the park?
+  The park offers multiple restaurants serving a variety of cuisines.
+  Surfin Food Court Vegetarian:
+  South Indian (Dosa, Idle, Vada, Uthappam and more), North Indian (Roti, Chapathi, Parotta and more), Fast Food (Fried Rice, Noodles), American delights (Sandwich, Burger, Pizza’s and more)
+  Dizzeeden Food Court Non-Veg:
+  North Indian (Roti, Chapathi, Parotta and more), Fast Food (Fried Rice, Noodles), American delights (Sandwich, Burger, Pizza’s and more)
+
+[QUESTION] Q. Are restaurant reservations available for events?
+  Yes, we do have Banquet Lawn Reservations for special events. Timings 6.30 PM to 10.30 PM.
+
+[QUESTION] Q.Can I exit the theme park and return on the same day without an additional charge?
+  We don't permit guests to leave and re-enter the park during operating hours.
+
+[QUESTION] Q.Are there any upcoming new attractions or shows?
+  Yes, we periodically introduce new attractions and shows to complement our existing rides.
+
+[QUESTION] Q.What attractions could be closed during my visit?
+  For safety reasons, a few rides may be closed depending on the weather.
+
+[QUESTION] Q.Which rides are suitable for children?
+  There are specific ride restrictions applicable to all attractions. You can find rides suitable for children listed here.
+  Gracy Horse
+  Cup of Fun
+  Mini Ship
+  Baby Slumbum
+  Jurrasic Train
+  Gracy Bus
+  Gracy Cup
+  Caterpiller
+  Bat Man Jet
+  He Man Jet
+
+[QUESTION] Q.Until what age is entry free at Dizzee World?
+  Adults must be over 4'4"ft, and children's height should range between 2'6"ft - 4'4"ft.
+
+[QUESTION] Q.Where is the Theme Park located?
+  1/74, SH 49, ECR, Muthukadu, Chennai, Tamil Nadu - 600112
+
+[QUESTION] Q.How much time does it take to explore the entire park?
+  To fully enjoy the park, 1 day would be ideal for your visit.
+
+[QUESTION] Q.What is the recommended attire for a day at the park? Are there any clothing restrictions?
+  To maintain our family-friendly environment and ensure safety, we have a strict dress code. Guests must wear appropriate clothing at all times, including shirts and proper footwear. Attire with offensive language or graphics is not permitted. Wearing sheer, mesh, or see-through clothing over bathing suits is also not allowed. Park entry may be refused if attire is deemed inappropriate by park management. Visitors must wear a shirt, shoes, and bottoms (shorts, pants, skirt, etc.) at all times within the theme park.
+
+[QUESTION] Q.Are your rides impacted by bad weather?
+  Our attractions and rides are designed to operate under various weather conditions. However, certain rides may remain closed based on the severity of inclement weather.
+
+[QUESTION] Q.Will I get wet on any of the rides?
+  Is there a place to change clothes? Some of our attractions and rides involve water, so there's a chance you may get wet depending on the ride. Restrooms located throughout the park are available for changing.
+
+[QUESTION] What Is Your Cancellation Policy?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] Where Is The Hotel Exactly?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] How Can I Manage My Booking?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] What Is Your Cancellation Policy?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] Where Is The Hotel Exactly?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] How Can I Manage My Booking?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] What Is Your Cancellation Policy?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] Where Is The Hotel Exactly?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] How Can I Manage My Booking?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] What Is Your Cancellation Policy?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] Where Is The Hotel Exactly?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] How Can I Manage My Booking?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] What Is Your Cancellation Policy?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] Where Is The Hotel Exactly?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] How Can I Manage My Booking?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] What Is Your Cancellation Policy?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] Where Is The Hotel Exactly?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] How Can I Manage My Booking?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] What Is Your Cancellation Policy?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] Where Is The Hotel Exactly?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] How Can I Manage My Booking?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] What Is Your Cancellation Policy?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] Where Is The Hotel Exactly?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] How Can I Manage My Booking?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] What Is Your Cancellation Policy?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] Where Is The Hotel Exactly?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] How Can I Manage My Booking?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] What Is Your Cancellation Policy?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+
+[QUESTION] Where Is The Hotel Exactly?
+  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod. ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.ALorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.
+  Attractions and Rides
+
+[QUESTION] Q. Are there any upcoming new attractions or shows?
+  Yes, we periodically introduce new attractions and shows to complement our existing rides.
+
+[QUESTION] Q. What attractions could be closed during my visit?
+  For safety reasons, a few rides may be closed depending on the weather.
+
+[QUESTION] Q. Which rides are suitable for children?
+  There are specific ride restrictions applicable to all attractions. You can find rides suitable for children listed here.
+  Gracy Horse
+  Cup of Fun
+  Mini Ship
+  Baby Slumbum
+  Jurrasic Train
+  Gracy Bus
+  Gracy Cup
+  Caterpiller
+  Bat Man Jet
+  He Man Jet
+
+[QUESTION] Q. Will I get wet on any of the rides? Is there a place to change clothes?
+  Certain attractions and rides at our park involve water, so depending on the ride, there is a possibility of getting wet. Restrooms are conveniently located throughout the park for changing.
+
+[QUESTION] Q. Do I need to pay if I'm pregnant?
+  Yes, and please note there are ride restrictions for expectant mothers.
+
+[QUESTION] Q. My leg/arm is in a cast. Can I still use your rides?
+  Each ride has specific guidelines regarding accessibility for individuals with injuries, disabilities, or those who are pregnant.
+
+[QUESTION] Q. Are your rides impacted by bad weather?
+  Our attractions and rides are designed to operate under various weather conditions. However, certain rides may remain closed based on the severity of inclement weather.
+  Ticketing and Refunds
+
+[QUESTION] Q. Can I exit the theme park and return on the same day without an additional charge?
+  We don't permit guests to leave and re-enter the park during operating hours.
+
+[QUESTION] Q. Until what age is entry free at Dizzee World?
+  Adults must be over 4'4"ft, and children's height should range between 2'6"ft - 4'4"ft.
+
+[QUESTION] Q. Can I upgrade my ticket?
+  Yes, you can upgrade the tickets before entering park or after entering the park. Visit the counter near the carnival gate in the Park.
+
+[QUESTION] Q. Can I get a refund of my ticket?
+  A refund is processed only if the tickets are cancelled 48 hours prior to visit date. Refunds may be subjected to a refund charge.
+
+[QUESTION] Q. What are the terms and conditions for a College ticket?
+  Valid student ID card to be presented to avail the Dizzee World College ticket. Only one ticket will be issued per Valid Student ID.
+
+[QUESTION] Q. What is the Cancellation or Refund Policy?
+  Cancellation is allowed 48 hours prior to visit date. A Cancellation Penalty of 25% on the cart content is applied prior to refund. Cancellation will not be allowed within 48 hours of the date of visit. Partial cancellations are not permitted. No refunds are admissible on cancellation or alteration of vehicle bookings.
+
+[QUESTION] Q. What is the chargeback policy?
+  Park tickets are issued only for the date of visit. These tickets cannot be used on any other date and no refunds shall be given for unused tickets. Similarly, no chargebacks are permissible on used or unused tickets. No refunds are admissible on cancellation or alteration of vehicle bookings.
+
+[QUESTION] Q. How is the money refunded if I cancel my tickets?
+  If you cancel the ticket before 48 hours the amount will be refunded to the same mode of payment which was used during the time of booking.
+
+[QUESTION] Q. Within how many days will I receive my Refund?
+  Usually, refunds are processed within 15 working days from the date of cancellation, however, reflection in your bank account may depend on various banking processes.
+  Visitor Information and Services
+
+[QUESTION] Q. How much time does it take to explore the entire park?
+  To fully enjoy the park, 1 day would be ideal for your visit.
+
+[QUESTION] Q. What is the recommended attire for a day at the park? Are there any clothing restrictions?
+  To maintain our family-friendly environment and ensure safety, we have a strict dress code. Guests must wear appropriate clothing at all times, including shirts and proper footwear. Attire with offensive language or graphics is not permitted. Wearing sheer, mesh, or see-through clothing over bathing suits is also not allowed. Park entry may be refused if attire is deemed inappropriate by park management. Visitors must wear a shirt, shoes, and bottoms (shorts, pants, skirt, etc.) at all times within the theme park.
+
+[QUESTION] Q. Do you have first aid facilities in the park?
+  Yes, we have medical centres within the park. Please ask our staff to help you locate the nearest facility.
+
+[QUESTION] Q. How can I retrieve a lost item?
+  We have a Lost and Found Counter within the theme park. Approach the Service Attendant at the counter, and they will assist you in locating and reclaiming your lost property.
+
+[QUESTION] Q. How long are your lines/queues?
+  Queue length varies based on the number of guests visiting the park.
+
+[QUESTION] Q. How is the mobile phone connectivity at the park?
+  We've made special arrangements for connectivity with Vodafone, Jio, Idea, and Airtel networks.
+
+[QUESTION] Q. Is there Wi-Fi service available at the park?
+  Currently, we do not have any Wi-Fi facility inside the park.
+
+[QUESTION] Q. Do you provide a baggage counter facility?
+  Yes, we do offer a baggage counter facility, but please note that they are limited and operate on a 'first come, first served' basis.
+
+[QUESTION] Q. How can I keep my valuables safe while in the park?
+  We recommend guests avoid bringing valuables. If possible, you can try storing them at the baggage counter.
+
+[QUESTION] Q. Can I bring my camera to the Park?
+  Guests can bring their personal cameras for leisure photography. DSLR cameras with detachable lenses are allowed, however action cameras like GoPros are not allowed. Selfie sticks are not allowed.
+
+[QUESTION] Q. Where are the information booths located?
+  At the entrance itself in the Arrival Plaza.
+
+[QUESTION] Q. Are there any ATM facilities within the Park?
+  At present there is No ATM facilities within the theme park, we are in talks and soon it will be.
+
+[QUESTION] Q. What are the terms and conditions for car and bus travel options?
+  Car and bus bookings must be completed 1 day prior, by 8pm and 10pm respectively. Since car and bus services are handled by transport party partners, and not by Dizzee World, the partners will share transport details prior to travel on the date of travel only.
+
+[QUESTION] Q. How many people are required to be eligible for group bookings at MGM Dizzee World?
+  Minimum 50 people are required for group bookings.
+
+[QUESTION] Q. How many people are required to be eligible for birthday bookings at MGM Dizzee World?
+  Minimum 25 People are required for Birthday Bookings.
+
+[QUESTION] Q. Are there Charging Stations for EV’s at Dizzee World?
+  Yes, there are total 1 charging stations combined present at MGM Beach Resort. Electric Vehicles are becoming more and more popular and with MGM Dizzee World always being at the forefront of sustainability practices, EV charging Stations have been set up for your convenience.
+
+[QUESTION] Q. Where can I find the EV charging Station for my Electric Car?
+  MGM Beach Resort has placed 1 EV charging station located near the Parking zone.
+  Transportation and Parking
+
+[QUESTION] Q. What are the auto charges to reach MGM Dizzee World from Central railway station?
+  Once you arrive at Central Railway Station, you can avail a Cab ride directly to Dizzee World. Central Railway Station is approx. 1.15 Hours of 28 KM from MGM Dizzee World.
+  - Cab
+  - Private Auto
+  - Buses
+  *Please note the above mentioned cab & auto fares are subject to change as per the local cab and auto rickshaw operators.
+  For return journeys, advance booking is required and will wait outside the park main entrance.
+
+[QUESTION] Q. Do you have parking facilities? What are the rates?
+  Yes, we do have the parking facilities. Bike – Rs. 50, Car/Bus/Van – Rs. 100. Management will not be responsible for theft or loss of Helmet. Rates are subject to change without prior notice.
+  Weather and Safety
+
+[QUESTION] Q. Is the theme park open during the monsoon?
+  Yes, the theme park remains open year-round. However, for safety reasons, some outdoor rides may be non-operational during Heavy Rains.
+
+[QUESTION] Q. How is the weather at Dizzee World?
+  It is reasonably hot during summers. In October arrives the breathtaking Monsoons. ECR, Chennai is one of the most beautiful highways in India, famous for its Private Beaches and Resorts.
+
+[QUESTION] Q. Does water games have costume restrictions?
+  Yes, it's a must! Costumes are available for purchase in the park, or you can bring your own. Make a splash in the pool with Synthetic, Lycra, Polyester, Spandex, or Nylon wear for the best water fun experience!
+  Special Services
+
+[QUESTION] Q. Are there any ATM facilities within the Park?
+  At present there is No ATM facilities within the theme park, we are in talks and soon it will be.
+  Home
+  Rides & Attractions
+  Tickets
+  Groups
+  Dining
+  Stay
+  Contact Us
+  Offers
+  Banquet Hall
+  Events
+
+================================================================================
+
+=== PARSING: data/raw_crawls/bt_faqs.txt ===
+
+[QUESTION] What is Black Thunder Water Theme Park?
+  Black Thunder is a large-scale water theme and amusement park located in Mettupalayam, at the foothills of the Nilgiri Hills in Coimbatore district. Our park features 30 water rides, 29 dry rides, 23 adventure attractions, 5 dining venues, and on-site accommodation at AVANA Resort.
+
+[QUESTION] Where is Black Thunder located in Coimbatore?
+  Our park is situated on Ooty Main Road, Mettupalayam, approximately 40 km from Coimbatore city. The property sits at the foothills of the Nilgiri Hills, surrounded by mountain views and greenery.
+
+[QUESTION] What are the opening hours of Black Thunder?
+  Our park is open daily from 10:00 AM to 6:00 PM.
+
+[QUESTION] Is Black Thunder suitable for children?
+  Yes. Our park has dedicated kids' play zones, a New Kids Pool, Kids Multi Racer slides, and child-friendly dry rides, including Santa Train, Junior Carousel, and Caterpillar Ride. Child tickets apply to visitors between 85 cm and 140 cm in height.
+  Tickets and Entry at Black Thunder
+
+[QUESTION] How much does an adult ticket cost at Black Thunder?
+  An adult entry ticket to Black Thunder costs Rs. 1,090. This pricing is effective from 1 March 2026.
+
+[QUESTION] What is the child ticket price at Black Thunder?
+  Child tickets cost Rs. 850 and apply to visitors between 85 cm and 140 cm in height. Visitors exceeding 140 cm require an adult ticket upgrade at the entry gate.
+
+[QUESTION] Does Black Thunder offer student discounts?
+  Yes. College students pay Rs. 890 and school students pay Rs. 790. Groups of 20 or more students from the same institution receive additional concessions with a valid bona fide letter, and 1 staff member receives complimentary entry for every 15 students.
+
+[QUESTION] Is there a senior citizen discount at Black Thunder?
+  Yes. Senior citizens aged 60 and above pay Rs. 850 with a valid identity proof.
+
+[QUESTION] Does Black Thunder offer combo ticket packages?
+  Yes. A combo ticket covering park entry and adventure activities costs Rs. 1,450. Adventure activities alone cost Rs. 550. Both require a minimum height of 145 cm and a maximum weight of 85 kg.
+  Water Rides at Black Thunder
+
+[QUESTION] How many water rides does Black Thunder have?
+  Our park features 30 water rides, ranging from high-speed slides and wave pools to family raft rides and dedicated kids' water zones. Explore all the rides here and plan your perfect day of adventure .
+
+[QUESTION] Does Black Thunder have a wave pool?
+  Yes. Our Wave Pool simulates ocean-like waves, making it one of the most visited attractions at the park for guests of all ages.
+
+[QUESTION] Is there a lazy river at Black Thunder?
+  Yes. Our Lazy River offers a slow, relaxing float through a winding water channel, suitable for visitors looking for a calmer water experience between rides.
+  Does Black Thunder have water rides for young children
+  Yes. Our park has a dedicated New Kids Pool, Kids Multi Racer, and Family Playstation designed for younger visitors with shallow water and age-appropriate slides.
+
+[QUESTION] Does Black Thunder have a rain dance area?
+  Yes. Thunder Rain is our dedicated rain dance attraction where visitors enjoy a simulated rainfall experience with music and lighting.
+  Dry Rides and Attractions at Black Thunder
+
+[QUESTION] How many dry rides does Black Thunder have?
+  Our park features 29 dry rides, including roller coasters, spinning rides, carousels, bumper cars, and themed attractions for visitors of all ages. Explore all the rides here and discover your next adventure .
+
+[QUESTION] Does Black Thunder have a roller coaster?
+  Yes. Our park has 2 roller coasters: Columbus, a dragon-themed coaster winding through palm trees, and Family Coaster, an apple and caterpillar-themed ride suitable for families with children.
+
+[QUESTION] Is there a 5D theatre at Black Thunder?
+  Yes. Our 5D Theatre delivers an immersive cinematic experience with multi-sensory effects. A separate Cine Magic attraction is also available for cinema-based entertainment.
+
+[QUESTION] Does Black Thunder have a horror house?
+  Yes. Our park features 2 horror-themed attractions: Horror House, an immersive walkthrough experience, and 9D Haunted Hospital, a themed horror attraction with virtual reality elements.
+
+[QUESTION] Does Black Thunder have VR experiences?
+  Yes. Our park offers 2 virtual reality attractions: 9D VR, an immersive pod-based experience, and VR Play Station, an interactive gaming station with headsets and controllers.
+
+[QUESTION] Are there adventure activities like zip lining at Black Thunder?
+  Yes. Our adventure activities include the Zipline Coaster, Zipline Cycle, Sky Roller, Bungee Ejection, Wall Climbing, Tyre Wall Climbing, Cargo Net, and Burma Bridge, offering thrilling experiences for visitors of all ages. Explore all the adventure activities here and plan your next challenge .
+  Dining at Black Thunder
+
+[QUESTION] What dining options are available at Black Thunder?
+  Our park offers 5 dining venues:
+  Thunder Cafe (Multi-cuisine Restaurant)
+  Tusker Bar (Bar)
+  Bamboo Huts (Hut-themed Dining)
+  BBQ & Bonfire (Outdoor Barbecue)
+  Picnic By The Fountain (Outdoor Picnic Experience)
+
+[QUESTION] What cuisine does Thunder Cafe at Black Thunder serve?
+  Thunder Cafe serves South Indian and Chettinad cuisines in a spacious indoor dining hall with floor-to-ceiling windows and natural sunlight. A Bamboo Garden section is also available for guests who prefer outdoor seating.
+
+[QUESTION] Does Black Thunder have a bar?
+  Yes. Tusker Bar serves wines by the glass and bottle, cocktails, mocktails, and beers. The food menu includes fish fingers, kebabs, and Chinese entrees, served in a rustic setting inspired by traditional English clubs from tea plantation estates.
+
+[QUESTION] Is there outdoor dining at Black Thunder?
+  Yes. Bamboo Huts offers a traditional hut-themed dining experience with thatched-roof seating set against mountain and coconut tree views. Picnic By The Fountain provides an outdoor picnic-style dining option with seasonal fare.
+
+[QUESTION] Does Black Thunder offer barbecue and bonfire dining?
+  Yes. Our BBQ & Bonfire venue is an outdoor dining space at AVANA Resort, where guests enjoy barbecue meals around a bonfire on a grassy lawn setting with mountain views.
+
+[QUESTION] Can visitors arrange group meals at Black Thunder?
+  Yes. Custom food arrangements are available for groups, including school excursions and corporate outings. Group dining requires prior coordination with our reservations team.
+  Weddings and Events at Black Thunder
+
+[QUESTION] What makes Black Thunder a preferred wedding venue in Coimbatore?
+  Black Thunder offers a scenic mountain backdrop, 3open-air lawns, and elegant indoor spaces, making it one of the most sought-after wedding venues in Coimbatore for a memorable celebration.
+
+[QUESTION] What types of wedding venues are available at Black Thunder?
+  The property features a mix of indoor and outdoor spaces , including three spacious lawns and two indoor ballrooms, suitable for both intimate ceremonies and large-scale celebrations.
+
+[QUESTION] What is the guest capacity at Black Thunder wedding venues?
+  Our largest lawn can accommodate up to 3,000 guests with ease, while the indoor ballrooms can host around 200 guests each, making them ideal for diverse wedding requirements.
+
+[QUESTION] Does Black Thunder have outdoor wedding venues?
+  Yes. Our property offers outdoor lawns, including Palm Tree Lawn (the most popular choice for weddings, surrounded by tall trees and greenery), Fountain Area (a garden venue with water fountains and seasonal flowers), and Foothill Area (a venue with mountain backdrop views).
+
+[QUESTION] What is the largest wedding venue capacity at Black Thunder?
+  The largest outdoor lawn at our property accommodates up to 3,000 guests. The 2 indoor ballrooms each hold approximately 200 guests.
+
+[QUESTION] Does Black Thunder provide catering for events?
+  Yes, Black Thunder provides beautifully designed open-air lawns surrounded by natural landscapes, perfect for couples looking for a picturesque outdoor wedding experience.
+
+[QUESTION] Can external decorators and vendors be used for weddings?
+  Yes, couples are welcome to bring in external decorators and vendors to customise the venue as per their wedding theme and preferences.
+  Experiences and Activities at Black Thunder
+
+[QUESTION] What experiences are available at Black Thunder besides rides?
+  AVANA Resort offers a range of activities at Black Thunder, including bonfire evenings, cycling, sports (volleyball), animal interaction walks, fish feeding, yoga sessions, pottery making, and a Love Nest photography spot with mountain backdrops.
+
+[QUESTION] Does Black Thunder offer cycling activities?
+  Yes. Guests can enjoy cycling along a flat, scenic track that runs beside the sports ground for approximately half a kilometre. Suitable for both adults and children, the activity offers a refreshing ride amidst the natural surroundings. Explore all the experiences .
+
+[QUESTION] Is there a bird park at Black Thunder?
+  Yes. Our Bird Park features a dedicated pathway for viewing a variety of birds in their natural surroundings. An Animal Watch Tower is also available for observing wildlife across the resort grounds.
+
+[QUESTION] Does Black Thunder have boating facilities?
+  Yes. Our Boat House offers pedal boat rides on a calm lake surrounded by natural scenery. A separate Fish Pond is also available for fishing activities within the park.
+
+[QUESTION] Can visitors interact with animals at Black Thunder?
+  Yes. Nature lovers and early risers can begin their day with a 6:30 AM animal and bird sighting walk across the resort’s expansive grounds. Set amidst a natural environment, guests can observe domesticated animals such as pigeons, chickens, turtles, and rabbits, along with a variety of birds, making it a refreshing start to the day. Plan your experience here .
+
+[QUESTION] Is wall climbing available at Black Thunder?
+  Yes. Our park features 2 climbing attractions: a colourful artificial rock wall for standard wall climbing and a Tyre Wall, a vertical climbing structure constructed from tyres for an added challenge.
+  Location & Attractions near Black Thunder
+
+[QUESTION] Is Black Thunder on the route to Ooty?
+  Yes. Our park is located on Ooty Main Road in Mettupalayam, directly on the highway connecting Coimbatore to Ooty, making it a convenient stop for travellers heading to the Nilgiri Hills.
+
+[QUESTION] How do visitors reach Black Thunder from Coimbatore?
+  Visitors travel via the Coimbatore-Mettupalayam-Ooty highway to reach our park on Ooty Main Road, Mettupalayam, approximately 40 km from Coimbatore city.
+  Nearby Attractions to Black Thunder
+
+[QUESTION] What are the nearby attractions to Black Thunder?
+  Key attractions in the Nilgiri Hills region near Black Thunder include:
+  Nilgiri Mountain Railway (scenic heritage train)
+  Sim's Park (botanical garden in Coonoor)
+  Dolphin Nose (scenic viewpoint in Coonoor)
+  Ketti Valley
+  Laws Falls (Coonoor)
+  Nilgiri Biosphere Reserve
+  All Saints Church (built in 1851)
+
+[QUESTION] Is Black Thunder close to the Nilgiri Mountain Railway?
+  Yes. The Nilgiri Mountain Railway is a scenic heritage train route passing through tunnels, forests, and hilly slopes with stops at Kellar, Coonoor, Wellington, Lovedale, and Ootacamund. Mettupalayam, where Black Thunder is located, serves as the starting point of this railway.
+
+[QUESTION] How do visitors reach Black Thunder from Coimbatore?
+  Visitors travel via the Coimbatore-Mettupalayam-Ooty highway to reach our park on Ooty Main Road, Mettupalayam, approximately 40 km from Coimbatore city.
+  Key attractions in the Nilgiri Hills region near Black Thunder include:
+  Nilgiri Mountain Railway (scenic heritage train) - approximately 25 km
+  Sim's Park (botanical garden in Coonoor) - approximately 32 km
+  Dolphin Nose (scenic viewpoint in Coonoor) - approximately 25 km
+  Ketti Valley - approximately 211 km
+  Laws Falls (Coonoor) - approximately 24 km
+  Contact Us
+  Black Thunder Theme Park Pvt Ltd
+  Jaganari Slopes R.F., Tamil Nadu 641305, India
+  info@blackthunder.in

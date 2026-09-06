@@ -1,22 +1,23 @@
-def calculate_visit_score(
-    time_saving: float,
-    money_saving: float,
-    weather_fit: float,
-    priority_mode: str = "balanced"
-) -> float:
-    """
-    Core mathematical formula evaluating the visit quality based on dynamic weights.
-    Score = (w_time * TimeSaving) + (w_money * MoneySaving) + (w_weather * WeatherFit)
-    """
+from typing import Dict, Tuple
+
+PRIORITY_WEIGHTS: Dict[str, Tuple[float, float, float]] = {
+    "Cheapest": (0.15, 0.70, 0.15),
+    "Least Crowded": (0.70, 0.15, 0.15),
+    "Best Balanced": (0.34, 0.33, 0.33),
+    "Maximum Rides": (0.60, 0.20, 0.20),
+}
+
+WEATHER_FIT_TABLE: Dict[str, float] = {
+    "sunny": 1.0,
+    "cloudy": 0.8,
+    "light_rain": 0.4,
+    "heavy_rain": 0.1
+}
+
+def calculate_visit_score(priority: str, time_saving: float, money_saving: float, weather_condition: str) -> float:
+    weights = PRIORITY_WEIGHTS.get(priority, (0.34, 0.33, 0.33))
+    w_time, w_money, w_weather = weights
+    weather_fit = WEATHER_FIT_TABLE.get(weather_condition.lower(), 0.7)
     
-    weights = {
-        "cheapest": {"w_time": 0.2, "w_money": 0.6, "w_weather": 0.2},
-        "least_crowded": {"w_time": 0.7, "w_money": 0.1, "w_weather": 0.2},
-        "balanced": {"w_time": 0.35, "w_money": 0.35, "w_weather": 0.3},
-        "maximum_rides": {"w_time": 0.6, "w_money": 0.2, "w_weather": 0.2},
-    }
-
-    w = weights.get(priority_mode, weights["balanced"])
-
-    score = (w["w_time"] * time_saving) + (w["w_money"] * money_saving) + (w["w_weather"] * weather_fit)
-    return round(score, 2)
+    score = (w_time * time_saving) + (w_money * money_saving) + (w_weather * weather_fit)
+    return round(float(score * 100.0), 1)

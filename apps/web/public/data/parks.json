@@ -1,0 +1,951 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-09-06",
+  "parks_count": 3,
+  "parks": {
+    "wonderla-chennai": {
+      "park_id": "wonderla-chennai",
+      "name": "Wonderla Amusement Park Chennai",
+      "brand": "Wonderla Holidays Limited",
+      "official_website": "https://www.wonderla.com/",
+      "location": {
+        "address": "45/1F, OMR Road, Thiruporur Post, Illalur Village, Chengalpattu, Tamil Nadu - 603110",
+        "coordinates": {
+          "lat": 12.74203,
+          "lon": 80.17178
+        },
+        "geohash": "tf302re79ys1",
+        "city": "Chennai",
+        "state": "Tamil Nadu",
+        "highway": "Old Mahabalipuram Road (OMR) / IT Expressway",
+        "google_maps_link": "https://maps.app.goo.gl/DNJF5cdGP7CyjyDs7"
+      },
+      "contact": {
+        "phone_numbers": [
+          "044-35024300",
+          "044-35024242"
+        ],
+        "email": "mail.che@wonderla.com",
+        "group_enquiries": "04435024300 | bd.che@wonderla.com",
+        "corporate_office": "Wonderla Holidays Ltd Corporate Office, 9th Floor, The Estate, Dickenson Road, Bengaluru 560042"
+      },
+      "operating_hours": {
+        "general": {
+          "weekdays": "11:00 AM - 06:00 PM",
+          "weekends_and_holidays": "11:00 AM - 07:00 PM"
+        },
+        "water_rides": {
+          "weekdays": "12:30 PM - 05:00 PM",
+          "weekends_and_holidays": "12:00 PM - 06:00 PM"
+        },
+        "notes": "Park opens 365 days a year. Certain outdoor rides may temporarily halt during extreme lightning or monsoon downpours."
+      },
+      "ticket_pricing": {
+        "currency": "INR",
+        "gst_policy": "Prices subject to 18% GST or inclusive where stated",
+        "regular_rates": {
+          "adult_weekday": 1312,
+          "adult_weekend": 1549,
+          "child_weekday": 1050,
+          "child_weekend": 1239,
+          "senior_citizen_weekday": 1050,
+          "senior_citizen_weekend": 1239
+        },
+        "fastrack_pass": {
+          "description": "Skip regular queues and enjoy dedicated express entry for all major thrill rides. Limited quantities per day.",
+          "pricing_addon": "Base ticket rate + 100% surcharge (~₹1,312 to ₹1,549 additional)"
+        },
+        "discounts_and_promotions": [
+          {
+            "name": "College Student Pass",
+            "discount": "20% - 30% off regular adult ticket",
+            "eligibility": "Valid student college photo ID card required at entry. One ticket per ID."
+          },
+          {
+            "name": "Hall Ticket Offer",
+            "discount": "Special discounted ticket rate",
+            "eligibility": "For students who appeared in 10th, 12th board or competitive exams with hall ticket."
+          },
+          {
+            "name": "Buy 3 Get 1 Free (Funtastic 4)",
+            "discount": "Pay for 3 adult tickets, get 4th ticket completely free",
+            "eligibility": "Available for online advance bookings on select weekdays."
+          },
+          {
+            "name": "Wonder Women Wednesday",
+            "discount": "Buy 2 Get 2 Free for all-women groups",
+            "eligibility": "Applicable on Wednesdays. All visitors in the booking must be female."
+          },
+          {
+            "name": "Birthday BOGO Offer",
+            "discount": "Buy 1 Get 1 Free for birthday person",
+            "eligibility": "Must visit during the birthday month; requires government DOB ID proof."
+          },
+          {
+            "name": "Early Bird & Monsoon Flash Sale",
+            "discount": "Up to 35% discount for online bookings 7+ days in advance",
+            "eligibility": "Online bookings via official website."
+          }
+        ],
+        "height_categories": {
+          "adult": "Height above 140 cm",
+          "child": "Height between 85 cm and 140 cm",
+          "infant": "Height below 85 cm enter absolutely FREE"
+        }
+      },
+      "dress_code_policy": {
+        "water_rides": "100% Synthetic, Lycra, Polyester, or Nylon swimwear is strictly mandatory. Cotton shirts, jeans, sarees, dupattas, and garments with metal zippers/rivets are strictly banned on water slides.",
+        "costume_purchases": "Synthetic swimwear, burkinis, shorts, and tees are sold on-site starting from ₹350.",
+        "dry_rides": "Comfortable footwear and casual attire. Secure loose items before boarding inversion rides."
+      },
+      "amenities_and_facilities": {
+        "lockers": "RFID EZ-Pay wristband lockers available for rent (~₹100-₹150 + ₹100 refundable security deposit). Cashless digital wallet inside park.",
+        "food_policy": "Outside food and beverages are strictly prohibited (infant food permitted).",
+        "first_aid": "Fully staffed medical emergency response center with ambulance on standby.",
+        "parking": "Dedicated multi-level parking for 2-wheelers and 4-wheelers. Valet and EV charging supported.",
+        "accessibility": "Wheelchair ramps, dedicated wheelchair rentals, and baby feeding care rooms available."
+      },
+      "dining_venues": [
+        {
+          "name": "Poriyal Restaurant",
+          "cuisine": "Authentic Tamil Nadu delicacies, South Indian Thali, Idli, Dosa",
+          "type": "Traditional Vegetarian & Regional"
+        },
+        {
+          "name": "Food Court",
+          "cuisine": "Multi-cuisine quick service counters: North Indian, Chinese, Chaat, Pizzas",
+          "type": "Fast Casual"
+        },
+        {
+          "name": "Galaxy Restaurant",
+          "cuisine": "Multi-cuisine family dining with AC indoor hall",
+          "type": "Family Dining"
+        },
+        {
+          "name": "Park View Restaurant",
+          "cuisine": "Buffet and combo meals with scenic views of park attractions",
+          "type": "Buffet / Casual"
+        },
+        {
+          "name": "Biryani Zone",
+          "cuisine": "Authentic Ambur and Hyderabadi Dum Biryani with kebabs",
+          "type": "Specialty Non-Veg"
+        },
+        {
+          "name": "Waves Restaurant",
+          "cuisine": "Snacks, fresh juices, and ice creams located adjacent to the Wave Pool",
+          "type": "Poolside Cafe"
+        },
+        {
+          "name": "Aqua Cafe",
+          "cuisine": "Burgers, french fries, cold sodas, and mocktails",
+          "type": "Snack Bar"
+        }
+      ],
+      "attractions_and_rides": [
+        {
+          "id": "1537",
+          "name": "Tanjora",
+          "slug": "tanjora",
+          "category": "High Thrill Land",
+          "thrill_meter": 100,
+          "coordinates": {
+            "lat": 12.74203,
+            "lon": 80.17194
+          },
+          "description": "India's first-ever B&M Inverted Roller Coaster. Swiss engineered floorless suspended design featuring zero-G rolls, high-speed wing-overs, and maximum G-forces.",
+          "min_height_cm": 140,
+          "fastrack_eligible": true,
+          "features": [
+            "Floorless inverted train",
+            "Zero-G roll",
+            "Wing over",
+            "Bolliger & Mabillard Swiss engineering"
+          ]
+        },
+        {
+          "id": "1354",
+          "name": "Recoil",
+          "slug": "recoil",
+          "category": "High Thrill Land",
+          "thrill_meter": 95,
+          "description": "India's first action-packed reverse looping roller coaster. Climbs 40 meters, plunges through loops, and retraces the entire layout backwards.",
+          "min_height_cm": 140,
+          "fastrack_eligible": true,
+          "features": [
+            "Reverse loop",
+            "40m vertical climb",
+            "Boomerang layout"
+          ]
+        },
+        {
+          "id": "1366",
+          "name": "Equinox 360",
+          "slug": "equinox-360",
+          "category": "High Thrill Land",
+          "thrill_meter": 95,
+          "description": "A gravity-defying pendulum thrill monster that swings riders upside down in a complete 360-degree axial rotation.",
+          "min_height_cm": 140,
+          "fastrack_eligible": true,
+          "features": [
+            "360 degree inversion",
+            "Giant pendulum",
+            "Axial spin"
+          ]
+        },
+        {
+          "id": "1496",
+          "name": "Flash Tower",
+          "slug": "flash-tower",
+          "category": "High Thrill Land",
+          "thrill_meter": 90,
+          "description": "Vertical drop tower blasting riders upward and dropping them into sudden zero-gravity freefall.",
+          "min_height_cm": 135,
+          "fastrack_eligible": true,
+          "features": [
+            "Freefall drop",
+            "Pneumatic launch",
+            "Panoramic skyline view"
+          ]
+        },
+        {
+          "id": "1488",
+          "name": "Termite Coaster",
+          "slug": "termite-coaster",
+          "category": "Family Land",
+          "thrill_meter": 75,
+          "description": "Ride on the edge with sharp hairpin curves, steep climbs, and dizzying drops through wooded scenery.",
+          "min_height_cm": 120,
+          "fastrack_eligible": true,
+          "features": [
+            "Family coaster",
+            "Speed turns",
+            "Elevated banking"
+          ]
+        },
+        {
+          "id": "1376",
+          "name": "Drop Loop",
+          "slug": "drop-loop",
+          "category": "High Thrill Water",
+          "thrill_meter": 90,
+          "description": "Trapdoor sky-high slope dropping riders almost vertically into a high-speed inclined water loop.",
+          "min_height_cm": 140,
+          "fastrack_eligible": true,
+          "features": [
+            "Trapdoor drop",
+            "Vertical loop slide",
+            "Enclosed body slide"
+          ]
+        },
+        {
+          "id": "1368",
+          "name": "Wonder Splash",
+          "slug": "wonder-splash",
+          "category": "Water Coaster",
+          "thrill_meter": 80,
+          "description": "Bogie boat ascending a steep rail track before hurtling down a 28-meter slope into a monumental tidal splash.",
+          "min_height_cm": 110,
+          "fastrack_eligible": true,
+          "features": [
+            "Water chute",
+            "Massive wave splash",
+            "Family boat"
+          ]
+        },
+        {
+          "id": "1353",
+          "name": "Korneto",
+          "slug": "korneto",
+          "category": "High Thrill Water",
+          "thrill_meter": 85,
+          "description": "Whirling tornado funnel slide where multi-person rafts swing up 45-degree walls before flushing into the pool.",
+          "min_height_cm": 130,
+          "fastrack_eligible": true,
+          "features": [
+            "Giant funnel",
+            "Zero-gravity oscillation",
+            "Multi-passenger raft"
+          ]
+        },
+        {
+          "id": "1399",
+          "name": "Wave Pool",
+          "slug": "wave-pool",
+          "category": "Water Family",
+          "thrill_meter": 60,
+          "description": "Expansive artificial beachfront with computer-generated oceanic surf waves, shallow shoreline, and deep waters.",
+          "min_height_cm": 85,
+          "fastrack_eligible": false,
+          "features": [
+            "Ocean surf simulation",
+            "Lifejackets provided",
+            "Beach atmosphere"
+          ]
+        },
+        {
+          "id": "1415",
+          "name": "Rain Disco",
+          "slug": "rain-disco",
+          "category": "Water Entertainment",
+          "thrill_meter": 65,
+          "description": "Indoor dance floor equipped with intelligent psychedelic laser lighting, pounding acoustic bass, and warm rain showers.",
+          "min_height_cm": 85,
+          "fastrack_eligible": false,
+          "features": [
+            "Rain dance",
+            "Club DJ sound system",
+            "Laser visual effects"
+          ]
+        },
+        {
+          "id": "1504",
+          "name": "Mission Interstellar",
+          "slug": "mission-interstellar",
+          "category": "Virtual Simulation",
+          "thrill_meter": 75,
+          "description": "Hyper-realistic space flight simulation with 4K laser projection, synchronized 6-DOF motion hydraulic seats, and atmospheric wind effects.",
+          "min_height_cm": 105,
+          "fastrack_eligible": true,
+          "features": [
+            "4K laser immersion",
+            "6-DOF hydraulic base",
+            "Cosmic theme"
+          ]
+        },
+        {
+          "id": "1380",
+          "name": "Boomerang",
+          "slug": "boomerang",
+          "category": "High Thrill Water",
+          "thrill_meter": 85,
+          "description": "Raft drops down an enclosed tube before rocketing up a near-vertical curved wall, pausing at the peak, and sliding backwards.",
+          "min_height_cm": 130,
+          "fastrack_eligible": true,
+          "features": [
+            "Quarter-pipe drop",
+            "Reverse descent",
+            "Double tube raft"
+          ]
+        }
+      ]
+    },
+    "mgm-dizzee-chennai": {
+      "park_id": "mgm-dizzee-chennai",
+      "name": "MGM Dizzee World",
+      "brand": "MGM Entertainment / MGM Group",
+      "official_website": "https://www.mgmdizzeeworld.com/",
+      "location": {
+        "address": "1/74, SH 49, East Coast Road (ECR), Muthukadu, Chennai, Tamil Nadu - 600112",
+        "coordinates": {
+          "lat": 12.826182,
+          "lon": 80.244191
+        },
+        "city": "Chennai",
+        "state": "Tamil Nadu",
+        "highway": "East Coast Road (ECR)",
+        "distance_from_central": "28 km (~1 hour 15 minutes by car/cab)",
+        "nearby_landmarks": "MGM Beach Resort, Muthukadu Boat House, Kovalam Beach"
+      },
+      "contact": {
+        "phone_numbers": [
+          "+91 95 0006 3716",
+          "+91 80 6906 5555",
+          "+91 80 6979 5555"
+        ],
+        "email": "sales@mgmdizzeeworld.com",
+        "support_hours": "08:00 AM - 08:00 PM IST"
+      },
+      "operating_hours": {
+        "park_timings": {
+          "weekdays": "10:30 AM - 06:00 PM",
+          "weekends_and_holidays": "10:30 AM - 06:30 PM",
+          "notes": "Open on all 365 days including government and national holidays"
+        },
+        "water_park_schedules": {
+          "swimming_pool_and_boating": {
+            "weekdays": "12:30 PM - 05:00 PM",
+            "weekends": "12:30 PM - 05:30 PM"
+          },
+          "splash_zone_and_kids_zone": {
+            "session_1": "02:00 PM - 03:00 PM",
+            "session_2": "04:00 PM - 05:00 PM (05:30 PM on weekends)"
+          },
+          "rain_dance": {
+            "session_1": "02:00 PM - 02:20 PM",
+            "session_2": "03:00 PM - 03:20 PM",
+            "session_3_weekend_only": "04:30 PM - 05:00 PM"
+          },
+          "thunder_rock_falls": {
+            "session_1": "01:30 PM - 02:00 PM (01:00 PM on weekends)",
+            "session_2": "04:00 PM - 04:30 PM (04:00 PM - 04:20 PM on weekends)",
+            "session_3_weekend_only": "05:00 PM - 05:20 PM"
+          }
+        }
+      },
+      "ticket_pricing": {
+        "currency": "INR",
+        "gst_included": true,
+        "tax_rate": "18% GST included",
+        "packages": [
+          {
+            "name": "Jumbo Package",
+            "adult_price": 1179,
+            "child_price": 825,
+            "inclusions": "Full day unlimited access to all general Dry Rides and all Water World attractions."
+          },
+          {
+            "name": "Mega Fun Package",
+            "adult_price": 1415,
+            "child_price": 1179,
+            "inclusions": "Full day unlimited access to Dry & Water Rides + 5D Theatre + Upside Down House + D'Evil House + Vortex + 4 Carnival Game coupons."
+          },
+          {
+            "name": "Priority Pass",
+            "adult_price": 2359,
+            "child_price": 1769,
+            "inclusions": "Expedited single-entry express queue bypass for rides + Mega Fun Package privileges + Combo Food Menu + Costume Combo."
+          }
+        ],
+        "height_criteria": {
+          "adult": "Height above 4 ft 4 in (132 cm)",
+          "child": "Height between 2 ft 6 in and 4 ft 4 in (76 cm to 132 cm)",
+          "infant": "Height under 2 ft 6 in enter FREE"
+        },
+        "promotions_and_discounts": [
+          {
+            "name": "Buy 2 Get 2 Free",
+            "description": "Book 2 regular tickets and receive 2 complimentary tickets. Valid on select weekday promotional periods."
+          },
+          {
+            "name": "Buy 4 Get 2 Free",
+            "description": "Special group saver package. Buy 4 regular tickets, get 2 free."
+          },
+          {
+            "name": "College / School Student Discount",
+            "description": "25% instant discount upon presenting a valid original student ID card."
+          },
+          {
+            "name": "Group Booking Offer",
+            "description": "20% discount for organized groups of 25 or more persons."
+          },
+          {
+            "name": "Day Out @ MGM",
+            "description": "Combined package granting access to both MGM Beach Resort private beach facilities and MGM Dizzee World."
+          }
+        ],
+        "cancellation_policy": "Cancellation permitted up to 48 hours before date of visit subject to 25% cancellation penalty. Non-refundable within 48 hours."
+      },
+      "dress_code_policy": {
+        "general": "Shirts, bottoms (trousers, jeans, bermudas, three-fourths), and footwear mandatory at all times on park grounds. Offensive graphics or see-through clothes forbidden.",
+        "water_rides": "Costumes strictly mandatory. Only Synthetic, Lycra, Polyester, Spandex, or Nylon allowed. Denim and metal buttons/zippers banned. Costumes available for purchase inside."
+      },
+      "amenities_and_facilities": {
+        "parking": "Dedicated parking lot. Two-wheelers: ₹20 - ₹50; Cars/Buses/Vans: ₹50 - ₹100.",
+        "ev_charging": "1 EV charging station located at MGM Beach Resort adjacent to the parking area.",
+        "lockers_and_baggage": "Baggage counter available on a first-come, first-served basis.",
+        "food_policy": "Outside food IS permitted in MGM Dizzee World (unique policy among amusement parks).",
+        "first_aid": "On-site medical center with first aid staff.",
+        "wifi": "No public Wi-Fi inside the park. High-speed cell coverage from Jio, Airtel, and Vi.",
+        "photography": "Personal cameras and DSLRs permitted. GoPros and selfie sticks are strictly prohibited for safety."
+      },
+      "dining_venues": [
+        {
+          "name": "Surfin Food Court (Pure Vegetarian)",
+          "cuisines": "South Indian (Idli, Dosa, Vada, Uthappam), North Indian (Roti, Naan, Paneer gravies), Chinese (Fried Rice, Noodles), American (Pizzas, Burgers, Sandwiches)"
+        },
+        {
+          "name": "Dizzeeden Food Court (Non-Vegetarian)",
+          "cuisines": "Chicken Biryani, Kebabs, North Indian Chicken curries, Parottas, Fast food and Chilled Beverages"
+        }
+      ],
+      "rides_catalog": {
+        "total_rides_count": 65,
+        "adult_and_thrill_rides": [
+          {
+            "name": "Roller Coaster",
+            "type": "High Thrill Coaster",
+            "description": "Steel looping track with elevated helix drops."
+          },
+          {
+            "name": "Kamikaze Ranger",
+            "type": "Extreme Inversion",
+            "description": "Twin swinging arms that lock 360 degrees upside down."
+          },
+          {
+            "name": "Revolution",
+            "type": "Extreme Pendulum",
+            "description": "Giant spinning disc on an oscillating pendulum arm."
+          },
+          {
+            "name": "Energy Storm",
+            "type": "High Speed Spin",
+            "description": "Multi-axis spinning arms with 360-degree rotations."
+          },
+          {
+            "name": "Space Battle",
+            "type": "Aerial Interactive",
+            "description": "Soar and spin on a sci-fi aerial turntable."
+          },
+          {
+            "name": "Robo Cop",
+            "type": "Centrifugal Spin",
+            "description": "Futuristic mechanical swinging and spinning ride."
+          },
+          {
+            "name": "Wave Swinger",
+            "type": "Chair-O-Plane",
+            "description": "Elevated wave-like swinging carousel."
+          },
+          {
+            "name": "Super Trooper",
+            "type": "Hydraulic Wheel",
+            "description": "Tilted spinning gondolas lifting riders high in the air."
+          },
+          {
+            "name": "Spider Spin",
+            "type": "Octopus Style",
+            "description": "Multi-arm spinning and bouncing ride."
+          },
+          {
+            "name": "Water Coaster",
+            "type": "Aquatic Coaster",
+            "description": "Steel coaster plunging into splash run-out tracks."
+          },
+          {
+            "name": "Dashing Car",
+            "type": "Bumper Cars",
+            "description": "Electrified floor bumper cars with steering control."
+          },
+          {
+            "name": "Ferrari's Wheel",
+            "type": "Giant Ferris Wheel",
+            "description": "Massive observation wheel with ECR coastline views."
+          },
+          {
+            "name": "360 Cycle",
+            "type": "Acrobatic Bicycle",
+            "description": "Loop-the-loop bicycle where riders pedal in a vertical circle."
+          },
+          {
+            "name": "Tagada",
+            "type": "Bouncing Disc",
+            "description": "Bowl without seatbelts that bounces and rotates to music."
+          }
+        ],
+        "family_and_scenic_rides": [
+          {
+            "name": "Twister",
+            "type": "Family Spin"
+          },
+          {
+            "name": "Reindeer Coaster",
+            "type": "Gentle Family Coaster"
+          },
+          {
+            "name": "Carousel",
+            "type": "Grand Merry-Go-Round"
+          },
+          {
+            "name": "Tornado Coaster",
+            "type": "Family Coaster"
+          },
+          {
+            "name": "Balloon Race",
+            "type": "Hot Air Balloon Flight"
+          },
+          {
+            "name": "Sky Glider",
+            "type": "Cable Chairlift"
+          },
+          {
+            "name": "Star Wheels",
+            "type": "Family Wheel"
+          },
+          {
+            "name": "Jurassic Train",
+            "type": "Animatronic Dinosaur Tour"
+          },
+          {
+            "name": "Nilgiri Express",
+            "type": "Miniature Scenic Train"
+          },
+          {
+            "name": "Disco Saucer",
+            "type": "Rotating Platform"
+          }
+        ],
+        "kids_rides": [
+          {
+            "name": "Gracy Horse",
+            "type": "Gentle Horse Carousel"
+          },
+          {
+            "name": "Cup of Fun / Gracy Cups",
+            "type": "Teacups Spin"
+          },
+          {
+            "name": "Mini Ship",
+            "type": "Swinging Boat for Toddlers"
+          },
+          {
+            "name": "Baby Slumbum",
+            "type": "Mini Bumper Cars"
+          },
+          {
+            "name": "Gracy Bus",
+            "type": "Oscillating Bus"
+          },
+          {
+            "name": "Caterpillar",
+            "type": "Kids Worm Coaster"
+          },
+          {
+            "name": "Batman Jet",
+            "type": "Hydraulic Flying Jets"
+          },
+          {
+            "name": "Mini Jet",
+            "type": "Kids Aircraft"
+          },
+          {
+            "name": "Kids Bungee",
+            "type": "Trampoline Bungee"
+          }
+        ],
+        "water_park_attractions": [
+          {
+            "name": "Thunder Wave Pool",
+            "type": "Surfing Wave Pool"
+          },
+          {
+            "name": "Splash Zone",
+            "type": "Multi-tier Water Play Structure"
+          },
+          {
+            "name": "Rain Dance",
+            "type": "Dance Floor with Overhead Showers"
+          },
+          {
+            "name": "Chinnakutralam",
+            "type": "Simulated Natural Waterfall"
+          },
+          {
+            "name": "Thunder Falls",
+            "type": "Steep Water Cascades"
+          },
+          {
+            "name": "Swimming Pool",
+            "type": "Olympic Sized Freshwater Pool"
+          }
+        ],
+        "special_and_immersive_attractions": [
+          {
+            "name": "Upside Down House",
+            "type": "Gravity Illusion Walkthrough"
+          },
+          {
+            "name": "5-D Theatre",
+            "type": "Stereoscopic Movie with Sensory Effects"
+          },
+          {
+            "name": "Mirror Maze",
+            "type": "Labyrinth of Optical Reflections"
+          },
+          {
+            "name": "Vortex",
+            "type": "Spinning Tunnel Optical Illusion"
+          },
+          {
+            "name": "Devil's House",
+            "type": "Walkthrough Haunted Mansion"
+          },
+          {
+            "name": "Carnival Games",
+            "type": "Skill and Prize Booths"
+          }
+        ]
+      }
+    },
+    "black-thunder-coimbatore": {
+      "park_id": "black-thunder-coimbatore",
+      "name": "Black Thunder Water Theme Park",
+      "brand": "Black Thunder Theme Park Private Limited",
+      "official_website": "https://www.blackthunder.in/",
+      "location": {
+        "address": "Jaganari Slopes R.F., Ooty Main Road, Mettupalayam, Tamil Nadu - 641305, India",
+        "coordinates": {
+          "lat": 11.329174,
+          "lon": 76.910043
+        },
+        "city": "Mettupalayam, Coimbatore District",
+        "state": "Tamil Nadu",
+        "highway": "Coimbatore-Mettupalayam-Ooty Highway (NH 181)",
+        "distance_from_coimbatore": "40 km (~1 hour drive)",
+        "starting_point_of_railway": "Mettupalayam Railway Station (Nilgiri Mountain Railway starting junction is ~4 km away)"
+      },
+      "contact": {
+        "reservations_phone": "+91 98 9445 9115",
+        "resort_phone": "+91 98 9472 6640",
+        "email_general": "info@blackthunder.in",
+        "email_pro": "pro@blackthunder.in"
+      },
+      "operating_hours": {
+        "daily_timings": "10:00 AM - 06:00 PM",
+        "water_rides_timings": "10:30 AM - 05:30 PM",
+        "morning_nature_walk": "06:30 AM (Resort guests)",
+        "notes": "Open every single day year-round amidst Nilgiri foothill mountain views."
+      },
+      "ticket_pricing": {
+        "currency": "INR",
+        "effective_date": "1 March 2026",
+        "entry_charges": {
+          "adult": 1090,
+          "child": 850,
+          "college_student": 890,
+          "school_student": 790,
+          "senior_citizen": 850,
+          "defence_personnel": 850
+        },
+        "combos_and_adventure": {
+          "special_combo_entry_and_adventure": 1450,
+          "adventure_activities_only": 550,
+          "adventure_criteria": "Minimum height: 145 cm | Maximum weight: 85 kg"
+        },
+        "height_criteria": {
+          "adult": "Height above 140 cm",
+          "child": "Height between 85 cm and 140 cm",
+          "infant": "Below 85 cm enters completely FREE"
+        },
+        "student_and_group_rules": {
+          "student_concession_min_group": "Minimum 20 students from same school/college with valid institutional bonafide letter.",
+          "complimentary_staff": "1 staff member entry is complimentary for every 15 paying students (with valid staff ID).",
+          "senior_id": "Senior citizens (60+ years) must produce valid government photo ID."
+        }
+      },
+      "dress_code_policy": {
+        "water_park": "Nylon or synthetic swimwear is strictly mandatory across all 30 water rides. Sarees, jeans, cotton track pants, dhotis, and innerwear are strictly prohibited in the water.",
+        "sales_and_rental": "Costumes and swimwear are readily available for rent and sale inside the park changing facilities."
+      },
+      "amenities_and_facilities": {
+        "lockers": "Safe digital/key locker rentals available in men's and women's changing pavilions.",
+        "food_policy": "Outside food and alcoholic beverages strictly not allowed inside theme park.",
+        "accommodations": "AVANA Resort (on-site 4-star resort with 40+ deluxe rooms, suites, swimming pool, and conference facilities).",
+        "event_lawns": "3 grand open-air wedding and corporate lawns accommodating up to 3,000 guests, plus 2 indoor ballrooms (200 capacity each).",
+        "lake_activities": "Natural lake with pedal boating and fish pond."
+      },
+      "dining_venues": [
+        {
+          "name": "Thunder Cafe",
+          "type": "Multi-cuisine Indoor Restaurant & Bamboo Garden",
+          "cuisine": "Authentic South Indian thalis, Chettinad specialties, North Indian cuisine, and Chinese favorites with floor-to-ceiling panoramic glass windows."
+        },
+        {
+          "name": "Tusker Bar",
+          "type": "Colonial Plantation-style Bar & Lounge",
+          "offerings": "Fine wines, beers, cocktails, mocktails, fish fingers, tandoori kebabs, and Chinese platters."
+        },
+        {
+          "name": "Bamboo Huts",
+          "type": "Themed Outdoor Thatched-roof Dining",
+          "ambience": "Authentic hut seating with mountain breezes and coconut tree grove canopy."
+        },
+        {
+          "name": "BBQ & Bonfire",
+          "type": "Evening Open-air Barbecue",
+          "features": "Grills and bonfires set on grassy lawns under the stars at AVANA Resort."
+        },
+        {
+          "name": "Picnic By The Fountain",
+          "type": "Garden Dining",
+          "offerings": "Quick bites, ice creams, seasonal beverages, and family picnic combos."
+        }
+      ],
+      "rides_and_attractions_breakdown": {
+        "total_water_rides": 30,
+        "total_dry_rides": 29,
+        "total_adventure_attractions": 23,
+        "water_rides": [
+          {
+            "name": "Wave Pool",
+            "type": "Mega Wave Generator",
+            "description": "One of India's largest artificial wave pools creating 1.5m ocean surf waves."
+          },
+          {
+            "name": "Wild River / Lazy River",
+            "type": "Winding Float",
+            "description": "Slow, relaxing drift tube channel snaking through greenery."
+          },
+          {
+            "name": "Twister Red & Blue",
+            "type": "High Speed Body Tube",
+            "description": "Intertwined high-speed enclosed serpentine slides."
+          },
+          {
+            "name": "Spider Slide",
+            "type": "Multi-arm Slide",
+            "description": "Radial tube slides dropping into central catch pool."
+          },
+          {
+            "name": "Bowl Slide",
+            "type": "Space Bowl",
+            "description": "Enclosed chute leading into centrifugal bowl spin before deep plunge."
+          },
+          {
+            "name": "Boomerang Slide",
+            "type": "Half-pipe Slide",
+            "description": "High-adrenaline raft ascent and descent on steep vertical walls."
+          },
+          {
+            "name": "Downhill Rapid Slide",
+            "type": "Rapid Descent",
+            "description": "Multi-stage racing chute with thrilling dips."
+          },
+          {
+            "name": "Cannon Ball",
+            "type": "Extreme Water Shot",
+            "description": "High velocity water shoot that launches riders into the air."
+          },
+          {
+            "name": "Speed Slide (24ft & 36ft Free Fall)",
+            "type": "Vertical Drop",
+            "description": "Steep near-vertical freefall slides for extreme adrenaline."
+          },
+          {
+            "name": "Surf Hill",
+            "type": "Multi-lane Mat Racer",
+            "description": "Multi-lane undulating slide where riders race face-first on mats."
+          },
+          {
+            "name": "Thunder Rain",
+            "type": "Rain Dance Area",
+            "description": "High-energy dance floor with monsoon misting jets and music."
+          },
+          {
+            "name": "Family Raft",
+            "type": "Group Raft",
+            "description": "Oversized round raft navigating deep twists and turns."
+          },
+          {
+            "name": "Mini Hurricane & Shot Gun",
+            "type": "High Velocity Tubes"
+          },
+          {
+            "name": "Side Winder & Float Slide",
+            "type": "Raft Oscillations"
+          },
+          {
+            "name": "New Kids Pool & Family Playstation",
+            "type": "Kids Water Fortress",
+            "description": "Shallow water zone with mini tipping buckets and safe slides."
+          }
+        ],
+        "dry_rides": [
+          {
+            "name": "Columbus",
+            "type": "Dragon Roller Coaster",
+            "description": "Dragon-themed roller coaster speeding through palm groves."
+          },
+          {
+            "name": "Family Coaster",
+            "type": "Apple/Caterpillar Coaster",
+            "description": "Gentle drops and turns tailored for children and parents."
+          },
+          {
+            "name": "Dashing Cars",
+            "type": "Bumper Cars",
+            "description": "Classic arena bumper cars."
+          },
+          {
+            "name": "Crazy Raft & Slam Bob",
+            "type": "Pendulum Swing"
+          },
+          {
+            "name": "Octopus & Break Dance",
+            "type": "Rotational Thrill"
+          },
+          {
+            "name": "Ferris Wheel",
+            "type": "Giant Observation Wheel",
+            "description": "Panoramic vista of the Nilgiri Hills foothills."
+          },
+          {
+            "name": "Drop & Twist",
+            "type": "Drop Tower"
+          },
+          {
+            "name": "Thunder Spin & Thunder Storm",
+            "type": "360 Inversions"
+          },
+          {
+            "name": "5D Theatre & Cine Magic",
+            "type": "Multi-sensory Cinema"
+          },
+          {
+            "name": "Santa Train & Junior Carousel",
+            "type": "Kids Classic"
+          }
+        ],
+        "adventure_and_extreme_activities": [
+          {
+            "name": "Zipline Coaster",
+            "type": "Aerial Cable Zip",
+            "description": "Glide across park canopy on high-tension cables."
+          },
+          {
+            "name": "Zipline Cycle",
+            "type": "Tandem Wire Bicycle",
+            "description": "Pedal a bicycle suspended high above the ground on a wire."
+          },
+          {
+            "name": "Bungee Ejection",
+            "type": "Reverse Bungee",
+            "description": "Catapulted skyward from ground level under extreme acceleration."
+          },
+          {
+            "name": "Sky Roller",
+            "type": "Acrobatic Obstacle"
+          },
+          {
+            "name": "Wall Climbing & Tyre Wall Climbing",
+            "type": "Rock Climbing",
+            "description": "Challenging artificial rock wall and vertical tyre obstacles."
+          },
+          {
+            "name": "Cargo Net & Burma Bridge",
+            "type": "Rope Course",
+            "description": "Military-style suspension bridge and rope traverses."
+          },
+          {
+            "name": "9D Haunted Hospital & Horror House",
+            "type": "VR Horror Experience"
+          },
+          {
+            "name": "9D VR & VR PlayStation",
+            "type": "Immersive Virtual Gaming"
+          }
+        ],
+        "nature_and_resort_activities": [
+          {
+            "name": "Pedal Boating",
+            "location": "Park Natural Lake",
+            "description": "Pedal boat rentals on calm scenic waters."
+          },
+          {
+            "name": "Bird Park & Animal Watch Tower",
+            "description": "Walkway for bird sightings and wildlife observation."
+          },
+          {
+            "name": "Cycling Track",
+            "description": "Half-kilometer scenic trail running along sports grounds."
+          },
+          {
+            "name": "Early Morning Animal Interaction Walk",
+            "time": "6:30 AM",
+            "description": "Interactions with rabbits, turtles, chickens, and exotic birds."
+          }
+        ]
+      }
+    }
+  }
+}

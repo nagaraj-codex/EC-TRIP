@@ -1,0 +1,327 @@
+{
+  "park_id": "wonderla-chennai",
+  "name": "Wonderla Amusement Park Chennai",
+  "brand": "Wonderla Holidays Limited",
+  "official_website": "https://www.wonderla.com/",
+  "location": {
+    "address": "45/1F, OMR Road, Thiruporur Post, Illalur Village, Chengalpattu, Tamil Nadu - 603110",
+    "coordinates": {
+      "lat": 12.74203,
+      "lon": 80.17178
+    },
+    "geohash": "tf302re79ys1",
+    "city": "Chennai",
+    "state": "Tamil Nadu",
+    "highway": "Old Mahabalipuram Road (OMR) / IT Expressway",
+    "google_maps_link": "https://maps.app.goo.gl/DNJF5cdGP7CyjyDs7"
+  },
+  "contact": {
+    "phone_numbers": [
+      "044-35024300",
+      "044-35024242"
+    ],
+    "email": "mail.che@wonderla.com",
+    "group_enquiries": "04435024300 | bd.che@wonderla.com",
+    "corporate_office": "Wonderla Holidays Ltd Corporate Office, 9th Floor, The Estate, Dickenson Road, Bengaluru 560042"
+  },
+  "operating_hours": {
+    "general": {
+      "weekdays": "11:00 AM - 06:00 PM",
+      "weekends_and_holidays": "11:00 AM - 07:00 PM"
+    },
+    "water_rides": {
+      "weekdays": "12:30 PM - 05:00 PM",
+      "weekends_and_holidays": "12:00 PM - 06:00 PM"
+    },
+    "notes": "Park opens 365 days a year. Certain outdoor rides may temporarily halt during extreme lightning or monsoon downpours."
+  },
+  "ticket_pricing": {
+    "currency": "INR",
+    "gst_policy": "Prices subject to 18% GST or inclusive where stated",
+    "regular_rates": {
+      "adult_weekday": 1312,
+      "adult_weekend": 1549,
+      "child_weekday": 1050,
+      "child_weekend": 1239,
+      "senior_citizen_weekday": 1050,
+      "senior_citizen_weekend": 1239
+    },
+    "fastrack_pass": {
+      "description": "Skip regular queues and enjoy dedicated express entry for all major thrill rides. Limited quantities per day.",
+      "pricing_addon": "Base ticket rate + 100% surcharge (~₹1,312 to ₹1,549 additional)"
+    },
+    "discounts_and_promotions": [
+      {
+        "name": "College Student Pass",
+        "discount": "20% - 30% off regular adult ticket",
+        "eligibility": "Valid student college photo ID card required at entry. One ticket per ID."
+      },
+      {
+        "name": "Hall Ticket Offer",
+        "discount": "Special discounted ticket rate",
+        "eligibility": "For students who appeared in 10th, 12th board or competitive exams with hall ticket."
+      },
+      {
+        "name": "Buy 3 Get 1 Free (Funtastic 4)",
+        "discount": "Pay for 3 adult tickets, get 4th ticket completely free",
+        "eligibility": "Available for online advance bookings on select weekdays."
+      },
+      {
+        "name": "Wonder Women Wednesday",
+        "discount": "Buy 2 Get 2 Free for all-women groups",
+        "eligibility": "Applicable on Wednesdays. All visitors in the booking must be female."
+      },
+      {
+        "name": "Birthday BOGO Offer",
+        "discount": "Buy 1 Get 1 Free for birthday person",
+        "eligibility": "Must visit during the birthday month; requires government DOB ID proof."
+      },
+      {
+        "name": "Early Bird & Monsoon Flash Sale",
+        "discount": "Up to 35% discount for online bookings 7+ days in advance",
+        "eligibility": "Online bookings via official website."
+      }
+    ],
+    "height_categories": {
+      "adult": "Height above 140 cm",
+      "child": "Height between 85 cm and 140 cm",
+      "infant": "Height below 85 cm enter absolutely FREE"
+    }
+  },
+  "dress_code_policy": {
+    "water_rides": "100% Synthetic, Lycra, Polyester, or Nylon swimwear is strictly mandatory. Cotton shirts, jeans, sarees, dupattas, and garments with metal zippers/rivets are strictly banned on water slides.",
+    "costume_purchases": "Synthetic swimwear, burkinis, shorts, and tees are sold on-site starting from ₹350.",
+    "dry_rides": "Comfortable footwear and casual attire. Secure loose items before boarding inversion rides."
+  },
+  "amenities_and_facilities": {
+    "lockers": "RFID EZ-Pay wristband lockers available for rent (~₹100-₹150 + ₹100 refundable security deposit). Cashless digital wallet inside park.",
+    "food_policy": "Outside food and beverages are strictly prohibited (infant food permitted).",
+    "first_aid": "Fully staffed medical emergency response center with ambulance on standby.",
+    "parking": "Dedicated multi-level parking for 2-wheelers and 4-wheelers. Valet and EV charging supported.",
+    "accessibility": "Wheelchair ramps, dedicated wheelchair rentals, and baby feeding care rooms available."
+  },
+  "dining_venues": [
+    {
+      "name": "Poriyal Restaurant",
+      "cuisine": "Authentic Tamil Nadu delicacies, South Indian Thali, Idli, Dosa",
+      "type": "Traditional Vegetarian & Regional"
+    },
+    {
+      "name": "Food Court",
+      "cuisine": "Multi-cuisine quick service counters: North Indian, Chinese, Chaat, Pizzas",
+      "type": "Fast Casual"
+    },
+    {
+      "name": "Galaxy Restaurant",
+      "cuisine": "Multi-cuisine family dining with AC indoor hall",
+      "type": "Family Dining"
+    },
+    {
+      "name": "Park View Restaurant",
+      "cuisine": "Buffet and combo meals with scenic views of park attractions",
+      "type": "Buffet / Casual"
+    },
+    {
+      "name": "Biryani Zone",
+      "cuisine": "Authentic Ambur and Hyderabadi Dum Biryani with kebabs",
+      "type": "Specialty Non-Veg"
+    },
+    {
+      "name": "Waves Restaurant",
+      "cuisine": "Snacks, fresh juices, and ice creams located adjacent to the Wave Pool",
+      "type": "Poolside Cafe"
+    },
+    {
+      "name": "Aqua Cafe",
+      "cuisine": "Burgers, french fries, cold sodas, and mocktails",
+      "type": "Snack Bar"
+    }
+  ],
+  "attractions_and_rides": [
+    {
+      "id": "1537",
+      "name": "Tanjora",
+      "slug": "tanjora",
+      "category": "High Thrill Land",
+      "thrill_meter": 100,
+      "coordinates": {
+        "lat": 12.74203,
+        "lon": 80.17194
+      },
+      "description": "India's first-ever B&M Inverted Roller Coaster. Swiss engineered floorless suspended design featuring zero-G rolls, high-speed wing-overs, and maximum G-forces.",
+      "min_height_cm": 140,
+      "fastrack_eligible": true,
+      "features": [
+        "Floorless inverted train",
+        "Zero-G roll",
+        "Wing over",
+        "Bolliger & Mabillard Swiss engineering"
+      ]
+    },
+    {
+      "id": "1354",
+      "name": "Recoil",
+      "slug": "recoil",
+      "category": "High Thrill Land",
+      "thrill_meter": 95,
+      "description": "India's first action-packed reverse looping roller coaster. Climbs 40 meters, plunges through loops, and retraces the entire layout backwards.",
+      "min_height_cm": 140,
+      "fastrack_eligible": true,
+      "features": [
+        "Reverse loop",
+        "40m vertical climb",
+        "Boomerang layout"
+      ]
+    },
+    {
+      "id": "1366",
+      "name": "Equinox 360",
+      "slug": "equinox-360",
+      "category": "High Thrill Land",
+      "thrill_meter": 95,
+      "description": "A gravity-defying pendulum thrill monster that swings riders upside down in a complete 360-degree axial rotation.",
+      "min_height_cm": 140,
+      "fastrack_eligible": true,
+      "features": [
+        "360 degree inversion",
+        "Giant pendulum",
+        "Axial spin"
+      ]
+    },
+    {
+      "id": "1496",
+      "name": "Flash Tower",
+      "slug": "flash-tower",
+      "category": "High Thrill Land",
+      "thrill_meter": 90,
+      "description": "Vertical drop tower blasting riders upward and dropping them into sudden zero-gravity freefall.",
+      "min_height_cm": 135,
+      "fastrack_eligible": true,
+      "features": [
+        "Freefall drop",
+        "Pneumatic launch",
+        "Panoramic skyline view"
+      ]
+    },
+    {
+      "id": "1488",
+      "name": "Termite Coaster",
+      "slug": "termite-coaster",
+      "category": "Family Land",
+      "thrill_meter": 75,
+      "description": "Ride on the edge with sharp hairpin curves, steep climbs, and dizzying drops through wooded scenery.",
+      "min_height_cm": 120,
+      "fastrack_eligible": true,
+      "features": [
+        "Family coaster",
+        "Speed turns",
+        "Elevated banking"
+      ]
+    },
+    {
+      "id": "1376",
+      "name": "Drop Loop",
+      "slug": "drop-loop",
+      "category": "High Thrill Water",
+      "thrill_meter": 90,
+      "description": "Trapdoor sky-high slope dropping riders almost vertically into a high-speed inclined water loop.",
+      "min_height_cm": 140,
+      "fastrack_eligible": true,
+      "features": [
+        "Trapdoor drop",
+        "Vertical loop slide",
+        "Enclosed body slide"
+      ]
+    },
+    {
+      "id": "1368",
+      "name": "Wonder Splash",
+      "slug": "wonder-splash",
+      "category": "Water Coaster",
+      "thrill_meter": 80,
+      "description": "Bogie boat ascending a steep rail track before hurtling down a 28-meter slope into a monumental tidal splash.",
+      "min_height_cm": 110,
+      "fastrack_eligible": true,
+      "features": [
+        "Water chute",
+        "Massive wave splash",
+        "Family boat"
+      ]
+    },
+    {
+      "id": "1353",
+      "name": "Korneto",
+      "slug": "korneto",
+      "category": "High Thrill Water",
+      "thrill_meter": 85,
+      "description": "Whirling tornado funnel slide where multi-person rafts swing up 45-degree walls before flushing into the pool.",
+      "min_height_cm": 130,
+      "fastrack_eligible": true,
+      "features": [
+        "Giant funnel",
+        "Zero-gravity oscillation",
+        "Multi-passenger raft"
+      ]
+    },
+    {
+      "id": "1399",
+      "name": "Wave Pool",
+      "slug": "wave-pool",
+      "category": "Water Family",
+      "thrill_meter": 60,
+      "description": "Expansive artificial beachfront with computer-generated oceanic surf waves, shallow shoreline, and deep waters.",
+      "min_height_cm": 85,
+      "fastrack_eligible": false,
+      "features": [
+        "Ocean surf simulation",
+        "Lifejackets provided",
+        "Beach atmosphere"
+      ]
+    },
+    {
+      "id": "1415",
+      "name": "Rain Disco",
+      "slug": "rain-disco",
+      "category": "Water Entertainment",
+      "thrill_meter": 65,
+      "description": "Indoor dance floor equipped with intelligent psychedelic laser lighting, pounding acoustic bass, and warm rain showers.",
+      "min_height_cm": 85,
+      "fastrack_eligible": false,
+      "features": [
+        "Rain dance",
+        "Club DJ sound system",
+        "Laser visual effects"
+      ]
+    },
+    {
+      "id": "1504",
+      "name": "Mission Interstellar",
+      "slug": "mission-interstellar",
+      "category": "Virtual Simulation",
+      "thrill_meter": 75,
+      "description": "Hyper-realistic space flight simulation with 4K laser projection, synchronized 6-DOF motion hydraulic seats, and atmospheric wind effects.",
+      "min_height_cm": 105,
+      "fastrack_eligible": true,
+      "features": [
+        "4K laser immersion",
+        "6-DOF hydraulic base",
+        "Cosmic theme"
+      ]
+    },
+    {
+      "id": "1380",
+      "name": "Boomerang",
+      "slug": "boomerang",
+      "category": "High Thrill Water",
+      "thrill_meter": 85,
+      "description": "Raft drops down an enclosed tube before rocketing up a near-vertical curved wall, pausing at the peak, and sliding backwards.",
+      "min_height_cm": 130,
+      "fastrack_eligible": true,
+      "features": [
+        "Quarter-pipe drop",
+        "Reverse descent",
+        "Double tube raft"
+      ]
+    }
+  ]
+}

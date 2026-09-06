@@ -1,0 +1,32 @@
+name: Schedule Daily Crowd Cache
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Midnight UTC
+  workflow_dispatch:
+
+jobs:
+  update-crowd-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Install Dependencies
+        run: pip install httpx pydantic
+        
+      - name: Fetch Backend Aggregation
+        run: python scripts/data/fetch_caches.py --type crowds
+        
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(data): update daily crowd and price cache"
+          file_pattern: apps/web/public/data/daily-crowd-price.json
