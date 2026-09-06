@@ -26,6 +26,7 @@ class DayEvaluation(BaseModel):
     cost_per_minute_saved: float
     confidence: str
     reasoning: str
+    source: Optional[str] = "Live External APIs"
 
 class RecommendationResponse(BaseModel):
     park_id: str

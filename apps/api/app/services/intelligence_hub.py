@@ -2,6 +2,7 @@ import asyncio
 from datetime import datetime
 from typing import Any, Optional, Dict
 from app.core.config import settings
+from app.services.cache import get_cache, set_cache
 from app.services.integrations.environmental import fetch_open_meteo_weather, fetch_solar_uv, fetch_sunrise_sunset
 from app.services.integrations.scheduling import check_nager_holiday
 from app.services.optimization.visit_scoring import calculate_visit_score
@@ -33,8 +34,15 @@ async def evaluate_candidate_date(
         actual_date_str = date_str or datetime.now().strftime("%Y-%m-%d")
         meta = settings.PARK_COORDINATES.get(park_id, {"lat": 12.75, "lon": 80.19})
         lat, lon = meta["lat"], meta["lon"]
+
+    # 2. Check Redis / Memory Cache First (TTL: 3600s)
+    cache_key = f"rec:{park_id}:{actual_date_str}:{priority}"
+    cached_eval = await get_cache(cache_key)
+    if cached_eval and isinstance(cached_eval, dict):
+        cached_eval["source"] = "Redis Cache (0ms latency)"
+        return DayEvaluation(**cached_eval)
     
-    # 2. Concurrent execution with TTL-cached external services
+    # 3. Concurrent execution with TTL-cached external services
     dt = datetime.strptime(actual_date_str, "%Y-%m-%d")
     weather_res, uv_res, sun_res, holiday_res = await asyncio.gather(
         fetch_open_meteo_weather(lat, lon, actual_date_str),
@@ -48,14 +56,14 @@ async def evaluate_candidate_date(
     is_holiday = holiday_res[0] if isinstance(holiday_res, tuple) else False
     is_weekend = dt.weekday() >= 5
     
-    # 3. Rules-Based Crowd Base (Judge 1 & Judge 2)
+    # 4. Rules-Based Crowd Base (Judge 1 & Judge 2)
     crowd_points = 25
     if is_weekend: crowd_points += 40
     if is_holiday: crowd_points += 35
     if weather["condition"] == "heavy_rain": crowd_points -= 30
     crowd_points = max(10, min(crowd_points, 100))
     
-    # 4. Crowdsourced Feedback Integration (Judge 3)
+    # 5. Crowdsourced Feedback Integration (Judge 3)
     recent_reports = get_recent_observations(park_id, actual_date_str)
     has_verified_feedback = False
     
@@ -70,7 +78,7 @@ async def evaluate_candidate_date(
         crowd_points = int(0.6 * crowd_points + 0.4 * avg_obs)
         has_verified_feedback = any(r.get("verified_on_site", False) for r in recent_reports)
     
-    # 5. Visit Score Computation
+    # 6. Visit Score Computation
     time_saving = 1.0 - (crowd_points / 100.0)
     money_saving = (max_price - current_price) / max_price if max_price > 0 else 0.0
     visit_score = calculate_visit_score(priority, time_saving, money_saving, weather["condition"])
@@ -79,7 +87,7 @@ async def evaluate_candidate_date(
     saved_mins = max(0, wait_mins - 5)
     ft_roi = calculate_fasttrack_roi(fasttrack_price, saved_mins)
     
-    # 6. Dynamic Confidence Label & Reasoning
+    # 7. Dynamic Confidence Label & Reasoning
     if has_verified_feedback:
         confidence = "High"
         reasoning = f"Calibrated with on-site verified ground-truth crowd reports ({len(recent_reports)} report(s)) and Open-Meteo weather."
@@ -90,7 +98,7 @@ async def evaluate_candidate_date(
         confidence = "Low"
         reasoning = "Fallback prediction baseline. Live calendar signals temporarily degraded."
         
-    return DayEvaluation(
+    evaluation = DayEvaluation(
         date=actual_date_str,
         visit_score=visit_score,
         crowd_level="high" if crowd_points > 70 else ("medium" if crowd_points > 40 else "low"),
@@ -103,3 +111,8 @@ async def evaluate_candidate_date(
         confidence=confidence,
         reasoning=reasoning
     )
+
+    # 8. Cache result in Redis/Memory with 1-hour TTL (3600s)
+    await set_cache(cache_key, evaluation.model_dump(), ttl=3600)
+    
+    return evaluation

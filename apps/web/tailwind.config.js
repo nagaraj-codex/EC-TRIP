@@ -39,10 +39,10 @@ export default {
         }
       },
       boxShadow: {
-        'glow-brand': '0 0 25px -5px rgba(99, 102, 241, 0.35)',
-        'glow-amber': '0 0 25px -5px rgba(245, 158, 11, 0.35)',
+        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+        'glow-brand': '0 0 20px rgba(59, 130, 246, 0.5)',
+        'glow-amber': '0 0 20px rgba(245, 158, 11, 0.5)',
         'glow-emerald': '0 0 25px -5px rgba(16, 185, 129, 0.35)',
-        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
         'glass-hover': '0 12px 40px 0 rgba(99, 102, 241, 0.15)',
         'card-elevated': '0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05)',
       },

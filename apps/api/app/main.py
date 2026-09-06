@@ -7,6 +7,7 @@ from app.api.routes.chat import router as chat_router
 from app.api.routes.parks import router as parks_router
 from app.api.routes.telemetry import router as telemetry_router
 from app.api.routes.itinerary import router as itinerary_router
+from app.api.ws import router as ws_router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -28,6 +29,8 @@ app.include_router(chat_router, prefix=settings.API_V1_STR)
 app.include_router(parks_router, prefix=settings.API_V1_STR)
 app.include_router(telemetry_router, prefix=settings.API_V1_STR)
 app.include_router(itinerary_router, prefix=settings.API_V1_STR)
+app.include_router(ws_router, prefix=settings.API_V1_STR)
+app.include_router(ws_router)  # Also mount at root for /ws
 
 @app.get("/health", tags=["System"])
 def health_check():
@@ -35,19 +38,23 @@ def health_check():
         "status": "healthy",
         "service": settings.PROJECT_NAME,
         "version": settings.VERSION,
-        "active_parks": list(settings.PARK_COORDINATES.keys())
+        "active_parks": list(settings.PARK_COORDINATES.keys()),
+        "caching": "Redis/Memory (TTL 3600s)",
+        "telemetry_ws": f"{settings.API_V1_STR}/telemetry/ws"
     }
 
 @app.get("/", tags=["System"])
 def root():
     return {
-        "message": "QueueCut Intelligence API is running.",
+        "message": "QueueCut v3.0 Intelligence API is running.",
+        "version": settings.VERSION,
         "documentation": "/docs",
         "endpoints": {
             "parks": f"{settings.API_V1_STR}/parks",
             "recommendation": f"{settings.API_V1_STR}/recommendation/recommend",
             "telemetry_weather": f"{settings.API_V1_STR}/telemetry/weather",
             "telemetry_commute": f"{settings.API_V1_STR}/telemetry/commute",
+            "telemetry_ws": f"{settings.API_V1_STR}/telemetry/ws",
             "itinerary": f"{settings.API_V1_STR}/itinerary/generate",
             "feedback": f"{settings.API_V1_STR}/feedback/report",
             "chat": f"{settings.API_V1_STR}/chat/ask"

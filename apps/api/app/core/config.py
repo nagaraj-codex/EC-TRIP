@@ -1,3 +1,4 @@
+
 import os
 import json
 from pathlib import Path
@@ -61,9 +62,12 @@ _coords, _pricing = _load_catalog_pricing_and_coords()
 
 class AppSettings(BaseModel):
     PROJECT_NAME: str = "QueueCut Intelligence API"
-    VERSION: str = "2.0.0"
+    VERSION: str = "3.0.0"
     API_V1_STR: str = "/api/v1"
     CORS_ORIGINS: List[str] = Field(default_factory=lambda: ["*"])
+
+    # Redis Cache Configuration
+    REDIS_URL: str = Field(default_factory=lambda: os.getenv("REDIS_URL", "redis://localhost:6379"))
 
     # Single source of truth loaded from unified_parks_catalog.json
     PARK_COORDINATES: Dict[str, Dict[str, Any]] = Field(default_factory=lambda: _coords)

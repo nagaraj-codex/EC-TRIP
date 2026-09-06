@@ -68,6 +68,7 @@ interface AuthState {
   markNotificationRead: (id: string) => void;
   markAllNotificationsRead: () => void;
   clearNotifications: () => void;
+  addNotification: (notif: Omit<NotificationItem, "id" | "read" | "time"> & { time?: string }) => void;
   addToast: (toast: Omit<NotificationItem, "id" | "read" | "time">) => void;
   dismissToast: (id: string) => void;
 }
@@ -301,6 +302,23 @@ export const useAuthStore = create<AuthState>()(
 
       clearNotifications: () => {
         set({ notifications: [] });
+      },
+
+      addNotification: (notif) => {
+        const id = "notif-" + Date.now().toString(36) + Math.random().toString(36).substring(2, 5);
+        const newNotif: NotificationItem = {
+          ...notif,
+          id,
+          time: notif.time || "Just now",
+          read: false
+        };
+        set((state) => ({
+          notifications: [newNotif, ...state.notifications],
+          toasts: [newNotif, ...state.toasts.slice(0, 3)]
+        }));
+        setTimeout(() => {
+          get().dismissToast(id);
+        }, 5500);
       },
 
       addToast: (toast) => {

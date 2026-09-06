@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
+*virtual*
+*-0.py
+*-1.py
+*-2.py
+**/__pyrefly_virtual__/**
 
 # Distribution / packaging
 build/

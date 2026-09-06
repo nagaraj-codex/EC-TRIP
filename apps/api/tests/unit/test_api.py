@@ -118,5 +118,23 @@ class TestAPIEndpoints(unittest.TestCase):
             self.assertIn(ev["confidence"], ["High", "Medium", "Low"])
             self.assertTrue(len(ev["reasoning"]) > 5)
 
+    def test_cache_service(self):
+        import asyncio
+        from app.services.cache import get_cache, set_cache
+        async def run_cache_test():
+            await set_cache("test_unit_key", {"status": "ok", "value": 42}, ttl=60)
+            cached = await get_cache("test_unit_key")
+            return cached
+        result = asyncio.run(run_cache_test())
+        self.assertIsNotNone(result)
+        self.assertEqual(result.get("value"), 42)
+
+    def test_telemetry_alert_endpoint(self):
+        response = self.client.post("/api/v1/telemetry/trigger-alert?message=Test+Live+Alert")
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["status"], "broadcast_complete")
+        self.assertIn("recipients_count", data)
+
 if __name__ == "__main__":
     unittest.main()
