@@ -1,0 +1,56 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "QueueCut: Unified Full Stack (queuecut_final.py)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/queuecut_final.py",
+      "args": ["--reload"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/apps/api;${workspaceFolder}"
+      }
+    },
+    {
+      "name": "QueueCut: FastAPI Backend (apps/api)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "app.main:app",
+        "--reload",
+        "--port",
+        "8000"
+      ],
+      "cwd": "${workspaceFolder}/apps/api",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/apps/api"
+      }
+    },
+    {
+      "name": "QueueCut: Backend Unit Tests",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/api/tests/unit/test_api.py",
+      "cwd": "${workspaceFolder}/apps/api",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/apps/api"
+      }
+    },
+    {
+      "name": "QueueCut: Verify System Health",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/verify_system_health.py",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/apps/api;${workspaceFolder}"
+      }
+    }
+  ]
+}

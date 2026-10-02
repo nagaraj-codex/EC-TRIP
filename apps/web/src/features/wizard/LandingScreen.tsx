@@ -4,13 +4,13 @@ import { ArrowRight, Sparkles, ShieldCheck, CheckCircle2, Zap } from "lucide-rea
 
 export default function LandingScreen() {
   const { setScreen } = usePlannerStore();
-  const { user, isGuest, loginWithGoogle, loginWithFacebook, openAuthModal } = useAuthStore();
+  const { user, isGuest, loginWithGoogle, openAuthModal } = useAuthStore();
 
   return (
     <div className="text-center pt-2 sm:pt-4 space-y-5">
       {/* Animated Coaster Brand Icon */}
       <div className="relative inline-block">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-brand-500 text-white text-3xl sm:text-4xl flex items-center justify-center mx-auto shadow-glow-brand animate-float">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-linear-to-tr from-brand-600 via-indigo-600 to-brand-500 text-white text-3xl sm:text-4xl flex items-center justify-center mx-auto shadow-glow-brand animate-float">
           🎢
         </div>
         <span className="absolute -bottom-1 -right-1 flex h-4 w-4">
@@ -93,18 +93,6 @@ export default function LandingScreen() {
                 />
               </svg>
               <span>Continue with Google</span>
-            </button>
-
-            {/* Facebook Sign In */}
-            <button
-              type="button"
-              onClick={loginWithFacebook}
-              className="btn !bg-[#1877F2] !text-white hover:!bg-[#166fe5] text-xs py-2.5"
-            >
-              <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
-              <span>Continue with Facebook</span>
             </button>
 
             {/* Email Modal Trigger */}

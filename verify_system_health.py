@@ -3,6 +3,7 @@
 QueueCut System Health & Diagnostic Suite
 Validates backend routing, unit test coverage, and frontend PWA build integrity.
 """
+
 import os
 import sys
 import subprocess
@@ -13,10 +14,12 @@ if hasattr(sys.stdout, "reconfigure"):
 if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8")
 
+
 def print_header():
     print("=" * 65)
     print("  🏥 QUEUECUT SYSTEM RELIABILITY & HEALTH AUDIT (v3.0) 🏥")
     print("=" * 65)
+
 
 def check_backend_imports():
     print("\n[CHECK 1/3] Validating Router & Module Import Integrity...")
@@ -26,14 +29,21 @@ def check_backend_imports():
 
     try:
         import importlib
+
         main_mod = importlib.import_module("app.main")
         app = getattr(main_mod, "app")
         config_mod = importlib.import_module("app.core.config")
         settings = getattr(config_mod, "settings")
-        rec_router = getattr(importlib.import_module("app.api.routes.recommendation"), "router")
-        fb_router = getattr(importlib.import_module("app.api.routes.feedback"), "router")
+        rec_router = getattr(
+            importlib.import_module("app.api.routes.recommendation"), "router"
+        )
+        fb_router = getattr(
+            importlib.import_module("app.api.routes.feedback"), "router"
+        )
         chat_router = getattr(importlib.import_module("app.api.routes.chat"), "router")
-        tel_router = getattr(importlib.import_module("app.api.routes.telemetry"), "router")
+        tel_router = getattr(
+            importlib.import_module("app.api.routes.telemetry"), "router"
+        )
         ws_router = getattr(importlib.import_module("app.api.ws"), "router")
         cache_mod = importlib.import_module("app.services.cache")
 
@@ -46,11 +56,14 @@ def check_backend_imports():
             "/api/v1/feedback/report",
             "/api/v1/chat/ask",
             "/api/v1/telemetry/weather",
-            "/api/v1/itinerary/generate"
+            "/api/v1/download/export",
+            "/api/v1/itinerary/generate",
         ]
         for exp in expected_routes:
             if not any(exp in p for p in openapi_paths):
-                raise AssertionError(f"Expected route '{exp}' not found in registered routes.")
+                raise AssertionError(
+                    f"Expected route '{exp}' not found in registered routes."
+                )
 
         # Check WebSocket routes
         ws_paths = [getattr(r, "path", "") for r in ws_router.routes]
@@ -65,6 +78,7 @@ def check_backend_imports():
     except Exception as e:
         print(f"  ✗ Import Error: {e}")
         return False
+
 
 def check_backend_unit_tests():
     print("\n[CHECK 2/3] Executing Backend Unit Tests...")
@@ -83,23 +97,27 @@ def check_backend_unit_tests():
         print(res.stderr or res.stdout)
         return False
 
+
 def check_frontend_build():
     print("\n[CHECK 3/3] Compiling React PWA Frontend Bundle...")
     web_dir = os.path.join(os.getcwd(), "apps", "web")
     # Use cmd /c for Windows npm execution
-    cmd = "cmd /c \"npm run build\"" if os.name == "nt" else "npm run build"
+    cmd = 'cmd /c "npm run build"' if os.name == "nt" else "npm run build"
 
     start = time.time()
     res = subprocess.run(cmd, cwd=web_dir, shell=True, capture_output=True, text=True)
     duration = time.time() - start
 
     if res.returncode == 0:
-        print(f"  ✓ TypeScript & Vite PWA build succeeded in {duration:.2f}s with 0 errors.")
+        print(
+            f"  ✓ TypeScript & Vite PWA build succeeded in {duration:.2f}s with 0 errors."
+        )
         return True
     else:
         print(f"  ✗ Frontend build failed:")
         print(res.stderr or res.stdout)
         return False
+
 
 def main():
     print_header()
@@ -117,6 +135,7 @@ def main():
         print("  ❌ SYSTEM HEALTH AUDIT: ISSUES DETECTED")
         print("=" * 65)
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

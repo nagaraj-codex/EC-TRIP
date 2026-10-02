@@ -1,11 +1,13 @@
 {
   "include": [
     "apps/api",
+    "queuecut_final.py",
     "verify_system_health.py",
     "run_queuecut.py",
     "queuecut_v3.py"
   ],
   "extraPaths": [
-    "apps/api"
+    "apps/api",
+    "."
   ]
 }

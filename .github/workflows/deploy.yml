@@ -4,58 +4,285 @@ on:
   push:
     branches:
       - main
+
   workflow_dispatch:
 
+  workflow_call:
+    secrets:
+      VERCEL_ORG_ID:
+        required: false
+      VERCEL_PROJECT_ID:
+        required: false
+      VERCEL_TOKEN:
+        required: false
+      RENDER_DEPLOY_HOOK_URL:
+        required: false
+      BACKEND_HEALTHCHECK_URL:
+        required: false
+
+# Minimum permissions required by this workflow
+permissions:
+  contents: read
+
+# Prevent multiple production deployments from running simultaneously
+concurrency:
+  group: queuecut-production-deployment
+  cancel-in-progress: false
+
 jobs:
+
+  # ============================================================
+  # FRONTEND DEPLOYMENT - VERCEL
+  # ============================================================
+
   deploy-frontend:
-    name: Deploy UI to Vercel
+    name: Deploy Frontend to Vercel
     runs-on: ubuntu-latest
-    # Mapping secrets to env vars resolves many local IDE linter warnings
+    timeout-minutes: 20
+
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-    
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+    defaults:
+      run:
+        working-directory: ./apps/web
+
     steps:
-      - name: Checkout Code
+
+      # --------------------------------------------------------
+      # Checkout Repository
+      # --------------------------------------------------------
+
+      - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js Environment
+      # --------------------------------------------------------
+      # Setup Node.js with NPM Caching
+      # --------------------------------------------------------
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+          cache-dependency-path: ./apps/web/package-lock.json
 
-      - name: Install Official Vercel CLI
-        run: npm install --global vercel@latest
+      # --------------------------------------------------------
+      # Validate Deployment Secrets
+      # --------------------------------------------------------
 
-      - name: Pull Vercel Environment Configuration
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: ./apps/web
-
-      - name: Build Optimized React/Vite Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: ./apps/web
-
-      - name: Deploy to Vercel Edge Network
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: ./apps/web
-
-  deploy-backend:
-    name: Deploy FastAPI & WebSockets (Render / VPS)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Trigger Live Backend Deployment
-        # Modern FastAPI + WebSocket backends are deployed via Secure Webhooks to hosts like Render.com
+      - name: Validate Vercel Secrets
         run: |
-          if [ -z "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" ]; then
-            echo "⚠️ Notice: RENDER_DEPLOY_HOOK_URL is not set in GitHub Secrets."
-            echo "To enable zero-downtime backend deployments, add your Render/Host webhook URL."
-          else
-            echo "🚀 Triggering live FastAPI backend deployment..."
-            curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
-            echo "✅ Deployment triggered successfully."
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "❌ VERCEL_TOKEN is missing."
+            exit 1
           fi
 
+          if [ -z "$VERCEL_ORG_ID" ]; then
+            echo "❌ VERCEL_ORG_ID is missing."
+            exit 1
+          fi
 
+          if [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "❌ VERCEL_PROJECT_ID is missing."
+            exit 1
+          fi
+
+          echo "✅ Vercel secrets validated successfully."
+
+      # --------------------------------------------------------
+      # Install Dependencies
+      # --------------------------------------------------------
+
+      - name: Install Frontend Dependencies
+        run: npm ci
+
+      # --------------------------------------------------------
+      # Install Vercel CLI
+      # --------------------------------------------------------
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      # --------------------------------------------------------
+      # Pull Production Environment
+      # --------------------------------------------------------
+
+      - name: Pull Vercel Production Configuration
+        run: |
+          vercel pull \
+            --yes \
+            --environment=production \
+            --token="$VERCEL_TOKEN"
+
+      # --------------------------------------------------------
+      # Build Using Vercel
+      # --------------------------------------------------------
+
+      - name: Build Production Deployment
+        run: |
+          vercel build \
+            --prod \
+            --token="$VERCEL_TOKEN"
+
+      # --------------------------------------------------------
+      # Deploy Frontend
+      # --------------------------------------------------------
+
+      - name: Deploy Frontend to Production
+        run: |
+          DEPLOYMENT_URL=$(vercel deploy \
+            --prebuilt \
+            --prod \
+            --yes \
+            --token="$VERCEL_TOKEN")
+
+          echo "🚀 Frontend deployed successfully."
+          echo "🌐 Deployment URL: $DEPLOYMENT_URL"
+
+  # ============================================================
+  # BACKEND DEPLOYMENT - RENDER / VPS
+  # ============================================================
+
+  deploy-backend:
+    name: Deploy FastAPI Backend
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+      BACKEND_HEALTHCHECK_URL: ${{ secrets.BACKEND_HEALTHCHECK_URL }}
+
+    steps:
+
+      # --------------------------------------------------------
+      # Trigger Backend Deployment
+      # --------------------------------------------------------
+
+      - name: Trigger Production Backend Deployment
+        shell: bash
+        run: |
+          set -e
+
+          if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
+            echo "⚠️ RENDER_DEPLOY_HOOK_URL is not configured."
+            echo "Backend deployment was skipped."
+            exit 0
+          fi
+
+          echo "🚀 Triggering FastAPI production deployment..."
+
+          HTTP_STATUS=$(curl \
+            --silent \
+            --show-error \
+            --location \
+            --retry 3 \
+            --retry-delay 5 \
+            --retry-connrefused \
+            --max-time 30 \
+            --request POST \
+            --output /tmp/render-response.txt \
+            --write-out "%{http_code}" \
+            "$RENDER_DEPLOY_HOOK_URL")
+
+          echo "Deployment webhook returned HTTP status: $HTTP_STATUS"
+
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            echo "✅ Backend deployment triggered successfully."
+          else
+            echo "❌ Backend deployment webhook failed."
+            echo "Response:"
+            cat /tmp/render-response.txt
+            exit 1
+          fi
+
+      # --------------------------------------------------------
+      # Backend Health Check
+      # --------------------------------------------------------
+
+      - name: Verify Backend Health
+        shell: bash
+        run: |
+          set -e
+
+          if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
+            echo "ℹ️ Backend deployment was skipped (no RENDER_DEPLOY_HOOK_URL). Skipping health probe."
+            exit 0
+          fi
+
+          if [ -z "$BACKEND_HEALTHCHECK_URL" ]; then
+            echo "ℹ️ BACKEND_HEALTHCHECK_URL is not configured. Skipping health probe."
+            exit 0
+          fi
+
+          echo "🔍 Probing backend health endpoint..."
+          MAX_ATTEMPTS=12
+          ATTEMPT=1
+          SUCCESS=0
+
+          while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
+            echo "Attempt $ATTEMPT of $MAX_ATTEMPTS (waiting for deployment)..."
+            HTTP_CODE=$(curl --silent --show-error --max-time 10 --write-out "%{http_code}" --output /dev/null "$BACKEND_HEALTHCHECK_URL" || true)
+            if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 400 ]; then
+              echo "✅ Health check succeeded with HTTP $HTTP_CODE!"
+              SUCCESS=1
+              break
+            fi
+            sleep 10
+            ATTEMPT=$((ATTEMPT + 1))
+          done
+
+          if [ $SUCCESS -ne 1 ]; then
+            echo "❌ Backend health check failed: endpoint did not return healthy HTTP status within timeout window."
+            exit 1
+          fi
+
+  # ============================================================
+  # DEPLOYMENT SUMMARY
+  # ============================================================
+
+  deployment-summary:
+    name: Production Deployment Summary
+    runs-on: ubuntu-latest
+
+    needs:
+      - deploy-frontend
+      - deploy-backend
+
+    if: always()
+
+    steps:
+
+      - name: Generate Deployment Summary
+        run: |
+          echo "# 🚀 QueueCut Production Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Frontend Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "Status: ${{ needs.deploy-frontend.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Backend Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "Status: ${{ needs.deploy-backend.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Repository: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+          echo "Branch: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "Triggered by: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+
+      - name: Check Deployment Status
+        if: |
+          needs.deploy-frontend.result != 'success' ||
+          (needs.deploy-backend.result != 'success' &&
+           needs.deploy-backend.result != 'skipped')
+        run: |
+          echo "❌ One or more production deployments failed."
+          exit 1
+
+      - name: Confirm Successful Deployment
+        if: |
+          needs.deploy-frontend.result == 'success' &&
+          (needs.deploy-backend.result == 'success' ||
+           needs.deploy-backend.result == 'skipped')
+        run: |
+          echo "🎉 QueueCut production deployment completed successfully."

@@ -7,12 +7,17 @@ from app.api.routes.chat import router as chat_router
 from app.api.routes.parks import router as parks_router
 from app.api.routes.telemetry import router as telemetry_router
 from app.api.routes.itinerary import router as itinerary_router
+from app.api.routes.download import router as download_router
+from app.api.routes.auth import router as auth_router
+from app.api.routes.trips import router as trips_router
+from app.api.routes.notifications import router as notifications_router
+from app.api.routes.news import router as news_router
 from app.api.ws import router as ws_router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
-    description="High-performance theme park crowd intelligence, dynamic tariff optimization, and FastTrack ROI engine."
+    description="High-performance theme park crowd intelligence, dynamic tariff optimization, and FastTrack ROI engine.",
 )
 
 app.add_middleware(
@@ -29,8 +34,14 @@ app.include_router(chat_router, prefix=settings.API_V1_STR)
 app.include_router(parks_router, prefix=settings.API_V1_STR)
 app.include_router(telemetry_router, prefix=settings.API_V1_STR)
 app.include_router(itinerary_router, prefix=settings.API_V1_STR)
+app.include_router(download_router, prefix=settings.API_V1_STR)
+app.include_router(auth_router, prefix=settings.API_V1_STR)
+app.include_router(trips_router, prefix=settings.API_V1_STR)
+app.include_router(notifications_router, prefix=settings.API_V1_STR)
+app.include_router(news_router, prefix=settings.API_V1_STR)
 app.include_router(ws_router, prefix=settings.API_V1_STR)
 app.include_router(ws_router)  # Also mount at root for /ws
+
 
 @app.get("/health", tags=["System"])
 def health_check():
@@ -40,8 +51,9 @@ def health_check():
         "version": settings.VERSION,
         "active_parks": list(settings.PARK_COORDINATES.keys()),
         "caching": "Redis/Memory (TTL 3600s)",
-        "telemetry_ws": f"{settings.API_V1_STR}/telemetry/ws"
+        "telemetry_ws": f"{settings.API_V1_STR}/telemetry/ws",
     }
+
 
 @app.get("/", tags=["System"])
 def root():
@@ -57,6 +69,7 @@ def root():
             "telemetry_ws": f"{settings.API_V1_STR}/telemetry/ws",
             "itinerary": f"{settings.API_V1_STR}/itinerary/generate",
             "feedback": f"{settings.API_V1_STR}/feedback/report",
-            "chat": f"{settings.API_V1_STR}/chat/ask"
-        }
+            "chat": f"{settings.API_V1_STR}/chat/ask",
+            "download_export": f"{settings.API_V1_STR}/download/export",
+        },
     }

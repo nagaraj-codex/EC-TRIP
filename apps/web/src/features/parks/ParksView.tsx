@@ -130,7 +130,7 @@ export default function ParksView({ onPlanTrip }: ParksViewProps) {
                 alt={park.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
 
               <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-bold bg-slate-900/80 backdrop-blur-md text-amber-400 border border-amber-500/30 flex items-center gap-1 shadow-md">
                 <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />

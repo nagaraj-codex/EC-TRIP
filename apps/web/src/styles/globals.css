@@ -1,7 +1,7 @@
 /* =========================================================
-   GLOBALS.CSS - Tailwind Directives & Elite UI Components
+   GLOBALS.CSS - Tailwind Directives & QueueCut UI Components
    ========================================================= */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -16,21 +16,20 @@
   }
 
   body {
-    @apply bg-slate-950 text-slate-100 font-sans antialiased;
+    @apply bg-white text-slate-900 font-sans antialiased;
+  }
 
-    /* Premium 3-Point Radial Gradient Background */
-    background-image:
-      radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 40%),
-      radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 40%),
-      radial-gradient(at 50% 50%, rgba(15, 23, 42, 1) 0px, transparent 100%);
-    background-attachment: fixed;
-    background-color: #020617;
-    /* Slate 950 Fallback */
+  .page-white {
+    @apply bg-white text-slate-900;
+  }
+
+  .page-dark {
+    @apply bg-slate-950 text-slate-100;
   }
 
   /* Text Selection Highlight */
   ::selection {
-    @apply bg-blue-500/40 text-white;
+    @apply bg-qc-teal-500/40 text-white;
   }
 }
 
@@ -38,7 +37,6 @@
    LAYER 2: COMPONENTS (Custom UI Blocks)
    ----------------------------------------- */
 @layer components {
-
   /* --- Glassmorphism Architecture --- */
   .glass-panel {
     @apply relative overflow-hidden bg-slate-900/60 border border-white/10 shadow-2xl rounded-3xl;
@@ -51,7 +49,54 @@
   }
 
   .glass-card:hover {
-    @apply bg-slate-800/60 border-blue-500/30 shadow-[0_8px_30px_rgba(0,0,0,0.5)] -translate-y-1;
+    @apply bg-slate-800/60 border-qc-teal-500/30 shadow-[0_8px_30px_rgba(0,0,0,0.5)] -translate-y-1;
+  }
+
+  /* --- QueueCut Card System --- */
+  .qc-card {
+    @apply bg-white border border-slate-200 rounded-2xl p-4 shadow-sm transition-all duration-300;
+  }
+
+  .qc-card-interactive {
+    @apply qc-card cursor-pointer;
+  }
+
+  .qc-card-interactive:hover {
+    @apply -translate-y-0.5 shadow-md border-slate-300;
+  }
+
+  .qc-card-interactive:active {
+    @apply scale-[0.98] transition-transform duration-100;
+  }
+
+  /* --- Chip & Badge System --- */
+  .qc-chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200;
+    backdrop-filter: blur(8px);
+  }
+
+  .qc-chip-teal {
+    @apply qc-chip bg-qc-teal-500/15 text-qc-teal-400 border border-qc-teal-500/20;
+  }
+
+  .qc-chip-amber {
+    @apply qc-chip bg-amber-500/15 text-amber-400 border border-amber-500/20;
+  }
+
+  .qc-chip-red {
+    @apply qc-chip bg-red-500/15 text-red-400 border border-red-500/20;
+  }
+
+  .qc-chip-neutral {
+    @apply qc-chip bg-slate-700/50 text-slate-300 border border-slate-600/30;
+  }
+
+  .qc-badge {
+    @apply inline-flex items-center justify-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider;
+  }
+
+  .qc-badge-live {
+    @apply qc-badge bg-red-500/20 text-red-400 animate-pulse-slow;
   }
 
   /* --- Production-Grade Buttons --- */
@@ -59,116 +104,147 @@
     @apply px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer select-none outline-none;
   }
 
-  .btn:active {
-    transform: scale(0.97);
-    /* Satisfying click effect */
-  }
-
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white border border-blue-500/50 shadow-[0_0_15px_rgba(37,99,235,0.4)];
-  }
-
-  .btn-primary:hover {
-    @apply from-blue-500 to-indigo-500 shadow-[0_0_25px_rgba(37,99,235,0.6)];
+    @apply btn bg-qc-teal-600 text-white hover:bg-qc-teal-700 active:scale-[0.97] shadow-glow-teal;
   }
 
   .btn-secondary {
-    @apply bg-slate-800/80 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white hover:border-slate-500;
+    @apply btn bg-slate-800/80 text-slate-200 border border-white/10 hover:bg-slate-700/80 active:scale-[0.97];
   }
 
-  /* --- Inputs & Forms --- */
-  .form-label {
-    @apply block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400;
+  .btn-ghost {
+    @apply btn bg-transparent text-slate-300 hover:bg-slate-800/50 hover:text-white;
   }
 
-  .form-input {
-    @apply w-full p-4 bg-slate-950/50 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300;
+  .btn-danger {
+    @apply btn bg-red-600/90 text-white hover:bg-red-700 active:scale-[0.97];
   }
 
-  /* --- Typography Enhancements --- */
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-200 to-slate-400;
+  /* --- Score Ring Component --- */
+  .qc-score-ring {
+    @apply relative inline-flex items-center justify-center;
   }
 
-  .text-gradient-brand {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 font-extrabold;
+  .qc-score-ring svg {
+    transform: rotate(-90deg);
+  }
+
+  .qc-score-ring .score-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.06);
+    stroke-width: 6;
+  }
+
+  .qc-score-ring .score-fill {
+    fill: none;
+    stroke-width: 6;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* --- Bottom Sheet --- */
+  .qc-bottom-sheet {
+    @apply fixed inset-x-0 bottom-0 z-50 bg-slate-900 border-t border-white/10 rounded-t-3xl shadow-2xl;
+    max-height: 85vh;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .qc-bottom-sheet-handle {
+    @apply w-10 h-1 bg-slate-600 rounded-full mx-auto mt-3 mb-2;
+  }
+
+  /* --- Top Bar --- */
+  .qc-topbar {
+    @apply sticky top-0 z-40 flex items-center justify-between px-4 h-16 bg-white border-b border-slate-200 shadow-sm;
+  }
+
+  /* --- Bottom Navigation --- */
+  .qc-bottomnav {
+    @apply fixed bottom-0 left-0 right-0 z-40 flex items-center justify-around bg-white border-t border-slate-200;
+    box-shadow: 0 -1px 8px rgba(0, 0, 0, 0.06);
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+    height: var(--bottom-nav-height);
+  }
+
+  .qc-tab {
+    @apply flex flex-col items-center gap-0.5 py-1.5 px-3 rounded-xl transition-all duration-200 text-slate-500;
+  }
+
+  .qc-tab-active {
+    @apply text-qc-blue-600;
+  }
+
+  .qc-tab-label {
+    @apply text-[10px] font-medium;
+  }
+
+  /* --- Skeleton Loader --- */
+  .qc-skeleton {
+    @apply bg-slate-800/60 rounded-lg animate-pulse;
+  }
+
+  /* --- Page Container --- */
+  .qc-page {
+    @apply flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-28 pt-6 lg:pt-8;
+  }
+
+  /* --- White Card System --- */
+  .qc-card-white {
+    @apply bg-white border border-slate-200 rounded-2xl p-4 shadow-[0_10px_30px_rgba(15,23,42,0.04)] transition-all duration-300;
+  }
+
+  .qc-card-white-interactive {
+    @apply qc-card-white cursor-pointer hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(37,99,235,0.08)] hover:border-blue-200;
+  }
+
+  /* --- Blue Button Variants --- */
+  .btn-blue-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 shadow-[0_12px_24px_rgba(37,99,235,0.24)] transition-all duration-200 hover:from-blue-700 hover:to-blue-600 active:scale-[0.98];
+  }
+
+  .btn-blue-hero {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold text-blue-700 bg-white shadow-none transition-all duration-200 hover:bg-blue-50 active:scale-[0.98];
+    background-image: none;
+  }
+
+  .btn-blue-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold text-blue-700 bg-white border border-blue-200 shadow-sm transition-all duration-200 hover:bg-blue-50 active:scale-[0.98];
+  }
+
+  .btn-blue-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 transition-all duration-200;
+  }
+
+  /* --- White Skeleton Loader --- */
+  .qc-skeleton-white {
+    @apply bg-slate-100 rounded-lg animate-pulse;
+  }
+
+  /* --- Hero Section --- */
+  .qc-hero-overlay {
+    @apply absolute inset-0;
+    background: linear-gradient(
+      180deg,
+      transparent 30%,
+      rgba(2, 6, 23, 0.85) 70%,
+      rgba(2, 6, 23, 1) 100%
+    );
   }
 }
 
 /* -----------------------------------------
-   LAYER 3: UTILITIES (Animations & Hacks)
+   LAYER 3: UTILITIES
    ----------------------------------------- */
 @layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  .text-gradient-teal {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-qc-teal-400 to-qc-teal-200;
   }
 
-  .animate-slide-up {
-    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
+  .text-gradient-brand {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-brand-200;
   }
 
-  /* Creates a sweeping light reflection effect across cards */
-  .glass-sheen {
-    position: relative;
+  .text-gradient-warm {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-qc-amber-400 to-qc-coral-400;
   }
-
-  .glass-sheen::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.08), transparent);
-    transform: skewX(-25deg);
-    transition: left 0.7s ease;
-  }
-
-  .glass-sheen:hover::after {
-    left: 150%;
-  }
-}
-
-/* --- Core Keyframes --- */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* --- Stealth Scrollbars --- */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 1);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(51, 65, 85, 1);
-  border-radius: 9999px;
-  border: 2px solid rgba(15, 23, 42, 1);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(71, 85, 105, 1);
 }

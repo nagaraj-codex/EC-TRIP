@@ -1,46 +1,141 @@
 /* =========================================================
-   INDEX.CSS - React Mount Point & Global Theme Variables
+   INDEX.CSS - QueueCut Theme Architecture & Master Styles
    ========================================================= */
+
 @import './globals.css';
 
 :root {
-  /* --- Core Brand Variables --- */
-  --queuecut-brand: #3b82f6;
-  /* Blue 500 */
-  --queuecut-accent: #10b981;
-  /* Emerald 500 */
-  --queuecut-warning: #f59e0b;
-  /* Amber 500 */
+  /* --- Core Brand Color Tokens --- */
+  --queuecut-brand: #3b82f6;        /* Primary Blue */
+  --queuecut-brand-hover: #2563eb;  /* Deep Brand Blue */
+  --queuecut-accent: #10b981;       /* Emerald Accent */
+  --queuecut-warning: #f59e0b;      /* Amber Warning */
+  --queuecut-danger: #ef4444;       /* Rose/Red Danger */
+  --queuecut-purple: #8b5cf6;       /* Violet Highlight */
 
-  /* --- Glassmorphism Tokens --- */
+  /* --- QueueCut Blue Design Tokens --- */
+  --qc-primary: #2563EB;
+  --qc-primary-dark: #1D4ED8;
+  --qc-bg-light: #EFF6FF;
+  --qc-navy: #0F172A;
+  --qc-text-secondary: #64748B;
+  --qc-border: #E2E8F0;
+
+  /* --- QueueCut Master Palette --- */
+  --qc-teal: #0d9488;
+  --qc-teal-light: #14b8a6;
+  --qc-teal-dark: #0f766e;
+  --qc-amber: #f59e0b;
+  --qc-amber-light: #fbbf24;
+  --qc-coral: #f43f5e;
+  --qc-coral-light: #fb7185;
+
+  /* --- Crowd Level Tokens --- */
+  --crowd-low: #10b981;
+  --crowd-medium: #f59e0b;
+  --crowd-high: #ef4444;
+  --crowd-extreme: #991b1b;
+  --crowd-low-bg: rgba(16, 185, 129, 0.12);
+  --crowd-medium-bg: rgba(245, 158, 11, 0.12);
+  --crowd-high-bg: rgba(239, 68, 68, 0.12);
+  --crowd-extreme-bg: rgba(153, 27, 27, 0.15);
+
+  /* --- Dark Canvas Palette --- */
+  --bg-deep: #020617;               /* Slate 950 Deep Canvas */
+  --bg-surface: #0f172a;            /* Slate 900 Surface */
+  --bg-card: rgba(30, 41, 59, 0.5); /* Semi-transparent Card */
+  --bg-elevated: rgba(30, 41, 59, 0.8);
+  --text-main: #f8fafc;             /* Slate 50 */
+  --text-muted: #94a3b8;            /* Slate 400 */
+  --text-subtle: #64748b;           /* Slate 500 */
+
+  /* --- Glassmorphism Design Tokens --- */
   --glass-bg-base: rgba(15, 23, 42, 0.65);
-  /* Slate 900 with transparency */
   --glass-border-light: rgba(255, 255, 255, 0.1);
   --glass-border-strong: rgba(255, 255, 255, 0.2);
   --glass-blur-strength: 16px;
 
-  /* --- Telemetry / Live Status Colors --- */
+  /* --- Telemetry & Status Indicators --- */
   --status-live: #ef4444;
-  /* Red 500 */
   --status-stable: #10b981;
-  /* Emerald 500 */
+  --status-warning: #f59e0b;
+
+  /* --- Spacing & Layout Tokens --- */
+  --bottom-nav-height: 68px;
+  --top-bar-height: 56px;
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-top: env(safe-area-inset-top, 0px);
+
+  /* --- Animation Tokens --- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* --- React Root Configuration --- */
-/* Ensures the React app uses the full viewport and isolates stacking contexts */
+/* --- Document & Root Viewport Configuration --- */
 html,
 body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
+  background-color: #ffffff;
+  color: var(--qc-navy);
+  font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
 }
 
 #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   isolation: isolate;
   overflow-x: hidden;
+}
+
+/* --- Global Custom Focus Ring --- */
+*:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+}
+
+/* --- Micro-Interaction Helpers --- */
+.interactive-hover {
+  transition: all 0.25s var(--ease-out-expo);
+}
+
+.interactive-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* --- Scrollbar Styling (Webkit) --- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* --- Hide Scrollbar (Utility) --- */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

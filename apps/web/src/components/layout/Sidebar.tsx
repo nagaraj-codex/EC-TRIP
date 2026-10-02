@@ -100,7 +100,7 @@ export default function Sidebar({ isOpen, onClose, activeView, onNavigate }: Sid
         <div>
           <div className="h-16 px-4 flex items-center justify-between border-b border-slate-800 bg-slate-950/60">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-600 text-white flex items-center justify-center text-lg font-bold shadow-glow-brand">
+              <div className="w-8 h-8 rounded-xl bg-linear-to-tr from-brand-600 to-indigo-600 text-white flex items-center justify-center text-lg font-bold shadow-glow-brand">
                 🎢
               </div>
               <span className="font-black text-base tracking-tight text-white">

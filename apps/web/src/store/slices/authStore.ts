@@ -6,7 +6,7 @@ export interface User {
   name: string;
   email: string;
   avatar?: string;
-  provider: "google" | "facebook" | "email" | "guest";
+  provider: "google" | "email" | "guest";
   homeCity?: string;
   preferredPark?: string;
   phone?: string;
@@ -17,11 +17,12 @@ export interface NotificationItem {
   id: string;
   title: string;
   message: string;
-  type: "crowd" | "weather" | "price" | "system";
+  type: "crowd" | "weather" | "price" | "system" | "offer" | "trip";
   time: string;
   read: boolean;
   parkId?: string;
   badge?: string;
+  actionUrl?: string;
 }
 
 export interface SavedTrip {
@@ -37,9 +38,13 @@ export interface SavedTrip {
   notes?: string;
 }
 
+// Session type: "none" = not chosen yet, "authenticated" = logged in, "guest" = explicitly chose guest
+export type SessionType = "none" | "authenticated" | "guest";
+
 interface AuthState {
   user: User | null;
   isGuest: boolean;
+  sessionType: SessionType;
   authModalOpen: boolean;
   authModalMode: "signin" | "signup";
   authModalReason: string;
@@ -49,8 +54,8 @@ interface AuthState {
 
   // Auth actions
   loginWithGoogle: () => void;
-  loginWithFacebook: () => void;
   loginWithEmail: (email: string, name?: string) => void;
+  setAuthenticatedUser: (user: Pick<User, "id" | "name" | "email" | "provider">) => void;
   continueAsGuest: () => void;
   logout: () => void;
   updateProfile: (updates: Partial<User>) => void;
@@ -73,114 +78,23 @@ interface AuthState {
   dismissToast: (id: string) => void;
 }
 
-const initialNotifications: NotificationItem[] = [
-  {
-    id: "notif-1",
-    title: "⚡ Wonderla Live Wait Times",
-    message: "Recaptcha-verified: Roller Coaster wait is currently 18m. Low crowd surge right now.",
-    type: "crowd",
-    time: "10m ago",
-    read: false,
-    parkId: "wonderla-chennai",
-    badge: "Live"
-  },
-  {
-    id: "notif-2",
-    title: "🌧️ Open-Meteo Weather Advisory",
-    message: "Wonderla Chennai: 0% rain forecasted through Sunday. Ideal for outdoor rides.",
-    type: "weather",
-    time: "1h ago",
-    read: false,
-    parkId: "wonderla-chennai",
-    badge: "Forecast"
-  },
-  {
-    id: "notif-3",
-    title: "🏷️ ₹1,312 Weekday Pricing Active",
-    message: "Tuesday & Wednesday offer maximum savings compared to ₹1,549 weekend rates.",
-    type: "price",
-    time: "3h ago",
-    read: true,
-    parkId: "wonderla-chennai",
-    badge: "Savings"
-  },
-  {
-    id: "notif-4",
-    title: "🎢 MGM Dizzee World Added",
-    message: "Multi-park intelligence now active for MGM Dizzee World Chennai with 2026 pricing.",
-    type: "system",
-    time: "1d ago",
-    read: true,
-    parkId: "mgm-dizzee-chennai",
-    badge: "New Park"
-  }
-];
-
 export const useAuthStore = create<AuthState>()(
   persist(
     (set, get) => ({
       user: null,
-      isGuest: true,
+      // CRITICAL: isGuest MUST default to false. Users have NOT chosen guest mode yet.
+      // They must explicitly click "Continue as Guest" to activate guest mode.
+      isGuest: false,
+      sessionType: "none" as SessionType,
       authModalOpen: false,
       authModalMode: "signin",
       authModalReason: "",
-      notifications: initialNotifications,
-      toasts: [
-        {
-          id: "toast-welcome",
-          title: "🎉 Welcome to QueueCut!",
-          message: "Guest browsing is active. Explore all crowds, wait times & pricing freely.",
-          type: "system",
-          time: "Just now",
-          read: false
-        }
-      ],
+      notifications: [],
+      toasts: [],
       savedTrips: [],
 
       loginWithGoogle: () => {
-        const newUser: User = {
-          id: "usr-google-" + Date.now().toString(36),
-          name: "Rahul Sharma",
-          email: "rahul.sharma@gmail.com",
-          avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80",
-          provider: "google",
-          homeCity: "Chennai",
-          preferredPark: "wonderla-chennai",
-          createdAt: new Date().toISOString()
-        };
-        set({
-          user: newUser,
-          isGuest: false,
-          authModalOpen: false
-        });
-        get().addToast({
-          title: "Signed in with Google",
-          message: `Welcome back, ${newUser.name}! Your trips and alerts are synced.`,
-          type: "system"
-        });
-      },
-
-      loginWithFacebook: () => {
-        const newUser: User = {
-          id: "usr-fb-" + Date.now().toString(36),
-          name: "Rahul Sharma",
-          email: "rahul.sharma@facebook.com",
-          avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80",
-          provider: "facebook",
-          homeCity: "Chennai",
-          preferredPark: "wonderla-chennai",
-          createdAt: new Date().toISOString()
-        };
-        set({
-          user: newUser,
-          isGuest: false,
-          authModalOpen: false
-        });
-        get().addToast({
-          title: "Signed in with Facebook",
-          message: `Welcome, ${newUser.name}!`,
-          type: "system"
-        });
+        window.location.assign("/api/v1/auth/google/login");
       },
 
       loginWithEmail: (email: string, name?: string) => {
@@ -198,37 +112,49 @@ export const useAuthStore = create<AuthState>()(
         set({
           user: newUser,
           isGuest: false,
+          sessionType: "authenticated",
           authModalOpen: false
         });
         get().addToast({
-          title: "Welcome to QueueCut",
-          message: `Logged in as ${displayName}`,
+          title: "🎉 Welcome to QueueCut!",
+          message: `Logged in as ${displayName}. Ready to plan your next adventure!`,
           type: "system"
         });
       },
 
+      setAuthenticatedUser: (authenticatedUser) => {
+        set({
+          user: {
+            ...authenticatedUser,
+            createdAt: new Date().toISOString(),
+          },
+          isGuest: false,
+          sessionType: "authenticated",
+          authModalOpen: false,
+        });
+      },
+
       continueAsGuest: () => {
+        // EXPLICIT guest selection — user consciously chose guest mode
         set({
           user: null,
           isGuest: true,
+          sessionType: "guest",
           authModalOpen: false
         });
         get().addToast({
-          title: "Browsing as Guest",
-          message: "You can view all parks and wait forecasts. Sign in anytime to save trips.",
+          title: "👋 Browsing as Guest",
+          message: "Explore parks, crowd data, and forecasts freely. Sign in anytime to save trips.",
           type: "system"
         });
       },
 
       logout: () => {
+        // After logout, go to "none" state — redirect to login, NOT back to guest
         set({
           user: null,
-          isGuest: true
-        });
-        get().addToast({
-          title: "Signed Out",
-          message: "You are now in guest browsing mode.",
-          type: "system"
+          isGuest: false,
+          sessionType: "none"
         });
       },
 
@@ -330,7 +256,7 @@ export const useAuthStore = create<AuthState>()(
           read: false
         };
         set((state) => ({
-          toasts: [newToast, ...state.toasts.slice(0, 3)] // Keep max 4 active toasts
+          toasts: [newToast, ...state.toasts.slice(0, 3)]
         }));
 
         // Auto dismiss after 5.5 seconds
@@ -350,6 +276,7 @@ export const useAuthStore = create<AuthState>()(
       partialize: (state) => ({
         user: state.user,
         isGuest: state.isGuest,
+        sessionType: state.sessionType,
         savedTrips: state.savedTrips,
         notifications: state.notifications
       })

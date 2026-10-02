@@ -12,6 +12,7 @@ import { useAuthStore } from "../../store/slices/authStore";
 import { ProfileSettingsTab } from "./components/ProfileSettingsTab";
 import { NotificationSettingsTab } from "./components/NotificationSettingsTab";
 import { TelemetrySecurityTab } from "./components/TelemetrySecurityTab";
+import { apiClient } from "../../services/apiClient";
 
 export default function SettingsView() {
   const { user, isGuest, logout, openAuthModal } = useAuthStore();
@@ -29,7 +30,7 @@ export default function SettingsView() {
     setTimeout(() => setSavedSuccess(false), 3000);
   };
 
-  const handleExportData = () => {
+  const handleExportData = async () => {
     const exportPayload = {
       user: user || "Guest",
       timestamp: new Date().toISOString(),
@@ -42,13 +43,21 @@ export default function SettingsView() {
         discountAlerts,
       },
     };
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportPayload, null, 2));
-    const downloadAnchor = document.createElement("a");
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `queuecut_telemetry_${Date.now()}.json`);
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
+    try {
+      const blob = await apiClient.exportData(exportPayload);
+      const downloadUrl = URL.createObjectURL(blob);
+      const downloadAnchor = document.createElement("a");
+      downloadAnchor.href = downloadUrl;
+      downloadAnchor.download = `queuecut_telemetry_${Date.now()}.json`;
+      downloadAnchor.click();
+      URL.revokeObjectURL(downloadUrl);
+    } catch {
+      const dataUrl = "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportPayload, null, 2));
+      const downloadAnchor = document.createElement("a");
+      downloadAnchor.href = dataUrl;
+      downloadAnchor.download = `queuecut_telemetry_${Date.now()}.json`;
+      downloadAnchor.click();
+    }
   };
 
   return (

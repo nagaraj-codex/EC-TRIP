@@ -108,7 +108,7 @@ export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
               onClick={() => onNavigate("landing")}
               className="flex items-center gap-2.5 cursor-pointer select-none group"
             >
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-brand-500 text-white flex items-center justify-center text-xl shadow-glow-brand group-hover:scale-105 transition-transform">
+              <div className="w-9 h-9 rounded-xl bg-linear-to-tr from-brand-600 via-indigo-600 to-brand-500 text-white flex items-center justify-center text-xl shadow-glow-brand group-hover:scale-105 transition-transform">
                 🎢
               </div>
               <div>
@@ -286,7 +286,7 @@ export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
                     alt={user.name}
                     className="w-7 h-7 rounded-full object-cover ring-2 ring-brand-500/40"
                   />
-                  <span className="text-xs font-semibold text-slate-200 hidden sm:inline-block max-w-[90px] truncate">
+                  <span className="text-xs font-semibold text-slate-200 hidden sm:inline-block max-w-22.5 truncate">
                     {user.name.split(" ")[0]}
                   </span>
                   <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-200" />

@@ -27,7 +27,7 @@ export default function AuthModal() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto">
       <div
-        className="relative w-full max-w-[460px] my-auto bg-[#0b1326] border border-[#1d2a48] rounded-[28px] shadow-2xl overflow-hidden text-slate-100 animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-115 my-auto bg-[#0b1326] border border-[#1d2a48] rounded-[28px] shadow-2xl overflow-hidden text-slate-100 animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -38,8 +38,8 @@ export default function AuthModal() {
           <X className="w-4 h-4" />
         </button>
 
-        <div className="pt-7 pb-4 px-6 text-center border-b border-[#141f38] bg-gradient-to-b from-[#0f1a36] to-[#0b1326]">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-sky-500 shadow-lg shadow-brand-500/25 mb-2.5 text-2xl">
+        <div className="pt-7 pb-4 px-6 text-center border-b border-[#141f38] bg-linear-to-b from-[#0f1a36] to-[#0b1326]">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-linear-to-tr from-brand-600 via-indigo-600 to-sky-500 shadow-lg shadow-brand-500/25 mb-2.5 text-2xl">
             🎢
           </div>
           <div className="flex items-center justify-center gap-1.5">
