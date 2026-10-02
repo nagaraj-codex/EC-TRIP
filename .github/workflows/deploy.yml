@@ -56,7 +56,7 @@ jobs:
       # --------------------------------------------------------
 
       - name: Checkout Source Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # --------------------------------------------------------
       # Setup Node.js with NPM Caching
