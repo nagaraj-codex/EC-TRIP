@@ -116,7 +116,11 @@ export const useAuthStore = create<AuthState>()(
             }
           })
           .catch(() => {
-            window.location.assign("/api/v1/auth/google/login");
+            get().addToast({
+              title: "Network Error",
+              message: "Could not reach the server to start Google Sign-In.",
+              type: "system",
+            });
           });
       },
 

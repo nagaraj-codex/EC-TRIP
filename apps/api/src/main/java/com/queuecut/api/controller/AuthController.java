@@ -114,17 +114,13 @@ public class AuthController {
     @GetMapping("/google/login")
     public ResponseEntity<Void> googleLogin(HttpServletRequest req, HttpServletResponse resp) {
         if (!props.getGoogle().isConfigured()) {
-            String accept = req.getHeader("Accept");
-            if (accept != null && accept.contains("text/html")) {
-                String frontendUrl = props.getFrontendUrl();
-                String target = (frontendUrl != null && !frontendUrl.isBlank())
-                    ? (frontendUrl + "/login?error=google_not_configured")
-                    : "/login?error=google_not_configured";
-                return ResponseEntity.status(HttpStatus.FOUND)
-                    .header(HttpHeaders.LOCATION, target)
-                    .build();
-            }
-            throw new ApiException(503, "Google sign-in is not configured");
+            String frontendUrl = props.getFrontendUrl();
+            String target = (frontendUrl != null && !frontendUrl.isBlank())
+                ? (frontendUrl + "/login?error=google_not_configured")
+                : "/login?error=google_not_configured";
+            return ResponseEntity.status(HttpStatus.FOUND)
+                .header(HttpHeaders.LOCATION, target)
+                .build();
         }
         String state = AuthService.randomToken(32);
         String query = "client_id="   + encode(props.getGoogle().getClientId()) +
