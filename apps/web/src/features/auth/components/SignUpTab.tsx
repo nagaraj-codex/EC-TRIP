@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff, HelpCircle } from "lucide-react";
 import { useAuthStore } from "../../../store/slices/authStore";
+import { apiClient } from "../../../services/apiClient";
 
 interface SignUpTabProps {
   onSwitchToSignin: () => void;
@@ -8,7 +9,7 @@ interface SignUpTabProps {
 }
 
 export const SignUpTab: React.FC<SignUpTabProps> = ({ onSwitchToSignin, setError }) => {
-  const { loginWithEmail } = useAuthStore();
+  const { setAuthenticatedUser, closeAuthModal } = useAuthStore();
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
   const [dobDay, setDobDay] = useState("15");
@@ -17,25 +18,40 @@ export const SignUpTab: React.FC<SignUpTabProps> = ({ onSwitchToSignin, setError
   const [contactInfo, setContactInfo] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
   const [showSignupPassword, setShowSignupPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSignupSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    if (!firstName.trim() || !surname.trim()) {
+    const fullName = `${firstName.trim()} ${surname.trim()}`.trim();
+    if (!fullName) {
       setError("Please enter your first name and surname.");
       return;
     }
-    if (!contactInfo.trim()) {
-      setError("Please enter your mobile number or email address.");
+    if (!contactInfo.trim() || !contactInfo.includes("@")) {
+      setError("Please enter a valid email address.");
       return;
     }
-    if (!signupPassword || signupPassword.length < 6) {
-      setError("Password must be at least 6 characters.");
+    if (!signupPassword || signupPassword.length < 8) {
+      setError("Password must contain at least 8 characters.");
       return;
     }
 
-    loginWithEmail(contactInfo, `${firstName} ${surname}`);
+    setIsLoading(true);
+    apiClient.register({
+      name: fullName,
+      email: contactInfo.trim(),
+      password: signupPassword,
+    })
+      .then(({ user }) => {
+        setAuthenticatedUser(user);
+        closeAuthModal();
+      })
+      .catch((err: Error) => {
+        setError(err.message || "An account with that email already exists or registration failed.");
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -131,10 +147,7 @@ export const SignUpTab: React.FC<SignUpTabProps> = ({ onSwitchToSignin, setError
             required
           />
           <p className="text-[10px] text-slate-400 mt-1 leading-tight">
-            You may receive notifications from us.{" "}
-            <a href="#" className="text-[#3897f0] hover:underline">
-              Learn why we ask for your contact information
-            </a>
+            You may receive notifications from us. This information is used only for account access and trip delivery.
           </p>
         </div>
 
@@ -161,38 +174,19 @@ export const SignUpTab: React.FC<SignUpTabProps> = ({ onSwitchToSignin, setError
 
         <div className="text-[10px] text-slate-400 space-y-1.5 pt-1 leading-relaxed bg-[#081022] p-3 rounded-xl border border-[#162340]">
           <p>
-            People who use our service may have uploaded your contact information to QueueCut.{" "}
-            <a href="#" className="text-[#3897f0] hover:underline">
-              Learn more.
-            </a>
+            QueueCut stores only the profile data needed for your account, trip history, and local notification preferences.
           </p>
           <p>
-            By tapping Submit, you agree to create an account and to QueueCut's{" "}
-            <a href="#" className="text-[#3897f0] hover:underline font-semibold">
-              Terms
-            </a>
-            ,{" "}
-            <a href="#" className="text-[#3897f0] hover:underline font-semibold">
-              Privacy Policy
-            </a>{" "}
-            and{" "}
-            <a href="#" className="text-[#3897f0] hover:underline font-semibold">
-              Cookies Policy
-            </a>
-            .
-          </p>
-          <p>
-            The Privacy Policy describes the ways we can use the information we collect when you create an
-            account. For example, we use this information to provide, personalise and improve our products,
-            including park wait telemetry and crowd alerts.
+            By tapping Submit, you agree to create an account and to the app&apos;s current account, privacy, and cookie terms available in the product documentation.
           </p>
         </div>
 
         <button
           type="submit"
-          className="w-full py-2.5 rounded-xl bg-[#1877f2] hover:bg-[#166fe5] text-white font-bold text-xs shadow-md transition-all active:scale-98"
+          disabled={isLoading}
+          className="w-full py-2.5 rounded-xl bg-[#1877f2] hover:bg-[#166fe5] text-white font-bold text-xs shadow-md transition-all active:scale-98 disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Submit
+          {isLoading ? "Creating account..." : "Submit"}
         </button>
 
         <button

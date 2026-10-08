@@ -2,7 +2,6 @@
    GLOBALS.CSS - Tailwind Directives & QueueCut UI Components
    ========================================================= */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -58,7 +57,7 @@
   }
 
   .qc-card-interactive {
-    @apply qc-card cursor-pointer;
+    @apply bg-white border border-slate-200 rounded-2xl p-4 shadow-sm transition-all duration-300 cursor-pointer;
   }
 
   .qc-card-interactive:hover {
@@ -76,19 +75,19 @@
   }
 
   .qc-chip-teal {
-    @apply qc-chip bg-qc-teal-500/15 text-qc-teal-400 border border-qc-teal-500/20;
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 bg-qc-teal-500/15 text-qc-teal-400 border border-qc-teal-500/20;
   }
 
   .qc-chip-amber {
-    @apply qc-chip bg-amber-500/15 text-amber-400 border border-amber-500/20;
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 bg-amber-500/15 text-amber-400 border border-amber-500/20;
   }
 
   .qc-chip-red {
-    @apply qc-chip bg-red-500/15 text-red-400 border border-red-500/20;
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 bg-red-500/15 text-red-400 border border-red-500/20;
   }
 
   .qc-chip-neutral {
-    @apply qc-chip bg-slate-700/50 text-slate-300 border border-slate-600/30;
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 bg-slate-700/50 text-slate-300 border border-slate-600/30;
   }
 
   .qc-badge {
@@ -96,7 +95,7 @@
   }
 
   .qc-badge-live {
-    @apply qc-badge bg-red-500/20 text-red-400 animate-pulse-slow;
+    @apply inline-flex items-center justify-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-red-500/20 text-red-400 animate-pulse-slow;
   }
 
   /* --- Production-Grade Buttons --- */
@@ -105,19 +104,19 @@
   }
 
   .btn-primary {
-    @apply btn bg-qc-teal-600 text-white hover:bg-qc-teal-700 active:scale-[0.97] shadow-glow-teal;
+    @apply px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer select-none outline-none bg-qc-teal-600 text-white hover:bg-qc-teal-700 active:scale-[0.97] shadow-glow-teal;
   }
 
   .btn-secondary {
-    @apply btn bg-slate-800/80 text-slate-200 border border-white/10 hover:bg-slate-700/80 active:scale-[0.97];
+    @apply px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer select-none outline-none bg-slate-800/80 text-slate-200 border border-white/10 hover:bg-slate-700/80 active:scale-[0.97];
   }
 
   .btn-ghost {
-    @apply btn bg-transparent text-slate-300 hover:bg-slate-800/50 hover:text-white;
+    @apply px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer select-none outline-none bg-transparent text-slate-300 hover:bg-slate-800/50 hover:text-white;
   }
 
   .btn-danger {
-    @apply btn bg-red-600/90 text-white hover:bg-red-700 active:scale-[0.97];
+    @apply px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer select-none outline-none bg-red-600/90 text-white hover:bg-red-700 active:scale-[0.97];
   }
 
   /* --- Score Ring Component --- */
@@ -194,7 +193,7 @@
   }
 
   .qc-card-white-interactive {
-    @apply qc-card-white cursor-pointer hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(37,99,235,0.08)] hover:border-blue-200;
+    @apply bg-white border border-slate-200 rounded-2xl p-4 shadow-[0_10px_30px_rgba(15,23,42,0.04)] transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(37,99,235,0.08)] hover:border-blue-200;
   }
 
   /* --- Blue Button Variants --- */
@@ -229,6 +228,34 @@
       rgba(2, 6, 23, 0.85) 70%,
       rgba(2, 6, 23, 1) 100%
     );
+  }
+
+  .ota-booking-console {
+    border-radius: var(--ota-radius-console);
+    background: var(--ota-white);
+    box-shadow: var(--ota-shadow-console);
+  }
+
+  .ota-booking-cta {
+    border-radius: var(--ota-radius-pill);
+    background: linear-gradient(
+      100deg,
+      var(--ota-primary),
+      var(--ota-primary-hover)
+    );
+    box-shadow: 0 12px 28px rgba(37, 99, 235, 0.38);
+    transition:
+      filter 180ms ease,
+      transform 180ms ease,
+      opacity 180ms ease;
+  }
+
+  .ota-booking-cta:hover:not(:disabled) {
+    filter: brightness(0.94);
+  }
+
+  .ota-booking-cta:active:not(:disabled) {
+    transform: scale(0.99);
   }
 }
 

@@ -7,9 +7,10 @@ import {
 } from "lucide-react";
 import DestinationCard from "../components/destination/DestinationCard";
 import { useGeolocation, calculateDistance } from "../hooks/useGeolocation";
+import { queueCutAssets } from "../data/assetConfig";
 
 // Single generic fallback — not park-specific
-const GENERIC_PARK_IMAGE = "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80";
+const GENERIC_PARK_IMAGE = queueCutAssets.genericParkImage(600);
 
 const CITY_COORDS: Record<string, { lat: number; lon: number }> = {
   "Chennai":    { lat: 13.0827, lon: 80.2707 },
@@ -234,6 +235,7 @@ export default function ExplorePage() {
                 key={park.park_id}
                 park={park}
                 imageUrl={park.image ?? GENERIC_PARK_IMAGE}
+                imageIsGeneric={!park.image}
                 distance={park.distance}
                 index={idx}
                 variant="grid"

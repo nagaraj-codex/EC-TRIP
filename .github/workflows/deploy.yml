@@ -147,7 +147,7 @@ jobs:
   # ============================================================
 
   deploy-backend:
-    name: Deploy FastAPI Backend
+    name: Deploy Spring Boot Backend
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -172,7 +172,7 @@ jobs:
             exit 0
           fi
 
-          echo "🚀 Triggering FastAPI production deployment..."
+          echo "🚀 Triggering Spring Boot production deployment..."
 
           HTTP_STATUS=$(curl \
             --silent \

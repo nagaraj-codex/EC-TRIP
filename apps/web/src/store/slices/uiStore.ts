@@ -11,6 +11,7 @@ interface UIState {
   bottomSheetContent: string | null;
   searchQuery: string;
   theme: "dark" | "light";
+  advisorOpen: boolean;
 
   // Actions
   setOnboardingSeen: () => void;
@@ -20,6 +21,7 @@ interface UIState {
   closeBottomSheet: () => void;
   setSearchQuery: (q: string) => void;
   setTheme: (t: "dark" | "light") => void;
+  setAdvisorOpen: (open: boolean) => void;
 }
 
 export const useUIStore = create<UIState>()(
@@ -32,6 +34,7 @@ export const useUIStore = create<UIState>()(
       bottomSheetContent: null,
       searchQuery: "",
       theme: "dark",
+      advisorOpen: false,
 
       setOnboardingSeen: () => set({ hasSeenOnboarding: true }),
       setSplashSeen: () => set({ hasSeenSplash: true }),
@@ -42,6 +45,7 @@ export const useUIStore = create<UIState>()(
         set({ bottomSheetOpen: false, bottomSheetContent: null }),
       setSearchQuery: (q) => set({ searchQuery: q }),
       setTheme: (t) => set({ theme: t }),
+      setAdvisorOpen: (open) => set({ advisorOpen: open }),
     }),
     {
       name: "queuecut-ui",

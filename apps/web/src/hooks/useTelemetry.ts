@@ -14,18 +14,24 @@ export function useTelemetry() {
   const [isConnected, setIsConnected] = useState(false);
   const [latestAlert, setLatestAlert] = useState<TelemetryAlert | null>(null);
   const socketRef = useRef<WebSocket | null>(null);
-  const reconnectTimeoutRef = useRef<any>(null);
+  const reconnectTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { addNotification } = useAuthStore();
-
   const connect = useCallback(() => {
     try {
-      const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
-      // Connect directly to backend port 8000 when developing locally, or via proxy host
-      const host =
-        window.location.port === "5173"
-          ? "localhost:8000"
-          : window.location.host;
-      const wsUrl = `${proto}//${host}/api/v1/telemetry/ws`;
+      let wsUrl: string;
+      const envApiUrl = import.meta.env.VITE_API_BASE_URL;
+      if (envApiUrl && envApiUrl.startsWith("http")) {
+        const wsProto = envApiUrl.startsWith("https") ? "wss:" : "ws:";
+        const hostPath = envApiUrl.replace(/^https?:\/\//, "").replace(/\/$/, "");
+        wsUrl = `${wsProto}//${hostPath}/api/v1/telemetry/ws`;
+      } else {
+        const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
+        const host =
+          window.location.port === "5173"
+            ? "localhost:8000"
+            : window.location.host;
+        wsUrl = `${proto}//${host}/api/v1/telemetry/ws`;
+      }
 
       const socket = new WebSocket(wsUrl);
       socketRef.current = socket;

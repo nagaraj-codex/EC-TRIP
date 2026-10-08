@@ -1,81 +1,33 @@
-import React from "react";
+import { Bell, CheckCircle2, CircleSlash, Mail, CloudSun } from "lucide-react";
 
-interface NotificationSettingsTabProps {
-  emailAlerts: boolean;
-  setEmailAlerts: (val: boolean) => void;
-  whatsappSurge: boolean;
-  setWhatsappSurge: (val: boolean) => void;
-  weatherFlash: boolean;
-  setWeatherFlash: (val: boolean) => void;
-  discountAlerts: boolean;
-  setDiscountAlerts: (val: boolean) => void;
-}
-
-export const NotificationSettingsTab: React.FC<NotificationSettingsTabProps> = ({
-  emailAlerts,
-  setEmailAlerts,
-  whatsappSurge,
-  setWhatsappSurge,
-  weatherFlash,
-  setWeatherFlash,
-  discountAlerts,
-  setDiscountAlerts,
-}) => {
+export function NotificationSettingsTab() {
   return (
-    <div className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
-      <div className="space-y-4">
-        <div className="flex items-center justify-between py-2 border-b border-slate-800/80">
-          <div>
-            <span className="font-bold text-xs text-white block">Email Itinerary Delivery</span>
-            <span className="text-xs text-slate-400">Send PDF & timeline itineraries directly to your email (Resend API)</span>
-          </div>
-          <input
-            type="checkbox"
-            checked={emailAlerts}
-            onChange={(e) => setEmailAlerts(e.target.checked)}
-            className="w-4 h-4 text-brand-500 rounded border-slate-700 bg-slate-900 focus:ring-brand-500 cursor-pointer accent-brand-500"
-          />
+    <div className="space-y-3">
+      <div className="flex items-start gap-3 border-b border-slate-800/80 py-3">
+        <Bell className="mt-0.5 h-4 w-4 text-emerald-400" />
+        <div>
+          <p className="text-xs font-bold text-white">In-app account notifications</p>
+          <p className="mt-1 text-xs text-slate-400">Available for notifications delivered by the QueueCut account service.</p>
         </div>
-
-        <div className="flex items-center justify-between py-2 border-b border-slate-800/80">
-          <div>
-            <span className="font-bold text-xs text-white block">WhatsApp Crowd Surge Alerts</span>
-            <span className="text-xs text-slate-400">Instant notification if top ride wait jumps beyond 35 minutes</span>
-          </div>
-          <input
-            type="checkbox"
-            checked={whatsappSurge}
-            onChange={(e) => setWhatsappSurge(e.target.checked)}
-            className="w-4 h-4 text-brand-500 rounded border-slate-700 bg-slate-900 focus:ring-brand-500 cursor-pointer accent-brand-500"
-          />
-        </div>
-
-        <div className="flex items-center justify-between py-2 border-b border-slate-800/80">
-          <div>
-            <span className="font-bold text-xs text-white block">Open-Meteo Rain Flash Advisory</span>
-            <span className="text-xs text-slate-400">Precipitation warning 2 hours before sudden weather shifts</span>
-          </div>
-          <input
-            type="checkbox"
-            checked={weatherFlash}
-            onChange={(e) => setWeatherFlash(e.target.checked)}
-            className="w-4 h-4 text-brand-500 rounded border-slate-700 bg-slate-900 focus:ring-brand-500 cursor-pointer accent-brand-500"
-          />
-        </div>
-
-        <div className="flex items-center justify-between py-2">
-          <div>
-            <span className="font-bold text-xs text-white block">Discounts & College Offers</span>
-            <span className="text-xs text-slate-400">Track student discounts and weekday promotional ticket price drops</span>
-          </div>
-          <input
-            type="checkbox"
-            checked={discountAlerts}
-            onChange={(e) => setDiscountAlerts(e.target.checked)}
-            className="w-4 h-4 text-brand-500 rounded border-slate-700 bg-slate-900 focus:ring-brand-500 cursor-pointer accent-brand-500"
-          />
-        </div>
+        <CheckCircle2 className="ml-auto h-4 w-4 text-emerald-400" aria-label="Available" />
       </div>
+      <div className="flex items-start gap-3 border-b border-slate-800/80 py-3">
+        <Mail className="mt-0.5 h-4 w-4 text-blue-300" />
+        <div>
+          <p className="text-xs font-bold text-white">Email itinerary delivery</p>
+          <p className="mt-1 text-xs text-slate-400">Email is sent only when you request itinerary delivery; recurring email alerts are not configured.</p>
+        </div>
+        <CircleSlash className="ml-auto h-4 w-4 text-slate-500" aria-label="No recurring email alert provider" />
+      </div>
+      <div className="flex items-start gap-3 border-b border-slate-800/80 py-3">
+        <CloudSun className="mt-0.5 h-4 w-4 text-amber-300" />
+        <div>
+          <p className="text-xs font-bold text-white">Weather advisories</p>
+          <p className="mt-1 text-xs text-slate-400">Forecasts are available in park details; push or scheduled weather alerts are not configured.</p>
+        </div>
+        <CircleSlash className="ml-auto h-4 w-4 text-slate-500" aria-label="Push alerts unavailable" />
+      </div>
+      <p className="pt-2 text-xs text-slate-500">WhatsApp and recurring price/crowd alerts are unavailable because no delivery provider is configured.</p>
     </div>
   );
-};
+}

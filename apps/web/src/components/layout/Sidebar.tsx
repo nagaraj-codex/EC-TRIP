@@ -1,4 +1,4 @@
-import {
+﻿import {
   Compass,
   Calendar,
   Bookmark,
@@ -42,16 +42,16 @@ export default function Sidebar({ isOpen, onClose, activeView, onNavigate }: Sid
     },
     {
       id: "parks",
-      label: "Parks & Live Queues",
+      label: "Park Catalog",
       icon: MapPin,
-      description: "Wonderla, MGM & Black Thunder",
+      description: "Catalogued parks and verified details",
       gated: false
     },
     {
       id: "calendar",
       label: "Crowd Calendar",
       icon: Calendar,
-      description: "7-day forecast & rate heatmap",
+      description: "Compare candidate visit dates",
       gated: false
     },
     {
@@ -67,9 +67,9 @@ export default function Sidebar({ isOpen, onClose, activeView, onNavigate }: Sid
       id: "alerts",
       label: "Crowd & Price Alerts",
       icon: Bell,
-      description: "Instant rain & surge alerts",
+      description: "Park and trip notifications",
       gated: true,
-      gateReason: "Sign in to activate SMS & WhatsApp price drop and crowd surge alerts"
+      gateReason: "Sign in to manage notifications for your trips"
     },
     {
       id: "settings",
@@ -101,7 +101,7 @@ export default function Sidebar({ isOpen, onClose, activeView, onNavigate }: Sid
           <div className="h-16 px-4 flex items-center justify-between border-b border-slate-800 bg-slate-950/60">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-xl bg-linear-to-tr from-brand-600 to-indigo-600 text-white flex items-center justify-center text-lg font-bold shadow-glow-brand">
-                🎢
+                ðŸŽ¢
               </div>
               <span className="font-black text-base tracking-tight text-white">
                 QueueCut
@@ -201,18 +201,18 @@ export default function Sidebar({ isOpen, onClose, activeView, onNavigate }: Sid
               </button>
             </div>
           ) : (
-            <div className="bg-gradient-to-br from-brand-950 via-slate-900 to-indigo-950 p-3.5 rounded-2xl text-white border border-brand-500/30 shadow-glow-brand">
+            <div className="bg-linear-to-br from-brand-950 via-slate-900 to-indigo-950 p-3.5 rounded-2xl text-white border border-brand-500/30 shadow-glow-brand">
               <div className="flex items-center gap-1.5 text-xs font-bold text-brand-300">
                 <Sparkles className="w-4 h-4 text-amber-300" />
                 <span>Guest Browsing Active</span>
               </div>
               <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
-                Sign in to save customized itineraries and unlock instant WhatsApp alerts.
+                Sign in to save customized itineraries and manage account notifications.
               </p>
               <button
                 onClick={() => {
                   onClose();
-                  openAuthModal("Sign in to save trips and sync across your devices", "signin");
+                  window.location.assign("/login");
                 }}
                 className="btn btn-primary text-xs py-2 mt-2.5 font-bold"
               >

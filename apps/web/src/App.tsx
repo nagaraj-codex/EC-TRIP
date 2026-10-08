@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useUIStore } from "./store/slices/uiStore";
 import { useAuthStore } from "./store/slices/authStore";
+import { apiClient } from "./services/apiClient";
 
 // Layouts
 import AppShell from "./layouts/AppShell";
@@ -19,6 +21,7 @@ import NotificationsPage from "./pages/NotificationsPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
 import PlanMyVisitPage from "./pages/PlanMyVisitPage";
+import SavedParksPage from "./pages/SavedParksPage";
 
 // Global overlays
 import NotificationToasts from "./components/notifications/NotificationToasts";
@@ -51,6 +54,20 @@ function AppGuard({ children }: { children: React.ReactNode }) {
 export default function App() {
   const { hasSeenSplash, hasSeenOnboarding } = useUIStore();
   const { sessionType } = useAuthStore();
+
+  useEffect(() => {
+    // If the client state indicates an active account session, verify it with the backend
+    if (sessionType === "authenticated") {
+      apiClient.me()
+        .then(({ user }) => {
+          useAuthStore.getState().setAuthenticatedUser(user);
+        })
+        .catch(() => {
+          // Session cookie expired or revoked on backend: reset session state cleanly
+          useAuthStore.getState().logout();
+        });
+    }
+  }, [sessionType]);
 
   return (
     <>
@@ -86,7 +103,9 @@ export default function App() {
           <Route path="home" element={<HomePage />} />
           <Route path="explore" element={<ExplorePage />} />
           <Route path="explore/:parkId" element={<DestinationDetailPage />} />
+          <Route path="compare" element={<PlanMyVisitPage />} />
           <Route path="trips" element={<TripsPage />} />
+          <Route path="saved" element={<SavedParksPage />} />
           <Route path="notifications" element={<NotificationsPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="settings" element={<SettingsPage />} />

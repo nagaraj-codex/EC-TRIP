@@ -1,6 +1,6 @@
 # 🎢 QueueCut: Comprehensive System Architecture, Navigation & Operation Manual
 
-**Version**: 3.0.0 (Production Master)
+**Version**: 3.0.0 (Local Audit Snapshot; not a production certification)
 **Last Updated**: October 2, 2026
 **Auditor**: Principal Codebase Auditor & Senior Systems Refactoring Specialist  
 **Workspace**: `j:\QUEUE CUT`  
@@ -14,11 +14,11 @@
 3. [Authentication & Guest Browsing Engine](#3-authentication--guest-browsing-engine)
 4. [Account & App Settings Engine](#4-account--app-settings-engine)
 5. [Core Intelligence Hub & Calculation Algorithms](#5-core-intelligence-hub--calculation-algorithms)
-6. [Verified 2026 Ground-Truth Parks Catalog](#6-verified-2026-ground-truth-parks-catalog)
-7. [API Route & Pydantic v2 Schema Registry](#7-api-route--pydantic-v2-schema-registry)
+6. [Park Catalog and Provenance](#6-park-catalog-and-provenance)
+7. [API Route & Spring Boot Endpoint Registry](#7-api-route--spring-boot-endpoint-registry)
 8. [Monorepo Configuration & Tooling Standards](#8-monorepo-configuration--tooling-standards)
 9. [VS Code Enterprise Developer Suite](#9-vs-code-enterprise-developer-suite)
-10. [Unified Production Server & Hot Reload Engine](#10-unified-production-server--hot-reload-engine)
+10. [Local Development Server](#10-local-development-server)
 11. [Continuous Integration & Deployment Pipelines](#11-continuous-integration--deployment-pipelines)
 12. [Codebase Audit & Refactoring Summary](#12-codebase-audit--refactoring-summary)
 13. [Automated Verification & Developer Runbooks](#13-automated-verification--developer-runbooks)
@@ -27,16 +27,16 @@
 
 ## 1. Executive Summary & Technology Stack
 
-QueueCut is a high-performance theme park intelligence platform delivering **crowd forecasting, dynamic pricing optimization, FastTrack return-on-investment (ROI) calculations, and automated itineraries** for premier Indian attractions (including Wonderla Chennai, MGM Dizzee World, and Black Thunder Coimbatore).
+QueueCut is a React/Vite frontend with a Java Spring Boot backend offering a local park catalog, date recommendations, itinerary templates, account trips, weather/solar/routing integrations, user crowd reports, and an optional Gemini advisor. It has been locally built and tested. It is **not deployment-verified or production-ready**: catalog facts lack field-level provenance, crowd and wait outputs are provisional rules, itineraries contain templates, and deployment credentials/URLs are environment-specific.
 
 ### Technology Stack Overview
 
-- **Frontend Layer (`apps/web`)**: React 18, TypeScript 5, Vite 5, TailwindCSS 3, Zustand 4 (persisted state slices), Lucide React, Mapbox GL.
-- **Backend Layer (`apps/api`)**: FastAPI, Python 3.12/3.14, Pydantic v2, HTTPX (async non-blocking client), Uvicorn, SQLAlchemy.
-- **Unified Master Engine (`queuecut_final.py`)**: All-in-one runner serving the FastAPI backend, WebSocket telemetry hub, simulated in-memory Redis cache, and production React PWA SPA with hot reloading.
-- **Machine Learning & Analytics (`ml`)**: Scikit-Learn (Decision Tree Classifier with 300-row invariant check), Pandas, NumPy, StandardScaler.
-- **Data & Intelligence (`data`)**: Ground-truth JSON catalogs, Open-Meteo Weather API, Air Quality & Solar UV Index, Sunrise-Sunset civil twilight API, Nager.Date Public Holidays API, OSRM road routing engine.
-- **Developer & CI/CD Infrastructure**: Monorepo orchestration scripts, VS Code debug configurations and tasks, GitHub Actions CI matrix testing, and Dependabot monitoring.
+- **Frontend (`apps/web`)**: React 18, TypeScript, Vite 5, Tailwind CSS 3.4, Zustand, Lucide React, Mapbox GL JS. The browser token is a public Mapbox token and must be restricted; it is not a private API key.
+- **Backend (`apps/api`)**: Java 21, Spring Boot 3.x, Spring Data JPA, Spring Security, SQLite-backed auth/trips/reports, and embedded Tomcat. CI runs `mvn clean test` against the JUnit 5 suite.
+- **External providers**: Open-Meteo forecast and Air Quality, Sunrise-Sunset.org v2, Nager.Date, OSRM public demo, and optional Gemini. Each provider may report unavailable; public/demo services have usage and attribution terms.
+- **Cache**: Redis when reachable, otherwise a bounded, locked in-memory fallback. The health endpoint reports the backend actually selected; memory cache is process-local and not shared across instances.
+- **Analytics**: Recommendation crowd/wait figures are provisional calendar heuristics, not outputs of a validated machine-learning model. No confirmed real-observation dataset or 300-row training invariant was found in this audit.
+- **CI/deployment**: GitHub Actions CI and a Vercel/Render deployment workflow exist. A workflow file does not prove that secrets, production URLs, runtime configuration, or a successful deployment are present.
 
 ---
 
@@ -55,7 +55,7 @@ QueueCut uses a single-page view router driven by Zustand state (`plannerStore.t
                ▼                                     ▼                                     ▼
      ┌──────────────────┐                  ┌──────────────────┐                  ┌──────────────────┐
      │  Planner Wizard  │                  │  Parks Explorer  │                  │  Crowd Calendar  │
-     │ (4-Step Funnel)  │                  │ (Ground-Truth DB)│                  │ (Heatmap Matrix) │
+   │ (4-Step Funnel)  │                  │ (Local Catalog) │                  │ (Heuristic View) │
      └─────────┬────────┘                  └──────────────────┘                  └──────────────────┘
                │
                ├───────────────────► Step 1: Select Park (Wonderla / MGM / Black Thunder)
@@ -66,7 +66,7 @@ QueueCut uses a single-page view router driven by Zustand state (`plannerStore.t
                          ▼
                ┌──────────────────┐                  ┌──────────────────┐                  ┌──────────────────┐
                │  Results Engine  │ ───────────────► │  Itinerary View  │ ───────────────► │ Saved Trips View │
-               │ (AI Visit Score) │                  │ (Hourly Planner) │                  │ (Offline History)│
+               │ (Rule-Based Score)                 │ (Schedule Template)         │ (Saved Trips)    │
                └──────────────────┘                  └──────────────────┘                  └──────────────────┘
                          │                                     │                                     │
                          └─────────────────────────────────────┼─────────────────────────────────────┘
@@ -75,8 +75,8 @@ QueueCut uses a single-page view router driven by Zustand state (`plannerStore.t
                               │                    Global Modals & Drawers                   │
                               │  • AuthModal (Sign In / Sign Up / Guest)                     │
                               │  • AdvisorDrawer (AI Theme Park Chatbot)                     │
-                              │  • CrowdReportModal (Live Geofenced Observation)             │
-                              │  • NotificationToasts (Realtime Weather & Price Drops)       │
+                              │  • CrowdReportModal (User Report + Approx. Proximity Check) │
+                              │  • NotificationToasts (In-App WebSocket Alerts)             │
                               │  • SettingsView (Profile, Alerts, Telemetry & Security)      │
                               └──────────────────────────────────────────────────────────────┘
 ```
@@ -86,18 +86,18 @@ QueueCut uses a single-page view router driven by Zustand state (`plannerStore.t
 | Screen Identifier | Primary Component | Purpose & Features |
 | :--- | :--- | :--- |
 | **`landing`** | `LandingScreen.tsx` | 4-step wizard: Park selection, date interval selection, group demographics, and budget priorities. |
-| **`results`** | `RecommendationScreen.tsx` | AI Visit Score breakdown (0–100), price vs crowd trade-offs, FastTrack ROI verdicts, and top candidate dates. |
-| **`calendar`** | `CrowdCalendarView.tsx` | 30-day crowd intensity calendar matrix with color-coded wait times and weekend/holiday badges. |
-| **`parks`** | `ParksView.tsx` | Directory of verified theme parks with 2026 pricing, ride breakdowns, height rules, and dress codes. |
-| **`itinerary`** | `ItineraryScreen.tsx` | Dynamic timeline scheduling thriller rides, midday water ride shifts (UV protection), and email PDF dispatch. |
-| **`trips`** | `SavedTripsView.tsx` | Local persistence of candidate visit plans, quick reload, and travel history export. |
-| **`settings`** | `SettingsView.tsx` | 4-tab dashboard: Profile & Bio, Park Defaults, Notification Toggles, and Telemetry/Security. |
+| **`results`** | `RecommendationScreen.tsx` | Rule-based visit score and provisional crowd/wait estimates; FastTrack ROI is unavailable without measured queue comparisons. |
+| **`calendar`** | `CrowdCalendarView.tsx` | Calendar view; heuristic values are not measured or accuracy-validated queue forecasts. |
+| **`parks`** | `ParksView.tsx` | Local catalog data; prices, rides, height rules, and dress-code fields have no field-level verification record. |
+| **`itinerary`** | `ItineraryScreen.tsx` | Park-specific schedule template with estimated waits; not a globally optimized, operating-status-aware schedule. UV adjustment is flagged only when forecast data is available. |
+| **`trips`** | `SavedTripsView.tsx` | Guest trips use local state; account trips are retrieved from the authenticated backend store. |
+| **`settings`** | `SettingsView.tsx` | Profile, park defaults, notification preferences, and telemetry/security views; delivery channels remain provider-dependent. |
 
 ---
 
 ## 3. Authentication & Guest Browsing Engine
 
-QueueCut implements a **3-Face Modular Authentication Pattern** inside `apps/web/src/features/auth/AuthModal.tsx`. It provides unrestricted guest browsing while guarding write actions (saving trips, WhatsApp alerts) via `useActionGuard.ts`.
+The web app supports guest access and email account registration/login. Account trips require an authenticated session and are isolated by user ID. Google OAuth is optional and remains unavailable until provider credentials and callback configuration are supplied. WhatsApp/SMS delivery is not configured.
 
 ```text
                                   ┌───────────────────────────┐
@@ -110,13 +110,13 @@ QueueCut implements a **3-Face Modular Authentication Pattern** inside `apps/web
                   ▼                              ▼                              ▼
       ┌───────────────────────┐      ┌───────────────────────┐      ┌───────────────────────┐
       │      SignInTab        │      │       SignUpTab       │      │       GuestTab        │
-      │  (Instagram UI Model) │      │  (Facebook UI Model)  │      │ (Zero-Obligation Pass)│
+      │  (Email / Password)   │      │  (Email / Password)   │      │ (Local Guest State)   │
       ├───────────────────────┤      ├───────────────────────┤      ├───────────────────────┤
-      │ • Mobile / Username / │      │ • First & Last Name   │      │ • Instant Access      │
-      │   Email input         │      │ • DOB Day/Month/Year  │      │ • Unlocked Pricing    │
-      │ • Password Show/Hide  │      │ • Gender dropdown     │      │ • Live Weather & UV   │
-      │ • Forgot Password Flow│      │ • Mobile / Email      │      │ • FastTrack ROI Calc  │
-      │ • 1-Click Google Auth │      │ • Password & Terms    │      │ • 1-Click Upgrade     │
+      │ • Session cookie      │      │ • Account creation    │      │ • Catalog browsing    │
+      │ • Optional Google OAuth│     │ • Password validation │      │ • Provisional estimates│
+      │ • No reset endpoint   │      │ • Terms acknowledgement│     │ • Account upgrade     │
+      │                       │      │                       │      │                       │
+      │                       │      │                       │      │                       │
       └───────────────────────┘      └───────────────────────┘      └───────────────────────┘
 ```
 
@@ -128,117 +128,106 @@ QueueCut implements a **3-Face Modular Authentication Pattern** inside `apps/web
 
 1. **Profile Tab (`ProfileSettingsTab.tsx`)**: Full name, username, bio, avatar, and phone number.
 2. **Park Defaults Tab**: Preferred home park, default group makeup, travel mode (Car / Bike / Metro / Bus).
-3. **Notifications Tab (`NotificationSettingsTab.tsx`)**: WhatsApp alerts, SMS alerts, rain alerts, crowd surge triggers.
+3. **Notifications Tab (`NotificationSettingsTab.tsx`)**: Account/in-app notification preferences. WhatsApp, SMS, and recurring alerts are unavailable until delivery providers are configured.
 4. **Telemetry & Security Tab (`TelemetrySecurityTab.tsx`)**: GPS geofencing permissions, DPDP compliance toggle, offline caching.
 
 ---
 
 ## 5. Core Intelligence Hub & Calculation Algorithms
 
-### 1. AI Visit Score Formula (0 to 100)
+### 1. Implemented Visit Score
 
-$$\text{Score} = 100 - (0.45 \times \text{CrowdFactor}) - (0.25 \times \text{WeatherPenalty}) - (0.20 \times \text{CostIndex}) + (0.10 \times \text{ParkFactor})$$
+The implementation is in `apps/api/app/services/optimization/visit_scoring.py`. It combines normalized time-saving, money-saving, and weather-fit values using these weights:
 
-- **Crowd Factor (0–100)**: Derived from historical queue logs, school holiday overlaps, and weekend multipliers.
-- **Weather Penalty (0–100)**: Derived from precipitation probability, ambient heat indices ($>38^\circ\text{C}$), and Solar UV ($>8$).
-- **Cost Index (0–100)**: Normalized group ticket outlay vs baseline weekday admission.
-- **Park Factor (0–100)**: Operational uptime and open ride availability index.
+| Priority | Time | Money | Weather |
+| :--- | ---: | ---: | ---: |
+| Cheapest | 0.15 | 0.70 | 0.15 |
+| Least Crowded | 0.70 | 0.15 | 0.15 |
+| Best Balanced | 0.34 | 0.33 | 0.33 |
+| Maximum Rides | 0.60 | 0.20 | 0.20 |
 
-### 2. FastTrack ROI Engine
+Inputs for time and money are clamped to 0–1. Known weather fit values are Sunny 1.0, Cloudy 0.8, Light Rain 0.4, Heavy Rain 0.1. If weather is unavailable, its weight is excluded and the other two weights are renormalized. The result is a planning score, not a validated visit-quality prediction; available ticket prices and operating data still lack field-level provenance.
 
-$$\text{Time Saved Per Person} = \text{Top Rides Count} \times (\text{Regular Wait} - \text{FastTrack Wait})$$
-$$\text{Cost Per Hour Saved} = \frac{\text{FastTrack Surcharge}}{\text{Total Hours Saved}}$$
+### 2. Crowd and Wait Estimates
 
-If **Wait Time Saved $> 2.5\text{ hours}$** and **Cost Per Hour Saved $< ₹600$**, the verdict is **STRONG BUY**. Otherwise, the recommendation advises **SKIP (Save ₹1,500/ticket)**.
+`apps/api/app/services/intelligence_hub.py` uses a rule baseline: 25 points, +40 for weekends, +35 for a confirmed public holiday, and −30 for a heavy-rain forecast, clamped to 10–100. It may blend same-date, location-proximity-checked user reports at 60% baseline / 40% reported crowd category. The mapped “top ride wait” is `int(crowd_points * 0.9)` minutes when no measured report is used.
 
----
+These values are returned as `ESTIMATED` / `ESTIMATED_RULE_BASED`, with low confidence. They are not live queues, are not accuracy-validated, and should not be used as an operational forecast. Proximity checking uses user-submitted coordinates and does not verify identity.
 
-## 6. Verified 2026 Ground-Truth Parks Catalog
+### 3. FastTrack ROI
 
-Compiled dynamically via `scripts/compile_parks_database.py` into `unified_parks_catalog.json` and synced to `apps/web/public/data/parks.json`:
-
-1. **Wonderla Chennai**:
-   - Location: Vembedu, Chengalpattu, Tamil Nadu (12.8227°N, 80.0534°E).
-   - Adult Regular: ₹1,499 | FastTrack: ₹2,499.
-   - Rides: 45 (18 High-thrill, 15 Water, 12 Family/Kids).
-   - Signature: Recoil (Reverse Roller Coaster), Flash Tower, Equinox, Wave Pool.
-
-2. **MGM Dizzee World**:
-   - Location: Muttukadu, ECR, Chennai (12.8220°N, 80.2424°E).
-   - Adult Regular: ₹999 | Jumbo Pass: ₹1,299.
-   - Rides: 32 (ECR Coastal Breeze, Kamikaze, Big Screamer, Rainbow).
-
-3. **Black Thunder Coimbatore**:
-   - Location: Mettupalayam, Coimbatore (11.3117°N, 76.9422°E).
-   - Adult Regular: ₹890 | Child: ₹790.
-   - Signature: Mega Wave Pool, Wild River Ride, Speed Slide, Zipline Coaster.
+The recommendation endpoint returns `UNAVAILABLE` for FastTrack ROI because the repository has no verified regular-versus-express queue observations for the visitor’s planned rides. The standalone calculator has threshold logic, but the current recommendation path deliberately does not turn unobserved queue assumptions into a buy/skip verdict. No time-saved or cost-per-hour claim is currently supported.
 
 ---
 
-## 7. API Route & Pydantic v2 Schema Registry
+## 6. Park Catalog and Provenance
+
+`data/parks_database/unified_parks_catalog.json` currently declares three parks: `wonderla-chennai`, `mgm-dizzee-chennai`, and `black-thunder-coimbatore`. Its catalog-level `updated_at` is not evidence that every field was checked. The JSON contains no field-level source URL, retrieval time, verification state, or confidence record.
+
+The API therefore returns catalog provenance as `UNAVAILABLE` / `UNVERIFIED`; an official homepage URL is not treated as proof for every price, ride, coordinate, or operating hour. Existing catalog values must be confirmed with each park before production use. Do not call this file “verified ground truth” until field-level provenance and current primary-source checks are recorded.
+
+---
+
+## 7. API Route & Spring Boot Endpoint Registry
 
 | HTTP Method | Route Path | Description |
 | :--- | :--- | :--- |
-| `GET` | `/health` | Service health status and version metadata. |
-| `GET` | `/` | Serves React PWA SPA index (when using `queuecut_final.py`). |
-| `GET` | `/quick-demo` | Interactive standalone demo simulator with WebSocket telemetry. |
+| `GET` | `/health` | API process health and selected cache backend; not provider-wide health. |
+| `GET` | `/api/v1/health/integrations` | Observed provider status; configured credentials alone are not reported as healthy. |
+| `GET` | `/` | Spring Boot actuator root / API metadata. |
+| `GET` | `/quick-demo` | Runner-owned demo page, if enabled; not a routed endpoint. |
 | `GET` | `/docs` | Interactive OpenAPI Swagger UI documentation. |
-| `GET` | `/api/v1/parks` | Full catalog summary of all parks. |
-| `GET` | `/api/v1/parks/{park_id}` | Detailed ground-truth details for a park. |
-| `GET` | `/api/v1/parks/{park_id}/rides` | All ride and attraction lists for a park. |
-| `GET` | `/api/v1/parks/{park_id}/tariff` | Ticket rates, FastTrack surcharge, and dress code. |
-| `POST` | `/api/v1/recommendation/recommend` | Multi-date optimization engine generating visit scores. |
-| `POST` | `/api/v1/recommend` | Zero-latency cached demo recommendation simulator. |
-| `POST` | `/api/v1/trigger-alert` | Broadcasts live telemetry alert over WebSockets. |
-| `POST` | `/api/v1/feedback/report` | Crowdsourced observation submission with geofence check. |
-| `POST` | `/api/v1/chat/ask` | AI Advisor chatbot powered by Gemini Flash integration. |
-| `WS` | `/api/v1/telemetry/ws` | Realtime WebSocket telemetry stream. |
+| `GET` | `/api/v1/parks` | Local catalog summary; provenance remains unverified without field-level records. |
+| `GET` | `/api/v1/parks/all` | Park intelligence overview; crowd values may be unavailable or estimated. |
+| `GET` | `/api/v1/parks/{park_id}/intelligence` | Per-park weather and crowd state. |
+| `GET` | `/api/v1/parks/{park_id}` | Detailed local catalog entry. |
+| `GET` | `/api/v1/parks/{park_id}/rides` | Catalog ride list. |
+| `GET` | `/api/v1/parks/{park_id}/tariff` | Catalog pricing and dress-code data; current validity is not guaranteed. |
+| `POST` | `/api/v1/recommendation/recommend` | Multi-date rule-based recommendation with provisional crowd/wait estimates. |
+| `POST` | `/api/v1/itinerary/generate` | Current schedule template; not a live operating-status feed. |
+| `GET` | `/api/v1/telemetry/weather` | Date-specific weather, UV, and solar results with unavailable states. |
+| `GET` | `/api/v1/telemetry/commute` | OSRM estimated road distance/duration; not live traffic. |
+| `POST` | `/api/v1/telemetry/trigger-alert` | Broadcasts an app-generated WebSocket alert, not SMS or WhatsApp. |
+| `POST` | `/api/v1/feedback/report` | Persists a user report; proximity checking does not verify identity. |
+| `POST` | `/api/v1/chat/ask` | Bounded advisor endpoint; response marks rule-based fallback when Gemini is unavailable. |
+| `GET/POST/DELETE` | `/api/v1/trips` | Authenticated, account-owned trips. |
+| `GET/POST` | `/api/v1/auth/*` | Email auth and optional Google OAuth. |
+| `WS` | `/api/v1/telemetry/ws`, `/ws` | WebSocket telemetry endpoints. |
 
 ---
 
 ## 8. Monorepo Configuration & Tooling Standards
 
-QueueCut is organized as a unified monorepo with standardized configurations across Python and JavaScript tooling:
+The active frontend is `apps/web`. The root `package.json` currently identifies a separate/stale React example and does not provide the QueueCut app scripts listed in older versions of this manual.
 
-### Root Package Scripts (`package.json`)
+### Verified Local Commands
 
-```bash
-# Launch both backend (8000) and frontend (5173) simultaneously:
+```powershell
+# Start Java Spring Boot backend (port 8000):
+Set-Location apps\api
+.mvn\dist\apache-maven-3.9.9\bin\mvn.cmd spring-boot:run
+
+# Frontend-only development (port 5173):
+Set-Location apps\web
 npm run dev
 
-# Launch frontend dev server independently:
-npm run dev:web
-
-# Launch backend FastAPI server independently:
-npm run dev:api
-
-# Launch all-in-one unified production server:
-npm run serve
-
-# Launch unified server with code hot-reloading:
-npm run serve:reload
-
-# Compile frontend PWA bundle:
+# Frontend typecheck and production PWA build:
 npm run build
 
-# Execute backend unit test suite:
-npm run test
-
-# Run full health audit diagnostic suite:
-npm run verify
-
-# Re-compile 2026 parks database:
-npm run compile:parks
+# Backend tests from the apps\api directory:
+.mvn\dist\apache-maven-3.9.9\bin\mvn.cmd clean test
 ```
+
+The Java backend serves the REST API and WebSocket endpoints on port 8000. The Vite dev server on port 5173 proxies `/api` requests to the backend automatically.
 
 ### TypeScript Monorepo Architecture
 
 - [tsconfig.json](file:///j:/QUEUE%20CUT/tsconfig.json) at the workspace root references `./apps/web`, enabling project-wide symbol resolution.
 - [apps/web/tsconfig.json](file:///j:/QUEUE%20CUT/apps/web/tsconfig.json) provides ES2022 bundling rules with `bundler` module resolution and strict typechecking.
 
-### Python Static Typing & Analysis
+### Java Static Analysis
 
-- [pyrightconfig.json](file:///j:/QUEUE%20CUT/pyrightconfig.json) registers `apps/api`, `queuecut_final.py`, and root diagnostic scripts, ensuring clean type resolution across both Pyright and VS Code Pylance.
+- [apps/api/pom.xml](file:///j:/QUEUE%20CUT/apps/api/pom.xml) configures the Spring Boot 3.x dependency tree, Maven Surefire for JUnit 5 tests, and the Spring Boot Maven Plugin for executable JAR packaging.
 
 ---
 
@@ -247,49 +236,39 @@ npm run compile:parks
 The repository includes a ready-to-use [.vscode](file:///j:/QUEUE%20CUT/.vscode) environment configured for zero-friction development:
 
 1. **Workspace Settings ([.vscode/settings.json](file:///j:/QUEUE%20CUT/.vscode/settings.json))**:
-   - Auto-configured Python analysis paths (`${workspaceFolder}/apps/api`, `${workspaceFolder}`).
-   - Pytest discovery and execution mapped to `apps/api/tests`.
    - TypeScript workspace SDK linked to `apps/web/node_modules/typescript/lib`.
    - Tailwind CSS language associations and suggestions.
-   - Command Prompt default terminal to bypass Windows PowerShell script execution policy issues.
+   - Java source roots registered for the Spring Boot backend.
 
 2. **One-Click Debugging ([.vscode/launch.json](file:///j:/QUEUE%20CUT/.vscode/launch.json))**:
-   - `QueueCut: Unified Full Stack (queuecut_final.py)` — Press **F5** to debug the complete stack with hot reloading.
-   - `QueueCut: FastAPI Backend (apps/api)` — Debug the standalone FastAPI service.
-   - `QueueCut: Backend Unit Tests` — Run and debug unit tests with breakpoints.
-   - `QueueCut: Verify System Health` — Debug diagnostic health verification.
+   - `QueueCut: Spring Boot Backend` — Press **F5** to attach the debugger to the running Maven process.
+   - `QueueCut: Backend Unit Tests` — Run and debug JUnit tests with breakpoints.
 
 3. **Integrated Tasks ([.vscode/tasks.json](file:///j:/QUEUE%20CUT/.vscode/tasks.json))**:
-   - `Ctrl+Shift+B` executes `QueueCut: Unified Full Stack (queuecut_final.py)`.
-   - Accessible tasks for `Web: Dev Server`, `Web: Build Production PWA`, `API: Run Backend Unit Tests`, and `Data: Recompile Parks Catalog`.
+   - Accessible tasks for `Web: Dev Server`, `Web: Build Production PWA`, `API: Run Spring Boot`, and `API: Run Backend Unit Tests`.
 
 4. **Extension Recommendations ([.vscode/extensions.json](file:///j:/QUEUE%20CUT/.vscode/extensions.json))**:
-   - Recommends Python, Pylance, Ruff, Tailwind CSS, Prettier, and ESLint.
+   - Recommends Extension Pack for Java, Spring Boot Extension Pack, Tailwind CSS, Prettier, and ESLint.
 
 ---
 
-## 10. Unified Production Server & Hot Reload Engine
+## 10. Local Development Server
 
-[queuecut_final.py](file:///j:/QUEUE%20CUT/queuecut_final.py) is the production-ready all-in-one runner that serves the entire platform from a single process:
+The backend is a Spring Boot application running via Maven on port 8000. The frontend Vite dev server runs on port 5173 and proxies `/api` to the backend. Neither runner validates production secrets, host configuration, or deployment health.
 
-```bash
-# Basic start (Port 8000):
-python queuecut_final.py
+```powershell
+# Start backend (port 8000) - run from apps\api:
+.mvn\dist\apache-maven-3.9.9\bin\mvn.cmd spring-boot:run
 
-# Start with live hot code reloading:
-python queuecut_final.py --reload
+# Start frontend dev server (port 5173) - run from apps\web:
+npm run dev
 
-# Custom host and port:
-python queuecut_final.py --host 0.0.0.0 --port 8080 --reload
+# Build an executable JAR for deployment:
+.mvn\dist\apache-maven-3.9.9\bin\mvn.cmd clean package -DskipTests
+java -jar target\queuecut-api-*.jar
 ```
 
-### Key Capabilities
-
-1. **SPA Routing**: Serves `apps/web/dist` with automatic client-side HTML5 history fallback (routes like `/planner`, `/parks`, `/calendar`, `/saved-trips`, `/settings` all resolve to `index.html` without 404s).
-2. **Telemetry Broadcaster**: Realtime WebSocket broadcasting on `/api/v1/telemetry/ws` and `/ws`.
-3. **Simulated Redis Cache**: Fast in-memory cache layer simulating sub-millisecond response times for theme park crowd queries.
-4. **Quick Demo UI**: Lightweight interactive simulator accessible at `/quick-demo`.
-5. **Swagger Documentation**: Complete OpenAPI schemas accessible at `/docs`.
+The Spring Boot application exposes REST routes under `/api/v1`, WebSockets, `/health`, and the Actuator endpoint. The in-memory cache is process-local and not shared across instances. A local health result is not a production deployment check.
 
 ---
 
@@ -299,114 +278,61 @@ python queuecut_final.py --host 0.0.0.0 --port 8080 --reload
 
 Triggered on every push to `main` and pull request:
 
-- **Backend Job**: Tests against Python 3.11 and 3.12, installs requirements, and runs `apps/api/tests/unit/test_api.py`.
+- **Backend Job**: Sets up JDK 21, runs `mvn clean test` against the Spring Boot application, and verifies the JUnit 5 suite passes.
 - **Frontend Job**: Sets up Node 20, installs dependencies with `npm ci`, and executes `npm run build` (tsc + vite build).
-- **System Health Audit Job**: Runs `verify_system_health.py` and validates database compiler outputs.
 
 ### 2. Automated Dependency Updates ([.github/dependabot.yml](file:///j:/QUEUE%20CUT/.github/dependabot.yml))
 
-- Scans `/apps/web` (npm) and `/apps/api` (pip) weekly.
+- Scans `/apps/web` (npm) and `/apps/api` (Maven) weekly.
 - Scans GitHub Actions workflows monthly.
 
 ### 3. Production Deployment ([.github/workflows/deploy.yml](file:///j:/QUEUE%20CUT/.github/workflows/deploy.yml))
 
-- Deploys the frontend PWA to **Vercel** with asset caching.
-- Deploys the FastAPI backend to **Render / VPS** via secure deployment webhook with automated health check polling.
+- The frontend deployment uses **Vercel**; its `VITE_API_BASE_URL` and public Mapbox token must be configured in the Vercel project.
+- The backend deployment uses a **Render deploy hook** when configured. The workflow skips backend deployment and health probing if required secrets are absent; workflow presence is not deployment evidence.
+- For split Vercel/Render origins, configure exact `CORS_ORIGINS`, `AUTH_COOKIE_SAMESITE=none`, `AUTH_COOKIE_SECURE=true`, production database storage, Google OAuth callback, and any optional provider secrets in the host secret/config stores.
 
 ---
 
 ## 12. Codebase Audit & Refactoring Summary
 
-- **Monolith Decomposition**: Decomposed 600-line monolithic components into modular single-responsibility components (`AuthModal`, `SettingsView`, `compile_parks_database.py`).
-- **Purged Dead Files**: Removed 12 legacy generator files, unreferenced screens, duplicate models, and mock scripts (>3,350 lines).
-- **Zero Monolithic Files**: Every file in `apps/api` and `apps/web` strictly adheres to single-responsibility design.
-- **Pydantic v2 & Async API**: Fully type-safe environment configurations and non-blocking asynchronous endpoints.
+This audit changed inaccurate provider fallbacks, report storage, cache reporting, recommendation confidence, and auth/config behavior. It did not verify every park fact or certify a production deployment.
+
+Verified during this audit:
+
+- Frontend production typecheck/build succeeds.
+- Backend JUnit 5 suite succeeds (`mvn clean test` passes).
+- Secret scan reported no likely real credentials in scanned repository files; root `.env` is absent and untracked.
+- Guest/account trip ownership has a two-account regression test.
+
+Still not verified: production URLs/secrets, external-provider availability at deployment time, Google OAuth credentials/callback, production database durability, field-level park provenance, calibrated crowd accuracy, real queue data, and live FastTrack ROI.
 
 ---
 
 ## 13. Automated Verification & Developer Runbooks
 
-### 1. Run Full System Health Audit
+### 1. Backend tests
 
-```bash
-python verify_system_health.py
+```powershell
+Set-Location apps\api
+.mvn\dist\apache-maven-3.9.9\bin\mvn.cmd clean test
 ```
 
-*Expected Output:*
+Runs the full JUnit 5 suite via Maven Surefire. This is local test evidence, not an external-provider or deployment smoke test.
 
-```text
-=================================================================
-  🏥 QUEUECUT SYSTEM RELIABILITY & HEALTH AUDIT (v3.0) 🏥
-=================================================================
-[CHECK 1/3] Validating Router & Module Import Integrity...
-  ✓ All 5 router micro-modules loaded without error.
-  ✓ 16 HTTP routes registered in FastAPI.
-  ✓ WebSocket telemetry endpoints mounted (/api/v1/telemetry/ws, /ws).
-  ✓ Caching layer (Redis/Memory) initialized.
-[CHECK 2/3] Executing Backend Unit Tests...
-  ✓ 100% backend unit tests passed in 8.18s.
-[CHECK 3/3] Compiling React PWA Frontend Bundle...
-  ✓ TypeScript & Vite PWA build succeeded in 15.45s with 0 errors.
-=================================================================
-  🎉 SYSTEM HEALTH AUDIT: 100% PASS (0 ERRORS, 0 WARNINGS)
-  🚀 QueueCut is 100% synchronized and ready for production launch!
-=================================================================
+### 2. Frontend production build
+
+```powershell
+Set-Location apps\web
+npm run build
 ```
 
-### 2. Run Backend Unit Tests
+This runs TypeScript checking and the Vite PWA build. The latest local build succeeded. Asset hashes and bundle sizes vary between builds and are not copied into this manual.
 
-```bash
-python apps/api/tests/unit/test_api.py
-```
+### 3. Park catalog compiler
 
-The backend test gate is not complete if the tests only pass with dependency warnings. Run the suite with default warning reporting and resolve the underlying issue when a Starlette/httpx deprecation appears:
+The park catalog JSON lives in `data/parks_database/`. To recompile or extend it, edit the source JSON files directly. Successful JSON parsing does not independently verify the factual accuracy of catalog entries. Inspect any changes before accepting regenerated catalog data.
 
-```bash
-python -W default -m pytest apps/api/tests -q
-```
+### 4. Release status
 
-The dependency warning gate requires:
-
-- Backend tests pass without unresolved Starlette/httpx deprecation warnings.
-- Dependency versions are compatible and documented in `apps/api/requirements.txt`.
-- No warning filters or diagnostic suppression were added to hide the issue.
-
-*Expected Output:*
-
-```text
-Ran 8 tests in ~1.1s
-OK (All 8 tests passing)
-```
-
-### 3. Run Frontend Build & Typecheck
-
-```bash
-cmd /c "cd apps\web && npm run build"
-```
-
-*Expected Output:*
-
-```text
-✓ 1891 modules transformed.
-dist/index.html                   1.72 kB │ gzip:  0.79 kB
-dist/assets/index-BkwV0kVY.css   53.22 kB │ gzip:  9.37 kB
-dist/assets/index-BBBm2msT.js   293.07 kB │ gzip: 80.70 kB
-✓ built in ~3.9s (0 errors)
-```
-
-### 4. Re-compile Ground-Truth Parks Catalog
-
-```bash
-python scripts/compile_parks_database.py
-```
-
-*Expected Output:*
-
-```text
-  [LOADED] wonderla_chennai.json
-  [LOADED] mgm_dizzee_chennai.json
-  [LOADED] black_thunder_coimbatore.json
-  [SAVED] data/parks_database/unified_parks_catalog.json
-  [SYNCED] apps/web/public/data/parks.json
->>> COMPILED ALL GROUND-TRUTH PARKS SUCCESSFULLY <<<
-```
+Current status: **LOCALLY VERIFIED, NOT DEPLOYMENT VERIFIED**. Do not label QueueCut production-ready until production API URLs, CORS, secure cookie settings, durable database storage, OAuth credentials, provider availability, and deployment smoke tests have all been verified.

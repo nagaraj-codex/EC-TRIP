@@ -1,36 +1,32 @@
 # QueueCut
 
-QueueCut is a theme-park visit planning platform. It combines park discovery and visit planning in a React progressive web app with a FastAPI service for park data, recommendations, telemetry, notifications, trips, and related APIs.
+QueueCut is a theme-park visit planning platform. It combines park discovery and visit planning in a React progressive web app with a Java/Spring Boot service for park data, recommendations, telemetry, notifications, trips, and related APIs.
 
 ## Start From Scratch
 
-Prerequisites: Python 3.11 or newer, Node.js 20 or newer, and npm.
+Prerequisites: Java 21 or newer, Maven, Node.js 20 or newer, and npm.
 
-From the repository root, create and activate a Python virtual environment, then install the API dependencies:
-
-```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r apps\api\requirements.txt
-```
-
-Install the web dependencies and start both development servers:
+From the repository root, install the web dependencies:
 
 ```powershell
 npm --prefix apps/web install
-python run_queuecut.py
 ```
 
-The development orchestrator starts the API at `http://127.0.0.1:8000` and the Vite web app at `http://127.0.0.1:5173`. The API documentation is at `http://127.0.0.1:8000/docs`; the health endpoint is `/health`.
-
-To run the unified server with the production web bundle:
+Start the Java API backend (runs on port 8000):
 
 ```powershell
-npm --prefix apps/web run build
-python queuecut_final.py --reload
+cd apps/api
+mvn spring-boot:run
 ```
 
-The unified server serves the built web app and API at `http://localhost:8000`.
+In a separate terminal, start the Vite development server (runs on port 5173):
+
+```powershell
+cd apps/web
+npm run dev
+```
+
+The API documentation (Swagger) is available at `http://localhost:8000/docs`.
 
 ## Implemented Product Areas
 
@@ -39,8 +35,7 @@ The unified server serves the built web app and API at `http://localhost:8000`.
 - A step-by-step visit planner for choosing a park and date and requesting a recommendation.
 - Trips, profile, notifications, and guest/authentication flows.
 - Responsive navigation, onboarding, and an in-app advisor interface.
-- FastAPI routes for parks, recommendations, telemetry/WebSockets, trips, notifications, chat, feedback, itinerary, downloads, and authentication.
-- A unified FastAPI/SPA server and a development orchestrator for running the API and Vite app together.
+- Spring Boot REST controllers for parks, recommendations, telemetry/WebSockets, trips, notifications, chat, feedback, itinerary, downloads, and authentication.
 
 The interface uses the park catalog and API responses; it should not display invented live conditions or recommendations.
 
@@ -52,26 +47,19 @@ Build the web app:
 npm --prefix apps/web run build
 ```
 
-Run API tests:
+Run Java backend tests:
 
 ```powershell
-python -m pytest apps/api/tests -q
-```
-
-Run the system health audit:
-
-```powershell
-python verify_system_health.py
+cd apps/api
+mvn clean test
 ```
 
 ## Repository Map
 
 - `apps/web/`: React, TypeScript, Vite, and PWA client.
-- `apps/api/`: FastAPI service, schemas, providers, and tests.
+- `apps/api/`: Spring Boot Java backend service, JPA entities, controllers, and services.
 - `data/`: park catalogs and supporting datasets.
 - `scripts/`: data compilation and verification utilities.
 - `docs/`: API, product, data, security, deployment, and testing documentation.
-- `run_queuecut.py`: local API + Vite development launcher.
-- `queuecut_final.py`: unified server for the built SPA and API.
 
-Do not commit `.env` files, local databases, generated caches, or user/session data. Configure credentials through local environment variables or a deployment secret store.
+Do not commit `.env` files, `queuecut.db`, generated caches, or user/session data. Configure credentials through local environment variables or application.properties.

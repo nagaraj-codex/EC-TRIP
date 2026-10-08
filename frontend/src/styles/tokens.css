@@ -1,0 +1,91 @@
+:root {
+  /* ========================================================
+     CONNECTLY DESIGN SYSTEM TOKENS - PIXEL SPECIFICATION
+     ======================================================== */
+
+  /* Primary Brand */
+  --color-primary-blue: #1877F2;
+  --color-hover-blue: #166FE5;
+  --color-active-blue: #0D65D9;
+  --color-dark-blue: #0A58CA;
+  --color-disabled-blue: #AFCDF8;
+
+  /* Background Colors */
+  --color-bg-app: #F0F2F5;
+  --color-surface-white: #FFFFFF;
+  --color-bg-input: #FFFFFF;
+  --color-bg-hover: #F5F6F7;
+  --color-bg-disabled: #E4E6EB;
+
+  /* Text Colors */
+  --color-text-primary: #1C1E21;
+  --color-text-secondary: #606770;
+  --color-text-muted: #8A8D91;
+  --color-text-placeholder: #8A8D91;
+  --color-text-disabled: #BCC0C4;
+  --color-text-link: #385898;
+
+  /* Border Colors */
+  --color-border-default: #CCD0D5;
+  --color-border-hover: #B8BABE;
+  --color-border-light: #DADDE1;
+  --color-border-divider: #DADDE1;
+  --color-border-focus: #1877F2;
+  --color-border-error: #F02849;
+
+  /* Semantic Colors */
+  --color-success: #42B72A;
+  --color-success-hover: #36A420;
+  --color-error: #F02849;
+  --color-warning: #F7B928;
+  --color-info: #1877F2;
+
+  /* Typography */
+  --font-family-base: Arial, Helvetica, sans-serif;
+  --font-family-fallback: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Font Scales */
+  --font-size-logo-desktop: 48px;
+  --font-size-logo-mobile: 42px;
+  --font-size-heading-marketing: 30px;
+  --font-size-card-title: 24px;
+  --font-size-modal-heading: 32px;
+  --font-size-body: 16px;
+  --font-size-input: 17px;
+  --font-size-button: 17px;
+  --font-size-button-large: 20px;
+  --font-size-small: 14px;
+  --font-size-fine: 12px;
+  --font-size-micro: 11px;
+
+  /* Elevation Shadows */
+  --shadow-card-login: 0px 2px 12px rgba(0, 0, 0, 0.18);
+  --shadow-card-recovery: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-modal: 0px 8px 28px rgba(0, 0, 0, 0.28);
+  --shadow-input-focus: 0 0 0 2px rgba(24, 119, 242, 0.15);
+  --shadow-input-error: 0 0 0 2px rgba(240, 40, 73, 0.12);
+
+  /* Border Radii */
+  --radius-card: 8px;
+  --radius-input: 6px;
+  --radius-modal: 8px;
+  --radius-button: 6px;
+  --radius-badge: 4px;
+  --radius-pill: 9999px;
+
+  /* Spacing and Dimensions */
+  --container-max-width: 980px;
+  --col-left-width: 500px;
+  --col-right-width: 396px;
+  --input-height-default: 52px;
+  --input-height-modal: 40px;
+  --input-height-select: 36px;
+  --button-height-default: 48px;
+  --button-height-modal: 40px;
+  --button-height-small: 36px;
+
+  /* Transitions */
+  --transition-fast: 120ms ease-out;
+  --transition-normal: 180ms ease-out;
+  --transition-slow: 250ms ease-out;
+}

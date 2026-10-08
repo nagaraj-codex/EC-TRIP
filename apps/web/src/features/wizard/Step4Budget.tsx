@@ -1,6 +1,7 @@
 import { usePlannerStore, Priority } from "../../store/slices/plannerStore";
 import { apiClient } from "../../services/apiClient";
 import { Sparkles, ArrowLeft, ArrowRight, IndianRupee } from "lucide-react";
+import type { RecommendationRequest } from "../../types/api";
 
 export default function Step4Budget() {
   const {
@@ -22,17 +23,21 @@ export default function Step4Budget() {
     setLoading(true);
     setError(null);
     try {
-      const prioMap: Record<string, string> = {
+      const prioMap: Record<Priority, RecommendationRequest["priority"]> = {
         cheapest: "Cheapest",
         least_crowded: "Least Crowded",
         balanced: "Best Balanced",
         max_rides: "Maximum Rides",
+        Cheapest: "Cheapest",
+        "Least Crowded": "Least Crowded",
+        "Best Balanced": "Best Balanced",
+        "Maximum Rides": "Maximum Rides",
       };
 
       const result = await apiClient.recommend({
         park_id: parkId || "wonderla-chennai",
         candidate_dates: candidateDates,
-        priority: (prioMap[priority] || "Best Balanced") as any,
+        priority: prioMap[priority],
         budget_limit: budget,
       });
       setRecommendation(result);
@@ -44,7 +49,7 @@ export default function Step4Budget() {
     }
   };
 
-  const options = [
+  const options: Array<{ id: Priority; icon: string; label: string; desc: string }> = [
     {
       id: "least_crowded",
       icon: "👥",
@@ -114,7 +119,7 @@ export default function Step4Budget() {
                   type="radio"
                   name="priority"
                   checked={isSelected}
-                  onChange={() => setPriority(opt.id as Priority)}
+                  onChange={() => setPriority(opt.id)}
                   className="mr-3 mt-1 cursor-pointer accent-brand-500"
                 />
                 <div className="flex-1">

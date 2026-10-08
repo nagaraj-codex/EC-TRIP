@@ -4,20 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          "Inter",
-          "Plus Jakarta Sans",
-          "system-ui",
-          "-apple-system",
-          "sans-serif",
-        ],
-        display: [
-          "Manrope",
-          "Plus Jakarta Sans",
-          "Inter",
-          "system-ui",
-          "sans-serif",
-        ],
+        sans: ["var(--ota-font-body)", "system-ui", "sans-serif"],
+        display: ["var(--ota-font-display)", "system-ui", "sans-serif"],
       },
       screens: {
         xs: "375px",

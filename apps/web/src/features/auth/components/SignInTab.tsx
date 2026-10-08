@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff, CheckCircle2 } from "lucide-react";
 import { useAuthStore } from "../../../store/slices/authStore";
+import { apiClient } from "../../../services/apiClient";
 
 interface SignInTabProps {
   onSwitchToSignup: () => void;
@@ -8,10 +9,11 @@ interface SignInTabProps {
 }
 
 export const SignInTab: React.FC<SignInTabProps> = ({ onSwitchToSignup, setError }) => {
-  const { loginWithGoogle, loginWithEmail } = useAuthStore();
+  const { loginWithGoogle, setAuthenticatedUser, closeAuthModal } = useAuthStore();
   const [loginIdentifier, setLoginIdentifier] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isForgotPass, setIsForgotPass] = useState(false);
   const [forgotEmail, setForgotEmail] = useState("");
   const [forgotSent, setForgotSent] = useState(false);
@@ -21,15 +23,24 @@ export const SignInTab: React.FC<SignInTabProps> = ({ onSwitchToSignup, setError
     setError("");
 
     if (!loginIdentifier.trim()) {
-      setError("Please enter your mobile number, username, or email.");
+      setError("Please enter your email address.");
       return;
     }
-    if (!loginPassword || loginPassword.length < 6) {
-      setError("Please enter your password (minimum 6 characters).");
+    if (!loginPassword || loginPassword.length < 8) {
+      setError("Please enter your password (minimum 8 characters).");
       return;
     }
 
-    loginWithEmail(loginIdentifier);
+    setIsLoading(true);
+    apiClient.login({ email: loginIdentifier.trim(), password: loginPassword })
+      .then(({ user }) => {
+        setAuthenticatedUser(user);
+        closeAuthModal();
+      })
+      .catch((err: Error) => {
+        setError(err.message || "Invalid email or password.");
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleForgotSubmit = (e: React.FormEvent) => {
@@ -118,9 +129,10 @@ export const SignInTab: React.FC<SignInTabProps> = ({ onSwitchToSignup, setError
 
             <button
               type="submit"
-              className="w-full py-2.5 rounded-xl bg-[#0095f6] hover:bg-[#1877f2] text-white font-bold text-xs shadow-md transition-all active:scale-98 mt-1"
+              disabled={isLoading}
+              className="w-full py-2.5 rounded-xl bg-[#0095f6] hover:bg-[#1877f2] text-white font-bold text-xs shadow-md transition-all active:scale-98 mt-1 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Log in
+              {isLoading ? "Logging in..." : "Log in"}
             </button>
           </form>
 

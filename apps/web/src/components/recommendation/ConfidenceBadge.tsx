@@ -53,10 +53,10 @@ export default function ConfidenceBadge({ confidence, reasoning }: Props) {
             </button>
           </div>
           <p className="text-slate-300 text-[11px] leading-relaxed">
-            {reasoning || "Derived from verified 2026 ground-truth tariff, Open-Meteo live weather radar, and public holiday calendars."}
+            {reasoning || "Confidence reflects the data sources and inputs available for this recommendation."}
           </p>
           <div className="mt-2 text-[10px] text-slate-400 border-t border-slate-800 pt-1 flex items-center gap-1">
-            <span>🛡️ Calibrated by QueueCut Signal Engine</span>
+            <span>Review source and freshness information before booking.</span>
           </div>
         </div>
       )}

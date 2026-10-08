@@ -8,7 +8,7 @@ import {
 
 export default function ProfilePage() {
   const navigate = useNavigate();
-  const { user, isGuest, savedTrips, notifications, logout, openAuthModal } = useAuthStore();
+  const { user, isGuest, savedTrips, savedParkIds, notifications, logout } = useAuthStore();
 
   if (isGuest) {
     return (
@@ -26,7 +26,7 @@ export default function ProfilePage() {
             Sign in to save trips, receive alerts, and personalize your experience.
           </p>
           <button
-            onClick={() => openAuthModal("Sign in to access your profile", "signin")}
+            onClick={() => navigate("/login")}
             className="btn-blue-primary mx-auto"
           >
             Sign In
@@ -43,10 +43,11 @@ export default function ProfilePage() {
   const stats = [
     { label: "Trips", value: savedTrips.length, icon: Map },
     { label: "Alerts", value: notifications.length, icon: Bell },
-    { label: "Parks", value: new Set(savedTrips.map((t) => t.parkId)).size || 1, icon: Heart },
+    { label: "Parks", value: savedParkIds.length, icon: Heart },
   ];
 
   const menuItems = [
+    { label: "Saved Parks", icon: Heart, action: () => navigate("/app/saved") },
     { label: "Notification Preferences", icon: Bell, action: () => navigate("/app/settings") },
     { label: "App Settings", icon: Settings, action: () => navigate("/app/settings") },
     { label: "Privacy & Data", icon: Shield, action: () => navigate("/app/settings") },

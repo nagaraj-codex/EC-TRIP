@@ -1,0 +1,34 @@
+{
+  "id": "FEAT-005",
+  "type": "feat",
+  "description": "Secondary pages (Trips, Notifications, Profile, Settings), accessibility pass, responsive refinement, visual polish, and final build verification. Depends on FEAT-001 (design tokens), FEAT-002 (authStore cleanup), FEAT-003 (shared UI components). Independent of FEAT-004 (different pages).",
+  "status": "pending",
+  "steps": [
+    "1. Read apps/web/src/pages/TripsPage.tsx in full. Apply white background. Keep all data-fetching logic (apiClient.getTrips() for auth users). Guest empty state: EmptyState component (icon=Map, heading='Sign in to view your trips', body='Save and sync your trip plans across devices.', ctaLabel='Sign In', onCta=openAuthModal). Authenticated+empty state: EmptyState(icon=Map, heading='No trips planned yet.', body='Explore parks and plan your perfect visit.', ctaLabel='Plan a Visit', onCta=()=>navigate('/app/plan')). Trip cards: white qc-card-white-interactive, park name in navy, date in slate-600, days-away chip in blue, crowd badge, ticket price in blue-600. Upcoming/Past grouping preserved. Delete button preserved. Desktop: 2-column grid for trip cards (grid-cols-1 sm:grid-cols-2). Loading state uses SkeletonCard. Error state uses ErrorState.",
+    "2. Read apps/web/src/pages/NotificationsPage.tsx in full. Apply white background. Remove the fake notifications that were in authStore (done in FEAT-002) — this page already correctly fetches from apiClient.getNotifications() for auth users and uses local state. Guest empty state (sessionType !== 'authenticated'): EmptyState(icon=Bell, heading='Sign in for personalized alerts', body='Receive crowd alerts, weather updates, and pricing notifications for your favorite parks.'). Authenticated+empty: EmptyState(icon=BellOff, heading=\"You're all caught up.\", body='No notifications right now.'). Loading: SkeletonCard×3. Error: ErrorState. Filter tabs: white/blue styling. Notification cards: white, unread = left blue border, read = normal. Mark-all-read button preserved.",
+    "3. Read apps/web/src/pages/ProfilePage.tsx in full. Apply white background. Guest state: EmptyState with Sign In CTA. Auth state: white profile header card — avatar circle (real image or initials fallback in blue), name in navy h1, email in slate-500, location/member-since chips in slate-100/slate-600. Stats row: 3 white cards (Trips count, Parks visited count — real from savedTrips). Menu list: white rows with chevron, hover:bg-slate-50. Sign Out button at bottom in red text. All navigation logic preserved.",
+    "4. Read apps/web/src/pages/SettingsPage.tsx in full. Apply white background. Sections: Notification Preferences (toggle switches in blue for crowd alerts, weather, price drop — stored in uiStore or local state, no backend wiring needed), Account (show email, name edit placeholder — no backend wiring needed), Privacy & Data (export data button that calls apiClient.exportData(), About section with version info). White card sections with section headings in navy.",
+    "5. Accessibility pass across all modified files: (a) In AppShell.tsx: verify bottom nav has role='tablist', each tab button has role='tab' and aria-selected. (b) All form inputs in LoginPage: ensure label htmlFor or aria-label. (c) All img tags: verify descriptive alt text (park name for park images, empty alt for decorative). (d) Loading containers: add aria-busy='true' aria-label='Loading...' on skeleton containers. (e) Error messages: add role='alert' on error state containers. (f) Skip-to-content link at top of AppShell for keyboard users: <a href='#main-content' className='sr-only focus:not-sr-only ...'>Skip to content</a>. (g) Verify *:focus-visible outline in index.css is preserved. (h) PlanMyVisitPage progress bar: add role='progressbar' aria-valuenow aria-valuemin aria-valuemax.",
+    "6. Visual polish: (a) Verify Framer Motion initial/animate pattern on all new pages (fade-in + slide-up, delay stagger for list items). (b) Verify card hover states: white cards get hover:-translate-y-0.5 hover:shadow-md. (c) CTA buttons: blue buttons get active:scale-[0.97]. (d) Page transitions: AnimatePresence wrapping route outlet in AppShell. (e) Park image cards: consistent rounded-2xl overflow-hidden. (f) Section headings: consistent font-display font-bold text-base text-slate-900 pattern.",
+    "7. Final build verification: run full typecheck and build. Fix any remaining TypeScript errors. Common issues to check: (a) import paths for new components (ui/EmptyState etc.), (b) type assertions on apiClient responses that use 'any', (c) missing key props on list renders, (d) useEffect dependency arrays."
+  ],
+  "acceptance_criteria": [
+    "TripsPage empty state shows 'No trips planned yet.' with 'Plan a Visit' CTA for authenticated users with no trips",
+    "NotificationsPage empty state shows \"You're all caught up.\" for authenticated users with no notifications",
+    "NotificationsPage shows sign-in prompt for guest users",
+    "ProfilePage has white background with real user data",
+    "SettingsPage has white background with notification toggles and export data button",
+    "All interactive elements have accessible labels",
+    "Loading containers have aria-busy attribute",
+    "Error state containers have role=alert",
+    "Skip-to-content link exists in AppShell",
+    "npx tsc --noEmit produces zero errors",
+    "npx vite build completes successfully with no errors"
+  ],
+  "verification": [
+    "cd \"j:\\QUEUE CUT\\apps\\web\" && npx tsc --noEmit",
+    "cd \"j:\\QUEUE CUT\\apps\\web\" && npx vite build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

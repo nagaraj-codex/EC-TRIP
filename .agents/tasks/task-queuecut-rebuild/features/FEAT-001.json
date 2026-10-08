@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Design system foundation: extend Tailwind config with blue-first tokens (#2563EB primary, #EFF6FF light bg, #0F172A navy text, #E2E8F0 border), rebuild globals.css and index.css to flip from dark-background to white-background as default, fix the critical qc-page max-w-lg bottleneck to max-w-7xl, add blue button variants, white card variants, and updated CSS custom properties. Update vite.config.ts PWA theme_color.",
+  "status": "pending",
+  "steps": [
+    "1. Read apps/web/tailwind.config.js. Add qc.blue palette: { 50:'#EFF6FF', 100:'#DBEAFE', 200:'#BFDBFE', 300:'#93C5FD', 400:'#60A5FA', 500:'#3B82F6', 600:'#2563EB', 700:'#1D4ED8', 800:'#1E40AF', 900:'#1E3A8A' }. Add surface.white:'#FFFFFF' and surface['light-blue']:'#EFF6FF'. Add gradient bg-image 'hero-blue':'linear-gradient(135deg,#2563EB,#1D4ED8)'. Keep ALL existing tokens (brand.*, qc.teal.*, qc.amber.*, crowd.*) — existing components depend on them.",
+    "2. Read apps/web/src/styles/index.css. Update :root CSS variables: --qc-primary:#2563EB, --qc-primary-dark:#1D4ED8, --qc-bg-light:#EFF6FF, --qc-navy:#0F172A, --qc-text-secondary:#64748B, --qc-border:#E2E8F0. Keep all existing dark-theme variables unchanged. Update #root body defaults: background-color remains white (#FFFFFF) — pages will control their own background.",
+    "3. Read apps/web/src/styles/globals.css. In @layer base: change body default to `@apply bg-white text-qc-navy font-sans antialiased` with background-image removed (the dark radial gradient). Add .page-white class: `@apply bg-white text-slate-900`. Keep .page-dark for pages that remain dark (none currently but keep for future). In @layer components: CHANGE qc-page to `@apply flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 pt-2` (critical fix: removes max-w-lg). Add .btn-blue-primary: `@apply btn bg-blue-600 text-white hover:bg-blue-700 active:scale-[0.97] shadow-sm`. Add .btn-blue-secondary: `@apply btn bg-white text-blue-600 border border-blue-600 hover:bg-blue-50 active:scale-[0.97]`. Add .btn-blue-ghost: `@apply btn bg-transparent text-blue-600 hover:bg-blue-50`. Add .qc-card-white: `@apply bg-white border border-slate-200 rounded-2xl p-4 shadow-sm transition-all duration-300`. Add .qc-card-white-interactive: `@apply qc-card-white cursor-pointer hover:-translate-y-0.5 hover:shadow-md`. Add .qc-skeleton-white: `@apply bg-slate-100 rounded-lg animate-pulse`. Keep ALL existing dark component classes (qc-card, glass-card, btn-primary, btn-secondary etc.) as-is — existing features/planner/recommendation pages still use dark theme.",
+    "4. Read apps/web/vite.config.ts. Change PWA manifest theme_color and background_color from '#0f172a' to '#2563EB' and '#FFFFFF' respectively."
+  ],
+  "acceptance_criteria": [
+    "tailwind.config.js exports qc.blue.600 = '#2563EB'",
+    "globals.css body default is bg-white not bg-slate-950",
+    "qc-page class has max-w-7xl not max-w-lg",
+    "btn-blue-primary, btn-blue-secondary, qc-card-white classes exist in globals.css",
+    "All existing dark-theme classes (qc-card, btn-primary, glass-card) are preserved",
+    "npx tsc --noEmit produces zero errors",
+    "npx vite build completes successfully"
+  ],
+  "verification": [
+    "cd \"j:\\QUEUE CUT\\apps\\web\" && npx tsc --noEmit",
+    "cd \"j:\\QUEUE CUT\\apps\\web\" && npx vite build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

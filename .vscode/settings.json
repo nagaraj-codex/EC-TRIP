@@ -43,7 +43,7 @@
   "css.lint.unknownAtRules": "ignore",
   "scss.lint.unknownAtRules": "ignore",
   "less.lint.unknownAtRules": "ignore",
-  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.defaultInterpreterPath": "j:/QUEUE CUT/.venv/Scripts/python.exe",
   "python.testing.pytestArgs": [
     "apps/api/tests"
   ],
@@ -58,5 +58,6 @@
   },
   "terminal.integrated.defaultProfile.windows": "Command Prompt",
   "git.autofetch": true,
-  "git.enableSmartCommit": false
+  "git.enableSmartCommit": false,
+  "java.compile.nullAnalysis.mode": "automatic"
 }

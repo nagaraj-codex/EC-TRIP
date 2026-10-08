@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUIStore } from "../store/slices/uiStore";
 import { motion, AnimatePresence } from "framer-motion";
@@ -34,7 +34,7 @@ export default function SplashPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-qc-blue-500 to-qc-blue-700 flex items-center justify-center shadow-lg">
+          <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-qc-blue-500 to-qc-blue-700 flex items-center justify-center shadow-lg">
             <span className="text-white text-2xl font-display font-extrabold">Q</span>
           </div>
         </motion.div>

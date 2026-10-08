@@ -3,11 +3,14 @@ export interface DayEvaluation {
   visit_score: number;
   crowd_level: "low" | "medium" | "high" | "very_high";
   predicted_wait_top_ride_minutes: number;
+  crowd_status: string;
+  crowd_source: string;
+  wait_estimate_status: string;
   ticket_price: number;
-  weather_condition: "sunny" | "cloudy" | "light_rain" | "heavy_rain";
-  temp_max: number;
-  fasttrack_verdict: "SKIP" | "CONSIDER" | "RECOMMENDED";
-  cost_per_minute_saved: number;
+  weather_condition: "sunny" | "cloudy" | "light_rain" | "heavy_rain" | "unavailable";
+  temp_max: number | null;
+  fasttrack_verdict: "SKIP" | "CONSIDER" | "RECOMMENDED" | "UNAVAILABLE";
+  cost_per_minute_saved: number | null;
   confidence: "High" | "Medium" | "Low";
   reasoning: string;
 }
@@ -43,6 +46,7 @@ export interface ItineraryResponse {
   visit_date: string;
   total_estimated_wait_minutes: number;
   uv_shield_applied: boolean;
+  uv_data_status: "FRESH" | "UNAVAILABLE";
   timeline: TimelineItem[];
   email_status?: string | null;
 }
@@ -60,9 +64,10 @@ export interface ParkSummary {
   name: string;
   brand: string;
   city: string;
+  state?: string;
   official_website?: string;
   coordinates?: { lat: number; lon: number };
-  operating_hours?: string;
+  operating_hours?: unknown;
   total_rides: number;
   weekday_price?: number;
   weekend_price?: number;
@@ -70,35 +75,98 @@ export interface ParkSummary {
   image?: string;
   rating?: string;
   features?: string[];
+  provenance?: {
+    source: string;
+    source_url?: string | null;
+    source_type: string;
+    last_verified_at?: string | null;
+    confidence: string;
+    data_status: "FRESH" | "STALE" | "EXPIRED" | "UNAVAILABLE";
+  };
+}
+
+export interface ParkDetail {
+  park_id?: string;
+  name?: string;
+  brand?: string;
+  official_website?: string;
+  location?: {
+    city?: string;
+    state?: string;
+    coordinates?: { lat: number; lon: number };
+    [field: string]: unknown;
+  };
+  operating_hours?: unknown;
+  ticket_pricing?: Record<string, unknown>;
+  [field: string]: unknown;
+}
+
+export interface ParkRidesResponse {
+  status: string;
+  park_id: string;
+  rides: unknown;
+}
+
+export interface ParkTariffResponse {
+  status: string;
+  park_id: string;
+  pricing: Record<string, unknown> | null;
+  dress_code: unknown;
+  provenance?: {
+    source: string;
+    source_url?: string | null;
+    source_type: string;
+    last_verified_at?: string | null;
+    confidence: string;
+    data_status: "FRESH" | "STALE" | "EXPIRED" | "UNAVAILABLE";
+  };
 }
 
 export interface WeatherTelemetryResponse {
-  park_id: string;
-  visit_date: string;
+  status: string;
+  park_name: string;
+  date: string;
+  coordinates: { lat: number; lon: number };
   weather: {
-    temp_max_c: number;
-    temp_min_c: number;
-    precipitation_sum_mm: number;
-    condition: string;
-    rain_probability_pct: number;
+    condition: string | null;
+    temp_max: number | null;
+    rain_prob: number | null;
+    wind_kmh?: number | null;
+    updated_at?: string;
+    data_status: "FRESH" | "STALE" | "EXPIRED" | "UNAVAILABLE";
+    source: string;
   };
   solar_uv: {
-    peak_uv: number;
-    uv_category: string;
-    peak_hours: string;
+    peak_uv: number | null;
     advisory: string;
+    data_status: "FRESH" | "UNAVAILABLE";
+    source: string;
+    date: string;
+  };
+  daylight?: {
+    sunrise?: string | null;
+    sunset?: string | null;
+    twilight_end?: string | null;
+    data_status?: "FRESH" | "UNAVAILABLE";
+    source?: string;
+    date?: string;
   };
 }
 
 export interface CommuteTelemetryResponse {
-  park_id: string;
-  park_name: string;
-  origin: { lat: number; lon: number };
-  destination: { lat: number; lon: number };
-  distance_km: number;
-  estimated_minutes: number;
-  traffic_multiplier: number;
-  status: string;
+  status: "success" | "unavailable";
+  origin: string;
+  destination: string;
+  distance_km: number | null;
+  duration_minutes: number | null;
+  estimated_fuel_cost_inr: number | null;
+  assumptions: {
+    fuel_type: string;
+    fuel_price_per_liter: number;
+    vehicle_mileage_kmpl: number;
+  } | null;
+  source?: string;
+  error?: string;
 }
 
 export interface FeedbackObservationReport {
@@ -114,7 +182,7 @@ export interface FeedbackObservationReport {
 export interface FeedbackSubmissionResponse {
   status: string;
   message: string;
-  verified_on_site: boolean;
+  location_proximity_checked: boolean;
 }
 
 export interface FeedbackSummaryResponse {

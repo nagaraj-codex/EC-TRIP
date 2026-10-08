@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+﻿import { useState, useRef, useEffect } from "react";
 import {
   Bell,
   Menu,
@@ -10,7 +10,6 @@ import {
   MapPin,
   CheckCircle2,
   BookmarkCheck,
-  ShieldCheck,
   Radio,
   Zap,
   X
@@ -25,13 +24,13 @@ interface TopBarProps {
 }
 
 const parks = [
-  { id: "wonderla-chennai", name: "Wonderla Chennai", status: "Open • Live Queues" },
-  { id: "mgm-dizzee-chennai", name: "MGM Dizzee World", status: "Open • Normal" },
-  { id: "black-thunder-coimbatore", name: "Black Thunder", status: "Open • Low" },
+  { id: "wonderla-chennai", name: "Wonderla Chennai", city: "Chennai" },
+  { id: "mgm-dizzee-chennai", name: "MGM Dizzee World", city: "Chennai" },
+  { id: "black-thunder-coimbatore", name: "Black Thunder", city: "Mettupalayam, Tamil Nadu" },
 ];
 
 export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
-  const { user, isGuest, notifications, markAllNotificationsRead, openAuthModal, logout } = useAuthStore();
+  const { user, isGuest, notifications, markAllNotificationsRead, logout } = useAuthStore();
   const { parkId, setParkId } = usePlannerStore();
   const { isConnected, latestAlert, triggerTestAlert, clearAlert } = useTelemetry();
 
@@ -67,9 +66,9 @@ export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
       {/* Live WebSocket Toast Overlay */}
       {latestAlert && (
         <div className="fixed top-20 right-4 z-50 max-w-sm w-full animate-in slide-in-from-top-4 duration-300">
-          <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-500/90 to-orange-600/90 backdrop-blur-xl text-white shadow-2xl border border-amber-300/40 flex items-start justify-between gap-3">
+          <div className="p-4 rounded-2xl bg-linear-to-r from-amber-500/90 to-orange-600/90 backdrop-blur-xl text-white shadow-2xl border border-amber-300/40 flex items-start justify-between gap-3">
             <div className="flex items-start gap-2.5">
-              <span className="text-xl">⛈️</span>
+              <span className="text-xl">â›ˆï¸</span>
               <div>
                 <div className="flex items-center gap-1.5">
                   <h4 className="text-xs font-black uppercase tracking-wide">{latestAlert.title}</h4>
@@ -109,7 +108,7 @@ export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
               className="flex items-center gap-2.5 cursor-pointer select-none group"
             >
               <div className="w-9 h-9 rounded-xl bg-linear-to-tr from-brand-600 via-indigo-600 to-brand-500 text-white flex items-center justify-center text-xl shadow-glow-brand group-hover:scale-105 transition-transform">
-                🎢
+                ðŸŽ¢
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
@@ -158,7 +157,7 @@ export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
                     >
                       <div>
                         <div>{p.name}</div>
-                        <div className="text-[10px] text-slate-400">{p.status}</div>
+                        <div className="text-[10px] text-slate-400">{p.city}</div>
                       </div>
                       {parkId === p.id && <CheckCircle2 className="w-4 h-4 text-brand-400" />}
                     </button>
@@ -297,10 +296,6 @@ export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
                     <div className="p-2.5 border-b border-slate-800">
                       <div className="font-bold text-xs text-white truncate">{user.name}</div>
                       <div className="text-[11px] text-slate-400 truncate">{user.email}</div>
-                      <div className="mt-1.5 inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                        <ShieldCheck className="w-3 h-3 text-emerald-400" />
-                        Verified Member
-                      </div>
                     </div>
 
                     <div className="py-1">
@@ -348,7 +343,7 @@ export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
                   Guest Mode
                 </span>
                 <button
-                  onClick={() => openAuthModal("Sign in to save trips, track prices and access personalized crowd advice", "signin")}
+                  onClick={() => window.location.assign("/login")}
                   className="btn btn-primary sm:w-auto px-4 py-1.5 text-xs font-bold shadow-glow-brand"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-amber-300" />

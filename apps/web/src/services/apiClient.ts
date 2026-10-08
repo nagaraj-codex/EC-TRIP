@@ -4,17 +4,42 @@ import type {
   ItineraryRequest,
   ItineraryResponse,
   ParkSummary,
+  ParkDetail,
+  ParkRidesResponse,
   WeatherTelemetryResponse,
   CommuteTelemetryResponse,
   FeedbackObservationReport,
   FeedbackSubmissionResponse,
   FeedbackSummaryResponse,
+  ParkTariffResponse,
 } from "../types/api";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "/api/v1";
+const API_REQUEST_TIMEOUT_MS = 15_000;
+
+async function fetchWithTimeout(endpoint: string, init: RequestInit = {}): Promise<Response> {
+  const controller = new AbortController();
+  const externalSignal = init.signal;
+  const abortFromCaller = () => controller.abort();
+  const timeoutId = setTimeout(() => controller.abort(), API_REQUEST_TIMEOUT_MS);
+  if (externalSignal?.aborted) controller.abort();
+  else externalSignal?.addEventListener("abort", abortFromCaller, { once: true });
+
+  try {
+    return await fetch(`${BASE_URL}${endpoint}`, { ...init, signal: controller.signal });
+  } catch (error) {
+    if (controller.signal.aborted && !externalSignal?.aborted) {
+      throw new Error("Request timed out. Please try again.");
+    }
+    throw error;
+  } finally {
+    clearTimeout(timeoutId);
+    externalSignal?.removeEventListener("abort", abortFromCaller);
+  }
+}
 
 async function apiFetch<T>(endpoint: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE_URL}${endpoint}`, {
+  const res = await fetchWithTimeout(endpoint, {
     headers: { "Content-Type": "application/json", ...init?.headers },
     credentials: "include",
     ...init,
@@ -26,9 +51,25 @@ async function apiFetch<T>(endpoint: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>;
 }
 
+const inFlightGetRequests = new Map<string, Promise<unknown>>();
+
+function apiGet<T>(endpoint: string): Promise<T> {
+  const existingRequest = inFlightGetRequests.get(endpoint);
+  if (existingRequest) return existingRequest as Promise<T>;
+
+  const request = apiFetch<T>(endpoint).finally(() => {
+    if (inFlightGetRequests.get(endpoint) === request) {
+      inFlightGetRequests.delete(endpoint);
+    }
+  });
+  inFlightGetRequests.set(endpoint, request);
+  return request;
+}
+
 async function apiDownload(endpoint: string, payload: unknown): Promise<Blob> {
-  const res = await fetch(`${BASE_URL}${endpoint}`, {
+  const res = await fetchWithTimeout(endpoint, {
     method: "POST",
+    credentials: "include",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
@@ -52,10 +93,27 @@ export const apiClient = {
       { method: "POST", body: JSON.stringify(payload) },
     ),
 
-  logout: () => apiFetch<void>("/auth/logout", { method: "POST" }),
+  me: () =>
+    apiFetch<{ user: { id: string; name: string; email: string; provider: "email" | "google" } }>("/auth/me"),
+
+  getGoogleAuthStatus: () =>
+    apiGet<{ configured: boolean; status: "AVAILABLE" | "UNAVAILABLE"; prompt: string | null; redirect_uri: string | null }>(
+      "/auth/google/status"
+    ),
+
+  logout: async (): Promise<void> => {
+    try {
+      await fetchWithTimeout("/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+    } catch {
+      // Ignore network errors to ensure client state resets cleanly
+    }
+  },
 
   getTrips: () =>
-    apiFetch<{ status: string; data: Array<{ id: string; park_id: string; visit_date: string; payload: Record<string, unknown>; created_at: string }> }>(
+    apiGet<{ status: string; data: Array<{ id: string; park_id: string; visit_date: string; payload: Record<string, unknown>; created_at: string }> }>(
       "/trips",
     ),
 
@@ -69,7 +127,7 @@ export const apiClient = {
     apiFetch<{ status: string; trip_id: string }>(`/trips/${encodeURIComponent(tripId)}`, { method: "DELETE" }),
 
   getNotifications: () =>
-    apiFetch<{ status: string; data: Array<{ id: string; title: string; message: string; read: boolean; created_at: string }> }>(
+    apiGet<{ status: string; data: Array<{ id: string; title: string; message: string; read: boolean; created_at: string }> }>(
       "/notifications",
     ),
 
@@ -83,7 +141,7 @@ export const apiClient = {
     apiFetch<{ status: string; read: boolean }>("/notifications/read-all", { method: "POST" }),
 
   getNews: (parkId?: string) =>
-    apiFetch<{ status: string; source: string; fetched_at: string; error?: string; data: unknown[] }>(
+    apiGet<{ status: string; source: string; fetched_at: string; error?: string; data: unknown[] }>(
       `/news${parkId ? `?park_id=${encodeURIComponent(parkId)}` : ""}`,
     ),
 
@@ -98,7 +156,7 @@ export const apiClient = {
   // Parks Database & Tariff
   getParks: async (): Promise<ParkSummary[]> => {
     try {
-      const res = await apiFetch<{ status: string; count: number; data: ParkSummary[] }>("/parks");
+      const res = await apiGet<{ status: string; count: number; data: ParkSummary[] }>("/parks");
       return res.data;
     } catch {
       return [];
@@ -106,25 +164,25 @@ export const apiClient = {
   },
 
   getPark: (parkId: string) =>
-    apiFetch<{ status: string; data: any }>(`/parks/${parkId}`),
+    apiGet<{ status: string; data: ParkDetail }>(`/parks/${encodeURIComponent(parkId)}`),
 
-  getParkRides: (parkId: string) =>
-    apiFetch<{ status: string; park_id: string; rides: any }>(`/parks/${parkId}/rides`),
+  getParkRides: (parkId: string): Promise<ParkRidesResponse> =>
+    apiGet(`/parks/${encodeURIComponent(parkId)}/rides`),
 
-  getParkTariff: (parkId: string) =>
-    apiFetch<{ status: string; park_id: string; pricing: any; dress_code: any }>(`/parks/${parkId}/tariff`),
+  getParkTariff: (parkId: string): Promise<ParkTariffResponse> =>
+    apiGet(`/parks/${encodeURIComponent(parkId)}/tariff`),
 
   // Telemetry: Live Open-Meteo & Commute
   getWeather: (parkId: string, date?: string): Promise<WeatherTelemetryResponse> => {
     const query = date ? `?park_id=${encodeURIComponent(parkId)}&date=${encodeURIComponent(date)}` : `?park_id=${encodeURIComponent(parkId)}`;
-    return apiFetch(`/telemetry/weather${query}`);
+    return apiGet(`/telemetry/weather${query}`);
   },
 
   getCommute: (parkId: string, originLat: number, originLon: number): Promise<CommuteTelemetryResponse> =>
-    apiFetch(`/telemetry/commute?park_id=${encodeURIComponent(parkId)}&origin_lat=${originLat}&origin_lon=${originLon}`),
+    apiGet(`/telemetry/commute?park_id=${encodeURIComponent(parkId)}&origin_lat=${originLat}&origin_lon=${originLon}`),
 
   // Conversational AI Assistant
-  chat: (prompt: string, context: object): Promise<{ response: string }> =>
+  chat: (prompt: string, context: object): Promise<{ response: string; is_fallback: boolean }> =>
     apiFetch("/chat/ask", { method: "POST", body: JSON.stringify({ prompt, context }) }),
 
   exportData: (payload: { user: unknown; settings: object; saved_trips?: object[] }): Promise<Blob> =>

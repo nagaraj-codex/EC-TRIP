@@ -11,6 +11,7 @@ const weatherLabel: Record<string, string> = {
   cloudy: "Overcast",
   light_rain: "Light Rain",
   heavy_rain: "Heavy Rain",
+  unavailable: "Forecast unavailable",
 };
 
 const crowdColor: Record<string, string> = {
@@ -46,7 +47,7 @@ export default function VisitScoreCard({ evaluation: ev, isRecommended = false }
           <p className={`text-lg font-semibold mt-0.5 capitalize ${crowdColor[ev.crowd_level]}`}>
             {ev.crowd_level.replace("_", " ")} crowd
           </p>
-          <p className="text-xs text-slate-400 mt-0.5">{weatherLabel[ev.weather_condition]} · {ev.temp_max.toFixed(0)}°C</p>
+          <p className="text-xs text-slate-400 mt-0.5">{weatherLabel[ev.weather_condition]}{ev.temp_max === null ? "" : ` · ${ev.temp_max.toFixed(0)}°C`}</p>
         </div>
         <div className="text-right">
           <p className="text-3xl font-bold text-slate-900">{ev.visit_score}</p>
@@ -59,6 +60,7 @@ export default function VisitScoreCard({ evaluation: ev, isRecommended = false }
         <Bar label="Money Saving" pct={moneyPct} color="bg-emerald-500" />
         <Bar label="Weather Fit" pct={weatherPct[ev.weather_condition] ?? 70} color="bg-sky-500" />
       </div>
+      <p className="mb-3 text-[11px] text-slate-500">Crowd values are provisional calendar-based estimates, not live queue data.</p>
 
       <div className="flex items-center justify-between">
         <p className="text-xs text-slate-500">₹{ev.ticket_price.toLocaleString("en-IN")} ticket</p>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { useAuthStore } from "../../store/slices/authStore";
 import { SignInTab } from "./components/SignInTab";
@@ -40,7 +40,7 @@ export default function AuthModal() {
 
         <div className="pt-7 pb-4 px-6 text-center border-b border-[#141f38] bg-linear-to-b from-[#0f1a36] to-[#0b1326]">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-linear-to-tr from-brand-600 via-indigo-600 to-sky-500 shadow-lg shadow-brand-500/25 mb-2.5 text-2xl">
-            🎢
+            ðŸŽ¢
           </div>
           <div className="flex items-center justify-center gap-1.5">
             <span className="font-black text-xl tracking-tight text-white">QueueCut</span>
@@ -82,7 +82,7 @@ export default function AuthModal() {
               onClick={() => { setActiveTab("guest"); setError(""); }}
               className={`py-2 text-xs font-bold rounded-xl transition-all ${
                 activeTab === "guest"
-                  ? "bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-md"
+                  ? "bg-linear-to-r from-amber-600 to-orange-600 text-white shadow-md"
                   : "text-slate-400 hover:text-slate-200 hover:bg-[#0c1428]"
               }`}
             >
@@ -93,7 +93,7 @@ export default function AuthModal() {
 
         {error && (
           <div className="mx-6 mt-4 p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
-            <span>⚠️</span>
+            <span>âš ï¸</span>
             <span>{error}</span>
           </div>
         )}

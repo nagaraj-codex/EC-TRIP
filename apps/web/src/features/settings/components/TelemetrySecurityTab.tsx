@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Download, Trash2, ShieldCheck } from "lucide-react";
 import { useAuthStore } from "../../../store/slices/authStore";
 
@@ -8,11 +8,12 @@ interface TelemetrySecurityTabProps {
 
 export const TelemetrySecurityTab: React.FC<TelemetrySecurityTabProps> = ({ onExportData }) => {
   const { logout } = useAuthStore();
+  const [notice, setNotice] = useState("");
 
   const handleResetAccount = () => {
-    if (confirm("Are you sure you want to reset all account data?")) {
+    if (window.confirm("Are you sure you want to reset all account data?")) {
       logout();
-      alert("Account data reset.");
+      setNotice("Account data was reset for this session.");
     }
   };
 
@@ -55,6 +56,12 @@ export const TelemetrySecurityTab: React.FC<TelemetrySecurityTabProps> = ({ onEx
           <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>QueueCut adheres to strict 1-year data minimization and never sells visitor telemetry.</span>
         </div>
+
+        {notice && (
+          <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-[11px] text-emerald-200">
+            {notice}
+          </div>
+        )}
       </div>
     </div>
   );

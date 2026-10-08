@@ -1,0 +1,33 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "App shell, Home, and Explore rebuild: responsive desktop layout (critical fix), HomePage with real data only, ExplorePage with white cards, DestinationCard component redesign, shared UI components. Depends on FEAT-001 (qc-page max-w-7xl must exist before this runs). FEAT-002 can run in parallel conceptually but must be committed first since they share authStore.",
+  "status": "pending",
+  "steps": [
+    "1. Read apps/web/src/layouts/AppShell.tsx in full. Rebuild for responsive desktop: On md+ breakpoints, render a horizontal top nav (sticky, bg-white, border-b border-slate-200) with: left side = blue logo mark + 'QueueCut' brand name; center = nav links (Home, Explore, Trips, Profile) as text buttons with blue active indicator underline; right = notification bell + unread badge. On lg+ add a left sidebar (w-64, bg-white, border-r border-slate-100) with vertical nav items. Mobile: keep bottom nav exactly as-is with 4 tabs (Home, Explore, Trips, Profile). Add `lg:pl-64` to main content area when sidebar is visible. isDetailPage bottom-nav hide logic preserved. AdvisorChatbot overlay preserved. Use Tailwind responsive prefixes (hidden md:flex etc.).",
+    "2. Create apps/web/src/components/ui/EmptyState.tsx: props = { icon: React.ReactNode, heading: string, body: string, ctaLabel?: string, onCta?: () => void }. White bg, centered layout, icon wrapper, heading in navy, body in slate-500, optional blue CTA button.",
+    "3. Create apps/web/src/components/ui/ErrorState.tsx: props = { message: string, onRetry?: () => void }. Red icon, error message, optional retry button.",
+    "4. Create apps/web/src/components/ui/LoadingSpinner.tsx: blue spinning circle, accepts size prop (sm/md/lg).",
+    "5. Create apps/web/src/components/ui/SkeletonCard.tsx: white skeleton card with shimmer, accepts height prop.",
+    "6. Create apps/web/src/components/ui/SkeletonText.tsx: skeleton text line, accepts width prop.",
+    "7. Read apps/web/src/pages/HomePage.tsx in full. Rebuild: White background. Hero section: full-width banner with bg-gradient-to-br from-blue-600 to-blue-800, white headline 'Plan Your Next Park Visit', white subtext 'Know before you go.', blue-white 'Plan a Visit' button → navigate('/app/plan'). Below hero: search bar (white bg, rounded-2xl, shadow-sm, blue focus ring) that navigates to /app/explore?q=... on submit. 'Explore Parks' section: grid of park cards from useExploreStore. While loading: SkeletonCard. Empty: EmptyState icon+text. Error: ErrorState. REMOVE all PEACE_SCORES dict. REMOVE per-park HERO_IMAGES dict — use single generic fallback 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80' for all cards. Crowd level: not shown on home cards (no real-time data without recommendation). 'My Trips' section (auth users only): shows real saved trips from authStore.savedTrips loaded via apiClient.getTrips(); empty state uses EmptyState component with 'Plan a Visit' CTA. Guest: show sign-in prompt. Desktop (lg:): two-column layout — left col (lg:col-span-2) = hero + search + parks grid; right col (lg:col-span-1) = trips summary panel + 'Plan a Visit' CTA card.",
+    "8. Read apps/web/src/components/destination/DestinationCard.tsx in full. Redesign grid variant: white card (qc-card-white-interactive), park image top (use imageUrl prop — fallback to generic Unsplash if not provided), park name in navy font-bold, city in slate-500 with MapPin icon, price in blue-600 (weekday_price), ride count in slate-400, 'View Details' hover CTA button in blue. List variant: white card horizontal layout, thumbnail left (w-28 h-28), info right. Remove any reference to peaceScore coloring from scores > 80 thresholds (keep prop optional but don't color-code without real data). Keep crowdLevel prop — render CrowdLevelBadge only when crowdLevel is explicitly passed. Props interface unchanged.",
+    "9. Read apps/web/src/pages/ExplorePage.tsx in full. Rebuild: white background. Full-width search bar (white, rounded, shadow). Filter chips (All/Near Me/Low Crowd/Top Score) in blue active state / slate outlined inactive. REMOVE PEACE_SCORES dict. REMOVE per-park HERO_IMAGES dict — single generic fallback. Results grid: 1 col mobile, 2 col sm, 3 col lg. Empty/loading/error states use new shared components. Location detection logic (useGeolocation) preserved. Debounced search preserved. City dropdown preserved."
+  ],
+  "acceptance_criteria": [
+    "AppShell renders top nav with QueueCut brand on md+ screens",
+    "AppShell renders sidebar nav on lg+ screens",
+    "HomePage hero has blue gradient banner with 'Plan a Visit' CTA",
+    "HomePage uses no hardcoded PEACE_SCORES or per-park HERO_IMAGES",
+    "ExplorePage results grid is 3 columns on desktop",
+    "DestinationCard grid variant is white card not dark glass",
+    "EmptyState, ErrorState, LoadingSpinner, SkeletonCard, SkeletonText components exist in src/components/ui/",
+    "npx tsc --noEmit produces zero errors"
+  ],
+  "verification": [
+    "cd \"j:\\QUEUE CUT\\apps\\web\" && npx tsc --noEmit",
+    "cd \"j:\\QUEUE CUT\\apps\\web\" && npx vite build"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

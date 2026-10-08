@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { apiClient } from "../../services/apiClient";
 import { usePlannerStore } from "../../store/slices/plannerStore";
 import { MessageSquare, Send, X, Sparkles, Bot, User, HelpCircle } from "lucide-react";
@@ -46,7 +46,12 @@ export default function AdvisorDrawer({ open, onClose }: Props) {
 
     try {
       const res = await apiClient.chat(text, context);
-      setMessages((m) => [...m, { role: "advisor", text: res.response }]);
+      setMessages((m) => [...m, {
+        role: "advisor",
+        text: res.is_fallback
+          ? `${res.response}\n\nRule-based response; Gemini is unavailable or not configured.`
+          : res.response,
+      }]);
     } catch {
       setMessages((m) => [
         ...m,
@@ -77,7 +82,7 @@ export default function AdvisorDrawer({ open, onClose }: Props) {
         {/* Top Header */}
         <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-600 text-white flex items-center justify-center text-base shadow-glow-brand">
+            <div className="w-8 h-8 rounded-xl bg-linear-to-tr from-brand-600 to-indigo-600 text-white flex items-center justify-center text-base shadow-glow-brand">
               <Bot className="w-4 h-4" />
             </div>
             <div>
