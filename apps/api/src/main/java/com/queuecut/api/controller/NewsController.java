@@ -10,14 +10,14 @@ import java.util.*;
 public class NewsController {
 
     @GetMapping
-    public Map<String, Object> listNews(@RequestParam(required=false) String park_id) {
+    public org.springframework.http.ResponseEntity<Map<String, Object>> listNews(@RequestParam(required=false) String park_id) {
         // Disabled logic
-        return Map.of(
+        return org.springframework.http.ResponseEntity.status(501).body(Map.of(
             "status", "UNAVAILABLE",
             "source", "official_park_feed",
             "fetched_at", OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME),
             "error", "Official feed integration is not configured",
             "data", List.of()
-        );
+        ));
     }
 }

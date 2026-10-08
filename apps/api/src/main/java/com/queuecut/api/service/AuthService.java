@@ -47,7 +47,6 @@ public class AuthService {
         try {
             String[] parts = encoded.split("\\$", 3);
             if (parts.length != 3 || !"pbkdf2".equals(parts[0])) {
-                // Legacy: attempt scrypt-compatible check skipped - treat as mismatch
                 return false;
             }
             byte[] salt    = HexFormat.of().parseHex(parts[1]);
