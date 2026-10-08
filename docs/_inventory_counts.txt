@@ -1,0 +1,15 @@
+﻿
+Name                           Value                                                                                   
+----                           -----                                                                                   
+frontend-config                5                                                                                       
+data                           80                                                                                      
+backend-java                   42                                                                                      
+junk                           221                                                                                     
+infra                          13                                                                                      
+python-legacy                  9                                                                                       
+frontend-src                   84                                                                                      
+docs                           14                                                                                      
+backend-resource               2                                                                                       
+
+
+
