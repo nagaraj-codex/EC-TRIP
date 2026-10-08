@@ -30,7 +30,7 @@ public class AuthService {
         this.props    = props;
     }
 
-    // ---------- password hashing (PBKDF2-SHA256, mirrors Python scrypt strength) ----------
+    // ---------- password hashing (PBKDF2-SHA256) ----------
 
     private static final int ITERATIONS  = 210_000;
     private static final int KEY_LENGTH  = 256;

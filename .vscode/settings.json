@@ -43,12 +43,7 @@
   "css.lint.unknownAtRules": "ignore",
   "scss.lint.unknownAtRules": "ignore",
   "less.lint.unknownAtRules": "ignore",
-  "python.defaultInterpreterPath": "j:/QUEUE CUT/.venv/Scripts/python.exe",
-  "python.testing.pytestArgs": [
-    "apps/api/tests"
-  ],
-  "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true,
+
   "js/ts.tsdk.path": "apps/web/node_modules/typescript/lib",
   "js/ts.suggest.autoImports": true,
   "js/ts.preferences.importModuleSpecifier": "shortest",

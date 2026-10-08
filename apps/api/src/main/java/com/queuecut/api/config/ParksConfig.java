@@ -23,7 +23,7 @@ public class ParksConfig {
         Map<String, ParkMeta> coords = new LinkedHashMap<>();
         Map<String, ParkPricing> prices = new LinkedHashMap<>();
 
-        // Hardcoded fallback (mirrors Python config defaults)
+        // Hardcoded fallback
         coords.put("wonderla-bengaluru",           new ParkMeta("wonderla-bengaluru",           "Wonderla Bengaluru",        "Bengaluru",      12.8349, 77.4009));
         coords.put("wonderla-kochi",               new ParkMeta("wonderla-kochi",               "Wonderla Kochi",            "Kochi",          10.0271, 76.3912));
         coords.put("wonderla-hyderabad",           new ParkMeta("wonderla-hyderabad",           "Wonderla Hyderabad",        "Hyderabad",      17.2188, 78.5323));

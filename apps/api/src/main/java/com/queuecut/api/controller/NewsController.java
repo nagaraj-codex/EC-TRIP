@@ -11,7 +11,7 @@ public class NewsController {
 
     @GetMapping
     public Map<String, Object> listNews(@RequestParam(required=false) String park_id) {
-        // Mirrored from python - disabled logic
+        // Disabled logic
         return Map.of(
             "status", "UNAVAILABLE",
             "source", "official_park_feed",

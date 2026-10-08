@@ -2,80 +2,39 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "QueueCut: Unified Full Stack (queuecut_final.py)",
+      "label": "api: run",
       "type": "shell",
-      "command": "python queuecut_final.py --reload",
+      "command": "cmd /c \"cd \\\"${workspaceFolder}\\apps\\api\\\" && .\\mvnw.cmd spring-boot:run\"",
       "problemMatcher": [],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "new"
-      }
+      "presentation": { "reveal": "always", "panel": "new" }
     },
     {
-      "label": "QueueCut: Dev Orchestrator (run_queuecut.py)",
+      "label": "api: test",
       "type": "shell",
-      "command": "python run_queuecut.py",
+      "command": "cmd /c \"cd \\\"${workspaceFolder}\\apps\\api\\\" && .\\mvnw.cmd test\"",
       "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "new"
-      }
+      "presentation": { "reveal": "always", "panel": "shared" }
     },
     {
-      "label": "Web: Dev Server",
+      "label": "web: dev",
       "type": "shell",
-      "command": "cmd /c \"cd apps\\web && npm run dev\"",
+      "command": "cmd /c \"cd \\\"${workspaceFolder}\\apps\\web\\\" && npm run dev\"",
       "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "new"
-      }
+      "presentation": { "reveal": "always", "panel": "new" }
     },
     {
-      "label": "Web: Build Production PWA",
+      "label": "web: test",
       "type": "shell",
-      "command": "cmd /c \"cd apps\\web && npm run build\"",
+      "command": "cmd /c \"cd \\\"${workspaceFolder}\\apps\\web\\\" && npm run test:run\"",
       "problemMatcher": [],
-      "group": "build",
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      }
+      "presentation": { "reveal": "always", "panel": "shared" }
     },
     {
-      "label": "API: Run Backend Unit Tests",
+      "label": "all: verify",
       "type": "shell",
-      "command": ".\\.venv\\Scripts\\python.exe -W default -m pytest apps\\api\\tests -q",
+      "command": "cmd /c \"cd \\\"${workspaceFolder}\\apps\\api\\\" && .\\mvnw.cmd clean verify && cd \\\"${workspaceFolder}\\apps\\web\\\" && npm ci && npm run lint && npm run typecheck && npm run test:run && npm run build\"",
       "problemMatcher": [],
-      "group": "test",
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      }
-    },
-    {
-      "label": "System: Health Verification Audit",
-      "type": "shell",
-      "command": "python verify_system_health.py",
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      }
-    },
-    {
-      "label": "Data: Recompile Parks Catalog",
-      "type": "shell",
-      "command": "python scripts/compile_parks_database.py",
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      }
+      "presentation": { "reveal": "always", "panel": "new" }
     }
   ]
 }

@@ -1,7 +1,0 @@
-{
-  "task_id": "task-queuecut-rebuild",
-  "task_description": "Complete QueueCut frontend UX/UI rebuild: replace dark dashboard aesthetic with white+blue premium travel app design, fix responsive layout (remove max-w-lg desktop bottleneck), remove all fake/hardcoded data, wire all screens to real API endpoints, add Plan My Visit flow, Visit Forecast page, and Compare Dates page.",
-  "status": "pending",
-  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003", "FEAT-004", "FEAT-005"],
-  "blocked_reason": null
-}
