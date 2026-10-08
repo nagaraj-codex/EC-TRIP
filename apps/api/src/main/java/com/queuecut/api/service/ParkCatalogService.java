@@ -21,6 +21,7 @@ public class ParkCatalogService {
     public ParkCatalogService(AppProperties props) { this.props = props; }
 
     
+    @SuppressWarnings("unchecked")
     public Map<String, Object> loadCatalog() {
         Map<String, Object> cached = catalogCache.get();
         if (cached != null) return cached;
@@ -34,6 +35,7 @@ public class ParkCatalogService {
             return empty;
         }
         try {
+            @SuppressWarnings("unchecked")
             Map<String, Object> parsed = mapper.readValue(f, Map.class);
             catalogCache.set(parsed);
             log.info("Loaded parks catalog from {}", f.getAbsolutePath());

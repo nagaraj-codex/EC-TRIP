@@ -46,7 +46,7 @@ public class RecommendationController {
             LocalDate d = LocalDate.parse(ds);
             prices.add(d.getDayOfWeek().getValue() >= 6 ? pricing.weekend() : pricing.weekday());
         }
-        double maxPrice = prices.stream().mapToDouble(d -> d == null ? 1.0 : d.doubleValue()).max().orElse(1.0);
+        double maxPrice = prices.stream().mapToDouble(d -> d == null ? 1.0 : d).max().orElse(1.0);
 
         // Evaluate all dates concurrently
         List<CompletableFuture<Map<String, Object>>> futures = new ArrayList<>();

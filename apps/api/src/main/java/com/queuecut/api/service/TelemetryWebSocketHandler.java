@@ -3,6 +3,7 @@ package com.queuecut.api.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -18,7 +19,7 @@ public class TelemetryWebSocketHandler extends TextWebSocketHandler {
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public void afterConnectionEstablished(@org.springframework.lang.NonNull WebSocketSession session) throws Exception {
+    public void afterConnectionEstablished(@NonNull WebSocketSession session) throws Exception {
         sessions.add(session);
         log.info("WebSocket client connected. Total: {}", sessions.size());
         Map<String, Object> welcome = new LinkedHashMap<>();
@@ -30,13 +31,13 @@ public class TelemetryWebSocketHandler extends TextWebSocketHandler {
     }
 
     @Override
-    public void afterConnectionClosed(@org.springframework.lang.NonNull WebSocketSession session, @org.springframework.lang.NonNull CloseStatus status) {
+    public void afterConnectionClosed(@NonNull WebSocketSession session, @NonNull CloseStatus status) {
         sessions.remove(session);
         log.info("WebSocket client disconnected. Total: {}", sessions.size());
     }
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) {
+    public void handleTextMessage(@NonNull WebSocketSession session, @NonNull TextMessage message) {
         // Keep-alive pings handled implicitly
     }
 

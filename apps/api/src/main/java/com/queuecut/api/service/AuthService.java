@@ -125,14 +125,14 @@ public class AuthService {
         return token;
     }
 
-    public Optional<User> getUserForSession(String token) {
+    public Optional<User> getUserForSession(@org.springframework.lang.NonNull String token) {
         String tokenHash = sha256(token);
         return sessions.findValidSession(tokenHash, utcNow())
                 .flatMap(s -> users.findById(s.getUserId()));
     }
 
     @Transactional
-    public void revokeSession(String token) {
+    public void revokeSession(@org.springframework.lang.NonNull String token) {
         sessions.deleteByTokenHash(sha256(token));
     }
 

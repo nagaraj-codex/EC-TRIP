@@ -26,7 +26,7 @@ public class AppProperties {
         private String origins = "http://localhost:5173,http://localhost:4173,http://127.0.0.1:5173";
         public List<String> getOriginList() {
             return Arrays.stream(origins.split(","))
-                    .map(String::trim).filter(s -> !s.isBlank()).toList();
+                    .map(s -> s.trim()).filter(s -> !s.isBlank()).toList();
         }
         public String getOrigins() { return origins; }
         public void setOrigins(String origins) { this.origins = origins; }

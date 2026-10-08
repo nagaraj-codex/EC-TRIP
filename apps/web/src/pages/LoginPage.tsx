@@ -154,7 +154,7 @@ export default function LoginPage() {
               <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-8 w-full">
                 {/* Logo */}
                 <div className="flex justify-center mb-6">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-qc-blue-500 to-qc-blue-700 flex items-center justify-center shadow-sm">
+                  <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-qc-blue-500 to-qc-blue-700 flex items-center justify-center shadow-sm">
                     <span className="text-white text-2xl font-display font-extrabold">Q</span>
                   </div>
                 </div>

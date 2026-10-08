@@ -13,6 +13,7 @@ public class IntelligenceService {
     private final WeatherService weather;
     private final HolidayService holidays;
     private final FeedbackService feedback;
+    @SuppressWarnings("unused")
     private final ParksConfig parks;
 
     // Priority -> (time_weight, money_weight, weather_weight)

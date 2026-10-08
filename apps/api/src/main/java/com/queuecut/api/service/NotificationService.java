@@ -1,6 +1,5 @@
 package com.queuecut.api.service;
 
-
 import com.queuecut.api.repository.NotificationRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

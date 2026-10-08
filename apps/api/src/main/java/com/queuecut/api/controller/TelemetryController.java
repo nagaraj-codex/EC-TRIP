@@ -44,7 +44,7 @@ public class TelemetryController {
             ParksConfig.ParkMeta meta = parks.getPark(park_id);
             targetLat = meta.lat(); targetLon = meta.lon(); parkName = meta.name();
         } else if (lat != null && lon != null) {
-            targetLat = lat; targetLon = lon; parkName = "Custom Location";
+            targetLat = lat.doubleValue(); targetLon = lon.doubleValue(); parkName = "Custom Location";
         } else {
             throw new ApiException(422, "Provide a park identifier or both coordinates.");
         }
