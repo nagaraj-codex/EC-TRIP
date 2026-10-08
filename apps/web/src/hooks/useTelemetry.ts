@@ -38,7 +38,7 @@ export function useTelemetry() {
 
       socket.onopen = () => {
         setIsConnected(true);
-        console.log("[QueueCut Telemetry] WebSocket connected to", wsUrl);
+        // WebSocket connected
       };
 
       socket.onmessage = (event) => {
