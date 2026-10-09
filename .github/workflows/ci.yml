@@ -35,7 +35,7 @@ jobs:
 
       - name: Run Backend Unit Tests
         working-directory: ./apps/api
-        run: mvn clean test
+        run: ./mvnw clean test
 
   frontend-build:
     name: Frontend Typecheck & Build (Node 20)
@@ -59,6 +59,9 @@ jobs:
 
       - name: Install Frontend Dependencies
         run: npm ci
+
+      - name: Run Frontend Tests
+        run: npm run test:run
 
       - name: Compile TypeScript & Vite PWA Bundle
         run: npm run build

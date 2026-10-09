@@ -3,7 +3,6 @@ package com.queuecut.api.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.queuecut.api.entity.Trip;
 import com.queuecut.api.repository.TripRepository;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.*;
@@ -11,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
-@SuppressWarnings("null")
 public class TripService {
     private final TripRepository repo;
     private final ObjectMapper mapper;

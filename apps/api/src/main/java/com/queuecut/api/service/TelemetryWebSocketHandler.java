@@ -11,7 +11,6 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Component
-@SuppressWarnings("null")
 public class TelemetryWebSocketHandler extends TextWebSocketHandler {
 
     private static final Logger log = LoggerFactory.getLogger(TelemetryWebSocketHandler.class);

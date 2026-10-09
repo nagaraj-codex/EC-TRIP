@@ -15,7 +15,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
-@SuppressWarnings("null")
 public class AuthService {
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 

@@ -30,7 +30,7 @@ public record AppProperties(
     ) {
         public List<String> getOriginList() {
             return Arrays.stream(origins.split(","))
-                    .map(String::trim).filter(s -> !s.isBlank()).toList();
+                    .map(s -> s.trim()).filter(s -> !s.isBlank()).toList();
         }
     }
 

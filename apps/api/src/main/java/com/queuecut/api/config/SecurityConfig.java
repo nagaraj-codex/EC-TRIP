@@ -51,8 +51,6 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable()) // Disabled because we use SameSite=Lax and stateless API
             .headers(headers -> headers
                 .frameOptions(frame -> frame.deny())
-                .xssProtection(xss -> xss.disable())
-                .contentTypeOptions(contentType -> contentType.disable())
             )
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/v1/auth/**").permitAll()

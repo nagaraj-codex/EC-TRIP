@@ -10,7 +10,6 @@ import java.time.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-@SuppressWarnings("null")
 @RestController
 @RequestMapping("/api/v1/recommendation")
 public class RecommendationController {

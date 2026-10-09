@@ -39,11 +39,13 @@
   /* --- Glassmorphism Architecture --- */
   .glass-panel {
     @apply relative overflow-hidden bg-slate-900/60 border border-white/10 shadow-2xl rounded-3xl;
+    -webkit-backdrop-filter: blur(var(--glass-blur-strength));
     backdrop-filter: blur(var(--glass-blur-strength));
   }
 
   .glass-card {
     @apply bg-slate-800/40 border border-white/5 rounded-2xl p-5 transition-all duration-300 ease-out;
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
 
@@ -71,6 +73,7 @@
   /* --- Chip & Badge System --- */
   .qc-chip {
     @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200;
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
 

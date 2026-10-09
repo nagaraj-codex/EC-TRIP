@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.time.*;
 import java.util.*;
 
-@SuppressWarnings("null")
 @RestController
 @RequestMapping("/api/v1/telemetry")
 public class TelemetryController {

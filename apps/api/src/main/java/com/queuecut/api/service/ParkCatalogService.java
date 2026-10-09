@@ -11,7 +11,6 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Service
-@SuppressWarnings({"unchecked", "rawtypes"})
 public class ParkCatalogService {
 
     private static final Logger log = LoggerFactory.getLogger(ParkCatalogService.class);
@@ -21,8 +20,6 @@ public class ParkCatalogService {
 
     public ParkCatalogService(AppProperties props) { this.props = props; }
 
-    
-    @SuppressWarnings("unchecked")
     public Map<String, Object> loadCatalog() {
         Map<String, Object> cached = catalogCache.get();
         if (cached != null) return cached;
@@ -36,8 +33,7 @@ public class ParkCatalogService {
             return empty;
         }
         try {
-            @SuppressWarnings("unchecked")
-            Map<String, Object> parsed = mapper.readValue(f, Map.class);
+            Map<String, Object> parsed = mapper.readValue(f, new com.fasterxml.jackson.core.type.TypeReference<Map<String, Object>>() {});
             catalogCache.set(parsed);
             log.info("Loaded parks catalog from {}", f.getAbsolutePath());
             return parsed;
@@ -47,38 +43,37 @@ public class ParkCatalogService {
         }
     }
 
-    
+    @SuppressWarnings("unchecked")
     public Map<String, Object> getParks() {
         Object p = loadCatalog().get("parks");
-        return p instanceof Map m ? m : Map.of();
+        return p instanceof Map<?, ?> ? (Map<String, Object>) p : Map.of();
     }
 
-    
+    @SuppressWarnings("unchecked")
     public Map<String, Object> getParkData(String parkId) {
         Object p = getParks().get(parkId);
-        return p instanceof Map m ? m : Map.of();
+        return p instanceof Map<?, ?> ? (Map<String, Object>) p : Map.of();
     }
 
-    
     public int calculateTotalRides(Map<String, Object> pdata) {
         Object rides = pdata.get("attractions_and_rides");
-        if (rides instanceof List l) return l.size();
+        if (rides instanceof List<?> l) return l.size();
         Object cat = pdata.get("rides_catalog");
-        if (cat instanceof Map m) {
+        if (cat instanceof Map<?, ?> m) {
             int count = 0;
             Object adult = m.get("adult_and_thrill_rides");
             Object family = m.get("family_and_scenic_rides");
-            if (adult instanceof List l) count += l.size();
-            if (family instanceof List l) count += l.size();
+            if (adult instanceof List<?> l) count += l.size();
+            if (family instanceof List<?> l) count += l.size();
             return count;
         }
         Object breakdown = pdata.get("rides_and_attractions_breakdown");
-        if (breakdown instanceof Map m) {
+        if (breakdown instanceof Map<?, ?> m) {
             int count = 0;
             Object water = m.get("water_rides");
             Object dry   = m.get("dry_and_thrill_rides");
-            if (water instanceof List l) count += l.size();
-            if (dry instanceof List l) count += l.size();
+            if (water instanceof List<?> l) count += l.size();
+            if (dry instanceof List<?> l) count += l.size();
             return count;
         }
         return 0;

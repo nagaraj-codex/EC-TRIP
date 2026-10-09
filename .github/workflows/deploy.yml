@@ -20,21 +20,14 @@ on:
       BACKEND_HEALTHCHECK_URL:
         required: false
 
-# Minimum permissions required by this workflow
 permissions:
   contents: read
 
-# Prevent multiple production deployments from running simultaneously
 concurrency:
   group: queuecut-production-deployment
   cancel-in-progress: false
 
 jobs:
-
-  # ============================================================
-  # FRONTEND DEPLOYMENT - VERCEL
-  # ============================================================
-
   deploy-frontend:
     name: Deploy Frontend to Vercel
     runs-on: ubuntu-latest
@@ -47,68 +40,57 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./apps/web
+        working-directory: apps/web
 
     steps:
-
-      # --------------------------------------------------------
-      # Checkout Repository
-      # --------------------------------------------------------
-
       - name: Checkout Source Code
         uses: actions/checkout@v4
-
-      # --------------------------------------------------------
-      # Setup Node.js with NPM Caching
-      # --------------------------------------------------------
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: ./apps/web/package-lock.json
+          cache-dependency-path: apps/web/package-lock.json
 
-      # --------------------------------------------------------
-      # Validate Deployment Secrets
-      # --------------------------------------------------------
-
-      - name: Validate Vercel Secrets
+      - name: Validate Vercel Configuration
+        shell: bash
         run: |
-          if [ -z "$VERCEL_TOKEN" ]; then
-            echo "❌ VERCEL_TOKEN is missing."
+          set -euo pipefail
+
+          for name in VERCEL_TOKEN VERCEL_ORG_ID VERCEL_PROJECT_ID; do
+            if [[ -z "${!name:-}" ]]; then
+              echo "::error::$name is not configured."
+              exit 1
+            fi
+          done
+
+          if [[ ! -f package.json ]]; then
+            echo "::error::apps/web/package.json not found."
             exit 1
           fi
 
-          if [ -z "$VERCEL_ORG_ID" ]; then
-            echo "❌ VERCEL_ORG_ID is missing."
+          if [[ ! -f package-lock.json ]]; then
+            echo "::error::apps/web/package-lock.json not found."
             exit 1
           fi
-
-          if [ -z "$VERCEL_PROJECT_ID" ]; then
-            echo "❌ VERCEL_PROJECT_ID is missing."
-            exit 1
-          fi
-
-          echo "✅ Vercel secrets validated successfully."
-
-      # --------------------------------------------------------
-      # Install Dependencies
-      # --------------------------------------------------------
 
       - name: Install Frontend Dependencies
         run: npm ci
 
-      # --------------------------------------------------------
-      # Install Vercel CLI
-      # --------------------------------------------------------
+      - name: Run Frontend Checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          node -e '
+            const p = require("./package.json");
+            console.log("Available scripts:", Object.keys(p.scripts || {}).join(", "));
+          '
+          npm run test:run
+          npm run build
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
-
-      # --------------------------------------------------------
-      # Pull Production Environment
-      # --------------------------------------------------------
 
       - name: Pull Vercel Production Configuration
         run: |
@@ -117,64 +99,73 @@ jobs:
             --environment=production \
             --token="$VERCEL_TOKEN"
 
-      # --------------------------------------------------------
-      # Build Using Vercel
-      # --------------------------------------------------------
-
       - name: Build Production Deployment
-        run: |
-          vercel build \
-            --prod \
-            --token="$VERCEL_TOKEN"
-
-      # --------------------------------------------------------
-      # Deploy Frontend
-      # --------------------------------------------------------
+        run: vercel build --prod --token="$VERCEL_TOKEN"
 
       - name: Deploy Frontend to Production
+        shell: bash
         run: |
-          DEPLOYMENT_URL=$(vercel deploy \
+          set -euo pipefail
+
+          DEPLOYMENT_URL="$(vercel deploy \
             --prebuilt \
             --prod \
             --yes \
-            --token="$VERCEL_TOKEN")
+            --token="$VERCEL_TOKEN")"
 
-          echo "🚀 Frontend deployed successfully."
-          echo "🌐 Deployment URL: $DEPLOYMENT_URL"
+          if [[ -z "$DEPLOYMENT_URL" ]]; then
+            echo "::error::Vercel did not return a deployment URL."
+            exit 1
+          fi
 
-  # ============================================================
-  # BACKEND DEPLOYMENT - RENDER / VPS
-  # ============================================================
+          echo "Frontend deployment completed."
+          echo "Deployment URL: $DEPLOYMENT_URL"
 
   deploy-backend:
     name: Deploy Spring Boot Backend
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 5
 
     env:
       RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
       BACKEND_HEALTHCHECK_URL: ${{ secrets.BACKEND_HEALTHCHECK_URL }}
 
     steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
 
-      # --------------------------------------------------------
-      # Trigger Backend Deployment
-      # --------------------------------------------------------
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
 
-      - name: Trigger Production Backend Deployment
+      - name: Run Backend Unit Tests
+        working-directory: ./apps/api
+        run: ./mvnw clean test
+
+      - name: Check Backend Deployment Configuration
         shell: bash
         run: |
-          set -e
+          set -euo pipefail
 
-          if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
-            echo "⚠️ RENDER_DEPLOY_HOOK_URL is not configured."
-            echo "Backend deployment was skipped."
-            exit 0
+          if [[ -z "${RENDER_DEPLOY_HOOK_URL:-}" ]]; then
+            echo "Backend deployment skipped: Render hook is not configured."
+            echo "backend_status=skipped" >> "$GITHUB_OUTPUT"
+          else
+            echo "Render deployment hook is configured."
+            echo "backend_status=configured" >> "$GITHUB_OUTPUT"
           fi
+        id: config
 
-          echo "🚀 Triggering Spring Boot production deployment..."
+      - name: Trigger Render Deployment
+        if: steps.config.outputs.backend_status == 'configured'
+        shell: bash
+        run: |
+          set -euo pipefail
 
-          HTTP_STATUS=$(curl \
+          HTTP_STATUS="$(curl \
             --silent \
             --show-error \
             --location \
@@ -183,69 +174,53 @@ jobs:
             --retry-connrefused \
             --max-time 30 \
             --request POST \
-            --output /tmp/render-response.txt \
+            --output /dev/null \
             --write-out "%{http_code}" \
-            "$RENDER_DEPLOY_HOOK_URL")
+            "$RENDER_DEPLOY_HOOK_URL")"
 
-          echo "Deployment webhook returned HTTP status: $HTTP_STATUS"
-
-          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
-            echo "✅ Backend deployment triggered successfully."
-          else
-            echo "❌ Backend deployment webhook failed."
-            echo "Response:"
-            cat /tmp/render-response.txt
+          if [[ "$HTTP_STATUS" -lt 200 || "$HTTP_STATUS" -ge 300 ]]; then
+            echo "::error::Render deployment request failed with HTTP $HTTP_STATUS."
             exit 1
           fi
 
-      # --------------------------------------------------------
-      # Backend Health Check
-      # --------------------------------------------------------
+          echo "Render deployment trigger accepted."
 
       - name: Verify Backend Health
+        if: steps.config.outputs.backend_status == 'configured' && env.BACKEND_HEALTHCHECK_URL != ''
         shell: bash
+        timeout-minutes: 5
         run: |
-          set -e
+          set -euo pipefail
 
-          if [ -z "$RENDER_DEPLOY_HOOK_URL" ]; then
-            echo "ℹ️ Backend deployment was skipped (no RENDER_DEPLOY_HOOK_URL). Skipping health probe."
-            exit 0
-          fi
+          for attempt in {1..12}; do
+            HTTP_CODE="$(curl \
+              --silent \
+              --max-time 10 \
+              --output /dev/null \
+              --write-out "%{http_code}" \
+              "$BACKEND_HEALTHCHECK_URL" || true)"
 
-          if [ -z "$BACKEND_HEALTHCHECK_URL" ]; then
-            echo "ℹ️ BACKEND_HEALTHCHECK_URL is not configured. Skipping health probe."
-            exit 0
-          fi
-
-          echo "🔍 Probing backend health endpoint..."
-          MAX_ATTEMPTS=12
-          ATTEMPT=1
-          SUCCESS=0
-
-          while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
-            echo "Attempt $ATTEMPT of $MAX_ATTEMPTS (waiting for deployment)..."
-            HTTP_CODE=$(curl --silent --show-error --max-time 10 --write-out "%{http_code}" --output /dev/null "$BACKEND_HEALTHCHECK_URL" || true)
-            if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 400 ]; then
-              echo "✅ Health check succeeded with HTTP $HTTP_CODE!"
-              SUCCESS=1
-              break
+            if [[ "$HTTP_CODE" =~ ^[0-9]{3}$ ]] &&
+               [[ "$HTTP_CODE" -ge 200 && "$HTTP_CODE" -lt 400 ]]; then
+              echo "Backend health check passed with HTTP $HTTP_CODE."
+              exit 0
             fi
+
+            echo "Health check attempt $attempt/12 failed; waiting 10 seconds."
             sleep 10
-            ATTEMPT=$((ATTEMPT + 1))
           done
 
-          if [ $SUCCESS -ne 1 ]; then
-            echo "❌ Backend health check failed: endpoint did not return healthy HTTP status within timeout window."
-            exit 1
-          fi
+          echo "::error::Backend health check failed after 12 attempts."
+          exit 1
 
-  # ============================================================
-  # DEPLOYMENT SUMMARY
-  # ============================================================
+      - name: Report Missing Health Check
+        if: steps.config.outputs.backend_status == 'configured' && env.BACKEND_HEALTHCHECK_URL == ''
+        run: echo "WARNING: Backend deployment triggered, but no health-check URL is configured."
 
   deployment-summary:
     name: Production Deployment Summary
     runs-on: ubuntu-latest
+    timeout-minutes: 2
 
     needs:
       - deploy-frontend
@@ -254,35 +229,41 @@ jobs:
     if: always()
 
     steps:
-
       - name: Generate Deployment Summary
+        shell: bash
+        env:
+          FRONTEND_RESULT: ${{ needs.deploy-frontend.result }}
+          BACKEND_RESULT: ${{ needs.deploy-backend.result }}
         run: |
-          echo "# 🚀 QueueCut Production Deployment" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## Frontend Deployment" >> $GITHUB_STEP_SUMMARY
-          echo "Status: ${{ needs.deploy-frontend.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## Backend Deployment" >> $GITHUB_STEP_SUMMARY
-          echo "Status: ${{ needs.deploy-backend.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Repository: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
-          echo "Branch: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
-          echo "Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
-          echo "Triggered by: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          {
+            echo "# QueueCut Production Deployment"
+            echo
+            echo "## Frontend"
+            echo "Status: $FRONTEND_RESULT"
+            echo
+            echo "## Backend"
+            echo "Status: $BACKEND_RESULT"
+            echo
+            echo "Commit: $GITHUB_SHA"
+            echo "Branch: $GITHUB_REF_NAME"
+          } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Check Deployment Status
-        if: |
-          needs.deploy-frontend.result != 'success' ||
-          (needs.deploy-backend.result != 'success' &&
-           needs.deploy-backend.result != 'skipped')
+      - name: Enforce Deployment Success
+        shell: bash
+        env:
+          FRONTEND_RESULT: ${{ needs.deploy-frontend.result }}
+          BACKEND_RESULT: ${{ needs.deploy-backend.result }}
         run: |
-          echo "❌ One or more production deployments failed."
-          exit 1
+          set -euo pipefail
 
-      - name: Confirm Successful Deployment
-        if: |
-          needs.deploy-frontend.result == 'success' &&
-          (needs.deploy-backend.result == 'success' ||
-           needs.deploy-backend.result == 'skipped')
-        run: |
-          echo "🎉 QueueCut production deployment completed successfully."
+          if [[ "$FRONTEND_RESULT" != "success" ]]; then
+            echo "::error::Frontend deployment did not succeed."
+            exit 1
+          fi
+
+          if [[ "$BACKEND_RESULT" != "success" ]]; then
+            echo "::error::Backend deployment did not complete successfully."
+            exit 1
+          fi
+
+          echo "All required deployment jobs completed successfully."

@@ -8,7 +8,9 @@ import java.io.File;
 import java.nio.file.Files;
 import java.util.List;
 
-@SpringBootApplication
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+
+@SpringBootApplication(exclude = {UserDetailsServiceAutoConfiguration.class})
 @org.springframework.boot.context.properties.ConfigurationPropertiesScan
 @EnableAsync
 public class QueueCutApplication {

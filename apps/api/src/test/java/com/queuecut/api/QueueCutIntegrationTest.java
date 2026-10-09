@@ -238,7 +238,6 @@ class QueueCutIntegrationTest {
         List<Object> tripsB = (List<Object>) ((Map<String, Object>) mapper.readValue(resultB.getResponse().getContentAsString(), Map.class)).get("data");
 
         // Extract IDs from A's trips
-        @SuppressWarnings("unchecked")
         Set<String> aTripIds = new HashSet<>();
         for (Object t : tripsA) {
             @SuppressWarnings("unchecked")
