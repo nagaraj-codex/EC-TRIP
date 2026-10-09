@@ -55,7 +55,7 @@ export default function LocationSelector({ cities, value, onChange }: LocationSe
         aria-expanded={isOpen}
         aria-label={`Current city: ${value}. Choose a different city.`}
         onClick={() => setIsOpen((open) => !open)}
-        className="mt-2 flex min-h-6 w-full items-center justify-between gap-2 text-left text-[15px] font-bold text-slate-900 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="mt-2 flex min-h-6 w-full items-center justify-between gap-2 text-left text-[15px] font-bold text-slate-900 focus-visible:rounded-xs focus-visible:ring-2 focus-visible:ring-blue-500"
       >
         <span className="truncate">{value}</span>
         <ChevronDown className="h-4 w-4 shrink-0 text-slate-400" aria-hidden="true" />
@@ -73,7 +73,7 @@ export default function LocationSelector({ cities, value, onChange }: LocationSe
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search city"
               aria-label="Search origin city"
-              className="min-w-0 flex-1 border-0 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
+              className="min-w-0 flex-1 border-0 bg-transparent text-sm text-slate-900 outline-hidden placeholder:text-slate-400"
             />
           </label>
 

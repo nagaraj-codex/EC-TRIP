@@ -44,7 +44,7 @@ export default function ParkIntelligencePreview({ park }: ParkIntelligencePrevie
           <p className="text-xs font-bold uppercase text-blue-700">Catalog data</p>
           <h2 id="park-intelligence-heading" className="mt-1 text-xl font-extrabold text-slate-900">Park intelligence</h2>
         </div>
-        <button type="button" onClick={() => navigate(`/app/explore/${park.park_id}`)} className="inline-flex min-h-9 items-center gap-1 text-sm font-semibold text-blue-700 hover:text-blue-900 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-blue-500">
+        <button type="button" onClick={() => navigate(`/app/explore/${park.park_id}`)} className="inline-flex min-h-9 items-center gap-1 text-sm font-semibold text-blue-700 hover:text-blue-900 focus-visible:rounded-xs focus-visible:ring-2 focus-visible:ring-blue-500">
           Full park details <ArrowRight className="h-4 w-4" />
         </button>
       </div>

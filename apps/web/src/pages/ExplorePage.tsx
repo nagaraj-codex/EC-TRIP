@@ -112,7 +112,7 @@ export default function ExplorePage() {
           placeholder="Search parks, cities or attractions"
           value={rawSearch}
           onChange={(e) => setRawSearch(e.target.value)}
-          className="w-full pl-12 pr-12 h-14 rounded-2xl bg-white border border-slate-200 text-slate-900 text-sm placeholder:text-slate-400 focus:border-qc-blue-500 focus:ring-2 focus:ring-qc-blue-500/20 outline-none transition-all shadow-sm"
+          className="w-full pl-12 pr-12 h-14 rounded-2xl bg-white border border-slate-200 text-slate-900 text-sm placeholder:text-slate-400 focus:border-qc-blue-500 focus:ring-2 focus:ring-qc-blue-500/20 outline-hidden transition-all shadow-xs"
         />
         {rawSearch && (
           <button onClick={() => setRawSearch("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
@@ -202,9 +202,9 @@ export default function ExplorePage() {
               <div key={i} className="qc-card-white rounded-2xl overflow-hidden">
                 <div className="h-40 bg-slate-100 animate-pulse" />
                 <div className="p-4 space-y-2">
-                  <div className="h-4 bg-slate-100 rounded w-3/4 animate-pulse" />
-                  <div className="h-3 bg-slate-100 rounded w-1/2 animate-pulse" />
-                  <div className="h-8 bg-slate-100 rounded mt-3 animate-pulse" />
+                  <div className="h-4 bg-slate-100 rounded-sm w-3/4 animate-pulse" />
+                  <div className="h-3 bg-slate-100 rounded-sm w-1/2 animate-pulse" />
+                  <div className="h-8 bg-slate-100 rounded-sm mt-3 animate-pulse" />
                 </div>
               </div>
             ))}

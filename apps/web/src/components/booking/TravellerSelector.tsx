@@ -42,7 +42,7 @@ export default function TravellerSelector({ counts, onChange }: TravellerSelecto
         aria-expanded={isOpen}
         aria-label={`Travellers: ${total} ${total === 1 ? "ticket" : "tickets"}, ${summary}. Adjust travellers.`}
         onClick={() => setIsOpen((open) => !open)}
-        className="mt-2 flex min-h-6 w-full items-center justify-between gap-2 text-left text-[15px] font-bold text-slate-900 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="mt-2 flex min-h-6 w-full items-center justify-between gap-2 text-left text-[15px] font-bold text-slate-900 focus-visible:rounded-xs focus-visible:ring-2 focus-visible:ring-blue-500"
       >
         <span>{total} {total === 1 ? "ticket" : "tickets"}</span>
         <ChevronDown className="h-4 w-4 shrink-0 text-slate-400" aria-hidden="true" />

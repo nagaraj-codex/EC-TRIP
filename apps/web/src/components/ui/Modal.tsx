@@ -70,9 +70,9 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[300] flex items-end md:items-center justify-center pointer-events-none">
+    <div className="fixed inset-0 z-300 flex items-end md:items-center justify-center pointer-events-none">
       <div 
-        className="absolute inset-0 bg-[#0F172A]/40 backdrop-blur-sm pointer-events-auto transition-opacity"
+        className="absolute inset-0 bg-surface-900/40 backdrop-blur-xs pointer-events-auto transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -82,16 +82,16 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
         aria-modal="true"
         aria-labelledby="modal-title"
         tabIndex={-1}
-        className="relative bg-[var(--qc-surface)] w-full md:max-w-[480px] rounded-t-[var(--qc-radius-hero)] md:rounded-[var(--qc-radius-hero)] shadow-[var(--qc-shadow-raised)] flex flex-col pointer-events-auto max-h-[90vh] focus-visible:outline-none"
+        className="relative bg-(--qc-surface) w-full md:max-w-[480px] rounded-t-(--qc-radius-hero) md:rounded-(--qc-radius-hero) shadow-(--qc-shadow-raised) flex flex-col pointer-events-auto max-h-[90vh] focus-visible:outline-hidden"
       >
-        <div className="flex items-center justify-between p-4 md:p-6 border-b border-[var(--qc-border)] shrink-0">
-          <h2 id="modal-title" className="text-[18px] md:text-[22px] font-semibold text-[var(--qc-ink)]">
+        <div className="flex items-center justify-between p-4 md:p-6 border-b border-(--qc-border) shrink-0">
+          <h2 id="modal-title" className="text-[18px] md:text-[22px] font-semibold text-(--qc-ink)">
             {title}
           </h2>
           <button
             onClick={onClose}
             aria-label="Close dialog"
-            className="p-2 -mr-2 text-[var(--qc-muted)] hover:text-[var(--qc-ink)] rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--qc-focus)]"
+            className="p-2 -mr-2 text-(--qc-muted) hover:text-(--qc-ink) rounded-full transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--qc-focus)"
           >
             <Icons.X className="w-6 h-6" />
           </button>

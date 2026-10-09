@@ -82,7 +82,7 @@ export default function ParkUpdates({ parkId }: { parkId: string }) {
         <Newspaper className="h-4 w-4 text-blue-300" aria-hidden="true" /> Official park updates
       </h2>
       {isLoading ? (
-        <div role="status" className="mt-3 space-y-2"><div className="h-4 w-3/4 animate-pulse rounded bg-slate-800" /><div className="h-3 w-1/2 animate-pulse rounded bg-slate-800" /></div>
+        <div role="status" className="mt-3 space-y-2"><div className="h-4 w-3/4 animate-pulse rounded-sm bg-slate-800" /><div className="h-3 w-1/2 animate-pulse rounded-sm bg-slate-800" /></div>
       ) : error ? (
         <div className="mt-3"><ErrorState title="Park updates could not be loaded." description={error} tone="dark" onRetry={() => setRetry((count) => count + 1)} /></div>
       ) : updates.length > 0 ? (

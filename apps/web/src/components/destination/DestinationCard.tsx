@@ -97,7 +97,7 @@ export default function DestinationCard({
           </div>
         )}
         {distance !== undefined && (
-          <div className="absolute bottom-3 left-3 z-10 px-2 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-slate-700 text-[10px] font-semibold border border-slate-200">
+          <div className="absolute bottom-3 left-3 z-10 px-2 py-0.5 rounded-full bg-white/90 backdrop-blur-xs text-slate-700 text-[10px] font-semibold border border-slate-200">
             📍 {distance} km
           </div>
         )}

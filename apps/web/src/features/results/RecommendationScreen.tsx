@@ -93,7 +93,7 @@ export default function RecommendationScreen() {
       {/* Hero Recommendation Card */}
       <div className="card-gradient relative overflow-hidden space-y-4">
         <div className="flex items-center justify-between gap-2">
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-brand-500 text-white shadow-xs">
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-brand-500 text-white shadow-2xs">
             Optimal Visiting Day
           </span>
           <span className="text-xs font-semibold text-brand-300">{displayName}</span>

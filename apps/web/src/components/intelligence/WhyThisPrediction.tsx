@@ -33,7 +33,7 @@ export default function WhyThisPrediction({ reasoning }: WhyThisPredictionProps)
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <p className="text-slate-400 text-xs leading-relaxed mt-3 pt-3 border-t border-white/[0.06]">
+            <p className="text-slate-400 text-xs leading-relaxed mt-3 pt-3 border-t border-white/6">
               {reasoning}
             </p>
           </motion.div>

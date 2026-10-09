@@ -299,7 +299,7 @@ export default function PlanMyVisitPage() {
                 min={minDate}
                 max={maxDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 text-sm focus:border-qc-blue-500 focus:ring-2 focus:ring-qc-blue-500/20 outline-none transition-all"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 text-sm focus:border-qc-blue-500 focus:ring-2 focus:ring-qc-blue-500/20 outline-hidden transition-all"
               />
               <p className="text-slate-400 text-xs mt-2">You can plan up to 3 months ahead.</p>
             </div>

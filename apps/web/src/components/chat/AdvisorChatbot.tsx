@@ -247,7 +247,7 @@ export default function AdvisorChatbot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 disabled={loading}
-                className="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-800/60 border border-white/10 text-white text-xs placeholder:text-slate-500 focus:border-qc-teal-500/40 outline-none transition-all disabled:opacity-50"
+                className="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-800/60 border border-white/10 text-white text-xs placeholder:text-slate-500 focus:border-qc-teal-500/40 outline-hidden transition-all disabled:opacity-50"
               />
               <button
                 type="submit"

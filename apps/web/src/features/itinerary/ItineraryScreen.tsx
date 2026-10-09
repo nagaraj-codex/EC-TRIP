@@ -157,7 +157,7 @@ export default function ItineraryScreen() {
       {/* Hero Card */}
       <div className="card-gradient relative overflow-hidden">
         <div className="flex items-center justify-between mb-2">
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-brand-600 text-white shadow-xs">
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-brand-600 text-white shadow-2xs">
             Optimized Schedule
           </span>
           <span className="text-xs font-semibold text-slate-300">

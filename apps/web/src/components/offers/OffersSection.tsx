@@ -174,7 +174,7 @@ export default function OffersSection({ parks }: { parks: ParkSummary[] }) {
               <p className="mt-1 line-clamp-3 text-xs leading-relaxed text-slate-600">{item.detail}</p>
               <div className="mt-auto flex items-end justify-between gap-2 pt-3">
                 <span className="text-[10px] text-slate-500">{sourceLabel(item.dataStatus, item.verifiedAt)}</span>
-                <button type="button" onClick={() => navigate(`/app/explore/${item.parkId}`)} className="inline-flex min-h-8 shrink-0 items-center gap-1 text-xs font-semibold text-blue-700 hover:text-blue-900 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-blue-500">
+                <button type="button" onClick={() => navigate(`/app/explore/${item.parkId}`)} className="inline-flex min-h-8 shrink-0 items-center gap-1 text-xs font-semibold text-blue-700 hover:text-blue-900 focus-visible:rounded-xs focus-visible:ring-2 focus-visible:ring-blue-500">
                   Park details <ArrowRight className="h-3.5 w-3.5" />
                 </button>
               </div>

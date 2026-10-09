@@ -45,7 +45,7 @@ export const Tabs: React.FC<TabsProps> = ({ items, defaultSelectedId, className 
       <div
         role="tablist"
         aria-orientation="horizontal"
-        className="flex overflow-x-auto no-scrollbar border-b border-[var(--qc-border)]"
+        className="flex overflow-x-auto no-scrollbar border-b border-(--qc-border)"
       >
         {items.map((tab, index) => {
           const isSelected = selectedId === tab.id;
@@ -62,15 +62,15 @@ export const Tabs: React.FC<TabsProps> = ({ items, defaultSelectedId, className 
               onKeyDown={(e) => handleKeyDown(e, index)}
               className={`
                 relative px-4 h-[48px] flex items-center justify-center text-[14px] font-medium whitespace-nowrap
-                transition-colors duration-[var(--qc-duration-fast)]
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--qc-focus)] focus-visible:ring-inset
-                ${isSelected ? 'text-[var(--qc-primary)] bg-[var(--qc-primary-bg)]' : 'text-[var(--qc-ink-2)] hover:text-[var(--qc-ink)] hover:bg-[var(--qc-bg)]'}
+                transition-colors duration-(--qc-duration-fast)
+                focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--qc-focus) focus-visible:ring-inset
+                ${isSelected ? 'text-(--qc-primary) bg-(--qc-primary-bg)' : 'text-(--qc-ink-2) hover:text-(--qc-ink) hover:bg-(--qc-bg)'}
               `}
             >
               {tab.label}
               {isSelected && (
                 <span 
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-[var(--qc-primary)] transition-transform duration-[var(--qc-duration-panel)] origin-left motion-reduce:transition-none" 
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-(--qc-primary) transition-transform duration-(--qc-duration-panel) origin-left motion-reduce:transition-none" 
                 />
               )}
             </button>
@@ -86,7 +86,7 @@ export const Tabs: React.FC<TabsProps> = ({ items, defaultSelectedId, className 
             aria-labelledby={`${tabsId}-tab-${tab.id}`}
             hidden={selectedId !== tab.id}
             tabIndex={0}
-            className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--qc-focus)] rounded-sm"
+            className="focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--qc-focus) rounded-xs"
           >
             {selectedId === tab.id && tab.content}
           </div>

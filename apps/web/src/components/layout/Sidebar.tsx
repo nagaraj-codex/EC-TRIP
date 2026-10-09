@@ -106,7 +106,7 @@ export default function Sidebar({ isOpen, onClose, activeView, onNavigate }: Sid
               <span className="font-black text-base tracking-tight text-white">
                 QueueCut
               </span>
-              <span className="text-[9px] uppercase font-extrabold bg-brand-500/20 text-brand-300 border border-brand-400/30 px-1.5 py-0.5 rounded">
+              <span className="text-[9px] uppercase font-extrabold bg-brand-500/20 text-brand-300 border border-brand-400/30 px-1.5 py-0.5 rounded-sm">
                 Navigation
               </span>
             </div>
@@ -174,7 +174,7 @@ export default function Sidebar({ isOpen, onClose, activeView, onNavigate }: Sid
         {/* Bottom User Card / Guest Promo */}
         <div className="p-3 border-t border-slate-800 bg-slate-950/60">
           {user && !isGuest ? (
-            <div className="bg-slate-900 p-3 rounded-2xl border border-slate-800 shadow-sm flex items-center justify-between">
+            <div className="bg-slate-900 p-3 rounded-2xl border border-slate-800 shadow-xs flex items-center justify-between">
               <div className="flex items-center gap-2.5 overflow-hidden">
                 <img
                   src={

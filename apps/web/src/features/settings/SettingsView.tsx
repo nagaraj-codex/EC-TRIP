@@ -135,7 +135,7 @@ export default function SettingsView() {
       </div>
 
       {savedSuccess && (
-        <div className="p-3.5 bg-emerald-500/20 border border-emerald-500/40 rounded-2xl text-xs text-emerald-300 flex items-center gap-2 shadow-xs">
+        <div className="p-3.5 bg-emerald-500/20 border border-emerald-500/40 rounded-2xl text-xs text-emerald-300 flex items-center gap-2 shadow-2xs">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>Profile preferences updated on this device.</span>
         </div>

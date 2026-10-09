@@ -18,7 +18,7 @@ export const Avatar: React.FC<AvatarProps> = ({ src, name = 'User', className = 
 
   return (
     <div
-      className={`w-10 h-10 rounded-full flex items-center justify-center bg-[var(--qc-bg)] border border-[var(--qc-border)] overflow-hidden shrink-0 ${className}`}
+      className={`w-10 h-10 rounded-full flex items-center justify-center bg-(--qc-bg) border border-(--qc-border) overflow-hidden shrink-0 ${className}`}
       {...props}
     >
       {src && !error ? (
@@ -30,7 +30,7 @@ export const Avatar: React.FC<AvatarProps> = ({ src, name = 'User', className = 
           className="w-full h-full object-cover"
         />
       ) : (
-        <span className="text-[14px] font-semibold text-[var(--qc-ink-2)]" aria-label={name}>
+        <span className="text-[14px] font-semibold text-(--qc-ink-2)" aria-label={name}>
           {name ? getInitials(name) : <Icons.User className="w-5 h-5" />}
         </span>
       )}

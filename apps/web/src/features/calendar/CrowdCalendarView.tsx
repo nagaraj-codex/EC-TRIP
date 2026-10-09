@@ -388,7 +388,7 @@ export default function CrowdCalendarView({ onSelectDate }: CrowdCalendarViewPro
               }`}
             >
               {day.isRecommended && (
-                <div className="absolute -top-2.5 right-2 px-2 py-0.5 rounded-full text-[9px] font-black bg-linear-to-r from-amber-500 to-orange-500 text-white flex items-center gap-0.5 shadow-xs">
+                <div className="absolute -top-2.5 right-2 px-2 py-0.5 rounded-full text-[9px] font-black bg-linear-to-r from-amber-500 to-orange-500 text-white flex items-center gap-0.5 shadow-2xs">
                   <Star className="w-2.5 h-2.5 fill-current" />
                   <span>BEST</span>
                 </div>
@@ -432,7 +432,7 @@ export default function CrowdCalendarView({ onSelectDate }: CrowdCalendarViewPro
                 {activeDay.dayName}, {activeDay.displayDate} Intelligence
               </h2>
               {activeDay.isRecommended && (
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1 shadow-xs">
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1 shadow-2xs">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                   QueueCut Recommended Day
                 </span>

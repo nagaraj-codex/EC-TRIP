@@ -14,14 +14,14 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   ...props 
 }) => {
   const radiuses = {
-    sm: 'rounded-sm',
-    md: 'rounded-[var(--qc-radius-input)]',
+    sm: 'rounded-xs',
+    md: 'rounded-(--qc-radius-input)',
     full: 'rounded-full',
   };
 
   return (
     <div
-      className={`bg-[var(--qc-border)] motion-safe:animate-pulse ${radiuses[radius]} ${className}`}
+      className={`bg-(--qc-border) motion-safe:animate-pulse ${radiuses[radius]} ${className}`}
       style={{ width, height, ...props.style }}
       aria-hidden="true"
       {...props}

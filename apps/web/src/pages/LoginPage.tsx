@@ -133,7 +133,7 @@ export default function LoginPage() {
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all";
+    "w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 placeholder:text-slate-400 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-hidden transition-all";
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-slate-50 overflow-auto">
@@ -151,10 +151,10 @@ export default function LoginPage() {
               className="w-full max-w-sm flex flex-col items-center"
             >
               {/* Card */}
-              <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-8 w-full">
+              <div className="bg-white border border-slate-200 rounded-2xl shadow-xs p-8 w-full">
                 {/* Logo */}
                 <div className="flex justify-center mb-6">
-                  <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-qc-blue-500 to-qc-blue-700 flex items-center justify-center shadow-sm">
+                  <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-qc-blue-500 to-qc-blue-700 flex items-center justify-center shadow-xs">
                     <span className="text-white text-2xl font-display font-extrabold">Q</span>
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export default function LoginPage() {
                   <button
                     onClick={handleGoogleLogin}
                     disabled={isLoading}
-                    className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-xl bg-white text-slate-800 font-semibold text-sm hover:bg-slate-50 border border-slate-200 shadow-sm active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-xl bg-white text-slate-800 font-semibold text-sm hover:bg-slate-50 border border-slate-200 shadow-xs active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <svg className="w-5 h-5" viewBox="0 0 24 24">
                       <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
@@ -249,7 +249,7 @@ export default function LoginPage() {
                 <ChevronLeft className="w-4 h-4" /> Back
               </button>
 
-              <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-8">
+              <div className="bg-white border border-slate-200 rounded-2xl shadow-xs p-8">
                 <h2 className="font-display font-extrabold text-xl text-slate-900 mb-1">Sign In</h2>
                 <p className="text-slate-500 text-sm mb-6">Welcome back, park explorer!</p>
 
@@ -329,7 +329,7 @@ export default function LoginPage() {
                 <ChevronLeft className="w-4 h-4" /> Back
               </button>
 
-              <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-8">
+              <div className="bg-white border border-slate-200 rounded-2xl shadow-xs p-8">
                 <h2 className="font-display font-extrabold text-xl text-slate-900 mb-1">Create Account</h2>
                 <p className="text-slate-500 text-sm mb-6">Start planning smarter park visits.</p>
 
@@ -407,7 +407,7 @@ export default function LoginPage() {
                 <ChevronLeft className="w-4 h-4" /> Back to Sign In
               </button>
 
-              <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-8">
+              <div className="bg-white border border-slate-200 rounded-2xl shadow-xs p-8">
                 <h2 className="font-display font-extrabold text-xl text-slate-900 mb-1">Reset Password</h2>
                 <p className="text-slate-500 text-sm mb-6">Enter your registered email to receive recovery instructions.</p>
 

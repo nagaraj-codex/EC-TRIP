@@ -72,7 +72,7 @@ export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
               <div>
                 <div className="flex items-center gap-1.5">
                   <h4 className="text-xs font-black uppercase tracking-wide">{latestAlert.title}</h4>
-                  <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-black/30">
+                  <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-sm bg-black/30">
                     {latestAlert.badge || "WEBSOCKET"}
                   </span>
                 </div>
@@ -129,7 +129,7 @@ export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
             <div className="relative" ref={parkRef}>
               <button
                 onClick={() => setParkDropdownOpen(!parkDropdownOpen)}
-                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 hover:bg-slate-850 text-xs font-semibold text-slate-200 border border-slate-800 hover:border-slate-700 transition-all shadow-sm"
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 hover:bg-slate-850 text-xs font-semibold text-slate-200 border border-slate-800 hover:border-slate-700 transition-all shadow-xs"
               >
                 <MapPin className="w-3.5 h-3.5 text-brand-400" />
                 <span>{currentPark.name}</span>
@@ -170,7 +170,7 @@ export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
             <div
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-extrabold border transition-all ${
                 isConnected
-                  ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30 shadow-xs"
+                  ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30 shadow-2xs"
                   : "bg-slate-800/60 text-slate-400 border-slate-700"
               }`}
               title={isConnected ? "Live WebSocket Telemetry connected" : "Connecting to telemetry..."}
@@ -246,7 +246,7 @@ export default function TopBar({ onToggleSidebar, onNavigate }: TopBarProps) {
                               {notif.title}
                             </span>
                             {notif.badge && (
-                              <span className="px-1.5 py-0.5 text-[9px] font-bold bg-slate-800 text-slate-300 rounded border border-slate-700">
+                              <span className="px-1.5 py-0.5 text-[9px] font-bold bg-slate-800 text-slate-300 rounded-sm border border-slate-700">
                                 {notif.badge}
                               </span>
                             )}

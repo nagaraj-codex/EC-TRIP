@@ -15,17 +15,17 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className = '', variant = 'primary', size = 'md', isLoading = false, fullWidth = false, leftIcon, rightIcon, children, disabled, ...props }, ref) => {
-    const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-[var(--qc-radius-button)] transition-[background,transform,box-shadow] duration-[var(--qc-duration-fast)] ease-[var(--qc-ease-out)] select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--qc-focus)] focus-visible:ring-offset-[var(--qc-surface)]';
+    const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-(--qc-radius-button) transition-[background,transform,box-shadow] duration-(--qc-duration-fast) ease-(--qc-ease-out) select-none focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--qc-focus) focus-visible:ring-offset-(--qc-surface)';
     
     const sizeStyles = size === 'lg' ? 'h-[48px] px-6 text-[16px]' : 'h-[44px] px-4 text-[16px]';
     const widthStyles = fullWidth ? 'w-full' : '';
     const disabledStyles = (disabled || isLoading) ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'active:scale-[0.98]';
 
     const variants = {
-      primary: 'bg-[var(--qc-primary)] text-white hover:bg-[var(--qc-primary-h)] active:bg-[var(--qc-primary-a)]',
-      secondary: 'bg-[var(--qc-surface)] text-[var(--qc-ink)] border border-[var(--qc-border)] hover:bg-[var(--qc-bg)] active:bg-[var(--qc-border)]',
-      ghost: 'bg-transparent text-[var(--qc-primary)] hover:bg-[var(--qc-primary-bg)] active:bg-[#e0e7ff]',
-      danger: 'bg-[var(--qc-danger)] text-white hover:bg-[#991b1b] active:bg-[#7f1d1d]',
+      primary: 'bg-(--qc-primary) text-white hover:bg-(--qc-primary-h) active:bg-(--qc-primary-a)',
+      secondary: 'bg-(--qc-surface) text-(--qc-ink) border border-(--qc-border) hover:bg-(--qc-bg) active:bg-(--qc-border)',
+      ghost: 'bg-transparent text-(--qc-primary) hover:bg-(--qc-primary-bg) active:bg-brand-100',
+      danger: 'bg-(--qc-danger) text-white hover:bg-crowd-extreme active:bg-[#7f1d1d]',
     };
 
     return (

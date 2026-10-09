@@ -44,7 +44,7 @@ export default function AuthModal() {
           </div>
           <div className="flex items-center justify-center gap-1.5">
             <span className="font-black text-xl tracking-tight text-white">QueueCut</span>
-            <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-brand-500/20 text-brand-300 border border-brand-400/30">
+            <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-sm bg-brand-500/20 text-brand-300 border border-brand-400/30">
               AI Auth
             </span>
           </div>

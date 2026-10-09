@@ -120,7 +120,7 @@ const ToastCard = memo(
               <span className="text-xs font-bold text-white truncate">{toast.title}</span>
               {toast.badge && (
                 <span
-                  className={`text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded border ${theme.badgeStyle} shrink-0`}
+                  className={`text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded-sm border ${theme.badgeStyle} shrink-0`}
                 >
                   {toast.badge}
                 </span>

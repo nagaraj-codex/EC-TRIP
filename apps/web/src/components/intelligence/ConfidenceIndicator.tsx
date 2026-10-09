@@ -21,7 +21,7 @@ export default function ConfidenceIndicator({
         {[1, 2, 3].map((bar) => (
           <div
             key={bar}
-            className={`w-1 rounded-sm transition-colors duration-300 ${
+            className={`w-1 rounded-xs transition-colors duration-300 ${
               bar <= c.bars ? c.color : "bg-slate-700"
             }`}
             style={{ height: `${(bar / 3) * 100}%` }}

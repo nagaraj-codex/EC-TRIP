@@ -44,7 +44,7 @@ export default function ParkSelector({ parks, value, onChange, disabled = false 
         aria-label={`Destination park: ${selectedPark?.name ?? "Choose a park"}. Select a park.`}
         disabled={disabled || parks.length === 0}
         onClick={() => setIsOpen((open) => !open)}
-        className="mt-2 flex min-h-6 w-full items-center justify-between gap-2 text-left text-[15px] font-bold text-slate-900 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:text-slate-400"
+        className="mt-2 flex min-h-6 w-full items-center justify-between gap-2 text-left text-[15px] font-bold text-slate-900 focus-visible:rounded-xs focus-visible:ring-2 focus-visible:ring-blue-500 disabled:cursor-not-allowed disabled:text-slate-400"
       >
         <span className="truncate">{selectedPark?.name ?? (disabled ? "Loading parks..." : "No parks available")}</span>
         <ChevronDown className="h-4 w-4 shrink-0 text-slate-400" aria-hidden="true" />
@@ -64,7 +64,7 @@ export default function ParkSelector({ parks, value, onChange, disabled = false 
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search by park, city, or state"
               aria-label="Search parks by name, city, or state"
-              className="min-w-0 flex-1 border-0 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
+              className="min-w-0 flex-1 border-0 bg-transparent text-sm text-slate-900 outline-hidden placeholder:text-slate-400"
             />
           </label>
           <div className="mt-2 max-h-64 overflow-y-auto" role="listbox" aria-label="Park search results">

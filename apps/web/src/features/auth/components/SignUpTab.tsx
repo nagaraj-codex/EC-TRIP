@@ -74,7 +74,7 @@ export const SignUpTab: React.FC<SignUpTabProps> = ({ onSwitchToSignin, setError
               placeholder="First name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#3897f0]"
+              className="w-full px-3.5 py-2.5 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-[#3897f0]"
               required
             />
             <input
@@ -82,7 +82,7 @@ export const SignUpTab: React.FC<SignUpTabProps> = ({ onSwitchToSignin, setError
               placeholder="Surname"
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#3897f0]"
+              className="w-full px-3.5 py-2.5 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-[#3897f0]"
               required
             />
           </div>
@@ -97,7 +97,7 @@ export const SignUpTab: React.FC<SignUpTabProps> = ({ onSwitchToSignin, setError
             <select
               value={dobDay}
               onChange={(e) => setDobDay(e.target.value)}
-              className="w-full px-2.5 py-2 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white focus:outline-none focus:border-[#3897f0]"
+              className="w-full px-2.5 py-2 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white focus:outline-hidden focus:border-[#3897f0]"
             >
               {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
                 <option key={d} value={d} className="bg-[#0b1326] text-white">
@@ -109,7 +109,7 @@ export const SignUpTab: React.FC<SignUpTabProps> = ({ onSwitchToSignin, setError
             <select
               value={dobMonth}
               onChange={(e) => setDobMonth(e.target.value)}
-              className="w-full px-2.5 py-2 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white focus:outline-none focus:border-[#3897f0]"
+              className="w-full px-2.5 py-2 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white focus:outline-hidden focus:border-[#3897f0]"
             >
               {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map(
                 (m) => (
@@ -123,7 +123,7 @@ export const SignUpTab: React.FC<SignUpTabProps> = ({ onSwitchToSignin, setError
             <select
               value={dobYear}
               onChange={(e) => setDobYear(e.target.value)}
-              className="w-full px-2.5 py-2 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white focus:outline-none focus:border-[#3897f0]"
+              className="w-full px-2.5 py-2 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white focus:outline-hidden focus:border-[#3897f0]"
             >
               {Array.from({ length: 65 }, (_, i) => 2018 - i).map((y) => (
                 <option key={y} value={y} className="bg-[#0b1326] text-white">
@@ -143,7 +143,7 @@ export const SignUpTab: React.FC<SignUpTabProps> = ({ onSwitchToSignin, setError
             placeholder="Mobile number or email address"
             value={contactInfo}
             onChange={(e) => setContactInfo(e.target.value)}
-            className="w-full px-3.5 py-2.5 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#3897f0]"
+            className="w-full px-3.5 py-2.5 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-[#3897f0]"
             required
           />
           <p className="text-[10px] text-slate-400 mt-1 leading-tight">
@@ -159,7 +159,7 @@ export const SignUpTab: React.FC<SignUpTabProps> = ({ onSwitchToSignin, setError
               placeholder="Password"
               value={signupPassword}
               onChange={(e) => setSignupPassword(e.target.value)}
-              className="w-full px-3.5 py-2.5 pr-10 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#3897f0]"
+              className="w-full px-3.5 py-2.5 pr-10 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-[#3897f0]"
               required
             />
             <button

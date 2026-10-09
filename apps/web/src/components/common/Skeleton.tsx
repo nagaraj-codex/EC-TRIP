@@ -4,8 +4,8 @@ interface SkeletonProps {
   dark?: boolean;
 }
 
-const lightBlock = "animate-pulse rounded bg-slate-100";
-const darkBlock = "animate-pulse rounded bg-slate-800/70";
+const lightBlock = "animate-pulse rounded-sm bg-slate-100";
+const darkBlock = "animate-pulse rounded-sm bg-slate-800/70";
 
 function SkeletonItem({ variant, dark }: { variant: SkeletonProps["variant"]; dark: boolean }) {
   const block = dark ? darkBlock : lightBlock;

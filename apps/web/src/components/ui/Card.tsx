@@ -11,14 +11,14 @@ export const Card = React.forwardRef<HTMLElement, CardProps>(
     const Component = as as any;
     const isInteractive = as === 'a' || as === 'button';
     
-    const baseStyles = 'bg-[var(--qc-surface)] border border-[var(--qc-border)] rounded-[var(--qc-radius-card)] shadow-[var(--qc-shadow-card)] transition-[transform,box-shadow] duration-[var(--qc-duration-fast)] text-left block w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--qc-focus)] focus-visible:ring-offset-[var(--qc-bg)]';
+    const baseStyles = 'bg-(--qc-surface) border border-(--qc-border) rounded-(--qc-radius-card) shadow-(--qc-shadow-card) transition-[transform,box-shadow] duration-(--qc-duration-fast) text-left block w-full focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--qc-focus) focus-visible:ring-offset-(--qc-bg)';
     const paddingStyles = {
       none: '',
       md: 'p-4',
       lg: 'p-4 md:p-5',
     };
     
-    const interactiveStyles = isInteractive ? 'hover:shadow-[var(--qc-shadow-raised)] hover:-translate-y-1 cursor-pointer' : '';
+    const interactiveStyles = isInteractive ? 'hover:shadow-(--qc-shadow-raised) hover:-translate-y-1 cursor-pointer' : '';
 
     return (
       <Component

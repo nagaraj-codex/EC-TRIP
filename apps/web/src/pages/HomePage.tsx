@@ -255,11 +255,11 @@ export default function HomePage() {
             { label: "Explore parks", path: "/app/explore", icon: Compass },
             { label: "My trips", path: "/app/trips", icon: CalendarDays },
           ].map(({ label, path, icon: Icon }) => (
-            <button key={label} type="button" onClick={() => navigate(path)} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/35 bg-black/20 px-4 text-xs font-semibold text-white backdrop-blur-sm transition hover:bg-white/15 focus-visible:outline-white">
+            <button key={label} type="button" onClick={() => navigate(path)} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/35 bg-black/20 px-4 text-xs font-semibold text-white backdrop-blur-xs transition hover:bg-white/15 focus-visible:outline-white">
               <Icon className="h-4 w-4" /> {label} <ArrowRight className="h-3 w-3" />
             </button>
           ))}
-          <button type="button" onClick={() => setAdvisorOpen(true)} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/35 bg-black/20 px-4 text-xs font-semibold text-white backdrop-blur-sm transition hover:bg-white/15 focus-visible:outline-white">
+          <button type="button" onClick={() => setAdvisorOpen(true)} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/35 bg-black/20 px-4 text-xs font-semibold text-white backdrop-blur-xs transition hover:bg-white/15 focus-visible:outline-white">
             <Sparkles className="h-4 w-4" /> Ask QueueCut <ArrowRight className="h-3 w-3" />
           </button>
         </div>

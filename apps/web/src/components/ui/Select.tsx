@@ -113,7 +113,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
     return (
       <div className={`flex flex-col gap-1 relative ${className}`} ref={containerRef}>
-        <label id={labelId} className="text-[14px] font-medium text-[var(--qc-ink)]">
+        <label id={labelId} className="text-[14px] font-medium text-(--qc-ink)">
           {label}
         </label>
         <div
@@ -129,17 +129,17 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           onKeyDown={handleKeyDown}
           onClick={() => setIsOpen(!isOpen)}
           className={`
-            w-full h-[48px] px-3 bg-[var(--qc-surface)] text-[var(--qc-ink)] flex items-center justify-between cursor-pointer
-            border border-[var(--qc-border)] rounded-[var(--qc-radius-input)]
-            transition-[border-color,box-shadow] duration-[var(--qc-duration-fast)] ease-[var(--qc-ease-out)]
-            focus-visible:outline-none focus-visible:border-[var(--qc-primary)] focus-visible:ring-2 focus-visible:ring-[var(--qc-focus)] focus-visible:ring-offset-0
-            ${hasError ? 'border-[var(--qc-danger)] focus-visible:border-[var(--qc-danger)] focus-visible:ring-[var(--qc-danger)]' : ''}
+            w-full h-[48px] px-3 bg-(--qc-surface) text-(--qc-ink) flex items-center justify-between cursor-pointer
+            border border-(--qc-border) rounded-(--qc-radius-input)
+            transition-[border-color,box-shadow] duration-(--qc-duration-fast) ease-(--qc-ease-out)
+            focus-visible:outline-hidden focus-visible:border-(--qc-primary) focus-visible:ring-2 focus-visible:ring-(--qc-focus) focus-visible:ring-offset-0
+            ${hasError ? 'border-(--qc-danger) focus-visible:border-(--qc-danger) focus-visible:ring-(--qc-danger)' : ''}
           `}
         >
-          <span className={selectedOption ? '' : 'text-[var(--qc-muted)]'}>
+          <span className={selectedOption ? '' : 'text-(--qc-muted)'}>
             {selectedOption ? selectedOption.label : placeholder}
           </span>
-          <Icons.ChevronDown className={`w-5 h-5 text-[var(--qc-muted)] transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+          <Icons.ChevronDown className={`w-5 h-5 text-(--qc-muted) transition-transform ${isOpen ? 'rotate-180' : ''}`} />
         </div>
 
         {isOpen && (
@@ -149,7 +149,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
             ref={listboxRef}
             aria-labelledby={labelId}
             aria-activedescendant={activeIndex >= 0 ? `${selectId}-option-${activeIndex}` : undefined}
-            className="absolute top-full left-0 w-full mt-1 bg-[var(--qc-surface)] border border-[var(--qc-border)] rounded-[var(--qc-radius-card)] shadow-[var(--qc-shadow-card)] z-[200] max-h-60 overflow-y-auto focus:outline-none"
+            className="absolute top-full left-0 w-full mt-1 bg-(--qc-surface) border border-(--qc-border) rounded-(--qc-radius-card) shadow-(--qc-shadow-card) z-200 max-h-60 overflow-y-auto focus:outline-hidden"
           >
             {options.map((option, index) => {
               const isActive = index === activeIndex;
@@ -164,8 +164,8 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                   onMouseEnter={() => setActiveIndex(index)}
                   className={`
                     h-[44px] px-3 flex items-center cursor-pointer transition-colors text-[14px]
-                    ${isActive ? 'bg-[var(--qc-bg)]' : ''}
-                    ${isSelected ? 'text-[var(--qc-primary)] font-semibold bg-[var(--qc-primary-bg)]' : 'text-[var(--qc-ink)]'}
+                    ${isActive ? 'bg-(--qc-bg)' : ''}
+                    ${isSelected ? 'text-(--qc-primary) font-semibold bg-(--qc-primary-bg)' : 'text-(--qc-ink)'}
                   `}
                 >
                   {option.label}
@@ -177,12 +177,12 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         )}
         
         {hasError && (
-          <p id={errorId} role="alert" className="text-[12px] text-[var(--qc-danger)] mt-1">
+          <p id={errorId} role="alert" className="text-[12px] text-(--qc-danger) mt-1">
             {error}
           </p>
         )}
         {helperText && !hasError && (
-          <p id={helperId} className="text-[12px] text-[var(--qc-muted)] mt-1">
+          <p id={helperId} className="text-[12px] text-(--qc-muted) mt-1">
             {helperText}
           </p>
         )}
