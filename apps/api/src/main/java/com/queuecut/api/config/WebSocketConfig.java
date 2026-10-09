@@ -1,24 +1,32 @@
 package com.queuecut.api.config;
 
+import com.queuecut.api.service.TelemetryWebSocketHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
-import org.springframework.web.socket.config.annotation.*;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
 @Configuration
 @EnableWebSocket
-@SuppressWarnings("null")
 public class WebSocketConfig implements WebSocketConfigurer {
 
-    private final com.queuecut.api.service.TelemetryWebSocketHandler telemetryHandler;
+    private final TelemetryWebSocketHandler telemetryHandler;
+    private final AppProperties props;
 
-    public WebSocketConfig(com.queuecut.api.service.TelemetryWebSocketHandler telemetryHandler) {
+    public WebSocketConfig(TelemetryWebSocketHandler telemetryHandler, AppProperties props) {
         this.telemetryHandler = telemetryHandler;
+        this.props = props;
     }
 
     @Override
-    @SuppressWarnings("null")
     public void registerWebSocketHandlers(@NonNull WebSocketHandlerRegistry registry) {
-        registry.addHandler(telemetryHandler, "/api/v1/telemetry/ws", "/api/v1/ws", "/ws")
-                .setAllowedOriginPatterns("*");
+        String[] origins = props.telemetry().allowedOrigins().split(",");
+        for (int i = 0; i < origins.length; i++) {
+            origins[i] = origins[i].trim();
+        }
+        
+        registry.addHandler(telemetryHandler, "/ws/telemetry")
+                .setAllowedOrigins(origins);
     }
 }

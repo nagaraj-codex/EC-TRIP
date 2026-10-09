@@ -36,15 +36,15 @@ public class HealthController {
         providers.put("open_meteo", Map.of("status", "available", "type", "weather"));
         providers.put("osrm", Map.of("status", "available", "type", "commute"));
         providers.put("gemini", Map.of(
-            "status", props.getGemini().isConfigured() ? "configured" : "unconfigured",
+            "status", props.gemini().isConfigured() ? "configured" : "unconfigured",
             "type", "ai_chat"
         ));
         providers.put("google_oauth", Map.of(
-            "status", props.getGoogle().isConfigured() ? "configured" : "unconfigured",
+            "status", props.google().isConfigured() ? "configured" : "unconfigured",
             "type", "auth"
         ));
         providers.put("resend", Map.of(
-            "status", props.getResend().isConfigured() ? "configured" : "unconfigured",
+            "status", props.resend().isConfigured() ? "configured" : "unconfigured",
             "type", "email"
         ));
 

@@ -27,7 +27,7 @@ public class ChatService {
 
     /** Main entry: tries Gemini first, falls back to heuristic. Never throws. */
     public Map<String, Object> chat(String prompt, Map<String, Object> context) {
-        if (!props.getGemini().isConfigured()) {
+        if (!props.gemini().isConfigured()) {
             return Map.of("response", heuristic(prompt, context), "is_fallback", true);
         }
         try {
@@ -69,8 +69,8 @@ public class ChatService {
         )));
         payload.put("generationConfig", Map.of("maxOutputTokens", 512));
 
-        String model  = props.getGemini().getModel().replace("models/", "");
-        String apiKey = props.getGemini().getApiKey();
+        String model  = props.gemini().model().replace("models/", "");
+        String apiKey = props.gemini().apiKey();
         String url    = "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent";
 
         HttpRequest req = HttpRequest.newBuilder()
@@ -104,7 +104,7 @@ public class ChatService {
         if (msg.contains("fasttrack") || msg.contains("fast track") || msg.contains("pass"))
             return "FastTrack availability and pricing for " + parkName + " are not verified. Check: " + website;
         if (msg.contains("cost") || msg.contains("price") || msg.contains("ticket") || msg.contains("tariff"))
-            return "Ticket pricing for " + parkName + (pricing != null ? " is listed in catalog—verify current terms at " : " is not verified. Check ") + website;
+            return "Ticket pricing for " + parkName + (pricing != null ? " is listed in catalogÃ¢â‚¬â€verify current terms at " : " is not verified. Check ") + website;
         if (msg.contains("water") || msg.contains("swim") || msg.contains("dress") || msg.contains("costume")) {
             Object dc = park.get("dress_code_policy");
             return dc != null ? dc.toString() : "Dress-code info for " + parkName + " not verified. Check " + website;

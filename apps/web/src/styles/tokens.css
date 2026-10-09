@@ -1,0 +1,75 @@
+/* apps/web/src/styles/tokens.css */
+
+:root {
+  /* Colors (light) */
+  --qc-ink: #0F172A;
+  --qc-ink-2: #334155;
+  --qc-muted: #64748B;
+  --qc-bg: #F3F6FB;
+  --qc-surface: #FFFFFF;
+  --qc-border: #E2E8F0;
+  --qc-primary: #1D4ED8;
+  --qc-primary-h: #1E40AF;
+  --qc-primary-a: #1E3A8A;
+  --qc-primary-bg: #EFF4FF;
+  --qc-accent: #F59E0B;
+  --qc-success: #15803D;
+  --qc-success-bg: #ECFDF3;
+  --qc-warn: #B45309;
+  --qc-warn-bg: #FFFBEB;
+  --qc-danger: #B91C1C;
+  --qc-danger-bg: #FEF2F2;
+  --qc-focus: #2563EB;
+
+  /* Typography */
+  --qc-font-sans: Inter, system-ui, "Segoe UI", Roboto, sans-serif;
+  
+  /* Radius */
+  --qc-radius-input: 8px;
+  --qc-radius-button: 8px;
+  --qc-radius-card: 12px;
+  --qc-radius-hero: 16px;
+  --qc-radius-pill: 999px;
+
+  /* Shadows */
+  --qc-shadow-card: 0 1px 2px rgba(15,23,42,.06), 0 2px 8px rgba(15,23,42,.04);
+  --qc-shadow-raised: 0 8px 24px rgba(15,23,42,.12);
+  --qc-shadow-focus: 0 0 0 2px var(--qc-surface), 0 0 0 4px var(--qc-focus);
+
+  /* Motion */
+  --qc-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --qc-duration-fast: 150ms;
+  --qc-duration-panel: 200ms;
+}
+
+/* Dark Theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --qc-bg: #0B1220;
+    --qc-surface: #111A2E;
+    --qc-border: #1F2A44;
+    --qc-ink: #E5EAF3;
+    --qc-ink-2: #B6C2D9;
+    --qc-muted: #8A97B2;
+    --qc-primary: #6EA0FF;
+    --qc-primary-bg: #16233F;
+  }
+}
+
+[data-theme="dark"] {
+  --qc-bg: #0B1220;
+  --qc-surface: #111A2E;
+  --qc-border: #1F2A44;
+  --qc-ink: #E5EAF3;
+  --qc-ink-2: #B6C2D9;
+  --qc-muted: #8A97B2;
+  --qc-primary: #6EA0FF;
+  --qc-primary-bg: #16233F;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --qc-duration-fast: 0ms;
+    --qc-duration-panel: 0ms;
+  }
+}

@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.util.List;
 
 @SpringBootApplication
+@org.springframework.boot.context.properties.ConfigurationPropertiesScan
 @EnableAsync
 public class QueueCutApplication {
 

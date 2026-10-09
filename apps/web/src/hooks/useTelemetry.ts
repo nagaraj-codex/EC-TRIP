@@ -28,7 +28,7 @@ export function useTelemetry() {
         const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
         const host =
           window.location.port === "5173"
-            ? "localhost:8000"
+            ? "localhost:8080"
             : window.location.host;
         wsUrl = `${proto}//${host}/api/v1/telemetry/ws`;
       }
@@ -109,16 +109,12 @@ export function useTelemetry() {
 
   const triggerTestAlert = async (customMessage?: string) => {
     try {
-      const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "/api/v1";
-      await fetch(`${BASE_URL}/telemetry/trigger-alert`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title: "⚡ Sudden Crowd Surge Detected",
-          message: customMessage || "Recoil Roller Coaster queue surged past 45m. Diverting itinerary to Wave Pool!",
-          level: "warning",
-          badge: "RADAR ACTIVE",
-        }),
+      const { apiClient } = await import("../services/apiClient");
+      await apiClient.triggerTestAlert({
+        title: "⚡ Sudden Crowd Surge Detected",
+        message: customMessage || "Recoil Roller Coaster queue surged past 45m. Diverting itinerary to Wave Pool!",
+        level: "warning",
+        badge: "RADAR ACTIVE",
       });
     } catch (err) {
       console.error("Failed to trigger alert:", err);

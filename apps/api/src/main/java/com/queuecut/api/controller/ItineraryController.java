@@ -15,9 +15,9 @@ public class ItineraryController {
 
     private final ParksConfig parks;
     private final WeatherService weather;
-    private final EmailService email;
+    private final MailService email;
 
-    public ItineraryController(ParksConfig parks, WeatherService weather, EmailService email) {
+    public ItineraryController(ParksConfig parks, WeatherService weather, MailService email) {
         this.parks   = parks;
         this.weather = weather;
         this.email   = email;

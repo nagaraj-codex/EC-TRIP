@@ -11,6 +11,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Service
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class ParkCatalogService {
 
     private static final Logger log = LoggerFactory.getLogger(ParkCatalogService.class);
@@ -26,10 +27,10 @@ public class ParkCatalogService {
         Map<String, Object> cached = catalogCache.get();
         if (cached != null) return cached;
 
-        File f = new File(props.getCatalogPath());
+        File f = new File(props.catalogPath());
         if (!f.exists()) f = new File("data/parks_database/unified_parks_catalog.json");
         if (!f.exists()) {
-            log.warn("Parks catalog not found at {}", props.getCatalogPath());
+            log.warn("Parks catalog not found at {}", props.catalogPath());
             Map<String, Object> empty = Map.of("parks", Map.of());
             catalogCache.set(empty);
             return empty;

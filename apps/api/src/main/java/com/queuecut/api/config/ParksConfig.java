@@ -38,7 +38,7 @@ public class ParksConfig {
 
         // Attempt to enrich from unified catalog JSON
         try {
-            File catalogFile = new File(props.getCatalogPath());
+            File catalogFile = new File(props.catalogPath());
             if (!catalogFile.exists()) catalogFile = new File("data/parks_database/unified_parks_catalog.json");
             if (catalogFile.exists()) {
                 ObjectMapper mapper = new ObjectMapper();

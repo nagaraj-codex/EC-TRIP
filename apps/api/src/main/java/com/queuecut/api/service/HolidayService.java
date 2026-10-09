@@ -32,7 +32,7 @@ public class HolidayService {
         if (cached != null && System.currentTimeMillis() - cacheTs.getOrDefault(key, 0L) < TTL_MS)
             return cached;
 
-        String url = props.getNagerUrl() + "/" + year + "/IN";
+        String url = props.nagerUrl() + "/" + year + "/IN";
         try {
             HttpRequest req = HttpRequest.newBuilder().uri(URI.create(url))
                 .timeout(Duration.ofSeconds(4)).GET().build();

@@ -24,7 +24,7 @@ import PlanMyVisitPage from "./pages/PlanMyVisitPage";
 import SavedParksPage from "./pages/SavedParksPage";
 
 // Global overlays
-import NotificationToasts from "./components/notifications/NotificationToasts";
+import { ToastContainer } from "./components/ui/Toast";
 
 /**
  * AppGuard: Protects /app/* routes.
@@ -117,7 +117,7 @@ export default function App() {
       </Routes>
 
       {/* Floating notification toasts (global) */}
-      <NotificationToasts />
+      <ToastContainer />
     </>
   );
 }

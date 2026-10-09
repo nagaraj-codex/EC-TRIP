@@ -1,472 +1,362 @@
 ﻿| Path | Phase | Reviewed | Changed | Tested | Notes |
 |---|---|---|---|---|---|
-| .agents/tasks/.gitkeep | - | no | - | - | Class: junk |
-| .agents/tasks/queuecut-rebuild-plan.md | - | no | - | - | Class: docs |
-| .agents/tasks/task-queuecut-rebuild/context.json | - | no | - | - | Class: junk |
-| .agents/tasks/task-queuecut-rebuild/features/FEAT-001.json | - | no | - | - | Class: junk |
-| .agents/tasks/task-queuecut-rebuild/features/FEAT-002.json | - | no | - | - | Class: junk |
-| .agents/tasks/task-queuecut-rebuild/features/FEAT-003.json | - | no | - | - | Class: junk |
-| .agents/tasks/task-queuecut-rebuild/features/FEAT-004.json | - | no | - | - | Class: junk |
-| .agents/tasks/task-queuecut-rebuild/features/FEAT-005.json | - | no | - | - | Class: junk |
-| .agents/tasks/task-queuecut-rebuild/task.json | - | no | - | - | Class: junk |
-| .azure/project-plan.md | - | no | - | - | Class: docs |
-| .env.example | - | no | - | - | Class: infra |
-| .github/dependabot.yml | - | no | - | - | Class: infra |
-| .github/workflows/ci.yml | - | no | - | - | Class: infra |
-| .github/workflows/deploy.yml | - | no | - | - | Class: infra |
-| .github_deploy/workflows/.gitkeep | - | no | - | - | Class: junk |
-| .github_deploy/workflows/deploy.yml | - | no | - | - | Class: junk |
-| .github_deploy/workflows/schedule_daily_cache.yml | - | no | - | - | Class: junk |
-| .github_deploy/workflows/schedule_intraday_weather.yml | - | no | - | - | Class: junk |
-| .github_deploy/workflows/weather_refresh.yml | - | no | - | - | Class: junk |
-| .gitignore | - | no | - | - | Class: infra |
-| .vscode/extensions.json | - | no | - | - | Class: infra |
-| .vscode/launch.json | - | no | - | - | Class: infra |
-| .vscode/settings.json | - | no | - | - | Class: infra |
-| .vscode/tasks.json | - | no | - | - | Class: infra |
-| apps/api/.mvn/maven.zip | - | no | - | - | Class: junk |
-| apps/api/data/external/.gitkeep | - | no | - | - | Class: data |
-| apps/api/data/interim/cleaned_weather_cache/.gitkeep | - | no | - | - | Class: data |
-| apps/api/data/parks_database/black_thunder_coimbatore.json | - | no | - | - | Class: data |
-| apps/api/data/parks_database/mgm_dizzee_chennai.json | - | no | - | - | Class: data |
-| apps/api/data/parks_database/unified_parks_catalog.json | - | no | - | - | Class: data |
-| apps/api/data/parks_database/wonderla_chennai.json | - | no | - | - | Class: data |
-| apps/api/data/processed/ml_ready/.gitkeep | - | no | - | - | Class: data |
-| apps/api/data/processed/static_json/.gitkeep | - | no | - | - | Class: data |
-| apps/api/data/raw/manual_observations/.gitkeep | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/bt_contact.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/bt_dining.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/bt_dry_rides.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/bt_faqs.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/bt_offers.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/bt_rides_main.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/bt_tariff.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/bt_terms.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/bt_water_rides.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/mgm_contact.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/mgm_dining.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/mgm_dress_code.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/mgm_faq.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/mgm_offers.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/mgm_rides.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/mgm_terms.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/mgm_tickets.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/parsed_faqs_summary.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/wonderla_blr.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/wonderla_dress_code.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/wonderla_hyd.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/wonderla_kochi.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/wonderla_offers.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/wonderla_restaurants.txt | - | no | - | - | Class: data |
-| apps/api/data/raw_crawls/wonderla_rules.txt | - | no | - | - | Class: data |
-| apps/api/data/schemas/validation_contracts/.gitkeep | - | no | - | - | Class: data |
-| apps/api/data/seed/.gitkeep | - | no | - | - | Class: data |
-| apps/api/data/seed/initial_observations.json | - | no | - | - | Class: data |
-| apps/api/data/seed/multi_park_seed.csv | - | no | - | - | Class: data |
-| apps/api/data/seed/wonderla_chennai_seed.csv | - | no | - | - | Class: data |
-| apps/api/data/validation/.gitkeep | - | no | - | - | Class: data |
-| apps/api/pom.xml | - | no | - | - | Class: backend-resource |
-| apps/api/src/main/java/com/queuecut/api/config/AppProperties.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/config/ParksConfig.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/config/SecurityConfig.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/config/WebSocketConfig.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/AuthController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/ChatController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/DownloadController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/FeedbackController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/HealthController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/ItineraryController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/NewsController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/NotificationController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/ParksController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/RecommendationController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/TelemetryController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/controller/TripController.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/entity/CrowdObservation.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/entity/Notification.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/entity/Session.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/entity/Trip.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/entity/User.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/exception/ApiException.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/exception/GlobalExceptionHandler.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/QueueCutApplication.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/repository/CrowdObservationRepository.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/repository/NotificationRepository.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/repository/SessionRepository.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/repository/TripRepository.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/repository/UserRepository.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/AuthService.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/ChatService.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/EmailService.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/FeedbackService.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/GeospatialService.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/HolidayService.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/IntelligenceService.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/NotificationService.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/ParkCatalogService.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/TelemetryWebSocketHandler.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/TripService.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/java/com/queuecut/api/service/WeatherService.java | - | no | - | - | Class: backend-java |
-| apps/api/src/main/resources/application.properties | - | no | - | - | Class: backend-resource |
-| apps/api/src/test/java/com/queuecut/api/QueueCutIntegrationTest.java | - | no | - | - | Class: backend-java |
-| apps/api/src/test/resources/application-test.properties | - | no | - | - | Class: junk |
-| apps/api/target/classes/application.properties | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/AppProperties$Auth.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/AppProperties$Cors.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/AppProperties$Gemini.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/AppProperties$Google.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/AppProperties$OpenMeteo.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/AppProperties$Resend.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/AppProperties.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/ParksConfig$ParkMeta.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/ParksConfig$ParkPricing.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/ParksConfig.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/SecurityConfig.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/config/WebSocketConfig.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/AuthController$LoginRequest.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/AuthController$RegisterRequest.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/AuthController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/ChatController$ChatRequest.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/ChatController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/DownloadController$ExportRequest.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/DownloadController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/FeedbackController$ReportRequest.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/FeedbackController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/HealthController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/ItineraryController$ItineraryRequest.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/ItineraryController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/NewsController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/NotificationController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/ParksController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/RecommendationController$RecommendationRequest.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/RecommendationController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/TelemetryController$AlertPayload.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/TelemetryController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/TripController$SaveTripRequest.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/controller/TripController.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/entity/CrowdObservation.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/entity/Notification.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/entity/Session.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/entity/Trip.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/entity/User.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/exception/ApiException.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/exception/GlobalExceptionHandler.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/QueueCutApplication.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/repository/CrowdObservationRepository.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/repository/NotificationRepository.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/repository/SessionRepository.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/repository/TripRepository.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/repository/UserRepository.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/AuthService.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/ChatService.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/EmailService.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/FeedbackService.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/GeospatialService.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/HolidayService.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/IntelligenceService.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/NotificationService.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/ParkCatalogService.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/TelemetryWebSocketHandler.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/TripService.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/com/queuecut/api/service/WeatherService.class | - | no | - | - | Class: junk |
-| apps/api/target/classes/META-INF/spring-configuration-metadata.json | - | no | - | - | Class: junk |
-| apps/api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst | - | no | - | - | Class: junk |
-| apps/api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst | - | no | - | - | Class: junk |
-| apps/api/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst | - | no | - | - | Class: junk |
-| apps/api/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst | - | no | - | - | Class: junk |
-| apps/api/target/test-classes/application-test.properties | - | no | - | - | Class: junk |
-| apps/api/target/test-classes/com/queuecut/api/QueueCutIntegrationTest.class | - | no | - | - | Class: junk |
-| apps/web/e2e/user_journeys/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/index.html | - | no | - | - | Class: frontend-config |
-| apps/web/package.json | - | no | - | - | Class: frontend-config |
-| apps/web/package-lock.json | - | no | - | - | Class: junk |
-| apps/web/postcss.config.js | - | no | - | - | Class: junk |
-| apps/web/public/assets/maps/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/public/data/parks.json | - | no | - | - | Class: junk |
-| apps/web/src/App.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/assets/fonts/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/assets/icons/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/assets/images/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/components/atoms/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/components/booking/CategoryTab.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/booking/DateSelector.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/booking/LocationSelector.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/booking/ParkSelector.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/booking/PassSelector.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/booking/TravellerSelector.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/chat/AdvisorChatbot.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/chat/AdvisorDrawer.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/common/ActionButton.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/common/ChoiceChip.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/common/EmptyState.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/common/ErrorState.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/common/Skeleton.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/common/TabButton.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/destination/DestinationCard.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/fasttrack/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/components/fasttrack/FastTrackROICalc.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/feedback/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/components/feedback/CrowdReportModal.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/intelligence/ConfidenceIndicator.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/intelligence/CrowdLevelBadge.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/intelligence/ParkIntelligencePreview.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/intelligence/ParkUpdates.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/intelligence/PeaceScoreRing.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/intelligence/WhyThisPrediction.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/layout/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/components/layout/QueueCutLogo.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/layout/Sidebar.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/layout/TopBar.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/maps/IsochroneMap.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/maps/RouteSummary.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/molecules/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/components/notifications/NotificationToasts.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/offers/OffersSection.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/organisms/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/components/recommendation/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/components/recommendation/ConfidenceBadge.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/recommendation/VisitScoreCard.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/components/weather/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/components/weather/UVAdvisoryBanner.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/data/assetConfig.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/data/bookingOptions.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/auth/AuthModal.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/auth/components/GuestTab.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/auth/components/SignInTab.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/auth/components/SignUpTab.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/calendar/CrowdCalendarView.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/home/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/features/itinerary/ItineraryScreen.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/parks/ParksView.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/planner/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/features/planner/PlannerPanel.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/results/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/features/results/RecommendationScreen.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/settings/components/NotificationSettingsTab.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/settings/components/ProfileSettingsTab.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/settings/components/TelemetrySecurityTab.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/settings/SettingsView.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/trips/SavedTripsView.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/wizard/LandingScreen.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/wizard/Step1Park.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/wizard/Step2Dates.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/wizard/Step3Group.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/features/wizard/Step4Budget.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/hooks/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/hooks/useActionGuard.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/hooks/useDismissablePopover.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/hooks/useGeolocation.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/hooks/useTelemetry.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/layouts/AppShell.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/main.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/DestinationDetailPage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/ExplorePage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/HomePage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/LoginPage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/NotificationsPage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/OnboardingPage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/PlanMyVisitPage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/ProfilePage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/SavedParksPage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/SettingsPage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/SplashPage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/pages/TripsPage.tsx | - | no | - | - | Class: frontend-src |
-| apps/web/src/services/apiClient.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/services/endpoints/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/store/slices/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/store/slices/authStore.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/store/slices/exploreStore.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/store/slices/plannerStore.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/store/slices/uiStore.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/styles/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/styles/globals.css | - | no | - | - | Class: frontend-src |
-| apps/web/src/styles/index.css | - | no | - | - | Class: frontend-src |
-| apps/web/src/types/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/types/api.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/types/booking.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/utils/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/src/utils/parkFormatting.ts | - | no | - | - | Class: frontend-src |
-| apps/web/src/vite-env.d.ts | - | no | - | - | Class: frontend-src |
-| apps/web/tailwind.config.js | - | no | - | - | Class: frontend-config |
-| apps/web/tests/components/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/tests/hooks/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/tests/utils/.gitkeep | - | no | - | - | Class: junk |
-| apps/web/tsconfig.json | - | no | - | - | Class: frontend-config |
-| apps/web/vite.config.ts | - | no | - | - | Class: frontend-config |
-| backend/.env.example | - | no | - | - | Class: junk |
-| backend/package.json | - | no | - | - | Class: junk |
-| backend/package-lock.json | - | no | - | - | Class: junk |
-| backend/src/config/env.ts | - | no | - | - | Class: junk |
-| backend/src/controllers/authController.ts | - | no | - | - | Class: junk |
-| backend/src/middleware/authMiddleware.ts | - | no | - | - | Class: junk |
-| backend/src/middleware/errorHandler.ts | - | no | - | - | Class: junk |
-| backend/src/middleware/rateLimiter.ts | - | no | - | - | Class: junk |
-| backend/src/middleware/validateRequest.ts | - | no | - | - | Class: junk |
-| backend/src/models/db.ts | - | no | - | - | Class: junk |
-| backend/src/models/otpModel.ts | - | no | - | - | Class: junk |
-| backend/src/models/passwordResetModel.ts | - | no | - | - | Class: junk |
-| backend/src/models/sessionModel.ts | - | no | - | - | Class: junk |
-| backend/src/models/userModel.ts | - | no | - | - | Class: junk |
-| backend/src/routes/authRoutes.ts | - | no | - | - | Class: junk |
-| backend/src/schemas/authValidation.ts | - | no | - | - | Class: junk |
-| backend/src/server.ts | - | no | - | - | Class: junk |
-| backend/src/services/authService.ts | - | no | - | - | Class: junk |
-| backend/src/services/otpService.ts | - | no | - | - | Class: junk |
-| backend/src/services/tokenService.ts | - | no | - | - | Class: junk |
-| backend/src/utils/logger.ts | - | no | - | - | Class: junk |
-| backend/src/utils/security.ts | - | no | - | - | Class: junk |
-| backend/tsconfig.json | - | no | - | - | Class: junk |
-| CODEBASE_AUDIT_REPORT.md | - | no | - | - | Class: docs |
-| config/.gitkeep | - | no | - | - | Class: junk |
-| data/external/.gitkeep | - | no | - | - | Class: data |
-| data/interim/cleaned_weather_cache/.gitkeep | - | no | - | - | Class: data |
-| data/parks_database/black_thunder_coimbatore.json | - | no | - | - | Class: data |
-| data/parks_database/mgm_dizzee_chennai.json | - | no | - | - | Class: data |
-| data/parks_database/unified_parks_catalog.json | - | no | - | - | Class: data |
-| data/parks_database/wonderla_chennai.json | - | no | - | - | Class: data |
-| data/processed/ml_ready/.gitkeep | - | no | - | - | Class: data |
-| data/processed/static_json/.gitkeep | - | no | - | - | Class: data |
-| data/raw/manual_observations/.gitkeep | - | no | - | - | Class: data |
-| data/raw_crawls/bt_contact.txt | - | no | - | - | Class: data |
-| data/raw_crawls/bt_dining.txt | - | no | - | - | Class: data |
-| data/raw_crawls/bt_dry_rides.txt | - | no | - | - | Class: data |
-| data/raw_crawls/bt_faqs.txt | - | no | - | - | Class: data |
-| data/raw_crawls/bt_offers.txt | - | no | - | - | Class: data |
-| data/raw_crawls/bt_rides_main.txt | - | no | - | - | Class: data |
-| data/raw_crawls/bt_tariff.txt | - | no | - | - | Class: data |
-| data/raw_crawls/bt_terms.txt | - | no | - | - | Class: data |
-| data/raw_crawls/bt_water_rides.txt | - | no | - | - | Class: data |
-| data/raw_crawls/mgm_contact.txt | - | no | - | - | Class: data |
-| data/raw_crawls/mgm_dining.txt | - | no | - | - | Class: data |
-| data/raw_crawls/mgm_dress_code.txt | - | no | - | - | Class: data |
-| data/raw_crawls/mgm_faq.txt | - | no | - | - | Class: data |
-| data/raw_crawls/mgm_offers.txt | - | no | - | - | Class: data |
-| data/raw_crawls/mgm_rides.txt | - | no | - | - | Class: data |
-| data/raw_crawls/mgm_terms.txt | - | no | - | - | Class: data |
-| data/raw_crawls/mgm_tickets.txt | - | no | - | - | Class: data |
-| data/raw_crawls/parsed_faqs_summary.txt | - | no | - | - | Class: data |
-| data/raw_crawls/wonderla_blr.txt | - | no | - | - | Class: data |
-| data/raw_crawls/wonderla_dress_code.txt | - | no | - | - | Class: data |
-| data/raw_crawls/wonderla_hyd.txt | - | no | - | - | Class: data |
-| data/raw_crawls/wonderla_kochi.txt | - | no | - | - | Class: data |
-| data/raw_crawls/wonderla_offers.txt | - | no | - | - | Class: data |
-| data/raw_crawls/wonderla_restaurants.txt | - | no | - | - | Class: data |
-| data/raw_crawls/wonderla_rules.txt | - | no | - | - | Class: data |
-| data/schemas/validation_contracts/.gitkeep | - | no | - | - | Class: data |
-| data/seed/.gitkeep | - | no | - | - | Class: data |
-| data/seed/initial_observations.json | - | no | - | - | Class: data |
-| data/seed/multi_park_seed.csv | - | no | - | - | Class: data |
-| data/seed/wonderla_chennai_seed.csv | - | no | - | - | Class: data |
-| data/validation/.gitkeep | - | no | - | - | Class: data |
-| docs/api/.gitkeep | - | no | - | - | Class: docs |
-| docs/architecture/.gitkeep | - | no | - | - | Class: docs |
-| docs/data/.gitkeep | - | no | - | - | Class: docs |
-| docs/deployment/.gitkeep | - | no | - | - | Class: docs |
-| docs/ml/.gitkeep | - | no | - | - | Class: docs |
-| docs/product/.gitkeep | - | no | - | - | Class: docs |
-| docs/security/.gitkeep | - | no | - | - | Class: docs |
-| docs/testing/.gitkeep | - | no | - | - | Class: docs |
-| docs/ux/.gitkeep | - | no | - | - | Class: docs |
-| frontend/index.html | - | no | - | - | Class: junk |
-| frontend/package.json | - | no | - | - | Class: junk |
-| frontend/package-lock.json | - | no | - | - | Class: junk |
-| frontend/src/App.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/amusement/FerrisWheelToggle.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/amusement/RollerCoasterTracker.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/auth/AuthCard.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/auth/AuthLayout.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/auth/AuthSuccess.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/auth/ForgotPasswordForm.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/auth/LoginForm.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/auth/OTPInput.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/auth/PasswordStrength.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/auth/RecoverAccountForm.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/auth/RegisterModal.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/auth/ResetPasswordForm.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/auth/SocialLoginButtons.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/interactive/FlipAuthCard.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/interactive/InteractiveButton.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/interactive/InteractiveCanvas.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/interactive/PeekABooMascot.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/layout/CenteredAuthLayout.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/layout/LanguageSelectModal.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/layout/LegalModal.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/ui/Alert.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/ui/Button.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/ui/Divider.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/ui/Input.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/ui/Modal.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/ui/PasswordInput.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/ui/RadioCard.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/ui/Select.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/ui/Spinner.tsx | - | no | - | - | Class: junk |
-| frontend/src/components/ui/Tooltip.tsx | - | no | - | - | Class: junk |
-| frontend/src/context/AuthContext.tsx | - | no | - | - | Class: junk |
-| frontend/src/context/LanguageContext.tsx | - | no | - | - | Class: junk |
-| frontend/src/hooks/useAuth.ts | - | no | - | - | Class: junk |
-| frontend/src/hooks/useCountdown.ts | - | no | - | - | Class: junk |
-| frontend/src/hooks/usePasswordStrength.ts | - | no | - | - | Class: junk |
-| frontend/src/main.tsx | - | no | - | - | Class: junk |
-| frontend/src/pages/DashboardPage.tsx | - | no | - | - | Class: junk |
-| frontend/src/pages/ForgotPasswordPage.tsx | - | no | - | - | Class: junk |
-| frontend/src/pages/LoginPage.tsx | - | no | - | - | Class: junk |
-| frontend/src/pages/NotFoundPage.tsx | - | no | - | - | Class: junk |
-| frontend/src/pages/RecoverAccountPage.tsx | - | no | - | - | Class: junk |
-| frontend/src/pages/RegisterPage.tsx | - | no | - | - | Class: junk |
-| frontend/src/pages/ResetPasswordPage.tsx | - | no | - | - | Class: junk |
-| frontend/src/pages/ResetSuccessPage.tsx | - | no | - | - | Class: junk |
-| frontend/src/pages/VerifyCodePage.tsx | - | no | - | - | Class: junk |
-| frontend/src/schemas/authSchemas.ts | - | no | - | - | Class: junk |
-| frontend/src/services/api.ts | - | no | - | - | Class: junk |
-| frontend/src/services/authService.ts | - | no | - | - | Class: junk |
-| frontend/src/styles/globals.css | - | no | - | - | Class: junk |
-| frontend/src/styles/tokens.css | - | no | - | - | Class: junk |
-| frontend/src/types/auth.types.ts | - | no | - | - | Class: junk |
-| frontend/src/utils/formatters.ts | - | no | - | - | Class: junk |
-| frontend/tsconfig.json | - | no | - | - | Class: junk |
-| frontend/vite.config.ts | - | no | - | - | Class: junk |
-| index.html | - | no | - | - | Class: junk |
-| infra/docker/.gitkeep | - | no | - | - | Class: infra |
-| infra/firebase/.gitkeep | - | no | - | - | Class: infra |
-| infra/github/ISSUE_TEMPLATE/.gitkeep | - | no | - | - | Class: infra |
-| infra/vercel/.gitkeep | - | no | - | - | Class: infra |
-| metadata.json | - | no | - | - | Class: junk |
-| ml/artifacts/encoders/.gitkeep | - | no | - | - | Class: python-legacy |
-| ml/artifacts/models/.gitkeep | - | no | - | - | Class: python-legacy |
-| ml/notebooks/.gitkeep | - | no | - | - | Class: python-legacy |
-| ml/notebooks/01_model_experimentation.ipynb | - | no | - | - | Class: python-legacy |
-| ml/reports/.gitkeep | - | no | - | - | Class: python-legacy |
-| ml/src/evaluation/.gitkeep | - | no | - | - | Class: python-legacy |
-| ml/src/features/.gitkeep | - | no | - | - | Class: python-legacy |
-| ml/src/models/.gitkeep | - | no | - | - | Class: python-legacy |
-| ml/src/pipelines/.gitkeep | - | no | - | - | Class: python-legacy |
-| package.json | - | no | - | - | Class: junk |
-| package-lock.json | - | no | - | - | Class: junk |
-| pyrightconfig.json | - | no | - | - | Class: junk |
-| QUEUE CUT DEVELOPED MODULES.txt | - | no | - | - | Class: junk |
-| QUEUECUT_SYSTEM_MANUAL.md | - | no | - | - | Class: docs |
-| README.md | - | no | - | - | Class: docs |
-| scripts/data/.gitkeep | - | no | - | - | Class: junk |
-| scripts/db/.gitkeep | - | no | - | - | Class: junk |
-| scripts/dev/.gitkeep | - | no | - | - | Class: junk |
-| scripts/dev/setup_workspace.ps1 | - | no | - | - | Class: junk |
-| scripts/dev/verify_structure.ps1 | - | no | - | - | Class: junk |
-| scripts/release/.gitkeep | - | no | - | - | Class: junk |
-| scripts/verify_auth_ecosystem.mjs | - | no | - | - | Class: junk |
-| src/App.tsx | - | no | - | - | Class: junk |
-| src/components/BenchmarkRadar.tsx | - | no | - | - | Class: junk |
-| src/components/DecisionWizard.tsx | - | no | - | - | Class: junk |
-| src/components/FrameworkShowcase.tsx | - | no | - | - | Class: junk |
-| src/components/Navbar.tsx | - | no | - | - | Class: junk |
-| src/components/RoadmapView.tsx | - | no | - | - | Class: junk |
-| src/components/RosettaStone.tsx | - | no | - | - | Class: junk |
-| src/data/frameworksData.ts | - | no | - | - | Class: junk |
-| src/data/roadmapData.ts | - | no | - | - | Class: junk |
-| src/index.css | - | no | - | - | Class: junk |
-| src/main.tsx | - | no | - | - | Class: junk |
-| src/types/framework.ts | - | no | - | - | Class: junk |
-| storage/cache/.gitkeep | - | no | - | - | Class: junk |
-| storage/logs/.gitkeep | - | no | - | - | Class: junk |
-| storage/uploads/.gitkeep | - | no | - | - | Class: junk |
-| tsconfig.json | - | no | - | - | Class: junk |
-| vite.config.ts | - | no | - | - | Class: junk |
+| .env.example | | no | | | |
+| .github/dependabot.yml | | no | | | |
+| .github/workflows/ci.yml | | no | | | |
+| .github/workflows/deploy.yml | | no | | | |
+| .gitignore | | no | | | |
+| .vscode/extensions.json | | no | | | |
+| .vscode/launch.json | | no | | | |
+| .vscode/settings.json | | no | | | |
+| .vscode/tasks.json | | no | | | |
+| README.md | | no | | | |
+| apps/api/data/external/.gitkeep | | no | | | |
+| apps/api/data/interim/cleaned_weather_cache/.gitkeep | | no | | | |
+| apps/api/data/parks_database/black_thunder_coimbatore.json | | no | | | |
+| apps/api/data/parks_database/mgm_dizzee_chennai.json | | no | | | |
+| apps/api/data/parks_database/unified_parks_catalog.json | | no | | | |
+| apps/api/data/parks_database/wonderla_chennai.json | | no | | | |
+| apps/api/data/processed/ml_ready/.gitkeep | | no | | | |
+| apps/api/data/processed/static_json/.gitkeep | | no | | | |
+| apps/api/data/raw/manual_observations/.gitkeep | | no | | | |
+| apps/api/data/raw_crawls/bt_contact.txt | | no | | | |
+| apps/api/data/raw_crawls/bt_dining.txt | | no | | | |
+| apps/api/data/raw_crawls/bt_dry_rides.txt | | no | | | |
+| apps/api/data/raw_crawls/bt_faqs.txt | | no | | | |
+| apps/api/data/raw_crawls/bt_offers.txt | | no | | | |
+| apps/api/data/raw_crawls/bt_rides_main.txt | | no | | | |
+| apps/api/data/raw_crawls/bt_tariff.txt | | no | | | |
+| apps/api/data/raw_crawls/bt_terms.txt | | no | | | |
+| apps/api/data/raw_crawls/bt_water_rides.txt | | no | | | |
+| apps/api/data/raw_crawls/mgm_contact.txt | | no | | | |
+| apps/api/data/raw_crawls/mgm_dining.txt | | no | | | |
+| apps/api/data/raw_crawls/mgm_dress_code.txt | | no | | | |
+| apps/api/data/raw_crawls/mgm_faq.txt | | no | | | |
+| apps/api/data/raw_crawls/mgm_offers.txt | | no | | | |
+| apps/api/data/raw_crawls/mgm_rides.txt | | no | | | |
+| apps/api/data/raw_crawls/mgm_terms.txt | | no | | | |
+| apps/api/data/raw_crawls/mgm_tickets.txt | | no | | | |
+| apps/api/data/raw_crawls/parsed_faqs_summary.txt | | no | | | |
+| apps/api/data/raw_crawls/wonderla_blr.txt | | no | | | |
+| apps/api/data/raw_crawls/wonderla_dress_code.txt | | no | | | |
+| apps/api/data/raw_crawls/wonderla_hyd.txt | | no | | | |
+| apps/api/data/raw_crawls/wonderla_kochi.txt | | no | | | |
+| apps/api/data/raw_crawls/wonderla_offers.txt | | no | | | |
+| apps/api/data/raw_crawls/wonderla_restaurants.txt | | no | | | |
+| apps/api/data/raw_crawls/wonderla_rules.txt | | no | | | |
+| apps/api/data/schemas/validation_contracts/.gitkeep | | no | | | |
+| apps/api/data/seed/.gitkeep | | no | | | |
+| apps/api/data/seed/initial_observations.json | | no | | | |
+| apps/api/data/seed/multi_park_seed.csv | | no | | | |
+| apps/api/data/seed/wonderla_chennai_seed.csv | | no | | | |
+| apps/api/data/validation/.gitkeep | | no | | | |
+| apps/api/pom.xml | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/QueueCutApplication.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/config/AppProperties.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/config/ParksConfig.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/config/SecurityConfig.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/config/WebSocketConfig.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/AuthController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/ChatController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/DownloadController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/FeedbackController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/HealthController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/ItineraryController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/NewsController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/NotificationController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/ParksController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/RecommendationController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/TelemetryController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/controller/TripController.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/entity/CrowdObservation.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/entity/Notification.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/entity/Session.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/entity/Trip.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/entity/User.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/exception/ApiException.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/exception/GlobalExceptionHandler.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/repository/CrowdObservationRepository.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/repository/NotificationRepository.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/repository/SessionRepository.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/repository/TripRepository.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/repository/UserRepository.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/AuthService.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/ChatService.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/EmailService.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/FeedbackService.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/GeospatialService.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/HolidayService.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/IntelligenceService.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/NotificationService.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/ParkCatalogService.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/TelemetryWebSocketHandler.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/TripService.java | | no | | | |
+| apps/api/src/main/java/com/queuecut/api/service/WeatherService.java | | no | | | |
+| apps/api/src/main/resources/application.properties | | no | | | |
+| apps/api/src/test/java/com/queuecut/api/QueueCutIntegrationTest.java | | no | | | |
+| apps/api/src/test/resources/application-test.properties | | no | | | |
+| apps/api/target/classes/META-INF/spring-configuration-metadata.json | | no | | | |
+| apps/api/target/classes/application.properties | | no | | | |
+| apps/api/target/classes/com/queuecut/api/QueueCutApplication.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/AppProperties$Auth.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/AppProperties$Cors.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/AppProperties$Gemini.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/AppProperties$Google.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/AppProperties$OpenMeteo.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/AppProperties$Resend.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/AppProperties.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/ParksConfig$ParkMeta.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/ParksConfig$ParkPricing.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/ParksConfig.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/SecurityConfig.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/config/WebSocketConfig.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/AuthController$LoginRequest.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/AuthController$RegisterRequest.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/AuthController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/ChatController$ChatRequest.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/ChatController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/DownloadController$ExportRequest.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/DownloadController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/FeedbackController$ReportRequest.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/FeedbackController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/HealthController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/ItineraryController$ItineraryRequest.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/ItineraryController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/NewsController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/NotificationController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/ParksController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/RecommendationController$RecommendationRequest.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/RecommendationController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/TelemetryController$AlertPayload.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/TelemetryController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/TripController$SaveTripRequest.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/controller/TripController.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/entity/CrowdObservation.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/entity/Notification.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/entity/Session.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/entity/Trip.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/entity/User.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/exception/ApiException.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/exception/GlobalExceptionHandler.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/repository/CrowdObservationRepository.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/repository/NotificationRepository.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/repository/SessionRepository.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/repository/TripRepository.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/repository/UserRepository.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/AuthService.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/ChatService.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/EmailService.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/FeedbackService.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/GeospatialService.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/HolidayService.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/IntelligenceService.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/NotificationService.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/ParkCatalogService.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/TelemetryWebSocketHandler.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/TripService.class | | no | | | |
+| apps/api/target/classes/com/queuecut/api/service/WeatherService.class | | no | | | |
+| apps/api/target/maven-archiver/pom.properties | | no | | | |
+| apps/api/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst | | no | | | |
+| apps/api/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst | | no | | | |
+| apps/api/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst | | no | | | |
+| apps/api/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst | | no | | | |
+| apps/api/target/queuecut-api-3.0.0.jar | | no | | | |
+| apps/api/target/queuecut-api-3.0.0.jar.original | | no | | | |
+| apps/api/target/surefire-reports/2026-10-08T14-54-29_268.dumpstream | | no | | | |
+| apps/api/target/surefire-reports/TEST-com.queuecut.api.QueueCutIntegrationTest.xml | | no | | | |
+| apps/api/target/surefire-reports/com.queuecut.api.QueueCutIntegrationTest.txt | | no | | | |
+| apps/api/target/test-classes/application-test.properties | | no | | | |
+| apps/api/target/test-classes/com/queuecut/api/QueueCutIntegrationTest.class | | no | | | |
+| apps/web/e2e/user_journeys/.gitkeep | | no | | | |
+| apps/web/index.html | | no | | | |
+| apps/web/package-lock.json | | no | | | |
+| apps/web/package.json | | no | | | |
+| apps/web/postcss.config.js | | no | | | |
+| apps/web/public/assets/maps/.gitkeep | | no | | | |
+| apps/web/public/data/parks.json | | no | | | |
+| apps/web/src/App.tsx | | no | | | |
+| apps/web/src/assets/fonts/.gitkeep | | no | | | |
+| apps/web/src/assets/icons/.gitkeep | | no | | | |
+| apps/web/src/assets/images/.gitkeep | | no | | | |
+| apps/web/src/components/atoms/.gitkeep | | no | | | |
+| apps/web/src/components/booking/CategoryTab.tsx | | no | | | |
+| apps/web/src/components/booking/DateSelector.tsx | | no | | | |
+| apps/web/src/components/booking/LocationSelector.tsx | | no | | | |
+| apps/web/src/components/booking/ParkSelector.tsx | | no | | | |
+| apps/web/src/components/booking/PassSelector.tsx | | no | | | |
+| apps/web/src/components/booking/TravellerSelector.tsx | | no | | | |
+| apps/web/src/components/chat/AdvisorChatbot.tsx | | no | | | |
+| apps/web/src/components/chat/AdvisorDrawer.tsx | | no | | | |
+| apps/web/src/components/common/ActionButton.tsx | | no | | | |
+| apps/web/src/components/common/ChoiceChip.tsx | | no | | | |
+| apps/web/src/components/common/EmptyState.tsx | | no | | | |
+| apps/web/src/components/common/ErrorState.tsx | | no | | | |
+| apps/web/src/components/common/Skeleton.tsx | | no | | | |
+| apps/web/src/components/common/TabButton.tsx | | no | | | |
+| apps/web/src/components/destination/DestinationCard.tsx | | no | | | |
+| apps/web/src/components/fasttrack/.gitkeep | | no | | | |
+| apps/web/src/components/fasttrack/FastTrackROICalc.tsx | | no | | | |
+| apps/web/src/components/feedback/.gitkeep | | no | | | |
+| apps/web/src/components/feedback/CrowdReportModal.tsx | | no | | | |
+| apps/web/src/components/intelligence/ConfidenceIndicator.tsx | | no | | | |
+| apps/web/src/components/intelligence/CrowdLevelBadge.tsx | | no | | | |
+| apps/web/src/components/intelligence/ParkIntelligencePreview.tsx | | no | | | |
+| apps/web/src/components/intelligence/ParkUpdates.tsx | | no | | | |
+| apps/web/src/components/intelligence/PeaceScoreRing.tsx | | no | | | |
+| apps/web/src/components/intelligence/WhyThisPrediction.tsx | | no | | | |
+| apps/web/src/components/layout/.gitkeep | | no | | | |
+| apps/web/src/components/layout/QueueCutLogo.tsx | | no | | | |
+| apps/web/src/components/layout/Sidebar.tsx | | no | | | |
+| apps/web/src/components/layout/TopBar.tsx | | no | | | |
+| apps/web/src/components/maps/IsochroneMap.tsx | | no | | | |
+| apps/web/src/components/maps/RouteSummary.tsx | | no | | | |
+| apps/web/src/components/molecules/.gitkeep | | no | | | |
+| apps/web/src/components/notifications/NotificationToasts.tsx | | no | | | |
+| apps/web/src/components/offers/OffersSection.tsx | | no | | | |
+| apps/web/src/components/organisms/.gitkeep | | no | | | |
+| apps/web/src/components/recommendation/.gitkeep | | no | | | |
+| apps/web/src/components/recommendation/ConfidenceBadge.tsx | | no | | | |
+| apps/web/src/components/recommendation/VisitScoreCard.tsx | | no | | | |
+| apps/web/src/components/weather/.gitkeep | | no | | | |
+| apps/web/src/components/weather/UVAdvisoryBanner.tsx | | no | | | |
+| apps/web/src/data/assetConfig.ts | | no | | | |
+| apps/web/src/data/bookingOptions.ts | | no | | | |
+| apps/web/src/features/auth/AuthModal.tsx | | no | | | |
+| apps/web/src/features/auth/components/GuestTab.tsx | | no | | | |
+| apps/web/src/features/auth/components/SignInTab.tsx | | no | | | |
+| apps/web/src/features/auth/components/SignUpTab.tsx | | no | | | |
+| apps/web/src/features/calendar/CrowdCalendarView.tsx | | no | | | |
+| apps/web/src/features/home/.gitkeep | | no | | | |
+| apps/web/src/features/itinerary/ItineraryScreen.tsx | | no | | | |
+| apps/web/src/features/parks/ParksView.tsx | | no | | | |
+| apps/web/src/features/planner/.gitkeep | | no | | | |
+| apps/web/src/features/planner/PlannerPanel.tsx | | no | | | |
+| apps/web/src/features/results/.gitkeep | | no | | | |
+| apps/web/src/features/results/RecommendationScreen.tsx | | no | | | |
+| apps/web/src/features/settings/SettingsView.tsx | | no | | | |
+| apps/web/src/features/settings/components/NotificationSettingsTab.tsx | | no | | | |
+| apps/web/src/features/settings/components/ProfileSettingsTab.tsx | | no | | | |
+| apps/web/src/features/settings/components/TelemetrySecurityTab.tsx | | no | | | |
+| apps/web/src/features/trips/SavedTripsView.tsx | | no | | | |
+| apps/web/src/features/wizard/LandingScreen.tsx | | no | | | |
+| apps/web/src/features/wizard/Step1Park.tsx | | no | | | |
+| apps/web/src/features/wizard/Step2Dates.tsx | | no | | | |
+| apps/web/src/features/wizard/Step3Group.tsx | | no | | | |
+| apps/web/src/features/wizard/Step4Budget.tsx | | no | | | |
+| apps/web/src/hooks/.gitkeep | | no | | | |
+| apps/web/src/hooks/useActionGuard.ts | | no | | | |
+| apps/web/src/hooks/useDismissablePopover.ts | | no | | | |
+| apps/web/src/hooks/useGeolocation.ts | | no | | | |
+| apps/web/src/hooks/useTelemetry.ts | | no | | | |
+| apps/web/src/layouts/AppShell.tsx | | no | | | |
+| apps/web/src/main.tsx | | no | | | |
+| apps/web/src/pages/DestinationDetailPage.tsx | | no | | | |
+| apps/web/src/pages/ExplorePage.tsx | | no | | | |
+| apps/web/src/pages/HomePage.tsx | | no | | | |
+| apps/web/src/pages/LoginPage.tsx | | no | | | |
+| apps/web/src/pages/NotificationsPage.tsx | | no | | | |
+| apps/web/src/pages/OnboardingPage.tsx | | no | | | |
+| apps/web/src/pages/PlanMyVisitPage.tsx | | no | | | |
+| apps/web/src/pages/ProfilePage.tsx | | no | | | |
+| apps/web/src/pages/SavedParksPage.tsx | | no | | | |
+| apps/web/src/pages/SettingsPage.tsx | | no | | | |
+| apps/web/src/pages/SplashPage.tsx | | no | | | |
+| apps/web/src/pages/TripsPage.tsx | | no | | | |
+| apps/web/src/services/apiClient.ts | | no | | | |
+| apps/web/src/services/endpoints/.gitkeep | | no | | | |
+| apps/web/src/store/slices/.gitkeep | | no | | | |
+| apps/web/src/store/slices/authStore.ts | | no | | | |
+| apps/web/src/store/slices/exploreStore.ts | | no | | | |
+| apps/web/src/store/slices/plannerStore.ts | | no | | | |
+| apps/web/src/store/slices/uiStore.ts | | no | | | |
+| apps/web/src/styles/.gitkeep | | no | | | |
+| apps/web/src/styles/globals.css | | no | | | |
+| apps/web/src/styles/index.css | | no | | | |
+| apps/web/src/types/.gitkeep | | no | | | |
+| apps/web/src/types/api.ts | | no | | | |
+| apps/web/src/types/booking.ts | | no | | | |
+| apps/web/src/utils/.gitkeep | | no | | | |
+| apps/web/src/utils/parkFormatting.ts | | no | | | |
+| apps/web/src/vite-env.d.ts | | no | | | |
+| apps/web/tailwind.config.js | | no | | | |
+| apps/web/tests/components/.gitkeep | | no | | | |
+| apps/web/tests/hooks/.gitkeep | | no | | | |
+| apps/web/tests/utils/.gitkeep | | no | | | |
+| apps/web/tsconfig.json | | no | | | |
+| apps/web/vite.config.ts | | no | | | |
+| config/.gitkeep | | no | | | |
+| data/external/.gitkeep | | no | | | |
+| data/interim/cleaned_weather_cache/.gitkeep | | no | | | |
+| data/parks_database/black_thunder_coimbatore.json | | no | | | |
+| data/parks_database/mgm_dizzee_chennai.json | | no | | | |
+| data/parks_database/unified_parks_catalog.json | | no | | | |
+| data/parks_database/wonderla_chennai.json | | no | | | |
+| data/processed/ml_ready/.gitkeep | | no | | | |
+| data/processed/static_json/.gitkeep | | no | | | |
+| data/raw/manual_observations/.gitkeep | | no | | | |
+| data/raw_crawls/bt_contact.txt | | no | | | |
+| data/raw_crawls/bt_dining.txt | | no | | | |
+| data/raw_crawls/bt_dry_rides.txt | | no | | | |
+| data/raw_crawls/bt_faqs.txt | | no | | | |
+| data/raw_crawls/bt_offers.txt | | no | | | |
+| data/raw_crawls/bt_rides_main.txt | | no | | | |
+| data/raw_crawls/bt_tariff.txt | | no | | | |
+| data/raw_crawls/bt_terms.txt | | no | | | |
+| data/raw_crawls/bt_water_rides.txt | | no | | | |
+| data/raw_crawls/mgm_contact.txt | | no | | | |
+| data/raw_crawls/mgm_dining.txt | | no | | | |
+| data/raw_crawls/mgm_dress_code.txt | | no | | | |
+| data/raw_crawls/mgm_faq.txt | | no | | | |
+| data/raw_crawls/mgm_offers.txt | | no | | | |
+| data/raw_crawls/mgm_rides.txt | | no | | | |
+| data/raw_crawls/mgm_terms.txt | | no | | | |
+| data/raw_crawls/mgm_tickets.txt | | no | | | |
+| data/raw_crawls/parsed_faqs_summary.txt | | no | | | |
+| data/raw_crawls/wonderla_blr.txt | | no | | | |
+| data/raw_crawls/wonderla_dress_code.txt | | no | | | |
+| data/raw_crawls/wonderla_hyd.txt | | no | | | |
+| data/raw_crawls/wonderla_kochi.txt | | no | | | |
+| data/raw_crawls/wonderla_offers.txt | | no | | | |
+| data/raw_crawls/wonderla_restaurants.txt | | no | | | |
+| data/raw_crawls/wonderla_rules.txt | | no | | | |
+| data/schemas/validation_contracts/.gitkeep | | no | | | |
+| data/seed/.gitkeep | | no | | | |
+| data/seed/initial_observations.json | | no | | | |
+| data/seed/multi_park_seed.csv | | no | | | |
+| data/seed/wonderla_chennai_seed.csv | | no | | | |
+| data/validation/.gitkeep | | no | | | |
+| docs/CHANGELOG-CLEANUP.md | | no | | | |
+| docs/DECISIONS.md | | no | | | |
+| docs/REVIEW_LOG.md | | no | | | |
+| docs/_baseline_api.txt | | no | | | |
+| docs/_baseline_web.txt | | no | | | |
+| docs/_inventory_all.txt | | no | | | |
+| docs/_inventory_counts.txt | | no | | | |
+| docs/_inventory_tracked.txt | | no | | | |
+| docs/api/.gitkeep | | no | | | |
+| docs/architecture/.gitkeep | | no | | | |
+| docs/data/.gitkeep | | no | | | |
+| docs/deployment/.gitkeep | | no | | | |
+| docs/ml/.gitkeep | | no | | | |
+| docs/product/.gitkeep | | no | | | |
+| docs/security/.gitkeep | | no | | | |
+| docs/testing/.gitkeep | | no | | | |
+| docs/ux/.gitkeep | | no | | | |
+| index.html | | no | | | |
+| infra/docker/.gitkeep | | no | | | |
+| infra/firebase/.gitkeep | | no | | | |
+| infra/github/ISSUE_TEMPLATE/.gitkeep | | no | | | |
+| infra/vercel/.gitkeep | | no | | | |
+| metadata.json | | no | | | |
+| scripts/check-no-python.ps1 | | no | | | |
+| scripts/check-no-python.sh | | no | | | |
+| scripts/data/.gitkeep | | no | | | |
+| scripts/db/.gitkeep | | no | | | |
+| scripts/dev/.gitkeep | | no | | | |
+| scripts/dev/setup_workspace.ps1 | | no | | | |
+| scripts/dev/verify_structure.ps1 | | no | | | |
+| scripts/release/.gitkeep | | no | | | |
+| scripts/verify_auth_ecosystem.mjs | | no | | | |
+| storage/cache/.gitkeep | | no | | | |
+| storage/logs/.gitkeep | | no | | | |
+| storage/uploads/.gitkeep | | no | | | |

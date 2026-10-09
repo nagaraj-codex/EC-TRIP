@@ -34,7 +34,7 @@ public class WeatherService {
         Map<String, Object> cached = getCache(key);
         if (cached != null) return cached;
 
-        String url = props.getOpenMeteo().getForecastUrl() +
+        String url = props.openMeteo().forecastUrl() +
             "?latitude=" + lat + "&longitude=" + lon +
             "&daily=weathercode,temperature_2m_max,precipitation_probability_max,wind_speed_10m_max" +
             "&timezone=Asia%2FKolkata";
@@ -71,7 +71,7 @@ public class WeatherService {
         Map<String, Object> cached = getCache(key);
         if (cached != null) return cached;
 
-        String url = props.getOpenMeteo().getAirQualityUrl() +
+        String url = props.openMeteo().airQualityUrl() +
             "?latitude=" + lat + "&longitude=" + lon +
             "&hourly=uv_index&timezone=auto&start_date=" + targetDate + "&end_date=" + targetDate;
         try {
@@ -116,7 +116,7 @@ public class WeatherService {
         Map<String, Object> cached = getCache(key);
         if (cached != null) return cached;
 
-        String url = props.getSunriseSunsetUrl() + "?lat=" + lat + "&lng=" + lon + "&date=" + targetDate;
+        String url = props.sunriseSunsetUrl() + "?lat=" + lat + "&lng=" + lon + "&date=" + targetDate;
         try {
             HttpRequest req = HttpRequest.newBuilder().uri(URI.create(url))
                 .timeout(Duration.ofSeconds(3)).GET().build();

@@ -194,4 +194,7 @@ export const apiClient = {
 
   getFeedbackSummary: (parkId: string): Promise<FeedbackSummaryResponse> =>
     apiFetch(`/feedback/observations/${encodeURIComponent(parkId)}`),
+
+  triggerTestAlert: (payload: { title?: string; message?: string; level?: string; badge?: string; park_id?: string }) =>
+    apiFetch<{ status: string }>("/telemetry/trigger-alert", { method: "POST", body: JSON.stringify(payload) }),
 };

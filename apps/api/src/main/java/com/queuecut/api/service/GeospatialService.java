@@ -22,7 +22,7 @@ public class GeospatialService {
 
     /** Returns {distance_km, duration_minutes} or null on failure. */
     public Map<String, Double> fetchOsrmRoute(double startLat, double startLon, double endLat, double endLon) {
-        String url = props.getOsrmUrl().replaceAll("/+$", "") + "/" +
+        String url = props.osrmUrl().replaceAll("/+$", "") + "/" +
             startLon + "," + startLat + ";" + endLon + "," + endLat + "?overview=false";
         try {
             HttpRequest req = HttpRequest.newBuilder().uri(URI.create(url))

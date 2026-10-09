@@ -1,65 +1,42 @@
 # QueueCut
 
-QueueCut is a theme-park visit planning platform. It combines park discovery and visit planning in a React progressive web app with a Java/Spring Boot service for park data, recommendations, telemetry, notifications, trips, and related APIs.
+QueueCut is a highly optimized, AI-powered amusement park itinerary generator and planning application. It helps users reduce waiting times, optimize schedules, and make the most out of their visits to theme parks like Wonderla, Black Thunder, and MGM Dizzee World.
 
-## Start From Scratch
+## Features
+- **Smart Recommendations**: Evaluates crowd levels, weather, and park schedules to recommend the best visit dates.
+- **Dynamic Itineraries**: Generates balanced, family-friendly, or thrill-seeker optimized park itineraries.
+- **Trip Management**: Save, view, and organize your planned trips.
+- **Dual Authentication**: Supports both traditional Email/Password login and Google OAuth.
+- **Development Modes**: Zero-credential mock modes allow local development without configuring actual SMTP or OAuth secrets.
 
-Prerequisites: Java 21 or newer, Maven, Node.js 20 or newer, and npm.
+## Tech Stack
+- **Backend**: Java 21, Spring Boot 3.3.4, SQLite (`queuecut.db`)
+- **Frontend**: React 18, TypeScript, Vite, Zustand, Tailwind CSS
 
-From the repository root, install the web dependencies:
+## Prerequisites
+- **Java 21**
+- **Node.js** (v18+)
+- **PowerShell** (for Windows)
 
-```powershell
-npm --prefix apps/web install
-```
+## Getting Started
 
-Start the Java API backend (runs on port 8000):
+A unified launch script is provided to spin up both the backend API and the frontend dev server.
 
-```powershell
-cd apps/api
-mvn spring-boot:run
-```
+1. Clone the repository.
+2. Ensure you have no processes running on port `8080` (Backend) and port `5173` (Frontend).
+3. Run the launch script:
+   ```powershell
+   .\launch.ps1
+   ```
+4. Access the web interface at `http://localhost:5173`.
 
-In a separate terminal, start the Vite development server (runs on port 5173):
+### Environment Variables
+For production use, or to enable real Google OAuth and Gemini features, create `.env` files or set the following variables:
+- `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`: Enables real Google login. (If empty in non-prod, mock login is used).
+- `GEMINI_API_KEY`: Enables AI generation features.
+- `RESEND_API_KEY`: Enables real SMTP emailing. (If empty, console-based mock mailer is used).
 
-```powershell
-cd apps/web
-npm run dev
-```
-
-The API documentation (Swagger) is available at `http://localhost:8000/docs`.
-
-## Implemented Product Areas
-
-- Home and park discovery with search and park cards.
-- Explore and park detail screens.
-- A step-by-step visit planner for choosing a park and date and requesting a recommendation.
-- Trips, profile, notifications, and guest/authentication flows.
-- Responsive navigation, onboarding, and an in-app advisor interface.
-- Spring Boot REST controllers for parks, recommendations, telemetry/WebSockets, trips, notifications, chat, feedback, itinerary, downloads, and authentication.
-
-The interface uses the park catalog and API responses; it should not display invented live conditions or recommendations.
-
-## Build and Test
-
-Build the web app:
-
-```powershell
-npm --prefix apps/web run build
-```
-
-Run Java backend tests:
-
-```powershell
-cd apps/api
-mvn clean test
-```
-
-## Repository Map
-
-- `apps/web/`: React, TypeScript, Vite, and PWA client.
-- `apps/api/`: Spring Boot Java backend service, JPA entities, controllers, and services.
-- `data/`: park catalogs and supporting datasets.
-- `scripts/`: data compilation and verification utilities.
-- `docs/`: API, product, data, security, deployment, and testing documentation.
-
-Do not commit `.env` files, `queuecut.db`, generated caches, or user/session data. Configure credentials through local environment variables or application.properties.
+## Project Structure
+- `apps/api`: The Spring Boot Java Backend.
+- `apps/web`: The React Vite Frontend.
+- `docs/`: Action matrices and other project documentation.

@@ -6,12 +6,10 @@ import com.queuecut.api.repository.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
-import java.security.spec.InvalidKeySpecException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -19,6 +17,7 @@ import java.util.*;
 @Service
 @SuppressWarnings("null")
 public class AuthService {
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     private final UserRepository users;
     private final SessionRepository sessions;
@@ -30,46 +29,13 @@ public class AuthService {
         this.props    = props;
     }
 
-    // ---------- password hashing (PBKDF2-SHA256) ----------
-
-    private static final int ITERATIONS  = 210_000;
-    private static final int KEY_LENGTH  = 256;
-    private static final String ALGORITHM = "PBKDF2WithHmacSHA256";
-
+    // ---------- password hashing ----------
     public String hashPassword(String password) {
-        byte[] salt = new byte[16];
-        new SecureRandom().nextBytes(salt);
-        String hash = pbkdf2(password, salt);
-        return "pbkdf2$" + HexFormat.of().formatHex(salt) + "$" + hash;
+        return encoder.encode(password);
     }
 
     public boolean verifyPassword(String password, String encoded) {
-        try {
-            String[] parts = encoded.split("\\$", 3);
-            if (parts.length != 3 || !"pbkdf2".equals(parts[0])) {
-                return false;
-            }
-            byte[] salt    = HexFormat.of().parseHex(parts[1]);
-            String expected = parts[2];
-            String candidate = pbkdf2(password, salt);
-            return MessageDigest.isEqual(
-                candidate.getBytes(StandardCharsets.UTF_8),
-                expected.getBytes(StandardCharsets.UTF_8)
-            );
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    private String pbkdf2(String password, byte[] salt) {
-        try {
-            PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, ITERATIONS, KEY_LENGTH);
-            SecretKeyFactory factory = SecretKeyFactory.getInstance(ALGORITHM);
-            byte[] hash = factory.generateSecret(spec).getEncoded();
-            return HexFormat.of().formatHex(hash);
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            throw new RuntimeException("Password hashing failed", e);
-        }
+        return encoder.matches(password, encoded);
     }
 
     // ---------- user management ----------
@@ -87,6 +53,58 @@ public class AuthService {
         u.setPasswordHash(hashPassword(password));
         u.setCreatedAt(utcNow());
         return users.save(u);
+    }
+
+    @Transactional
+    public void updateEmailVerification(String userId, boolean verified) {
+        users.findById(userId).ifPresent(u -> {
+            u.setEmailVerified(verified);
+            u.setVerificationTokenHash(null);
+            u.setVerificationTokenExpiresAt(null);
+            users.save(u);
+        });
+    }
+    
+    @Transactional
+    public void updatePassword(String userId, String password) {
+        users.findById(userId).ifPresent(u -> {
+            u.setPasswordHash(hashPassword(password));
+            u.setResetTokenHash(null);
+            u.setResetTokenExpiresAt(null);
+            users.save(u);
+            // invalidate sessions
+            sessions.deleteByUserId(userId);
+        });
+    }
+
+    @Transactional
+    public String generateVerificationToken(User u) {
+        String token = randomToken(32);
+        u.setVerificationTokenHash(sha256(token));
+        u.setVerificationTokenExpiresAt(expiresAtHours(24));
+        users.save(u);
+        return token;
+    }
+
+    @Transactional
+    public String generateResetToken(User u) {
+        String token = randomToken(32);
+        u.setResetTokenHash(sha256(token));
+        u.setResetTokenExpiresAt(expiresAtHours(1));
+        users.save(u);
+        return token;
+    }
+
+    public Optional<User> findByVerificationToken(String token) {
+        return users.findByVerificationTokenHash(sha256(token));
+    }
+
+    public Optional<User> findByResetToken(String token) {
+        return users.findByResetTokenHash(sha256(token));
+    }
+    
+    public Optional<User> findByEmail(String email) {
+        return users.findByEmail(email.toLowerCase().strip());
     }
 
     public Optional<User> authenticate(String email, String password) {
@@ -119,7 +137,7 @@ public class AuthService {
         Session s = new Session();
         s.setTokenHash(tokenHash);
         s.setUserId(userId);
-        s.setExpiresAt(expiresAt(props.getAuth().getSessionDays()));
+        s.setExpiresAt(expiresAt(props.auth().sessionDays()));
         sessions.save(s);
         return token;
     }
@@ -155,6 +173,11 @@ public class AuthService {
 
     private static String utcNow() {
         return OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+    }
+
+    private static String expiresAtHours(int hours) {
+        return OffsetDateTime.now(ZoneOffset.UTC).plusHours(hours)
+                .format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
     }
 
     private static String expiresAt(int days) {

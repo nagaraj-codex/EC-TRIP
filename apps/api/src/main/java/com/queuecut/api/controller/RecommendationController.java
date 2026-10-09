@@ -17,9 +17,9 @@ public class RecommendationController {
 
     private final IntelligenceService intelligence;
     private final ParksConfig parks;
-    private final EmailService email;
+    private final MailService email;
 
-    public RecommendationController(IntelligenceService intelligence, ParksConfig parks, EmailService email) {
+    public RecommendationController(IntelligenceService intelligence, ParksConfig parks, MailService email) {
         this.intelligence = intelligence;
         this.parks        = parks;
         this.email        = email;
