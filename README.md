@@ -30,11 +30,18 @@ A unified launch script is provided to spin up both the backend API and the fron
    ```
 4. Access the web interface at `http://localhost:5173`.
 
+The backend API listens on `http://localhost:8080`; its health endpoint is
+`http://localhost:8080/actuator/health`.
+
 ### Environment Variables
 For production use, or to enable real Google OAuth and Gemini features, create `.env` files or set the following variables:
 - `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`: Enables real Google login. (If empty in non-prod, mock login is used).
 - `GEMINI_API_KEY`: Enables AI generation features.
 - `RESEND_API_KEY`: Enables real SMTP emailing. (If empty, console-based mock mailer is used).
+
+For Google OAuth, register this exact local callback URI:
+`http://localhost:8080/api/v1/auth/google/callback`. The API, Vite proxy, and test
+configuration all use port 8080; port 8000 belongs to the removed FastAPI backend.
 
 ## Project Structure
 - `apps/api`: The Spring Boot Java Backend.

@@ -1,7 +1,7 @@
 # QueueCut Progress
 
-Last updated: 2026-10-10 10:30 IST  
-Current task: QC-001  
+Last updated: 2026-10-10 10:35 IST  
+Current task: QC-002  
 Branch: `codex/qc-001-baseline`  Last good commit: `f3ba39e`
 
 ## Task ledger
@@ -9,7 +9,7 @@ Branch: `codex/qc-001-baseline`  Last good commit: `f3ba39e`
 | ID | Title | Status | Evidence | Notes |
 | --- | --- | --- | --- | --- |
 | QC-001 | Baseline and repository discovery | DONE | `mvnw.cmd -q -DskipTests=false verify` exit 0; `npx tsc --noEmit`, 14/14 Vitest, and build exit 0 | Discovery records D1-D8 and the JDBC-inspected schema. |
-| QC-002 | Reconcile ports/URLs | TODO | — | D7 found one stale test port 8000 reference. |
+| QC-002 | Reconcile ports/URLs | DONE | Maven verify exit 0; typecheck 0; Vitest 14/14; build exit 0 | Test callback and README now use the real API callback on port 8080. |
 | QC-003 | Environment templates and secret audit | TODO | — | — |
 | QC-004 | Development and verification scripts | TODO | — | — |
 
