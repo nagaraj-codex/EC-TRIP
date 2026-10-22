@@ -432,7 +432,7 @@ const MODIFIED_FILES_AUDIT = [
   { path: 'README.md', change: 'Modified', note: 'Added Java 21 architecture diagram, OAuth setup, and monitoring docs', safe: true },
   { path: 'launch.ps1', change: 'Modified', note: 'Unified PowerShell launcher for Spring Boot API (8080) & Vite Web (5173)', safe: true },
   { path: 'scripts/monitor-parks.mjs', change: 'Modified', note: 'Content hash & tariff regex extraction for Wonderla, MGM, Black Thunder', safe: true },
-  { path: 'scripts/check-no-python.ps1', change: 'Added', note: 'Verifies legacy Python runtime artifacts are removed', safe: true },
+  { path: 'scripts/check-no-python.ps1', change: 'Added', note: 'Verifies legacy check-no-python runtime artifacts are removed', safe: true },
   { path: '.github/workflows/ci.yml', change: 'Modified', note: 'Java 21 Temurin + Maven test + Vite build workflow', safe: true },
   { path: 'apps/api/src/main/resources/application.yml', change: 'Modified', note: 'HikariCP pool=1, SQLite WAL mode, AVAILABLE_MOCK OAuth fallback', safe: true },
   { path: 'apps/web/src/App.tsx', change: 'Modified', note: 'Fixed dark-mode heading contrast, emoji encoding, and verification badges', safe: true }
