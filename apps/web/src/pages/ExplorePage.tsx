@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
+import { useParksQuery } from "../lib/apiHooks";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useExploreStore } from "../store/slices/exploreStore";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,15 +8,14 @@ import {
 } from "lucide-react";
 import DestinationCard from "../components/destination/DestinationCard";
 import { useGeolocation, calculateDistance } from "../hooks/useGeolocation";
-
-// Single generic fallback — not park-specific
-const GENERIC_PARK_IMAGE = "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80";
+import { getParkImage } from "../data/assetConfig";
 
 const CITY_COORDS: Record<string, { lat: number; lon: number }> = {
-  "Chennai":    { lat: 13.0827, lon: 80.2707 },
-  "Bangalore":  { lat: 12.9716, lon: 77.5946 },
-  "Coimbatore": { lat: 11.0168, lon: 76.9558 },
-  "Kochi":      { lat: 9.9312,  lon: 76.2673 },
+  "Chennai":                   { lat: 13.0827, lon: 80.2707 },
+  "Mettupalayam / Coimbatore": { lat: 11.2988, lon: 76.9125 },
+  "Coimbatore":                { lat: 11.0168, lon: 76.9558 },
+  "Bangalore":                 { lat: 12.9716, lon: 77.5946 },
+  "Kochi":                     { lat: 9.9312,  lon: 76.2673 },
 };
 
 function useDebounced<T>(value: T, delay: number): T {
@@ -30,7 +30,8 @@ function useDebounced<T>(value: T, delay: number): T {
 export default function ExplorePage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { destinations, loadDestinations, isLoading } = useExploreStore();
+  const { data: destinations = [], isLoading, error } = useParksQuery();
+  const {  } = useExploreStore();
 
   const [rawSearch,         setRawSearch]         = useState(searchParams.get("q") ?? "");
   const [manualCity,        setManualCity]         = useState<string>("");
@@ -46,7 +47,7 @@ export default function ExplorePage() {
     return null;
   })();
 
-  useEffect(() => { loadDestinations(); }, [loadDestinations]);
+  
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -72,7 +73,13 @@ export default function ExplorePage() {
     })
     .filter((p) => {
       if (useMyLocation) return p.distance !== undefined && p.distance < 200;
-      if (manualCity)    return p.city.toLowerCase().includes(manualCity.toLowerCase());
+      if (manualCity) {
+        const mc = manualCity.toLowerCase();
+        if (mc.includes("coimbatore") || mc.includes("mettupalayam")) {
+          return p.city.toLowerCase().includes("coimbatore") || p.city.toLowerCase().includes("mettupalayam");
+        }
+        return p.city.toLowerCase().includes(mc);
+      }
       return true;
     })
     .sort((a, b) => {
@@ -96,8 +103,8 @@ export default function ExplorePage() {
 
       {/* ── Header ── */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
-        <h1 className="font-display font-extrabold text-3xl text-slate-900">Explore parks</h1>
-        <p className="text-slate-500 text-sm mt-1">Discover parks and start planning your visit.</p>
+        <h1 className="font-display font-extrabold text-3xl text-slate-900 dark:text-white">Explore parks</h1>
+        <p className="text-slate-500 dark:text-slate-300 text-sm mt-1">Discover parks and start planning your visit.</p>
       </motion.div>
 
       {/* ── Search Bar ── */}
@@ -111,7 +118,7 @@ export default function ExplorePage() {
           placeholder="Search parks, cities or attractions"
           value={rawSearch}
           onChange={(e) => setRawSearch(e.target.value)}
-          className="w-full pl-12 pr-12 h-14 rounded-2xl bg-white border border-slate-200 text-slate-900 text-sm placeholder:text-slate-400 focus:border-qc-blue-500 focus:ring-2 focus:ring-qc-blue-500/20 outline-none transition-all shadow-sm"
+          className="w-full pl-12 pr-12 h-14 rounded-2xl bg-white border border-slate-200 text-slate-900 text-sm placeholder:text-slate-400 focus:border-qc-blue-500 focus:ring-2 focus:ring-qc-blue-500/20 outline-hidden transition-all shadow-xs"
         />
         {rawSearch && (
           <button onClick={() => setRawSearch("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
@@ -201,9 +208,9 @@ export default function ExplorePage() {
               <div key={i} className="qc-card-white rounded-2xl overflow-hidden">
                 <div className="h-40 bg-slate-100 animate-pulse" />
                 <div className="p-4 space-y-2">
-                  <div className="h-4 bg-slate-100 rounded w-3/4 animate-pulse" />
-                  <div className="h-3 bg-slate-100 rounded w-1/2 animate-pulse" />
-                  <div className="h-8 bg-slate-100 rounded mt-3 animate-pulse" />
+                  <div className="h-4 bg-slate-100 rounded-sm w-3/4 animate-pulse" />
+                  <div className="h-3 bg-slate-100 rounded-sm w-1/2 animate-pulse" />
+                  <div className="h-8 bg-slate-100 rounded-sm mt-3 animate-pulse" />
                 </div>
               </div>
             ))}
@@ -233,7 +240,8 @@ export default function ExplorePage() {
               <DestinationCard
                 key={park.park_id}
                 park={park}
-                imageUrl={park.image ?? GENERIC_PARK_IMAGE}
+                imageUrl={getParkImage(park.park_id, 600)}
+                imageIsGeneric={false}
                 distance={park.distance}
                 index={idx}
                 variant="grid"

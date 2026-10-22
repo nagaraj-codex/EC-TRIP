@@ -33,6 +33,7 @@ export default function ItineraryScreen() {
   const [emailSent, setEmailSent] = useState(false);
   const [sendingEmail, setSendingEmail] = useState(false);
   const [advisorOpen, setAdvisorOpen] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
 
   const dateStr = activeRecommendation?.recommended_date ?? new Date().toISOString().split("T")[0];
 
@@ -82,7 +83,7 @@ export default function ItineraryScreen() {
         setEmailSent(false);
       }, 2000);
     } catch {
-      alert("Failed to send itinerary email. Please verify your address.");
+      setStatusMessage("Failed to send itinerary email. Please verify your address.");
     } finally {
       setSendingEmail(false);
     }
@@ -98,7 +99,7 @@ export default function ItineraryScreen() {
     executeGuarded(() => {
       if (navigator.clipboard) {
         navigator.clipboard.writeText(window.location.href);
-        alert("Itinerary link copied to clipboard!");
+        setStatusMessage("Itinerary link copied to clipboard.");
       }
     }, "Sign in to generate shareable group itinerary links");
   };
@@ -156,7 +157,7 @@ export default function ItineraryScreen() {
       {/* Hero Card */}
       <div className="card-gradient relative overflow-hidden">
         <div className="flex items-center justify-between mb-2">
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-brand-600 text-white shadow-xs">
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-brand-600 text-white shadow-2xs">
             Optimized Schedule
           </span>
           <span className="text-xs font-semibold text-slate-300">
@@ -181,9 +182,11 @@ export default function ItineraryScreen() {
             </span>
           </div>
           <p className="text-slate-400 leading-relaxed text-[11px]">
-            {itineraryData?.uv_shield_applied
-              ? "☀️ High UV irradiance detected (11:30 AM – 2:30 PM). Water rides & air-conditioned dining automatically timed for solar protection."
-              : "🌤️ Optimal atmospheric conditions. Queue waits projected below peak threshold across major coasters."}
+            {itineraryData?.uv_data_status === "UNAVAILABLE"
+              ? "UV forecast unavailable; this schedule is not UV-optimized. Ride waits are provisional planning estimates, not live queue data."
+              : itineraryData?.uv_shield_applied
+              ? "High UV forecast; consider shade, hydration, and indoor breaks. This schedule is a template, not an operating-status feed."
+              : "UV forecast did not trigger the high-UV adjustment. Ride waits remain provisional planning estimates, not live queue data."}
           </p>
         </div>
       </div>

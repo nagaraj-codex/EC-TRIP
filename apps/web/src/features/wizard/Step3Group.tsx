@@ -1,6 +1,8 @@
 import { usePlannerStore } from "../../store/slices/plannerStore";
 import { Users, ArrowRight, ArrowLeft } from "lucide-react";
 
+type GroupCounterType = "adults" | "children612" | "children05";
+
 export default function Step3Group() {
   const {
     adults,
@@ -20,7 +22,7 @@ export default function Step3Group() {
   }: {
     label: string;
     value: number;
-    type: any;
+    type: GroupCounterType;
     sublabel: string;
   }) => (
     <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">

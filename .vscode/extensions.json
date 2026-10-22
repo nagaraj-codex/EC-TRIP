@@ -1,10 +1,22 @@
 {
   "recommendations": [
+    "vscjava.vscode-java-pack",
+    "vmware.vscode-boot-dev-pack",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "vitest.explorer",
+    "editorconfig.editorconfig",
+    "usernamehw.errorlens",
+    "redhat.vscode-yaml",
+    "ms-azuretools.vscode-docker",
+    "github.vscode-github-actions",
+    "humao.rest-client",
+    "qwtel.sqlite-viewer"
+  ],
+  "unwantedRecommendations": [
     "ms-python.python",
     "ms-python.vscode-pylance",
-    "charliermarsh.ruff",
-    "bradlc.vscode-tailwindcss",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint"
+    "ms-python.debugpy"
   ]
 }

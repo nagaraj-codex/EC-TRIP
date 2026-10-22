@@ -10,6 +10,7 @@ interface DestinationCardProps {
   peaceScore?: number;
   crowdLevel?: "low" | "medium" | "high" | "very_high";
   distance?: number;
+  imageIsGeneric?: boolean;
   index?: number;
   variant?: "grid" | "list";
 }
@@ -20,6 +21,7 @@ export default function DestinationCard({
   peaceScore,
   crowdLevel,
   distance,
+  imageIsGeneric = false,
   index = 0,
   variant = "grid",
 }: DestinationCardProps) {
@@ -37,7 +39,9 @@ export default function DestinationCard({
         <div className="w-28 h-28 shrink-0 overflow-hidden">
           <img
             src={imageUrl}
-            alt={park.name}
+            alt={imageIsGeneric ? "Generic amusement park scene" : park.name}
+            width={448}
+            height={288}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
           />
@@ -81,7 +85,9 @@ export default function DestinationCard({
       <div className="relative h-40 sm:h-44 overflow-hidden">
         <img
           src={imageUrl}
-          alt={park.name}
+          alt={imageIsGeneric ? "Generic amusement park scene" : park.name}
+          width={112}
+          height={112}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
@@ -91,7 +97,7 @@ export default function DestinationCard({
           </div>
         )}
         {distance !== undefined && (
-          <div className="absolute bottom-3 left-3 z-10 px-2 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-slate-700 text-[10px] font-semibold border border-slate-200">
+          <div className="absolute bottom-3 left-3 z-10 px-2 py-0.5 rounded-full bg-white/90 backdrop-blur-xs text-slate-700 text-[10px] font-semibold border border-slate-200">
             📍 {distance} km
           </div>
         )}

@@ -15,14 +15,10 @@ import { TelemetrySecurityTab } from "./components/TelemetrySecurityTab";
 import { apiClient } from "../../services/apiClient";
 
 export default function SettingsView() {
-  const { user, isGuest, logout, openAuthModal } = useAuthStore();
+  const { user, isGuest, logout } = useAuthStore();
   const [activeTab, setActiveTab] = useState<"profile" | "preferences" | "notifications" | "security">("profile");
 
   const [preferredPark, setPreferredPark] = useState(user?.preferredPark || "wonderla-chennai");
-  const [emailAlerts, setEmailAlerts] = useState(true);
-  const [whatsappSurge, setWhatsappSurge] = useState(true);
-  const [weatherFlash, setWeatherFlash] = useState(true);
-  const [discountAlerts, setDiscountAlerts] = useState(true);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   const handleSavedSuccess = () => {
@@ -37,10 +33,6 @@ export default function SettingsView() {
       app: "QueueCut v1.0.0",
       settings: {
         preferredPark,
-        emailAlerts,
-        whatsappSurge,
-        weatherFlash,
-        discountAlerts,
       },
     };
     try {
@@ -74,7 +66,7 @@ export default function SettingsView() {
 
         {isGuest ? (
           <button
-            onClick={() => openAuthModal("Sign in to sync your profile and alerts across all your devices", "signin")}
+            onClick={() => window.location.assign("/login")}
             className="btn btn-primary sm:w-auto px-4 py-2 text-xs font-bold"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
@@ -82,7 +74,7 @@ export default function SettingsView() {
           </button>
         ) : (
           <button
-            onClick={logout}
+            onClick={() => void apiClient.logout().then(logout).catch(() => undefined)}
             className="btn btn-secondary sm:w-auto px-4 py-2 text-rose-400 hover:text-rose-300 text-xs font-bold"
           >
             <LogOut className="w-3.5 h-3.5" />
@@ -143,9 +135,9 @@ export default function SettingsView() {
       </div>
 
       {savedSuccess && (
-        <div className="p-3.5 bg-emerald-500/20 border border-emerald-500/40 rounded-2xl text-xs text-emerald-300 flex items-center gap-2 shadow-xs">
+        <div className="p-3.5 bg-emerald-500/20 border border-emerald-500/40 rounded-2xl text-xs text-emerald-300 flex items-center gap-2 shadow-2xs">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-          <span>Settings successfully synchronized and stored!</span>
+          <span>Profile preferences updated on this device.</span>
         </div>
       )}
 
@@ -173,23 +165,14 @@ export default function SettingsView() {
             </div>
             <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
               <span className="font-bold text-xs text-white block">Pricing Baseline</span>
-              <span className="text-xs text-slate-400 block mt-1">Official 2026 Verified Rates</span>
+              <span className="text-xs text-slate-400 block mt-1">Catalog rates; confirm current prices with the park</span>
             </div>
           </div>
         </div>
       )}
 
       {activeTab === "notifications" && (
-        <NotificationSettingsTab
-          emailAlerts={emailAlerts}
-          setEmailAlerts={setEmailAlerts}
-          whatsappSurge={whatsappSurge}
-          setWhatsappSurge={setWhatsappSurge}
-          weatherFlash={weatherFlash}
-          setWeatherFlash={setWeatherFlash}
-          discountAlerts={discountAlerts}
-          setDiscountAlerts={setDiscountAlerts}
-        />
+        <NotificationSettingsTab />
       )}
 
       {activeTab === "security" && (

@@ -1,0 +1,12 @@
+{
+  "name": "queuecut-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "monitor:parks": "node scripts/monitor-parks.mjs",
+    "web:dev": "npm --prefix apps/web run dev",
+    "web:build": "npm --prefix apps/web run build",
+    "web:test": "npm --prefix apps/web run test"
+  }
+}

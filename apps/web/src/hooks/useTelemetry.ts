@@ -14,25 +14,31 @@ export function useTelemetry() {
   const [isConnected, setIsConnected] = useState(false);
   const [latestAlert, setLatestAlert] = useState<TelemetryAlert | null>(null);
   const socketRef = useRef<WebSocket | null>(null);
-  const reconnectTimeoutRef = useRef<any>(null);
+  const reconnectTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { addNotification } = useAuthStore();
-
   const connect = useCallback(() => {
     try {
-      const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
-      // Connect directly to backend port 8000 when developing locally, or via proxy host
-      const host =
-        window.location.port === "5173"
-          ? "localhost:8000"
-          : window.location.host;
-      const wsUrl = `${proto}//${host}/api/v1/telemetry/ws`;
+      let wsUrl: string;
+      const envApiUrl = import.meta.env.VITE_API_BASE_URL;
+      if (envApiUrl && envApiUrl.startsWith("http")) {
+        const wsProto = envApiUrl.startsWith("https") ? "wss:" : "ws:";
+        const hostPath = envApiUrl.replace(/^https?:\/\//, "").replace(/\/$/, "");
+        wsUrl = `${wsProto}//${hostPath}/api/v1/telemetry/ws`;
+      } else {
+        const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
+        const host =
+          window.location.port === "5173"
+            ? "localhost:8080"
+            : window.location.host;
+        wsUrl = `${proto}//${host}/api/v1/telemetry/ws`;
+      }
 
       const socket = new WebSocket(wsUrl);
       socketRef.current = socket;
 
       socket.onopen = () => {
         setIsConnected(true);
-        console.log("[QueueCut Telemetry] WebSocket connected to", wsUrl);
+        // WebSocket connected
       };
 
       socket.onmessage = (event) => {
@@ -103,16 +109,12 @@ export function useTelemetry() {
 
   const triggerTestAlert = async (customMessage?: string) => {
     try {
-      const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "/api/v1";
-      await fetch(`${BASE_URL}/telemetry/trigger-alert`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title: "⚡ Sudden Crowd Surge Detected",
-          message: customMessage || "Recoil Roller Coaster queue surged past 45m. Diverting itinerary to Wave Pool!",
-          level: "warning",
-          badge: "RADAR ACTIVE",
-        }),
+      const { apiClient } = await import("../services/apiClient");
+      await apiClient.triggerTestAlert({
+        title: "⚡ Sudden Crowd Surge Detected",
+        message: customMessage || "Recoil Roller Coaster queue surged past 45m. Diverting itinerary to Wave Pool!",
+        level: "warning",
+        badge: "RADAR ACTIVE",
       });
     } catch (err) {
       console.error("Failed to trigger alert:", err);

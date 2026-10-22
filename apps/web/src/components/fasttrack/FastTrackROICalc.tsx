@@ -8,12 +8,14 @@ const verdictStyles = {
   SKIP:        "bg-red-50 text-red-700 border border-red-200",
   CONSIDER:    "bg-amber-50 text-amber-700 border border-amber-200",
   RECOMMENDED: "bg-emerald-50 text-emerald-700 border border-emerald-200",
+  UNAVAILABLE: "bg-slate-100 text-slate-600 border border-slate-200",
 };
 
 const verdictDesc = {
   SKIP:        "Less than 20 min saved. Not worth the spend.",
   CONSIDER:    "20–60 min saved. Value depends on your priorities.",
   RECOMMENDED: "60+ min saved. Clear time value for the day.",
+  UNAVAILABLE: "Verified regular- and express-queue observations are not available, so savings cannot be estimated reliably.",
 };
 
 export default function FastTrackROICalc({ evaluation: ev }: Props) {
@@ -24,7 +26,7 @@ export default function FastTrackROICalc({ evaluation: ev }: Props) {
         <span className={`tag text-sm ${verdictStyles[ev.fasttrack_verdict]}`}>{ev.fasttrack_verdict}</span>
       </div>
       <p className="text-sm text-slate-600 mb-3">{verdictDesc[ev.fasttrack_verdict]}</p>
-      {ev.cost_per_minute_saved > 0 && (
+      {ev.cost_per_minute_saved !== null && ev.cost_per_minute_saved > 0 && (
         <div className="flex items-baseline gap-1">
           <span className="text-2xl font-bold text-slate-900">₹{ev.cost_per_minute_saved.toFixed(0)}</span>
           <span className="text-sm text-slate-400">/ min saved</span>

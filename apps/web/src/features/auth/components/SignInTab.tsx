@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff, CheckCircle2 } from "lucide-react";
 import { useAuthStore } from "../../../store/slices/authStore";
+import { apiClient } from "../../../services/apiClient";
 
 interface SignInTabProps {
   onSwitchToSignup: () => void;
@@ -8,10 +9,11 @@ interface SignInTabProps {
 }
 
 export const SignInTab: React.FC<SignInTabProps> = ({ onSwitchToSignup, setError }) => {
-  const { loginWithGoogle, loginWithEmail } = useAuthStore();
+  const { loginWithGoogle, setAuthenticatedUser, closeAuthModal } = useAuthStore();
   const [loginIdentifier, setLoginIdentifier] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isForgotPass, setIsForgotPass] = useState(false);
   const [forgotEmail, setForgotEmail] = useState("");
   const [forgotSent, setForgotSent] = useState(false);
@@ -21,15 +23,24 @@ export const SignInTab: React.FC<SignInTabProps> = ({ onSwitchToSignup, setError
     setError("");
 
     if (!loginIdentifier.trim()) {
-      setError("Please enter your mobile number, username, or email.");
+      setError("Please enter your email address.");
       return;
     }
-    if (!loginPassword || loginPassword.length < 6) {
-      setError("Please enter your password (minimum 6 characters).");
+    if (!loginPassword || loginPassword.length < 8) {
+      setError("Please enter your password (minimum 8 characters).");
       return;
     }
 
-    loginWithEmail(loginIdentifier);
+    setIsLoading(true);
+    apiClient.login({ email: loginIdentifier.trim(), password: loginPassword })
+      .then(({ user }) => {
+        setAuthenticatedUser(user);
+        closeAuthModal();
+      })
+      .catch((err: Error) => {
+        setError(err.message || "Invalid email or password.");
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleForgotSubmit = (e: React.FormEvent) => {
@@ -62,7 +73,7 @@ export const SignInTab: React.FC<SignInTabProps> = ({ onSwitchToSignup, setError
                 placeholder="Enter your registered email"
                 value={forgotEmail}
                 onChange={(e) => setForgotEmail(e.target.value)}
-                className="w-full px-4 py-3 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#3897f0] focus:ring-1 focus:ring-[#3897f0]"
+                className="w-full px-4 py-3 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-[#3897f0] focus:ring-1 focus:ring-[#3897f0]"
                 required
               />
               <button
@@ -95,7 +106,7 @@ export const SignInTab: React.FC<SignInTabProps> = ({ onSwitchToSignup, setError
                 placeholder="Mobile number, username or email"
                 value={loginIdentifier}
                 onChange={(e) => setLoginIdentifier(e.target.value)}
-                className="w-full px-4 py-3 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#3897f0] focus:ring-1 focus:ring-[#3897f0] transition-colors"
+                className="w-full px-4 py-3 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-[#3897f0] focus:ring-1 focus:ring-[#3897f0] transition-colors"
               />
             </div>
 
@@ -105,7 +116,7 @@ export const SignInTab: React.FC<SignInTabProps> = ({ onSwitchToSignup, setError
                 placeholder="Password"
                 value={loginPassword}
                 onChange={(e) => setLoginPassword(e.target.value)}
-                className="w-full px-4 py-3 pr-10 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#3897f0] focus:ring-1 focus:ring-[#3897f0] transition-colors"
+                className="w-full px-4 py-3 pr-10 bg-[#070e1d] border border-[#202f50] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-hidden focus:border-[#3897f0] focus:ring-1 focus:ring-[#3897f0] transition-colors"
               />
               <button
                 type="button"
@@ -118,9 +129,10 @@ export const SignInTab: React.FC<SignInTabProps> = ({ onSwitchToSignup, setError
 
             <button
               type="submit"
-              className="w-full py-2.5 rounded-xl bg-[#0095f6] hover:bg-[#1877f2] text-white font-bold text-xs shadow-md transition-all active:scale-98 mt-1"
+              disabled={isLoading}
+              className="w-full py-2.5 rounded-xl bg-[#0095f6] hover:bg-[#1877f2] text-white font-bold text-xs shadow-md transition-all active:scale-98 mt-1 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Log in
+              {isLoading ? "Logging in..." : "Log in"}
             </button>
           </form>
 
@@ -146,7 +158,7 @@ export const SignInTab: React.FC<SignInTabProps> = ({ onSwitchToSignup, setError
           <button
             type="button"
             onClick={loginWithGoogle}
-            className="w-full py-2.5 px-4 rounded-xl bg-[#101b33] hover:bg-[#152342] border border-[#213357] text-white font-semibold text-xs flex items-center justify-center gap-2.5 transition-all active:scale-98 shadow-sm"
+            className="w-full py-2.5 px-4 rounded-xl bg-[#101b33] hover:bg-[#152342] border border-[#213357] text-white font-semibold text-xs flex items-center justify-center gap-2.5 transition-all active:scale-98 shadow-xs"
           >
             <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
               <path

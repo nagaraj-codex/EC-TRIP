@@ -93,7 +93,7 @@ export default function RecommendationScreen() {
       {/* Hero Recommendation Card */}
       <div className="card-gradient relative overflow-hidden space-y-4">
         <div className="flex items-center justify-between gap-2">
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-brand-500 text-white shadow-xs">
+          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-brand-500 text-white shadow-2xs">
             Optimal Visiting Day
           </span>
           <span className="text-xs font-semibold text-brand-300">{displayName}</span>
@@ -113,7 +113,7 @@ export default function RecommendationScreen() {
               {best.crowd_level.replace("_", " ")}
             </span>
             <span className="block text-[11px] text-slate-400 mt-0.5 uppercase tracking-wider font-semibold">
-              Expected Crowd
+              Rule-Based Crowd Estimate
             </span>
           </div>
           <div className="p-3.5 bg-slate-900/80 rounded-2xl text-center border border-slate-700/80">
@@ -121,10 +121,13 @@ export default function RecommendationScreen() {
               ~{best.predicted_wait_top_ride_minutes}m
             </span>
             <span className="block text-[11px] text-slate-400 mt-0.5 uppercase tracking-wider font-semibold">
-              Peak Ride Wait
+              Indicative Wait Estimate
             </span>
           </div>
         </div>
+        <p className="text-[11px] leading-relaxed text-slate-400">
+          QueueCut has no live ride-queue feed or validated wait-time model. Crowd and wait figures are provisional planning estimates.
+        </p>
 
         {/* Detailed Reasoning Box */}
         <div className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-2.5 text-xs">
@@ -144,7 +147,7 @@ export default function RecommendationScreen() {
             </div>
             <div className="flex items-center justify-between py-1">
               <span className="text-slate-400">Open-Meteo Weather</span>
-              <span className="font-semibold text-amber-300 capitalize">{best.weather_condition} ({best.temp_max}°C)</span>
+              <span className="font-semibold text-amber-300 capitalize">{best.weather_condition === "unavailable" || best.temp_max === null ? "Forecast unavailable" : `${best.weather_condition} (${best.temp_max}°C)`}</span>
             </div>
           </div>
 
@@ -164,9 +167,11 @@ export default function RecommendationScreen() {
             <span>FastTrack ROI: {best.fasttrack_verdict}</span>
           </div>
           <div className="text-xs text-slate-300 leading-relaxed">
-            {isFastTrack
-              ? `At ₹${best.cost_per_minute_saved}/min saved, FastTrack is recommended due to ${best.crowd_level} weekend queues.`
-              : `Only ~${Math.max(0, best.predicted_wait_top_ride_minutes - 5)} mins saved. Regular queue recommended today.`}
+            {best.fasttrack_verdict === "UNAVAILABLE"
+              ? "A reliable FastTrack ROI cannot be calculated without verified regular- and express-queue observations for the rides you plan to take."
+              : isFastTrack && best.cost_per_minute_saved !== null
+              ? `Indicative cost: ₹${best.cost_per_minute_saved}/minute saved. This uses unvalidated queue estimates and is not a savings promise.`
+              : "This provisional estimate does not support a reliable FastTrack buy/skip recommendation."}
           </div>
         </div>
       </div>

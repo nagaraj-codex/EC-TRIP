@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Calendar, Sun, Cloud, CloudRain, Star, Sparkles, ArrowRight, TrendingDown, MapPin } from "lucide-react";
 import { usePlannerStore } from "../../store/slices/plannerStore";
 
@@ -59,7 +59,7 @@ const parkForecasts: Record<string, CalendarDay[]> = {
       weather: "sunny",
       temp: 31,
       isRecommended: true,
-      notes: "QueueCut Choice: Minimal wait times (10-15m), ₹237 savings vs weekend."
+      notes: "QueueCut Choice: Minimal wait times (10-15m), â‚¹237 savings vs weekend."
     },
     {
       date: "2026-09-09",
@@ -306,8 +306,7 @@ export default function CrowdCalendarView({ onSelectDate }: CrowdCalendarViewPro
   const { parkId, setParkId } = usePlannerStore();
   const [selectedDate, setSelectedDate] = useState<string>("2026-09-08");
 
-  const currentParkId = parkId in parkForecasts ? parkId : "wonderla-chennai";
-  const forecastDays = parkForecasts[currentParkId];
+  const forecastDays = parkForecasts[parkId];
   const activeDay = forecastDays.find((d) => d.date === selectedDate) || forecastDays[2];
 
   const getWeatherIcon = (w: CalendarDay["weather"]) => {
@@ -338,7 +337,7 @@ export default function CrowdCalendarView({ onSelectDate }: CrowdCalendarViewPro
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       {/* Header Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-900 via-indigo-950 to-slate-900 p-6 sm:p-8 text-white border border-brand-500/30 shadow-glow-brand">
+      <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-brand-900 via-indigo-950 to-slate-900 p-6 sm:p-8 text-white border border-brand-500/30 shadow-glow-brand">
         <div className="relative z-10 max-w-2xl">
           <div className="inline-flex items-center gap-2 text-xs font-bold text-brand-300 uppercase tracking-wider mb-2">
             <Calendar className="w-4 h-4" />
@@ -362,7 +361,7 @@ export default function CrowdCalendarView({ onSelectDate }: CrowdCalendarViewPro
                 key={p.id}
                 onClick={() => setParkId(p.id)}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-                  currentParkId === p.id
+                  parkId === p.id
                     ? "bg-brand-500 text-white shadow-glow-brand"
                     : "bg-slate-800/80 text-slate-300 hover:bg-slate-700"
                 }`}
@@ -389,7 +388,7 @@ export default function CrowdCalendarView({ onSelectDate }: CrowdCalendarViewPro
               }`}
             >
               {day.isRecommended && (
-                <div className="absolute -top-2.5 right-2 px-2 py-0.5 rounded-full text-[9px] font-black bg-gradient-to-r from-amber-500 to-orange-500 text-white flex items-center gap-0.5 shadow-xs">
+                <div className="absolute -top-2.5 right-2 px-2 py-0.5 rounded-full text-[9px] font-black bg-linear-to-r from-amber-500 to-orange-500 text-white flex items-center gap-0.5 shadow-2xs">
                   <Star className="w-2.5 h-2.5 fill-current" />
                   <span>BEST</span>
                 </div>
@@ -415,7 +414,7 @@ export default function CrowdCalendarView({ onSelectDate }: CrowdCalendarViewPro
                 </span>
 
                 <div className="text-[11px] text-slate-300 font-semibold flex items-center justify-between">
-                  <span>₹{day.ticketPrice}</span>
+                  <span>â‚¹{day.ticketPrice}</span>
                   <span className="text-[10px] text-slate-400">~{day.predictedWaitMins}m</span>
                 </div>
               </div>
@@ -433,7 +432,7 @@ export default function CrowdCalendarView({ onSelectDate }: CrowdCalendarViewPro
                 {activeDay.dayName}, {activeDay.displayDate} Intelligence
               </h2>
               {activeDay.isRecommended && (
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1 shadow-xs">
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1 shadow-2xs">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                   QueueCut Recommended Day
                 </span>
@@ -467,13 +466,13 @@ export default function CrowdCalendarView({ onSelectDate }: CrowdCalendarViewPro
           <div className="p-4 bg-slate-950/60 rounded-2xl border border-slate-800/80">
             <span className="block text-[11px] text-slate-400 font-medium uppercase tracking-wider">2026 Ticket Price</span>
             <span className="block text-lg font-extrabold text-emerald-400 mt-1">
-              ₹{activeDay.ticketPrice}
+              â‚¹{activeDay.ticketPrice}
             </span>
           </div>
           <div className="p-4 bg-slate-950/60 rounded-2xl border border-slate-800/80">
             <span className="block text-[11px] text-slate-400 font-medium uppercase tracking-wider">Weather Forecast</span>
             <span className="block text-lg font-extrabold text-amber-400 mt-1 capitalize">
-              {activeDay.weather} • {activeDay.temp}°C
+              {activeDay.weather} â€¢ {activeDay.temp}Â°C
             </span>
           </div>
         </div>

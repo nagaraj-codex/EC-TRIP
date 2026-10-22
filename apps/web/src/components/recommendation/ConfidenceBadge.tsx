@@ -27,12 +27,12 @@ export default function ConfidenceBadge({ confidence, reasoning }: Props) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold transition-all shadow-xs active:scale-98 ${styles[confidence]}`}
+        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold transition-all shadow-2xs active:scale-98 ${styles[confidence]}`}
         aria-label={`Prediction Confidence: ${confidence}. Click for explanation.`}
       >
         <Icon className="w-3.5 h-3.5 shrink-0" />
         <span>{confidence} Confidence</span>
-        <span className="opacity-60 text-[10px] bg-black/10 px-1 py-0.2 rounded">?</span>
+        <span className="opacity-60 text-[10px] bg-black/10 px-1 py-0.2 rounded-sm">?</span>
       </button>
 
       {open && (
@@ -47,16 +47,16 @@ export default function ConfidenceBadge({ confidence, reasoning }: Props) {
             </span>
             <button
               onClick={() => setOpen(false)}
-              className="text-slate-400 hover:text-white p-0.5 rounded"
+              className="text-slate-400 hover:text-white p-0.5 rounded-sm"
             >
               <X className="w-3.5 h-3.5" />
             </button>
           </div>
           <p className="text-slate-300 text-[11px] leading-relaxed">
-            {reasoning || "Derived from verified 2026 ground-truth tariff, Open-Meteo live weather radar, and public holiday calendars."}
+            {reasoning || "Confidence reflects the data sources and inputs available for this recommendation."}
           </p>
           <div className="mt-2 text-[10px] text-slate-400 border-t border-slate-800 pt-1 flex items-center gap-1">
-            <span>🛡️ Calibrated by QueueCut Signal Engine</span>
+            <span>Review source and freshness information before booking.</span>
           </div>
         </div>
       )}

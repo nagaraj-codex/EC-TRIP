@@ -59,7 +59,7 @@ export default function PlannerPanel() {
         <select
           value={parkId}
           onChange={(e) => setParkId(e.target.value)}
-          className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+          className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-hidden focus:ring-2 focus:ring-brand-500"
         >
           {PARKS.map((p) => (
             <option key={p.id} value={p.id}>{p.name}</option>
@@ -75,12 +75,12 @@ export default function PlannerPanel() {
           type="date"
           onChange={handleDateInput}
           min={new Date().toISOString().split("T")[0]}
-          className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+          className="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-hidden focus:ring-2 focus:ring-brand-500"
         />
         {candidateDates.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mt-2">
             {candidateDates.map((d) => (
-              <span key={d} className="inline-flex items-center px-2 py-0.5 rounded text-xs bg-slate-100 text-slate-700">
+              <span key={d} className="inline-flex items-center px-2 py-0.5 rounded-sm text-xs bg-slate-100 text-slate-700">
                 {d}
                 <button type="button" onClick={() => removeDate(d)} className="ml-1 text-slate-400 hover:text-red-500">&times;</button>
               </span>

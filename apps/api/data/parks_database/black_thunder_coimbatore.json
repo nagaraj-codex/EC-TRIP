@@ -1,0 +1,280 @@
+{
+  "park_id": "black-thunder-coimbatore",
+  "name": "Black Thunder Water Theme Park",
+  "brand": "Black Thunder Theme Park Private Limited",
+  "official_website": "https://www.blackthunder.in/",
+  "location": {
+    "address": "Jaganari Slopes R.F., Ooty Main Road, Mettupalayam, Tamil Nadu - 641305, India",
+    "coordinates": {
+      "lat": 11.329174,
+      "lon": 76.910043
+    },
+    "city": "Mettupalayam, Coimbatore District",
+    "state": "Tamil Nadu",
+    "highway": "Coimbatore-Mettupalayam-Ooty Highway (NH 181)",
+    "distance_from_coimbatore": "40 km (~1 hour drive)",
+    "starting_point_of_railway": "Mettupalayam Railway Station (Nilgiri Mountain Railway starting junction is ~4 km away)"
+  },
+  "contact": {
+    "reservations_phone": "+91 98 9445 9115",
+    "resort_phone": "+91 98 9472 6640",
+    "email_general": "info@blackthunder.in",
+    "email_pro": "pro@blackthunder.in"
+  },
+  "operating_hours": {
+    "daily_timings": "10:00 AM - 06:00 PM",
+    "water_rides_timings": "10:30 AM - 05:30 PM",
+    "morning_nature_walk": "06:30 AM (Resort guests)",
+    "notes": "Open every single day year-round amidst Nilgiri foothill mountain views."
+  },
+  "ticket_pricing": {
+    "currency": "INR",
+    "effective_date": "1 March 2026",
+    "entry_charges": {
+      "adult": 1090,
+      "child": 850,
+      "college_student": 890,
+      "school_student": 790,
+      "senior_citizen": 850,
+      "defence_personnel": 850
+    },
+    "combos_and_adventure": {
+      "special_combo_entry_and_adventure": 1450,
+      "adventure_activities_only": 550,
+      "adventure_criteria": "Minimum height: 145 cm | Maximum weight: 85 kg"
+    },
+    "height_criteria": {
+      "adult": "Height above 140 cm",
+      "child": "Height between 85 cm and 140 cm",
+      "infant": "Below 85 cm enters completely FREE"
+    },
+    "student_and_group_rules": {
+      "student_concession_min_group": "Minimum 20 students from same school/college with valid institutional bonafide letter.",
+      "complimentary_staff": "1 staff member entry is complimentary for every 15 paying students (with valid staff ID).",
+      "senior_id": "Senior citizens (60+ years) must produce valid government photo ID."
+    }
+  },
+  "dress_code_policy": {
+    "water_park": "Nylon or synthetic swimwear is strictly mandatory across all 30 water rides. Sarees, jeans, cotton track pants, dhotis, and innerwear are strictly prohibited in the water.",
+    "sales_and_rental": "Costumes and swimwear are readily available for rent and sale inside the park changing facilities."
+  },
+  "amenities_and_facilities": {
+    "lockers": "Safe digital/key locker rentals available in men's and women's changing pavilions.",
+    "food_policy": "Outside food and alcoholic beverages strictly not allowed inside theme park.",
+    "accommodations": "AVANA Resort (on-site 4-star resort with 40+ deluxe rooms, suites, swimming pool, and conference facilities).",
+    "event_lawns": "3 grand open-air wedding and corporate lawns accommodating up to 3,000 guests, plus 2 indoor ballrooms (200 capacity each).",
+    "lake_activities": "Natural lake with pedal boating and fish pond."
+  },
+  "dining_venues": [
+    {
+      "name": "Thunder Cafe",
+      "type": "Multi-cuisine Indoor Restaurant & Bamboo Garden",
+      "cuisine": "Authentic South Indian thalis, Chettinad specialties, North Indian cuisine, and Chinese favorites with floor-to-ceiling panoramic glass windows."
+    },
+    {
+      "name": "Tusker Bar",
+      "type": "Colonial Plantation-style Bar & Lounge",
+      "offerings": "Fine wines, beers, cocktails, mocktails, fish fingers, tandoori kebabs, and Chinese platters."
+    },
+    {
+      "name": "Bamboo Huts",
+      "type": "Themed Outdoor Thatched-roof Dining",
+      "ambience": "Authentic hut seating with mountain breezes and coconut tree grove canopy."
+    },
+    {
+      "name": "BBQ & Bonfire",
+      "type": "Evening Open-air Barbecue",
+      "features": "Grills and bonfires set on grassy lawns under the stars at AVANA Resort."
+    },
+    {
+      "name": "Picnic By The Fountain",
+      "type": "Garden Dining",
+      "offerings": "Quick bites, ice creams, seasonal beverages, and family picnic combos."
+    }
+  ],
+  "rides_and_attractions_breakdown": {
+    "total_water_rides": 30,
+    "total_dry_rides": 29,
+    "total_adventure_attractions": 23,
+    "water_rides": [
+      {
+        "name": "Wave Pool",
+        "type": "Mega Wave Generator",
+        "description": "One of India's largest artificial wave pools creating 1.5m ocean surf waves."
+      },
+      {
+        "name": "Wild River / Lazy River",
+        "type": "Winding Float",
+        "description": "Slow, relaxing drift tube channel snaking through greenery."
+      },
+      {
+        "name": "Twister Red & Blue",
+        "type": "High Speed Body Tube",
+        "description": "Intertwined high-speed enclosed serpentine slides."
+      },
+      {
+        "name": "Spider Slide",
+        "type": "Multi-arm Slide",
+        "description": "Radial tube slides dropping into central catch pool."
+      },
+      {
+        "name": "Bowl Slide",
+        "type": "Space Bowl",
+        "description": "Enclosed chute leading into centrifugal bowl spin before deep plunge."
+      },
+      {
+        "name": "Boomerang Slide",
+        "type": "Half-pipe Slide",
+        "description": "High-adrenaline raft ascent and descent on steep vertical walls."
+      },
+      {
+        "name": "Downhill Rapid Slide",
+        "type": "Rapid Descent",
+        "description": "Multi-stage racing chute with thrilling dips."
+      },
+      {
+        "name": "Cannon Ball",
+        "type": "Extreme Water Shot",
+        "description": "High velocity water shoot that launches riders into the air."
+      },
+      {
+        "name": "Speed Slide (24ft & 36ft Free Fall)",
+        "type": "Vertical Drop",
+        "description": "Steep near-vertical freefall slides for extreme adrenaline."
+      },
+      {
+        "name": "Surf Hill",
+        "type": "Multi-lane Mat Racer",
+        "description": "Multi-lane undulating slide where riders race face-first on mats."
+      },
+      {
+        "name": "Thunder Rain",
+        "type": "Rain Dance Area",
+        "description": "High-energy dance floor with monsoon misting jets and music."
+      },
+      {
+        "name": "Family Raft",
+        "type": "Group Raft",
+        "description": "Oversized round raft navigating deep twists and turns."
+      },
+      {
+        "name": "Mini Hurricane & Shot Gun",
+        "type": "High Velocity Tubes"
+      },
+      {
+        "name": "Side Winder & Float Slide",
+        "type": "Raft Oscillations"
+      },
+      {
+        "name": "New Kids Pool & Family Playstation",
+        "type": "Kids Water Fortress",
+        "description": "Shallow water zone with mini tipping buckets and safe slides."
+      }
+    ],
+    "dry_rides": [
+      {
+        "name": "Columbus",
+        "type": "Dragon Roller Coaster",
+        "description": "Dragon-themed roller coaster speeding through palm groves."
+      },
+      {
+        "name": "Family Coaster",
+        "type": "Apple/Caterpillar Coaster",
+        "description": "Gentle drops and turns tailored for children and parents."
+      },
+      {
+        "name": "Dashing Cars",
+        "type": "Bumper Cars",
+        "description": "Classic arena bumper cars."
+      },
+      {
+        "name": "Crazy Raft & Slam Bob",
+        "type": "Pendulum Swing"
+      },
+      {
+        "name": "Octopus & Break Dance",
+        "type": "Rotational Thrill"
+      },
+      {
+        "name": "Ferris Wheel",
+        "type": "Giant Observation Wheel",
+        "description": "Panoramic vista of the Nilgiri Hills foothills."
+      },
+      {
+        "name": "Drop & Twist",
+        "type": "Drop Tower"
+      },
+      {
+        "name": "Thunder Spin & Thunder Storm",
+        "type": "360 Inversions"
+      },
+      {
+        "name": "5D Theatre & Cine Magic",
+        "type": "Multi-sensory Cinema"
+      },
+      {
+        "name": "Santa Train & Junior Carousel",
+        "type": "Kids Classic"
+      }
+    ],
+    "adventure_and_extreme_activities": [
+      {
+        "name": "Zipline Coaster",
+        "type": "Aerial Cable Zip",
+        "description": "Glide across park canopy on high-tension cables."
+      },
+      {
+        "name": "Zipline Cycle",
+        "type": "Tandem Wire Bicycle",
+        "description": "Pedal a bicycle suspended high above the ground on a wire."
+      },
+      {
+        "name": "Bungee Ejection",
+        "type": "Reverse Bungee",
+        "description": "Catapulted skyward from ground level under extreme acceleration."
+      },
+      {
+        "name": "Sky Roller",
+        "type": "Acrobatic Obstacle"
+      },
+      {
+        "name": "Wall Climbing & Tyre Wall Climbing",
+        "type": "Rock Climbing",
+        "description": "Challenging artificial rock wall and vertical tyre obstacles."
+      },
+      {
+        "name": "Cargo Net & Burma Bridge",
+        "type": "Rope Course",
+        "description": "Military-style suspension bridge and rope traverses."
+      },
+      {
+        "name": "9D Haunted Hospital & Horror House",
+        "type": "VR Horror Experience"
+      },
+      {
+        "name": "9D VR & VR PlayStation",
+        "type": "Immersive Virtual Gaming"
+      }
+    ],
+    "nature_and_resort_activities": [
+      {
+        "name": "Pedal Boating",
+        "location": "Park Natural Lake",
+        "description": "Pedal boat rentals on calm scenic waters."
+      },
+      {
+        "name": "Bird Park & Animal Watch Tower",
+        "description": "Walkway for bird sightings and wildlife observation."
+      },
+      {
+        "name": "Cycling Track",
+        "description": "Half-kilometer scenic trail running along sports grounds."
+      },
+      {
+        "name": "Early Morning Animal Interaction Walk",
+        "time": "6:30 AM",
+        "description": "Interactions with rabbits, turtles, chickens, and exotic birds."
+      }
+    ]
+  }
+}

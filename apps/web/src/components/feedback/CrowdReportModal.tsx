@@ -48,7 +48,7 @@ export default function CrowdReportModal({ onClose }: Props) {
         fasttrack_purchased: false,
         ...coords,
       });
-      setVerified(result.verified_on_site);
+      setVerified(result.location_proximity_checked);
       setStatus("done");
     } catch {
       setStatus("error");
@@ -83,7 +83,7 @@ export default function CrowdReportModal({ onClose }: Props) {
               {verified ? (
                 <p className="text-xs text-emerald-400 mt-1 flex items-center justify-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>On-site geofence verified. Score calibrated.</span>
+                  <span>Coordinates were within the park proximity radius. This does not verify identity.</span>
                 </p>
               ) : (
                 <p className="text-xs text-slate-400 mt-1">

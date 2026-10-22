@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Bot, User, Loader2, AlertCircle } from "lucide-react";
 import { apiClient } from "../../services/apiClient";
+import { useUIStore } from "../../store/slices/uiStore";
 
 interface Message {
   id: string;
@@ -14,7 +15,7 @@ interface Message {
 const WELCOME_MSG: Message = {
   id: "welcome",
   role: "assistant",
-  content: "Hi! I'm the **QueueCut Advisor** 🎢\n\nAsk me anything about crowd levels, best visit times, ticket prices, or which parks to visit this weekend!",
+  content: "Hi! I'm the **QueueCut Advisor** ðŸŽ¢\n\nAsk me anything about crowd levels, best visit times, ticket prices, or which parks to visit this weekend!",
   timestamp: new Date(),
 };
 
@@ -26,7 +27,8 @@ const SUGGESTIONS = [
 ];
 
 export default function AdvisorChatbot() {
-  const [isOpen,   setIsOpen]   = useState(false);
+  const isOpen = useUIStore((state) => state.advisorOpen);
+  const setIsOpen = useUIStore((state) => state.setAdvisorOpen);
   const [messages, setMessages] = useState<Message[]>([WELCOME_MSG]);
   const [input,    setInput]    = useState("");
   const [loading,  setLoading]  = useState(false);
@@ -68,7 +70,9 @@ export default function AdvisorChatbot() {
         {
           id: "ai-" + Date.now(),
           role: "assistant",
-          content: res.response,
+          content: res.is_fallback
+            ? `${res.response}\n\nRule-based response; Gemini is unavailable or not configured.`
+            : res.response,
           timestamp: new Date(),
         },
       ]);
@@ -80,7 +84,7 @@ export default function AdvisorChatbot() {
           id: "err-" + Date.now(),
           role: "assistant",
           content: isServiceDown
-            ? "Our AI advisor is temporarily offline (Gemini API). Please check back shortly, or browse park data directly on the Explore page. 🙏"
+            ? "Our AI advisor is temporarily offline (Gemini API). Please check back shortly, or browse park data directly on the Explore page. ðŸ™"
             : "I couldn't process your request right now. Please try again in a moment.",
           timestamp: new Date(),
           error: true,
@@ -96,7 +100,7 @@ export default function AdvisorChatbot() {
     sendMessage(input);
   };
 
-  /** Render message content — basic markdown (bold, newlines) */
+  /** Render message content â€” basic markdown (bold, newlines) */
   const renderContent = (content: string) => {
     const lines = content.split("\n");
     return lines.map((line, li) => {
@@ -114,14 +118,14 @@ export default function AdvisorChatbot() {
 
   return (
     <>
-      {/* ── FAB ── */}
+      {/* â”€â”€ FAB â”€â”€ */}
       <motion.button
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.5 }}
         onClick={() => setIsOpen(true)}
         className={`fixed bottom-24 right-4 z-40 w-14 h-14 rounded-2xl shadow-2xl flex items-center justify-center
-                    bg-gradient-to-br from-qc-teal-500 to-qc-teal-700 text-white
+                    bg-linear-to-br from-qc-teal-500 to-qc-teal-700 text-white
                     hover:shadow-glow-teal hover:-translate-y-1 transition-all duration-300
                     ${isOpen ? "hidden" : "flex"}`}
         aria-label="Open AI Advisor"
@@ -130,7 +134,7 @@ export default function AdvisorChatbot() {
         <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-qc-coral-500 border-2 border-slate-950 animate-pulse" />
       </motion.button>
 
-      {/* ── Chat Panel ── */}
+      {/* â”€â”€ Chat Panel â”€â”€ */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -143,21 +147,22 @@ export default function AdvisorChatbot() {
             style={{ maxHeight: "70vh" }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-white/[0.06] bg-slate-900/80 backdrop-blur-xl">
+            <div className="flex items-center justify-between p-4 border-b border-white/10 bg-slate-900/80 backdrop-blur-xl">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-qc-teal-500 to-qc-teal-700 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-xl bg-linear-to-br from-qc-teal-500 to-qc-teal-700 flex items-center justify-center">
                   <Bot className="w-4 h-4 text-white" />
                 </div>
                 <div>
                   <p className="font-display font-bold text-sm text-white">QueueCut Advisor</p>
                   <div className="flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <p className="text-slate-500 text-[10px]">AI-powered · Gemini</p>
+                    <p className="text-slate-400 text-[10px]">AI-powered &middot; Gemini</p>
                   </div>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
+                aria-label="Close QueueCut Advisor"
                 className="p-2 rounded-xl text-slate-500 hover:text-slate-300 hover:bg-slate-800/60 transition-colors"
               >
                 <X className="w-4 h-4" />
@@ -177,7 +182,7 @@ export default function AdvisorChatbot() {
                       ? "bg-qc-teal-500/20 border border-qc-teal-500/30"
                       : msg.error
                         ? "bg-red-500/20 border border-red-500/30"
-                        : "bg-slate-800/80 border border-white/[0.06]"
+                        : "bg-slate-800/80 border border-white/10"
                   }`}>
                     {msg.role === "user"
                       ? <User className="w-3.5 h-3.5 text-qc-teal-400" />
@@ -194,7 +199,7 @@ export default function AdvisorChatbot() {
                         ? "bg-qc-teal-600/25 text-white border border-qc-teal-500/20 rounded-tr-md"
                         : msg.error
                           ? "bg-red-500/10 text-red-300 border border-red-500/20 rounded-tl-md"
-                          : "bg-slate-800/70 text-slate-300 border border-white/[0.05] rounded-tl-md"
+                          : "bg-slate-800/70 text-slate-300 border border-white/10 rounded-tl-md"
                     }`}
                   >
                     {renderContent(msg.content)}
@@ -205,10 +210,10 @@ export default function AdvisorChatbot() {
               {/* Typing indicator */}
               {loading && (
                 <div className="flex gap-2.5">
-                  <div className="w-7 h-7 rounded-xl bg-slate-800/80 border border-white/[0.06] flex items-center justify-center shrink-0">
+                  <div className="w-7 h-7 rounded-xl bg-slate-800/80 border border-white/10 flex items-center justify-center shrink-0">
                     <Bot className="w-3.5 h-3.5 text-slate-400" />
                   </div>
-                  <div className="bg-slate-800/70 border border-white/[0.05] rounded-2xl rounded-tl-md px-3.5 py-2.5 flex items-center gap-1.5">
+                  <div className="bg-slate-800/70 border border-white/10 rounded-2xl rounded-tl-md px-3.5 py-2.5 flex items-center gap-1.5">
                     <Loader2 className="w-3.5 h-3.5 text-slate-400 animate-spin" />
                     <span className="text-xs text-slate-500">Thinking...</span>
                   </div>
@@ -225,7 +230,7 @@ export default function AdvisorChatbot() {
                   <button
                     key={s}
                     onClick={() => sendMessage(s)}
-                    className="shrink-0 px-3 py-1.5 rounded-full bg-slate-800/60 border border-white/[0.06] text-slate-400 text-[11px] hover:bg-slate-800 hover:text-slate-200 transition-colors"
+                    className="shrink-0 px-3 py-1.5 rounded-full bg-slate-800/60 border border-white/10 text-slate-400 text-[11px] hover:bg-slate-800 hover:text-slate-200 transition-colors"
                   >
                     {s}
                   </button>
@@ -234,7 +239,7 @@ export default function AdvisorChatbot() {
             )}
 
             {/* Input */}
-            <form onSubmit={handleSubmit} className="p-3 border-t border-white/[0.06] flex gap-2">
+            <form onSubmit={handleSubmit} className="p-3 border-t border-white/10 flex gap-2">
               <input
                 ref={inputRef}
                 type="text"
@@ -242,7 +247,7 @@ export default function AdvisorChatbot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 disabled={loading}
-                className="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-800/60 border border-white/[0.08] text-white text-xs placeholder:text-slate-500 focus:border-qc-teal-500/40 outline-none transition-all disabled:opacity-50"
+                className="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-800/60 border border-white/10 text-white text-xs placeholder:text-slate-500 focus:border-qc-teal-500/40 outline-hidden transition-all disabled:opacity-50"
               />
               <button
                 type="submit"

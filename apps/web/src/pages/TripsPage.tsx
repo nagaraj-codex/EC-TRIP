@@ -1,42 +1,47 @@
 import { useEffect, useState } from "react";
+import { useParksQuery, useTripsQuery, useDeleteTripMutation } from "../lib/apiHooks";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/slices/authStore";
-import { apiClient } from "../services/apiClient";
+import { useExploreStore } from "../store/slices/exploreStore";
 import { motion } from "framer-motion";
 import { Map, MapPin, Calendar, Clock, Plus, Trash2 } from "lucide-react";
 import CrowdLevelBadge from "../components/intelligence/CrowdLevelBadge";
 
+type CrowdLevel = "low" | "medium" | "high" | "very_high";
+type TripsSavedTrip = Omit<ReturnType<typeof useAuthStore.getState>["savedTrips"][number], "crowdLevel"> & {
+  crowdLevel: CrowdLevel | null;
+};
+
+function toCrowdLevel(value: string): CrowdLevel | null {
+  const normalized = value.toLocaleLowerCase().replace(/\s+/g, "_");
+  return normalized === "low" || normalized === "medium" || normalized === "high" || normalized === "very_high"
+    ? normalized
+    : null;
+}
+
 export default function TripsPage() {
   const navigate = useNavigate();
-  const { isGuest, openAuthModal } = useAuthStore();
-  const [savedTrips, setSavedTrips] = useState<ReturnType<typeof useAuthStore.getState>["savedTrips"]>([]);
-  const [isLoading, setIsLoading] = useState(!isGuest);
-  const [error, setError] = useState("");
+  const { isGuest } = useAuthStore();
+  const { data: destinations = [], isLoading: parksLoading } = useParksQuery();
+  const {  } = useExploreStore();
 
-  useEffect(() => {
-    if (isGuest) {
-      setIsLoading(false);
-      return;
-    }
-    apiClient.getTrips()
-      .then(({ data }) => setSavedTrips(data.map((trip) => ({
-        id: trip.id,
-        parkId: trip.park_id,
-        parkName: trip.park_id,
-        date: trip.visit_date,
-        ticketPrice: Number(trip.payload.ticketPrice ?? 0),
-        crowdLevel: String(trip.payload.crowdLevel ?? "unknown"),
-        predictedWait: Number(trip.payload.predictedWait ?? 0),
-        fastTrackVerdict: String(trip.payload.fastTrackVerdict ?? "unknown"),
-        savedAt: trip.created_at,
-      }))))
-      .catch((loadError: Error) => setError(loadError.message))
-      .finally(() => setIsLoading(false));
-  }, [isGuest]);
+  const { data: tripsRes, isLoading: tripsLoading, error: tripsError } = useTripsQuery();
+  const deleteTrip = useDeleteTripMutation();
 
-  const removeTrip = async (id: string) => {
-    await apiClient.deleteTrip(id);
-    setSavedTrips((trips) => trips.filter((trip) => trip.id !== id));
+  const savedTrips: TripsSavedTrip[] = (tripsRes?.data || []).map((trip) => ({
+    id: trip.id,
+    parkId: trip.park_id,
+    parkName: destinations.find((park) => park.park_id === trip.park_id)?.name ?? trip.park_id,
+    date: trip.visit_date,
+    ticketPrice: Number(trip.payload?.ticketPrice ?? 0),
+    crowdLevel: toCrowdLevel(String(trip.payload?.crowdLevel ?? "")),
+    predictedWait: Number(trip.payload?.predictedWait ?? 0),
+    fastTrackVerdict: String(trip.payload?.fastTrackVerdict ?? "unknown"),
+    savedAt: trip.created_at,
+  }));
+
+  const removeTrip = (id: string) => {
+    deleteTrip.mutate(id);
   };
 
   if (isGuest) {
@@ -55,7 +60,7 @@ export default function TripsPage() {
             Save and sync your trip plans across devices by signing in.
           </p>
           <button
-            onClick={() => openAuthModal("Sign in to access your saved trips", "signin")}
+            onClick={() => navigate("/login")}
             className="btn-blue-primary mx-auto"
           >
             Sign In
@@ -65,12 +70,12 @@ export default function TripsPage() {
     );
   }
 
-  if (isLoading) {
+  if (tripsLoading || parksLoading) {
     return <div className="qc-page text-sm text-slate-500">Loading saved trips...</div>;
   }
 
-  if (error) {
-    return <div className="qc-page text-sm text-red-500">Trips could not be loaded. {error}</div>;
+  if (tripsError) {
+    return <div className="qc-page text-sm text-red-500">Trips could not be loaded. {tripsError.message}</div>;
   }
 
   if (savedTrips.length === 0) {
@@ -137,7 +142,7 @@ export default function TripsPage() {
                         </span>
                       </div>
                       <div className="flex items-center gap-2 mt-2">
-                        <CrowdLevelBadge level={trip.crowdLevel as any} size="sm" />
+                        {trip.crowdLevel ? <CrowdLevelBadge level={trip.crowdLevel} size="sm" /> : <span className="text-xs text-slate-500">Crowd forecast unavailable</span>}
                         <span className="text-qc-blue-600 text-xs font-bold">₹{trip.ticketPrice}</span>
                       </div>
                     </div>

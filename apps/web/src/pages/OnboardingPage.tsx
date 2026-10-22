@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUIStore } from "../store/slices/uiStore";
 import { motion, AnimatePresence } from "framer-motion";
@@ -43,7 +43,7 @@ export default function OnboardingPage() {
 
   return (
     <div className="fixed inset-0 z-50 flex overflow-hidden bg-white">
-      {/* ── Desktop: side-by-side ── */}
+      {/* â”€â”€ Desktop: side-by-side â”€â”€ */}
       <div className="hidden md:flex w-full h-full">
         {/* Left: Image panel */}
         <div className="relative w-[58%] h-full overflow-hidden">
@@ -61,14 +61,14 @@ export default function OnboardingPage() {
             />
           </AnimatePresence>
           {/* Bottom gradient for visual polish */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/5 pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-r from-transparent to-white/5 pointer-events-none" />
         </div>
 
         {/* Right: Content panel */}
         <div className="w-[42%] flex flex-col justify-between p-16 bg-white">
           {/* Top: Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-qc-blue-500 to-qc-blue-700 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-xl bg-linear-to-br from-qc-blue-500 to-qc-blue-700 flex items-center justify-center">
               <span className="text-white text-sm font-bold">Q</span>
             </div>
             <span className="font-display font-bold text-lg text-slate-900">
@@ -134,7 +134,7 @@ export default function OnboardingPage() {
         </div>
       </div>
 
-      {/* ── Mobile: vertical stack ── */}
+      {/* â”€â”€ Mobile: vertical stack â”€â”€ */}
       <div className="flex md:hidden flex-col w-full h-full">
         {/* Top: Image */}
         <div className="relative h-[48vh] overflow-hidden shrink-0">

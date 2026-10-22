@@ -1,0 +1,7 @@
+visit_date,park_id,day_type,is_school_vacation,weather_condition,ticket_price_paid,offer_applied,observed_crowd_overall,observed_wait_top_ride_minutes,fasttrack_purchased
+2026-09-12,wonderla-chennai,weekend,false,sunny,1549,none,high,35,false
+2026-09-15,wonderla-chennai,weekday,false,cloudy,1312,college_discount,low,15,false
+2026-09-12,mgm-dizzee-chennai,weekend,false,sunny,849,none,high,45,false
+2026-09-16,mgm-dizzee-chennai,weekday,false,sunny,699,none,low,10,false
+2026-09-15,black-thunder-coimbatore,weekday,false,cloudy,1090,student_discount,low,10,false
+2026-09-20,black-thunder-coimbatore,weekend,false,sunny,1090,none,high,40,false

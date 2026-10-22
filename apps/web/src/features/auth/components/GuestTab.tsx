@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import { useAuthStore } from "../../../store/slices/authStore";
 
@@ -16,33 +16,33 @@ export const GuestTab: React.FC = () => {
           Browse freely with zero account
         </h2>
         <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-          Explore all verified 2026 pricing, live wait times, and 7-day crowd heatmaps right now without filling out forms.
+          Explore the park catalog, request date-based crowd recommendations, and check weather forecasts without creating an account.
         </p>
       </div>
 
       <div className="space-y-2.5 bg-[#070e1d] p-4 rounded-2xl border border-[#192744]">
         <div className="flex items-start gap-2 text-xs text-slate-300">
-          <span className="text-emerald-400 font-bold shrink-0">✓</span>
-          <span>Live Open-Meteo weather and rain advisories</span>
+          <span className="text-emerald-400 font-bold shrink-0">âœ“</span>
+          <span>Open-Meteo weather forecasts with source status</span>
         </div>
         <div className="flex items-start gap-2 text-xs text-slate-300">
-          <span className="text-emerald-400 font-bold shrink-0">✓</span>
+          <span className="text-emerald-400 font-bold shrink-0">âœ“</span>
           <span>Wonderla Chennai, MGM Dizzee & Black Thunder data</span>
         </div>
         <div className="flex items-start gap-2 text-xs text-slate-300">
-          <span className="text-emerald-400 font-bold shrink-0">✓</span>
-          <span>Full candidate date evaluation and FastTrack ROI</span>
+          <span className="text-emerald-400 font-bold shrink-0">âœ“</span>
+          <span>Candidate-date recommendations and FastTrack guidance where configured</span>
         </div>
         <div className="flex items-start gap-2 text-xs text-slate-400 pt-1 border-t border-[#162340]">
-          <span className="text-amber-400 font-bold shrink-0">ℹ</span>
-          <span>Sign in later anytime to save trips and receive WhatsApp surge alerts.</span>
+          <span className="text-amber-400 font-bold shrink-0">â„¹</span>
+          <span>Sign in later to save trips across devices and manage account notifications.</span>
         </div>
       </div>
 
       <button
         type="button"
         onClick={continueAsGuest}
-        className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-extrabold text-xs shadow-lg transition-all flex items-center justify-center gap-2 active:scale-98"
+        className="w-full py-3 rounded-xl bg-linear-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-extrabold text-xs shadow-lg transition-all flex items-center justify-center gap-2 active:scale-98"
       >
         <span>Start Browsing as Guest</span>
         <ArrowRight className="w-4 h-4" />

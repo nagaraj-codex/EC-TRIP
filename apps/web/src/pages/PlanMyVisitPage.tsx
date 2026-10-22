@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParksQuery } from "../lib/apiHooks";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useExploreStore } from "../store/slices/exploreStore";
 import { useAuthStore } from "../store/slices/authStore";
 import { apiClient } from "../services/apiClient";
@@ -9,7 +10,10 @@ import {
   ArrowLeft, ArrowRight, MapPin, Calendar,
   CheckCircle2, Loader2, AlertCircle
 } from "lucide-react";
-import type { RecommendationResponse } from "../types/api";
+import type { ItineraryResponse, RecommendationResponse } from "../types/api";
+import type { PassOption } from "../components/booking/PassSelector";
+import { formatOperatingHours } from "../utils/parkFormatting";
+import { queueCutAssets } from "../data/assetConfig";
 
 type Step = 1 | 2 | 3 | 4;
 
@@ -20,27 +24,50 @@ const STEPS = [
   { num: 4, label: "Your Plan"  },
 ];
 
-const GENERIC_IMAGE = "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80";
+const GENERIC_IMAGE = queueCutAssets.genericParkImage(400);
 
 export default function PlanMyVisitPage() {
   const navigate = useNavigate();
-  const { destinations, loadDestinations, isLoading: parksLoading } = useExploreStore();
+  const location = useLocation();
+  const { data: destinations = [], isLoading: parksLoading, error } = useParksQuery();
+  const {  } = useExploreStore();
   const { sessionType } = useAuthStore();
   const { setRecommendation } = usePlannerStore();
 
-  const [step, setStep]             = useState<Step>(1);
-  const [selectedParkId, setSelectedParkId] = useState<string>("");
-  const [selectedDate, setSelectedDate]     = useState<string>("");
+  const bookingState = location.state as {
+    parkId?: string;
+    date?: string;
+    ticketOption?: PassOption | null;
+    origin?: string;
+    travellers?: number;
+    travellerCounts?: { adults: number; children: number; seniors: number };
+    tripType?: "day" | "multi";
+    priority?: "Cheapest" | "Least Crowded" | "Best Balanced" | "Maximum Rides";
+    recommendation?: RecommendationResponse;
+  } | null;
+
+  const [step, setStep]             = useState<Step>(bookingState?.recommendation ? 4 : 1);
+  const [selectedParkId, setSelectedParkId] = useState<string>(bookingState?.parkId ?? "");
+  const [selectedDate, setSelectedDate]     = useState<string>(bookingState?.date ?? "");
   const [isLoadingRec, setIsLoadingRec]     = useState(false);
   const [recError, setRecError]             = useState("");
-  const [recommendation, setLocalRecommendation] = useState<RecommendationResponse | null>(null);
+  const [recommendation, setLocalRecommendation] = useState<RecommendationResponse | null>(bookingState?.recommendation ?? null);
   const [tripSaved, setTripSaved]           = useState(false);
   const [saveError, setSaveError]           = useState("");
+  const [itinerary, setItinerary] = useState<ItineraryResponse | null>(null);
+  const [isLoadingItinerary, setIsLoadingItinerary] = useState(false);
+  const [itineraryError, setItineraryError] = useState("");
 
-  // Load parks on mount
-  useState(() => { void loadDestinations(); });
+  
+
+  useEffect(() => {
+    if (bookingState?.recommendation) {
+      setRecommendation(bookingState.recommendation);
+    }
+  }, [bookingState?.recommendation, setRecommendation]);
 
   const selectedPark = destinations.find((p) => p.park_id === selectedParkId);
+  const selectedParkHours = formatOperatingHours(selectedPark?.operating_hours);
 
   // Min date = today
   const minDate = new Date().toISOString().split("T")[0];
@@ -87,17 +114,40 @@ export default function PlanMyVisitPage() {
         ?? recommendation?.evaluations[0];
       await apiClient.saveTrip({
         park_id: selectedParkId,
-        visit_date: selectedDate,
+        visit_date: recommendation?.recommended_date ?? selectedDate,
         payload: {
           ticketPrice:      recEval?.ticket_price,
           crowdLevel:       recEval?.crowd_level,
           predictedWait:    recEval?.predicted_wait_top_ride_minutes,
           fastTrackVerdict: recEval?.fasttrack_verdict,
+          selectedPass:     bookingState?.ticketOption ?? null,
+          travellerCounts:  bookingState?.travellerCounts,
+          originCity:       bookingState?.origin,
+          tripType:         bookingState?.tripType,
         },
       });
       setTripSaved(true);
     } catch (err) {
       setSaveError(err instanceof Error ? err.message : "Unable to save trip.");
+    }
+  };
+
+  const handleGenerateItinerary = async () => {
+    if (!selectedParkId || !recommendation) return;
+    setIsLoadingItinerary(true);
+    setItineraryError("");
+    try {
+      const result = await apiClient.generateItinerary({
+        park_id: selectedParkId,
+        visit_date: recommendation.recommended_date,
+        priority: bookingState?.priority ?? "Best Balanced",
+        group_size: bookingState?.travellers ?? 1,
+      });
+      setItinerary(result);
+    } catch (error) {
+      setItineraryError(error instanceof Error ? error.message : "The itinerary could not be generated.");
+    } finally {
+      setIsLoadingItinerary(false);
     }
   };
 
@@ -190,7 +240,10 @@ export default function PlanMyVisitPage() {
                     <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0">
                       <img
                         src={park.image ?? GENERIC_IMAGE}
-                        alt={park.name}
+                        alt={park.image ? park.name : "Generic amusement park scene"}
+                        width={48}
+                        height={48}
+                        loading="lazy"
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -246,7 +299,7 @@ export default function PlanMyVisitPage() {
                 min={minDate}
                 max={maxDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 text-sm focus:border-qc-blue-500 focus:ring-2 focus:ring-qc-blue-500/20 outline-none transition-all"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-900 text-sm focus:border-qc-blue-500 focus:ring-2 focus:ring-qc-blue-500/20 outline-hidden transition-all"
               />
               <p className="text-slate-400 text-xs mt-2">You can plan up to 3 months ahead.</p>
             </div>
@@ -281,7 +334,10 @@ export default function PlanMyVisitPage() {
                 <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
                   <img
                     src={selectedPark?.image ?? GENERIC_IMAGE}
-                    alt={selectedPark?.name ?? ""}
+                    alt={selectedPark?.image ? selectedPark.name : "Generic amusement park scene"}
+                    width={64}
+                    height={64}
+                    loading="lazy"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -301,10 +357,10 @@ export default function PlanMyVisitPage() {
                     }) : "—"}
                   </span>
                 </div>
-                {selectedPark?.operating_hours && (
+                {selectedParkHours && (
                   <div className="flex items-center justify-between mt-2">
                     <span className="text-slate-500 text-sm">Operating hours</span>
-                    <span className="font-semibold text-slate-900 text-sm">{selectedPark.operating_hours}</span>
+                    <span className="font-semibold text-slate-900 text-sm">{selectedParkHours}</span>
                   </div>
                 )}
                 {selectedPark?.weekday_price && (
@@ -361,7 +417,7 @@ export default function PlanMyVisitPage() {
                 <div className="qc-card-white rounded-2xl p-6">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0">
-                      <img src={selectedPark?.image ?? GENERIC_IMAGE} alt="" className="w-full h-full object-cover" />
+                      <img src={selectedPark?.image ?? GENERIC_IMAGE} alt="" width={48} height={48} loading="lazy" className="w-full h-full object-cover" />
                     </div>
                     <div>
                       <p className="font-bold text-slate-900">{selectedPark?.name}</p>
@@ -373,6 +429,14 @@ export default function PlanMyVisitPage() {
                     </div>
                   </div>
                   <p className="text-slate-600 text-sm leading-relaxed">{recommendation.summary}</p>
+                  {bookingState?.origin && (
+                    <p className="mt-3 border-t border-slate-100 pt-3 text-xs text-slate-500">
+                      Planning details: starting in {bookingState.origin}; {bookingState.travellerCounts ? `${bookingState.travellerCounts.adults} adults, ${bookingState.travellerCounts.children} children, ${bookingState.travellerCounts.seniors} seniors` : `${bookingState.travellers ?? 1} travellers`}; {bookingState.tripType === "multi" ? "multi-day visit" : "single-day visit"}.
+                    </p>
+                  )}
+                  {bookingState?.ticketOption && (
+                    <p className="mt-2 text-xs text-slate-500">Selected ticket option: <span className="font-semibold text-slate-700">{bookingState.ticketOption.label}</span>. Pricing and availability must be confirmed with the park.</p>
+                  )}
                 </div>
 
                 {/* Conditions */}
@@ -405,6 +469,35 @@ export default function PlanMyVisitPage() {
                     <p className="text-slate-500 text-xs uppercase tracking-wider mb-2">Why this recommendation</p>
                     <p className="text-slate-700 text-sm leading-relaxed">{recEval.reasoning}</p>
                   </div>
+                )}
+
+                {!itinerary ? (
+                  <div>
+                    <button type="button" onClick={() => void handleGenerateItinerary()} disabled={isLoadingItinerary} className="btn-blue-primary w-full disabled:cursor-wait disabled:opacity-70">
+                      {isLoadingItinerary ? <><Loader2 className="h-4 w-4 animate-spin" /> Building your day plan...</> : <>Generate day itinerary <ArrowRight className="h-4 w-4" /></>}
+                    </button>
+                    {itineraryError && <p role="alert" className="mt-2 text-sm text-red-600">{itineraryError}<button type="button" onClick={() => void handleGenerateItinerary()} className="ml-2 font-semibold underline">Try again</button></p>}
+                  </div>
+                ) : (
+                  <section aria-labelledby="generated-itinerary-heading" className="qc-card-white rounded-2xl p-5">
+                    <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-slate-100 pb-3">
+                      <div>
+                        <h3 id="generated-itinerary-heading" className="font-display text-base font-bold text-slate-900">Your day itinerary</h3>
+                        <p className="mt-1 text-xs text-slate-500">{itinerary.park_name} · {itinerary.visit_date}</p>
+                      </div>
+                      <p className="text-xs font-semibold text-blue-700">Estimated waits: {itinerary.total_estimated_wait_minutes} min</p>
+                    </div>
+                    <ol className="mt-3 divide-y divide-slate-100">
+                      {itinerary.timeline.map((item, index) => (
+                        <li key={`${item.time_slot}-${index}`} className="py-3 first:pt-0 last:pb-0">
+                          <p className="text-xs font-bold text-blue-700">{item.time_slot} <span className="font-medium text-slate-500">· {item.category}</span></p>
+                          <p className="mt-1 text-sm font-semibold text-slate-900">{item.activity}</p>
+                          <p className="mt-1 text-xs leading-relaxed text-slate-600">{item.tip}</p>
+                          <p className="mt-1 text-[10px] text-slate-500">Estimated wait: {item.estimated_wait_minutes} min · UV: {item.uv_exposure}</p>
+                        </li>
+                      ))}
+                    </ol>
+                  </section>
                 )}
 
                 {/* Save Trip */}

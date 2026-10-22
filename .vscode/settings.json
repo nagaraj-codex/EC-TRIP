@@ -1,62 +1,65 @@
 {
-  "editor.tabSize": 2,
-  "editor.insertSpaces": true,
-  "editor.detectIndentation": false,
-  "editor.trimAutoWhitespace": true,
-  "editor.trimFinalNewlines": true,
-  "editor.insertFinalNewline": true,
   "editor.formatOnSave": true,
-  "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/Thumbs.db": true,
-    "**/__pycache__": true,
-    "**/*.pyc": true,
-    "**/.pytest_cache": true,
-    "**/.mypy_cache": true,
-    "**/.ruff_cache": true,
-    "**/__pyrefly_virtual__/**": true,
-    "**/.venv": true,
-    "**/venv": true,
-    "**/.vite": true
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
   },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-21",
+      "path": "C:\\Program Files\\Microsoft\\jdk-21.0.12.101-hotspot",
+      "default": true
+    }
+  ],
+  "files.eol": "\n",
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
   "search.exclude": {
     "**/node_modules": true,
-    "**/dist": true,
-    "**/build": true,
-    "**/.venv": true,
-    "**/venv": true,
-    "**/__pycache__": true,
-    "**/.pytest_cache": true,
-    "**/.mypy_cache": true,
-    "**/.ruff_cache": true,
-    "**/.vite": true
+    "**/target": true,
+    "**/dist": true
   },
-  "files.associations": {
-    "**/.github/workflows/*.yml": "yaml",
-    "**/.github/workflows/*.yaml": "yaml",
-    "*.css": "tailwindcss"
-  },
-  "css.lint.unknownAtRules": "ignore",
-  "scss.lint.unknownAtRules": "ignore",
-  "less.lint.unknownAtRules": "ignore",
-  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
-  "python.testing.pytestArgs": [
-    "apps/api/tests"
+  "java.import.maven.enabled": true,
+  "maven.pomPath": "apps/api/pom.xml",
+  "java.project.sourcePaths": [
+    "apps/api/src/main/java",
+    "apps/api/src/test/java"
   ],
-  "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true,
-  "js/ts.tsdk.path": "apps/web/node_modules/typescript/lib",
-  "js/ts.suggest.autoImports": true,
-  "js/ts.preferences.importModuleSpecifier": "shortest",
-  "tailwindCSS.includeLanguages": {
-    "typescript": "javascript",
-    "typescriptreact": "javascript"
-  },
-  "terminal.integrated.defaultProfile.windows": "Command Prompt",
-  "git.autofetch": true,
-  "git.enableSmartCommit": false
+  "github-actions.remote-name": "origin",
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms100m -Xlog:disable",
+  "java.compile.nullAnalysis.mode": "automatic",
+  "css.lint.compatibleVendorPrefixes": "ignore",
+  "css.lint.vendorPrefix": "ignore",
+  "css.lint.validProperties": [
+    "scrollbar-width"
+  ],
+  "boot-java.validation.java.version-validation": "OFF",
+  "spring-boot.ls.problem.version-validation.UNSUPPORTED_OSS_VERSION": "IGNORE",
+  "spring-boot.ls.problem.version-validation.UNSUPPORTED_COMMERCIAL_VERSION": "IGNORE",
+  "spring-boot.ls.problem.version-validation.UPDATE_LATEST_MINOR_VERSION": "IGNORE",
+  "spring-boot.ls.problem.version-validation.UPDATE_LATEST_PATCH_VERSION": "IGNORE",
+  "markdownlint.config": {
+    "default": true,
+    "MD013": false
+  }
 }

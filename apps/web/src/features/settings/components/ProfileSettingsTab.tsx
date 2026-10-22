@@ -8,11 +8,11 @@ interface ProfileSettingsTabProps {
 
 export const ProfileSettingsTab: React.FC<ProfileSettingsTabProps> = ({ onSaved }) => {
   const { user, updateProfile } = useAuthStore();
-  const [name, setName] = useState(user?.name || "Rahul Sharma");
-  const [email, setEmail] = useState(user?.email || "rahul.sharma@gmail.com");
-  const [phone, setPhone] = useState(user?.phone || "+91 98765 43210");
-  const [homeCity, setHomeCity] = useState(user?.homeCity || "Chennai");
-  const [preferredPark] = useState(user?.preferredPark || "wonderla-chennai");
+  const [name, setName] = useState(user?.name || "");
+  const [email, setEmail] = useState(user?.email || "");
+  const [phone, setPhone] = useState(user?.phone || "");
+  const [homeCity, setHomeCity] = useState(user?.homeCity || "");
+  const [preferredPark] = useState(user?.preferredPark || "");
 
   const handleSaveProfile = (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,7 +71,7 @@ export const ProfileSettingsTab: React.FC<ProfileSettingsTabProps> = ({ onSaved 
         </div>
 
         <div>
-          <label className="form-label">Phone (for WhatsApp Alerts)</label>
+          <label className="form-label">Phone</label>
           <input
             type="text"
             value={phone}

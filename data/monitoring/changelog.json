@@ -1,0 +1,82 @@
+[
+  {
+    "timestamp": "2026-10-22T18:20:38.431Z",
+    "park_id": "wonderla-chennai",
+    "park_name": "Wonderla Amusement Park Chennai",
+    "source_url": "https://www.wonderla.com/offers",
+    "category": "offers_and_terms",
+    "change_type": "CHANGED",
+    "details": "Content hash changed from 05f22503 to 0f8a8092",
+    "http_status": 200
+  },
+  {
+    "timestamp": "2026-10-22T18:20:38.431Z",
+    "park_id": "wonderla-chennai",
+    "park_name": "Wonderla Amusement Park Chennai",
+    "source_url": "https://www.wonderla.com/chennai/",
+    "category": "operating_hours_and_notices",
+    "change_type": "CHANGED",
+    "details": "Content hash changed from e047aca0 to 1d341baa",
+    "http_status": 200
+  },
+  {
+    "timestamp": "2026-10-22T17:50:25.625Z",
+    "park_id": "wonderla-chennai",
+    "park_name": "Wonderla Amusement Park Chennai",
+    "source_url": "https://www.wonderla.com/offers",
+    "category": "offers_and_terms",
+    "change_type": "CHANGED",
+    "details": "Content hash changed from 4146179f to 05f22503",
+    "http_status": 200
+  },
+  {
+    "timestamp": "2026-10-22T17:50:25.625Z",
+    "park_id": "wonderla-chennai",
+    "park_name": "Wonderla Amusement Park Chennai",
+    "source_url": "https://www.wonderla.com/chennai/",
+    "category": "operating_hours_and_notices",
+    "change_type": "CHANGED",
+    "details": "Content hash changed from 5277266d to e047aca0",
+    "http_status": 200
+  },
+  {
+    "timestamp": "2026-10-22T17:32:03.834Z",
+    "park_id": "wonderla-chennai",
+    "park_name": "Wonderla Amusement Park Chennai",
+    "source_url": "https://www.wonderla.com/offers",
+    "category": "offers_and_terms",
+    "change_type": "CHANGED",
+    "details": "Content hash changed from 6aac6cbf to 4146179f",
+    "http_status": 200
+  },
+  {
+    "timestamp": "2026-10-22T17:32:03.834Z",
+    "park_id": "wonderla-chennai",
+    "park_name": "Wonderla Amusement Park Chennai",
+    "source_url": "https://www.wonderla.com/chennai/",
+    "category": "operating_hours_and_notices",
+    "change_type": "CHANGED",
+    "details": "Content hash changed from 813da1bd to 5277266d",
+    "http_status": 200
+  },
+  {
+    "timestamp": "2026-10-22T17:01:20.480Z",
+    "park_id": "wonderla-chennai",
+    "park_name": "Wonderla Amusement Park Chennai",
+    "source_url": "https://www.wonderla.com/offers",
+    "category": "offers_and_terms",
+    "change_type": "CHANGED",
+    "details": "Content hash changed from 940fa254 to 6aac6cbf",
+    "http_status": 200
+  },
+  {
+    "timestamp": "2026-10-22T17:01:20.480Z",
+    "park_id": "wonderla-chennai",
+    "park_name": "Wonderla Amusement Park Chennai",
+    "source_url": "https://www.wonderla.com/chennai/",
+    "category": "operating_hours_and_notices",
+    "change_type": "CHANGED",
+    "details": "Content hash changed from 10042e3b to 813da1bd",
+    "http_status": 200
+  }
+]

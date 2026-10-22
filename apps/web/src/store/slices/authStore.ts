@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { apiClient } from "../../services/apiClient";
 
 export interface User {
   id: string;
@@ -27,6 +28,7 @@ export interface NotificationItem {
 
 export interface SavedTrip {
   id: string;
+  ownerId?: string;
   parkId: string;
   parkName: string;
   date: string;
@@ -51,6 +53,9 @@ interface AuthState {
   notifications: NotificationItem[];
   toasts: NotificationItem[];
   savedTrips: SavedTrip[];
+  guestSavedTrips: SavedTrip[];
+  accountSavedTrips: Record<string, SavedTrip[]>;
+  savedParkIds: string[];
 
   // Auth actions
   loginWithGoogle: () => void;
@@ -68,6 +73,7 @@ interface AuthState {
   saveTrip: (trip: Omit<SavedTrip, "id" | "savedAt">) => void;
   removeSavedTrip: (id: string) => void;
   isTripSaved: (date: string, parkId: string) => boolean;
+  toggleSavedPark: (parkId: string) => void;
 
   // Notification actions
   markNotificationRead: (id: string) => void;
@@ -92,9 +98,30 @@ export const useAuthStore = create<AuthState>()(
       notifications: [],
       toasts: [],
       savedTrips: [],
+      guestSavedTrips: [],
+      accountSavedTrips: {},
+      savedParkIds: [],
 
       loginWithGoogle: () => {
-        window.location.assign("/api/v1/auth/google/login");
+        apiClient.getGoogleAuthStatus()
+          .then((status) => {
+            if (status.configured) {
+              window.location.assign("/api/v1/auth/google/login");
+            } else {
+              get().addToast({
+                title: "Google Sign-In Unavailable",
+                message: "Google OAuth is not configured. Configure GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET, or use email sign-in.",
+                type: "system",
+              });
+            }
+          })
+          .catch(() => {
+            get().addToast({
+              title: "Network Error",
+              message: "Could not reach the server to start Google Sign-In.",
+              type: "system",
+            });
+          });
       },
 
       loginWithEmail: (email: string, name?: string) => {
@@ -123,25 +150,28 @@ export const useAuthStore = create<AuthState>()(
       },
 
       setAuthenticatedUser: (authenticatedUser) => {
-        set({
-          user: {
-            ...authenticatedUser,
-            createdAt: new Date().toISOString(),
-          },
+        const userWithProfile = {
+          ...authenticatedUser,
+          createdAt: new Date().toISOString(),
+        } as User;
+        set((state) => ({
+          user: userWithProfile,
           isGuest: false,
           sessionType: "authenticated",
           authModalOpen: false,
-        });
+          savedTrips: state.accountSavedTrips[userWithProfile.id] ?? [],
+        }));
       },
 
       continueAsGuest: () => {
         // EXPLICIT guest selection — user consciously chose guest mode
-        set({
+        set((state) => ({
           user: null,
           isGuest: true,
           sessionType: "guest",
-          authModalOpen: false
-        });
+          authModalOpen: false,
+          savedTrips: state.guestSavedTrips,
+        }));
         get().addToast({
           title: "👋 Browsing as Guest",
           message: "Explore parks, crowd data, and forecasts freely. Sign in anytime to save trips.",
@@ -150,11 +180,14 @@ export const useAuthStore = create<AuthState>()(
       },
 
       logout: () => {
+        // Terminate backend session and cookie
+        void apiClient.logout();
         // After logout, go to "none" state — redirect to login, NOT back to guest
         set({
           user: null,
           isGuest: false,
-          sessionType: "none"
+          sessionType: "none",
+          savedTrips: [],
         });
       },
 
@@ -182,14 +215,25 @@ export const useAuthStore = create<AuthState>()(
       },
 
       saveTrip: (tripData) => {
+        const ownerId = get().user?.id ?? (get().isGuest ? "guest" : "anonymous");
         const trip: SavedTrip = {
           ...tripData,
           id: "trip-" + Date.now().toString(36),
+          ownerId,
           savedAt: new Date().toISOString()
         };
-        set((state) => ({
-          savedTrips: [trip, ...state.savedTrips.filter(t => !(t.date === trip.date && t.parkId === trip.parkId))]
-        }));
+        set((state) => {
+          const activeTrips = ownerId === "guest" ? state.guestSavedTrips : (state.user?.id ? state.accountSavedTrips[state.user.id] ?? [] : state.savedTrips);
+          const nextTrips = [trip, ...activeTrips.filter((t) => !(t.date === trip.date && t.parkId === trip.parkId))];
+
+          return {
+            savedTrips: nextTrips,
+            guestSavedTrips: ownerId === "guest" ? nextTrips : state.guestSavedTrips,
+            accountSavedTrips: state.user?.id
+              ? { ...state.accountSavedTrips, [state.user.id]: ownerId === state.user.id ? nextTrips : state.accountSavedTrips[state.user.id] ?? [] }
+              : state.accountSavedTrips,
+          };
+        });
         get().addToast({
           title: "Trip Saved!",
           message: `${trip.parkName} on ${trip.date} added to your saved itineraries.`,
@@ -198,9 +242,27 @@ export const useAuthStore = create<AuthState>()(
       },
 
       removeSavedTrip: (id: string) => {
-        set((state) => ({
-          savedTrips: state.savedTrips.filter((t) => t.id !== id)
-        }));
+        set((state) => {
+          const nextSavedTrips = state.savedTrips.filter((t) => t.id !== id);
+          if (state.isGuest) {
+            return {
+              savedTrips: nextSavedTrips,
+              guestSavedTrips: nextSavedTrips,
+            };
+          }
+          if (state.user?.id) {
+            return {
+              savedTrips: nextSavedTrips,
+              accountSavedTrips: {
+                ...state.accountSavedTrips,
+                [state.user.id]: nextSavedTrips,
+              },
+            };
+          }
+          return {
+            savedTrips: nextSavedTrips,
+          };
+        });
         get().addToast({
           title: "Trip Removed",
           message: "The trip was removed from your saved list.",
@@ -210,6 +272,14 @@ export const useAuthStore = create<AuthState>()(
 
       isTripSaved: (date: string, parkId: string) => {
         return get().savedTrips.some((t) => t.date === date && t.parkId === parkId);
+      },
+
+      toggleSavedPark: (parkId) => {
+        set((state) => ({
+          savedParkIds: state.savedParkIds.includes(parkId)
+            ? state.savedParkIds.filter((savedId) => savedId !== parkId)
+            : [...state.savedParkIds, parkId],
+        }));
       },
 
       markNotificationRead: (id: string) => {
@@ -278,7 +348,10 @@ export const useAuthStore = create<AuthState>()(
         isGuest: state.isGuest,
         sessionType: state.sessionType,
         savedTrips: state.savedTrips,
-        notifications: state.notifications
+        guestSavedTrips: state.guestSavedTrips,
+        accountSavedTrips: state.accountSavedTrips,
+        savedParkIds: state.savedParkIds,
+        notifications: state.notifications,
       })
     }
   )

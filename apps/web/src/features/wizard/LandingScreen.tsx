@@ -1,4 +1,4 @@
-import { usePlannerStore } from "../../store/slices/plannerStore";
+﻿import { usePlannerStore } from "../../store/slices/plannerStore";
 import { useAuthStore } from "../../store/slices/authStore";
 import { ArrowRight, Sparkles, ShieldCheck, CheckCircle2, Zap } from "lucide-react";
 
@@ -11,7 +11,7 @@ export default function LandingScreen() {
       {/* Animated Coaster Brand Icon */}
       <div className="relative inline-block">
         <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-linear-to-tr from-brand-600 via-indigo-600 to-brand-500 text-white text-3xl sm:text-4xl flex items-center justify-center mx-auto shadow-glow-brand animate-float">
-          🎢
+          ðŸŽ¢
         </div>
         <span className="absolute -bottom-1 -right-1 flex h-4 w-4">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -52,7 +52,7 @@ export default function LandingScreen() {
       ) : (
         <div className="p-2.5 bg-slate-900/60 border border-slate-800 rounded-2xl text-xs text-slate-400 flex items-center justify-center gap-2">
           <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-          <span>Guest browsing active • No sign-in required to explore</span>
+          <span>Guest browsing active â€¢ No sign-in required to explore</span>
         </div>
       )}
 
@@ -107,11 +107,11 @@ export default function LandingScreen() {
       </div>
 
       <div className="pt-3 border-t border-slate-800/80 flex items-center justify-center gap-3 text-[10px] text-slate-400 font-medium">
-        <span>🔒 256-Bit SSL</span>
-        <span>•</span>
-        <span>⚡ Open-Meteo Synced</span>
-        <span>•</span>
-        <span>🎯 TTL Cache Active</span>
+        <span>ðŸ”’ 256-Bit SSL</span>
+        <span>â€¢</span>
+        <span>âš¡ Open-Meteo Synced</span>
+        <span>â€¢</span>
+        <span>ðŸŽ¯ TTL Cache Active</span>
       </div>
     </div>
   );
