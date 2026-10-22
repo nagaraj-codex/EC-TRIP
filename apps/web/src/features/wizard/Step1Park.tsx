@@ -1,15 +1,16 @@
 import { useEffect } from "react";
+import { useParksQuery } from "../../lib/apiHooks";
 import { usePlannerStore } from "../../store/slices/plannerStore";
 import { useExploreStore } from "../../store/slices/exploreStore";
 import { ArrowLeft, ArrowRight, MapPin, Sparkles } from "lucide-react";
+import { getParkImage } from "../../data/assetConfig";
 
 export default function Step1Park() {
   const { parkId, setParkId, setScreen } = usePlannerStore();
-  const { destinations, loadDestinations, isLoading, error } = useExploreStore();
+  const { data: destinations = [], isLoading, error } = useParksQuery();
+  const {  } = useExploreStore();
 
-  useEffect(() => {
-    void loadDestinations();
-  }, [loadDestinations]);
+  
 
   const handleSelect = (id: string) => {
     setParkId(id);
@@ -42,7 +43,7 @@ export default function Step1Park() {
               className={`relative flex w-full items-center justify-between gap-3 rounded-xl border p-4 text-left transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 ${isSelected ? "border-brand-500 bg-brand-950/60 ring-2 ring-brand-500/30" : "border-slate-800 bg-slate-900/60 hover:border-slate-700 hover:bg-slate-800/60"}`}
             >
               <span className="flex min-w-0 items-start gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-slate-700 bg-slate-800"><Sparkles className="h-4 w-4 text-brand-400" /></span>
+                <img src={getParkImage(park.park_id, 100)} alt={park.name} className="h-10 w-10 shrink-0 rounded-lg object-cover border border-slate-700" />
                 <span className="min-w-0">
                   <span className="block truncate text-sm font-extrabold text-white">{park.name}</span>
                   <span className="mt-1 flex items-center gap-1 text-[11px] text-slate-400"><MapPin className="h-3 w-3 shrink-0 text-brand-400" />{[park.city, park.state].filter(Boolean).join(", ")}</span>

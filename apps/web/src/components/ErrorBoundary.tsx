@@ -1,5 +1,6 @@
 import React from 'react';
 import { StatusBlock, Button } from './ui';
+import { ApiError } from '../lib/errors';
 
 interface Props {
   children: React.ReactNode;
@@ -25,15 +26,29 @@ export class ErrorBoundary extends React.Component<Props, State> {
 
   public override render() {
     if (this.state.hasError) {
+      const isApiError = this.state.error instanceof ApiError;
+      const reqId = isApiError ? (this.state.error as ApiError).requestId : undefined;
+
       return (
-        <div className="flex-1 w-full h-full min-h-[50vh] flex items-center justify-center p-4">
+        <div className="flex-1 w-full h-full min-h-[50vh] flex flex-col items-center justify-center p-4">
           <StatusBlock 
             type="error"
-            title="Something went wrong"
+            title="Something went off-track"
             help={this.state.error?.message || "An unexpected error occurred in the application."}
-            actionLabel="Reload page"
+            actionLabel="Retry"
             onAction={() => window.location.reload()}
           />
+          {reqId && (
+            <div className="mt-4 p-3 bg-slate-900 border border-slate-700 rounded-lg flex items-center gap-3">
+              <span className="text-xs text-slate-400 font-mono">ID: {reqId}</span>
+              <button 
+                onClick={() => navigator.clipboard.writeText(reqId)}
+                className="text-xs text-brand-400 hover:text-brand-300 font-bold"
+              >
+                Copy
+              </button>
+            </div>
+          )}
         </div>
       );
     }

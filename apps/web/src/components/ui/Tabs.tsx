@@ -61,7 +61,7 @@ export const Tabs: React.FC<TabsProps> = ({ items, defaultSelectedId, className 
               onClick={() => setSelectedId(tab.id)}
               onKeyDown={(e) => handleKeyDown(e, index)}
               className={`
-                relative px-4 h-[48px] flex items-center justify-center text-[14px] font-medium whitespace-nowrap
+                relative px-4 h-12 flex items-center justify-center text-[14px] font-medium whitespace-nowrap
                 transition-colors duration-(--qc-duration-fast)
                 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--qc-focus) focus-visible:ring-inset
                 ${isSelected ? 'text-(--qc-primary) bg-(--qc-primary-bg)' : 'text-(--qc-ink-2) hover:text-(--qc-ink) hover:bg-(--qc-bg)'}
@@ -70,7 +70,7 @@ export const Tabs: React.FC<TabsProps> = ({ items, defaultSelectedId, className 
               {tab.label}
               {isSelected && (
                 <span 
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-(--qc-primary) transition-transform duration-(--qc-duration-panel) origin-left motion-reduce:transition-none" 
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-(--qc-primary) transition-transform duration-(--qc-duration-panel) origin-left motion-reduce:transition-none" 
                 />
               )}
             </button>

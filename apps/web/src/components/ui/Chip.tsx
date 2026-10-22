@@ -12,7 +12,7 @@ export const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(
         type="button"
         aria-pressed={active}
         className={`
-          inline-flex items-center justify-center h-[32px] px-4 rounded-(--qc-radius-pill) text-[14px] font-medium
+          inline-flex items-center justify-center h-8 px-4 rounded-(--qc-radius-pill) text-[14px] font-medium
           transition-colors duration-(--qc-duration-fast) focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--qc-focus) focus-visible:ring-offset-2 focus-visible:ring-offset-(--qc-surface)
           ${active 
             ? 'bg-(--qc-primary-bg) text-(--qc-primary) border border-(--qc-primary-bg)' 

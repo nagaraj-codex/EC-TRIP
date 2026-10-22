@@ -214,8 +214,8 @@ jobs:
           exit 1
 
       - name: Report Missing Health Check
-        if: steps.config.outputs.backend_status == 'configured' && env.BACKEND_HEALTHCHECK_URL == ''
-        run: echo "WARNING: Backend deployment triggered, but no health-check URL is configured."
+        if: ${{ steps.config.outputs.backend_status == 'configured' && env.BACKEND_HEALTHCHECK_URL == '' }}
+        run: echo "WARNING Backend deployment triggered, but no health-check URL is configured."
 
   deployment-summary:
     name: Production Deployment Summary

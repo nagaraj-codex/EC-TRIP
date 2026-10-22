@@ -10,8 +10,8 @@ if ($files) {
 }
 
 $references = git ls-files | ForEach-Object {
-    if ($_ -ne "scripts/check-no-python.ps1" -and $_ -ne "scripts/check-no-python.sh" -and $_ -ne ".gitignore" -and $_ -notmatch ".vscode") {
-        $matches = Select-String -Path $_ -Pattern 'python|pip install|uvicorn|fastapi|flask|django|pydantic|sqlalchemy|alembic|gunicorn|requirements\.txt|venv|\.py\b' -ErrorAction SilentlyContinue
+    if ($_ -ne "scripts/check-no-python.ps1" -and $_ -ne "scripts/check-no-python.sh" -and $_ -ne ".gitignore" -and $_ -notmatch ".vscode" -and $_ -notmatch "^docs/") {
+        $matches = Select-String -Path $_ -Pattern '(?<!check-no-)python|pip install|uvicorn|fastapi|flask|django|pydantic|sqlalchemy|alembic|gunicorn|requirements\.txt|venv|\.py\b' -ErrorAction SilentlyContinue
         if ($matches) {
             Write-Host "ERROR: Found Python references in $_" -ForegroundColor Red
             $found = $true

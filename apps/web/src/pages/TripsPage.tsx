@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import { useParksQuery, useTripsQuery, useDeleteTripMutation } from "../lib/apiHooks";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/slices/authStore";
 import { useExploreStore } from "../store/slices/exploreStore";
-import { apiClient } from "../services/apiClient";
 import { motion } from "framer-motion";
 import { Map, MapPin, Calendar, Clock, Plus, Trash2 } from "lucide-react";
 import CrowdLevelBadge from "../components/intelligence/CrowdLevelBadge";
@@ -22,39 +22,26 @@ function toCrowdLevel(value: string): CrowdLevel | null {
 export default function TripsPage() {
   const navigate = useNavigate();
   const { isGuest } = useAuthStore();
-  const { destinations, loadDestinations } = useExploreStore();
-  const [savedTrips, setSavedTrips] = useState<TripsSavedTrip[]>([]);
-  const [isLoading, setIsLoading] = useState(!isGuest);
-  const [error, setError] = useState("");
+  const { data: destinations = [], isLoading: parksLoading } = useParksQuery();
+  const {  } = useExploreStore();
 
-  useEffect(() => {
-    void loadDestinations();
-  }, [loadDestinations]);
+  const { data: tripsRes, isLoading: tripsLoading, error: tripsError } = useTripsQuery();
+  const deleteTrip = useDeleteTripMutation();
 
-  useEffect(() => {
-    if (isGuest) {
-      setIsLoading(false);
-      return;
-    }
-    apiClient.getTrips()
-      .then(({ data }) => setSavedTrips(data.map((trip) => ({
-        id: trip.id,
-        parkId: trip.park_id,
-        parkName: destinations.find((park) => park.park_id === trip.park_id)?.name ?? trip.park_id,
-        date: trip.visit_date,
-        ticketPrice: Number(trip.payload.ticketPrice ?? 0),
-        crowdLevel: toCrowdLevel(String(trip.payload.crowdLevel ?? "")),
-        predictedWait: Number(trip.payload.predictedWait ?? 0),
-        fastTrackVerdict: String(trip.payload.fastTrackVerdict ?? "unknown"),
-        savedAt: trip.created_at,
-      }))))
-      .catch((loadError: Error) => setError(loadError.message))
-      .finally(() => setIsLoading(false));
-  }, [destinations, isGuest]);
+  const savedTrips: TripsSavedTrip[] = (tripsRes?.data || []).map((trip) => ({
+    id: trip.id,
+    parkId: trip.park_id,
+    parkName: destinations.find((park) => park.park_id === trip.park_id)?.name ?? trip.park_id,
+    date: trip.visit_date,
+    ticketPrice: Number(trip.payload?.ticketPrice ?? 0),
+    crowdLevel: toCrowdLevel(String(trip.payload?.crowdLevel ?? "")),
+    predictedWait: Number(trip.payload?.predictedWait ?? 0),
+    fastTrackVerdict: String(trip.payload?.fastTrackVerdict ?? "unknown"),
+    savedAt: trip.created_at,
+  }));
 
-  const removeTrip = async (id: string) => {
-    await apiClient.deleteTrip(id);
-    setSavedTrips((trips) => trips.filter((trip) => trip.id !== id));
+  const removeTrip = (id: string) => {
+    deleteTrip.mutate(id);
   };
 
   if (isGuest) {
@@ -83,12 +70,12 @@ export default function TripsPage() {
     );
   }
 
-  if (isLoading) {
+  if (tripsLoading || parksLoading) {
     return <div className="qc-page text-sm text-slate-500">Loading saved trips...</div>;
   }
 
-  if (error) {
-    return <div className="qc-page text-sm text-red-500">Trips could not be loaded. {error}</div>;
+  if (tripsError) {
+    return <div className="qc-page text-sm text-red-500">Trips could not be loaded. {tripsError.message}</div>;
   }
 
   if (savedTrips.length === 0) {

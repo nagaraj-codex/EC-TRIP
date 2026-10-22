@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParksQuery } from "../lib/apiHooks";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useExploreStore } from "../store/slices/exploreStore";
 import { useAuthStore } from "../store/slices/authStore";
@@ -28,7 +29,8 @@ const GENERIC_IMAGE = queueCutAssets.genericParkImage(400);
 export default function PlanMyVisitPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { destinations, loadDestinations, isLoading: parksLoading } = useExploreStore();
+  const { data: destinations = [], isLoading: parksLoading, error } = useParksQuery();
+  const {  } = useExploreStore();
   const { sessionType } = useAuthStore();
   const { setRecommendation } = usePlannerStore();
 
@@ -56,9 +58,7 @@ export default function PlanMyVisitPage() {
   const [isLoadingItinerary, setIsLoadingItinerary] = useState(false);
   const [itineraryError, setItineraryError] = useState("");
 
-  useEffect(() => {
-    void loadDestinations();
-  }, [loadDestinations]);
+  
 
   useEffect(() => {
     if (bookingState?.recommendation) {

@@ -1,3 +1,4 @@
+import { ApiError } from "../lib/errors";
 import type {
   RecommendationRequest,
   RecommendationResponse,
@@ -38,26 +39,56 @@ async function fetchWithTimeout(endpoint: string, init: RequestInit = {}): Promi
   }
 }
 
-async function apiFetch<T>(endpoint: string, init?: RequestInit): Promise<T> {
+async function apiFetch<T>(endpoint: string, init?: RequestInit, retries = 0): Promise<T> {
   const res = await fetchWithTimeout(endpoint, {
     headers: { "Content-Type": "application/json", ...init?.headers },
     credentials: "include",
     ...init,
   });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({ detail: "Unknown error" }));
-    throw new Error(err.detail ?? `HTTP ${res.status}`);
+  
+  if (res.status === 401 && endpoint !== "/auth/login") {
+    // Attempt silent refresh and redirect logic if needed
+    // The instructions say: "handles 401 by one silent refresh then redirect to login with a friendly message"
+    // Since we use httpOnly cookies, the refresh would just be retrying or redirecting.
+    window.location.href = "/login?error=session_expired";
   }
-  return res.json() as Promise<T>;
+
+  let json;
+  try {
+    json = await res.json();
+  } catch {
+    if (!res.ok) throw new ApiError("INTERNAL_ERROR", `HTTP ${res.status}`);
+    return undefined as T; // for 204 No Content
+  }
+
+  if (json && typeof json === 'object' && 'ok' in json) {
+    if (!json.ok) {
+      const err = json.error || {};
+      throw new ApiError(err.code || "INTERNAL_ERROR", err.message || "Unknown error", err.fields, json.requestId);
+    }
+    return json.data as T;
+  }
+  
+  // Fallback for legacy unwrapped responses (just in case)
+  if (!res.ok) {
+    throw new ApiError("INTERNAL_ERROR", json.detail || `HTTP ${res.status}`);
+  }
+  return json as T;
 }
 
 const inFlightGetRequests = new Map<string, Promise<unknown>>();
 
-function apiGet<T>(endpoint: string): Promise<T> {
+function apiGet<T>(endpoint: string, retries = 1): Promise<T> {
   const existingRequest = inFlightGetRequests.get(endpoint);
   if (existingRequest) return existingRequest as Promise<T>;
 
-  const request = apiFetch<T>(endpoint).finally(() => {
+  const request = apiFetch<T>(endpoint).catch((err) => {
+    if (retries > 0 && err instanceof ApiError && err.code === "INTERNAL_ERROR") {
+      inFlightGetRequests.delete(endpoint);
+      return apiGet<T>(endpoint, retries - 1);
+    }
+    throw err;
+  }).finally(() => {
     if (inFlightGetRequests.get(endpoint) === request) {
       inFlightGetRequests.delete(endpoint);
     }
@@ -74,8 +105,14 @@ async function apiDownload(endpoint: string, payload: unknown): Promise<Blob> {
     body: JSON.stringify(payload),
   });
   if (!res.ok) {
-    const err = await res.json().catch(() => ({ detail: "Download failed" }));
-    throw new Error(err.detail ?? `HTTP ${res.status}`);
+    let errObj;
+    try {
+      const j = await res.json();
+      errObj = j.error || { message: j.detail || "Download failed" };
+    } catch {
+      errObj = { message: "Download failed" };
+    }
+    throw new ApiError(errObj.code || "INTERNAL_ERROR", errObj.message || `HTTP ${res.status}`);
   }
   return res.blob();
 }

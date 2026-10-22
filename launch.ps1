@@ -15,7 +15,7 @@ if (!(Test-Path $ApiDir)) {
 }
 
 # Use Start-Process to open a new window for the backend, making it easy to see logs
-Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd '$ApiDir'; ./mvnw spring-boot:run" -WindowStyle Normal
+Start-Process powershell -ArgumentList "-NoExit", "-Command", "Set-Location -LiteralPath '$ApiDir'; .\mvnw.cmd spring-boot:run" -WindowStyle Normal
 
 # 2. Start Frontend
 Write-Host "Starting React Frontend..." -ForegroundColor Yellow

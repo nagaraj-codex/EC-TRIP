@@ -32,7 +32,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             aria-invalid={hasError}
             aria-describedby={`${hasError ? errorId : ''} ${helperText ? helperId : ''}`.trim() || undefined}
             className={`
-              w-full h-[48px] px-3 bg-(--qc-surface) text-(--qc-ink) placeholder-(--qc-muted)
+              w-full h-12 px-3 bg-(--qc-surface) text-(--qc-ink) placeholder-(--qc-muted)
               border border-(--qc-border) rounded-(--qc-radius-input)
               transition-[border-color,box-shadow] duration-(--qc-duration-fast) ease-(--qc-ease-out)
               focus-visible:outline-hidden focus-visible:border-(--qc-primary) focus-visible:ring-2 focus-visible:ring-(--qc-focus) focus-visible:ring-offset-0

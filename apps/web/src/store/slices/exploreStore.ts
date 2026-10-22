@@ -9,15 +9,11 @@ interface ExploreFilters {
 }
 
 interface ExploreState {
-  destinations: ParkSummary[];
   selectedPark: ParkSummary | null;
   searchQuery: string;
   filters: ExploreFilters;
-  isLoading: boolean;
-  error: string | null;
 
   // Actions
-  loadDestinations: () => Promise<void>;
   selectPark: (park: ParkSummary | null) => void;
   setSearchQuery: (q: string) => void;
   setFilter: (key: keyof ExploreFilters, value: string) => void;
@@ -30,27 +26,10 @@ const defaultFilters: ExploreFilters = {
   crowdLevel: "all",
 };
 
-export const useExploreStore = create<ExploreState>()((set, get) => ({
-  destinations: [],
+export const useExploreStore = create<ExploreState>()((set) => ({
   selectedPark: null,
   searchQuery: "",
   filters: { ...defaultFilters },
-  isLoading: false,
-  error: null,
-
-  loadDestinations: async () => {
-    if (get().destinations.length > 0) return; // Cache hit
-    set({ isLoading: true, error: null });
-    try {
-      const parks = await apiClient.getParks();
-      set({ destinations: parks, isLoading: false });
-    } catch (err) {
-      set({
-        error: err instanceof Error ? err.message : "Failed to load destinations",
-        isLoading: false,
-      });
-    }
-  },
 
   selectPark: (park) => set({ selectedPark: park }),
 

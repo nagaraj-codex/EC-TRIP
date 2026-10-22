@@ -3,6 +3,7 @@
 // White+blue design, real API data only
 
 import { useEffect, useMemo, useState } from "react";
+import { useParksQuery } from "../lib/apiHooks";
 import { useNavigate } from "react-router-dom";
 import { useExploreStore } from "../store/slices/exploreStore";
 import { usePlannerStore } from "../store/slices/plannerStore";
@@ -71,7 +72,8 @@ const bookingCategories = [
 
 export default function HomePage() {
   const navigate = useNavigate();
-  const { destinations, loadDestinations, isLoading, error } = useExploreStore();
+  const { data: destinations = [], isLoading, error, refetch } = useParksQuery();
+  const {  } = useExploreStore();
   const setRecommendation = usePlannerStore((state) => state.setRecommendation);
   const setAdvisorOpen = useUIStore((state) => state.setAdvisorOpen);
   const [origin, setOrigin] = useState("Chennai");
@@ -84,9 +86,7 @@ export default function HomePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  useEffect(() => {
-    void loadDestinations();
-  }, [loadDestinations]);
+  
 
   useEffect(() => {
     if (!parkId && destinations.length > 0) setParkId(destinations[0].park_id);
@@ -245,7 +245,7 @@ export default function HomePage() {
           {error && destinations.length === 0 && !isLoading && (
             <div role="status" className="mx-auto mt-12 flex items-center gap-3 rounded-lg bg-white px-4 py-3 text-sm text-slate-700 shadow-lg">
               Park catalog unavailable.
-              <button type="button" onClick={() => void loadDestinations()} className="font-semibold text-blue-700 underline">Retry</button>
+              <button type="button" onClick={() => void refetch()} className="font-semibold text-blue-700 underline">Retry</button>
             </div>
           )}
         </div>

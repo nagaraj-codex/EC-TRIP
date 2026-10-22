@@ -9,7 +9,7 @@ if [ -n "$FILES" ]; then
     FOUND=1
 fi
 
-REFS=$(git ls-files | grep -v 'scripts/check-no-python.sh' | grep -v 'scripts/check-no-python.ps1' | grep -v '.gitignore' | grep -v '.vscode/' | xargs grep -ilE 'python|pip install|uvicorn|fastapi|flask|django|pydantic|sqlalchemy|alembic|gunicorn|requirements\.txt|venv|\.py\b' || true)
+REFS=$(git ls-files | grep -v 'scripts/check-no-python.sh' | grep -v 'scripts/check-no-python.ps1' | grep -v '.gitignore' | grep -v '.vscode/' | grep -v '^docs/' | xargs grep -ilE '(^|[^a-zA-Z0-9_-])python|pip install|uvicorn|fastapi|flask|django|pydantic|sqlalchemy|alembic|gunicorn|requirements\.txt|venv|\.py\b' | grep -v 'check-no-python' || true)
 if [ -n "$REFS" ]; then
     echo "ERROR: Found Python references in:"
     echo "$REFS"

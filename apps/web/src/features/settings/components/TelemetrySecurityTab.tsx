@@ -10,10 +10,15 @@ export const TelemetrySecurityTab: React.FC<TelemetrySecurityTabProps> = ({ onEx
   const { logout } = useAuthStore();
   const [notice, setNotice] = useState("");
 
+  const [confirmText, setConfirmText] = useState("");
+  const [showConfirm, setShowConfirm] = useState(false);
+
   const handleResetAccount = () => {
-    if (window.confirm("Are you sure you want to reset all account data?")) {
+    if (confirmText.toLowerCase() === "delete") {
       logout();
       setNotice("Account data was reset for this session.");
+      setShowConfirm(false);
+      setConfirmText("");
     }
   };
 
@@ -43,13 +48,40 @@ export const TelemetrySecurityTab: React.FC<TelemetrySecurityTabProps> = ({ onEx
             <div className="font-bold text-xs text-rose-300">Delete Account & Stored Telemetry</div>
             <div className="text-[11px] text-rose-400/80">Permanently clears your profile, saved trips, and device tokens.</div>
           </div>
-          <button
-            onClick={handleResetAccount}
-            className="btn sm:w-auto px-3.5 py-2 text-xs font-semibold bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 shrink-0"
-          >
-            <Trash2 className="w-3.5 h-3.5" />
-            <span>Reset Account</span>
-          </button>
+          {showConfirm ? (
+            <div className="flex flex-col gap-2 shrink-0 sm:w-auto">
+              <input 
+                type="text"
+                placeholder="Type 'delete' to confirm"
+                className="input text-xs bg-rose-950/40 border-rose-500/30 text-rose-100 placeholder:text-rose-500/50"
+                value={confirmText}
+                onChange={(e) => setConfirmText(e.target.value)}
+              />
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setShowConfirm(false)}
+                  className="btn bg-slate-800 text-slate-300 text-[11px] py-1.5 flex-1"
+                >
+                  Cancel
+                </button>
+                <button
+                  disabled={confirmText.toLowerCase() !== "delete"}
+                  onClick={handleResetAccount}
+                  className="btn bg-rose-600 hover:bg-rose-500 text-white border-rose-500 text-[11px] py-1.5 flex-1 disabled:opacity-50"
+                >
+                  Confirm
+                </button>
+              </div>
+            </div>
+          ) : (
+            <button
+              onClick={() => setShowConfirm(true)}
+              className="btn sm:w-auto px-3.5 py-2 text-xs font-semibold bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 shrink-0"
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+              <span>Reset Account</span>
+            </button>
+          )}
         </div>
 
         <div className="p-3 bg-brand-950/40 border border-brand-500/20 rounded-2xl text-[11px] text-slate-400 flex items-center gap-2">

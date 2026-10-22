@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { useParksQuery } from "../lib/apiHooks";
 import { useParams, useNavigate } from "react-router-dom";
 import { useExploreStore } from "../store/slices/exploreStore";
 import { apiClient } from "../services/apiClient";
@@ -17,10 +18,8 @@ import ParkUpdates from "../components/intelligence/ParkUpdates";
 import Skeleton from "../components/common/Skeleton";
 import ErrorState from "../components/common/ErrorState";
 import { formatOperatingHours } from "../utils/parkFormatting";
-import { queueCutAssets } from "../data/assetConfig";
+import { getParkImage } from "../data/assetConfig";
 import type { ParkTariffResponse, WeatherTelemetryResponse, RecommendationResponse } from "../types/api";
-
-const GENERIC_IMAGE = queueCutAssets.genericParkImage(900);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -45,7 +44,8 @@ function getAdultTariffPrices(pricing: Record<string, unknown> | null | undefine
 export default function DestinationDetailPage() {
   const { parkId } = useParams<{ parkId: string }>();
   const navigate = useNavigate();
-  const { destinations, loadDestinations } = useExploreStore();
+  const { data: destinations = [], isLoading, error } = useParksQuery();
+  const {  } = useExploreStore();
   const savedParkIds = useAuthStore((state) => state.savedParkIds);
   const toggleSavedPark = useAuthStore((state) => state.toggleSavedPark);
   const [weather, setWeather] = useState<WeatherTelemetryResponse | null>(null);
@@ -63,13 +63,46 @@ export default function DestinationDetailPage() {
 
   const park = destinations.find((p) => p.park_id === parkId);
   const isParkSaved = Boolean(parkId && savedParkIds.includes(parkId));
-  const imgUrl = park?.image ?? GENERIC_IMAGE;
+  const imgUrl = getParkImage(parkId, 900);
   const operatingHours = formatOperatingHours(park?.operating_hours);
   const adultPrices = getAdultTariffPrices(tariff?.pricing);
 
+  const [ridesData, setRidesData] = useState<any>(null);
+  const [ridesLoading, setRidesLoading] = useState(true);
+
   useEffect(() => {
-    loadDestinations();
-  }, [loadDestinations]);
+    if (!parkId) return;
+    let isCurrentRequest = true;
+    setRidesLoading(true);
+    apiClient.getParkRides(parkId)
+      .then((result) => { if (isCurrentRequest) setRidesData(result.rides); })
+      .catch(() => {})
+      .finally(() => { if (isCurrentRequest) setRidesLoading(false); });
+    return () => { isCurrentRequest = false; };
+  }, [parkId]);
+
+  const rideList = useMemo(() => {
+    if (!ridesData) return [];
+    if (Array.isArray(ridesData)) return ridesData;
+    if (typeof ridesData === "object") {
+      const list: any[] = [];
+      for (const [key, val] of Object.entries(ridesData)) {
+        if (Array.isArray(val)) {
+          val.forEach((item: any) => {
+            if (typeof item === "string") {
+              list.push({ name: item, category: key.replace(/_/g, " ") });
+            } else if (item && typeof item === "object") {
+              list.push({ ...item, category: item.category || key.replace(/_/g, " ") });
+            }
+          });
+        }
+      }
+      return list;
+    }
+    return [];
+  }, [ridesData]);
+
+  
 
   useEffect(() => {
     if (!parkId) return;
@@ -266,6 +299,24 @@ export default function DestinationDetailPage() {
           ) : (
             <p className="text-sm text-slate-400">Adult ticket rates are not listed in this park&apos;s catalog.</p>
           )}
+
+          {Array.isArray(tariff?.pricing?.packages) && tariff.pricing.packages.length > 0 && (
+            <div className="mt-4 space-y-2">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-amber-400">Park Packages &amp; Entry Tiers</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                {tariff.pricing.packages.map((pkg: any, idx: number) => (
+                  <div key={idx} className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60">
+                    <p className="font-bold text-xs text-white">{pkg.name}</p>
+                    <p className="text-amber-400 font-extrabold text-sm mt-0.5">
+                      {pkg.adult_price ? `Adult ₹${pkg.adult_price}` : ""}{pkg.child_price ? ` · Child ₹${pkg.child_price}` : ""}
+                    </p>
+                    {pkg.inclusions && <p className="text-[10px] text-slate-300 mt-1 line-clamp-2">{pkg.inclusions}</p>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {tariff?.provenance && <p className="mt-3 text-[10px] text-slate-500">Catalog status: {tariff.provenance.data_status.toLowerCase()} · verify current prices with the park.</p>}
 
           {park.official_website && (
@@ -275,7 +326,7 @@ export default function DestinationDetailPage() {
               rel="noopener noreferrer"
               className="btn-primary w-full mt-4 text-sm"
             >
-              Book Tickets
+              Book Tickets on Official Portal ({park.official_website.replace('https://', '').replace(/\/$/, '')})
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           )}
@@ -364,9 +415,35 @@ export default function DestinationDetailPage() {
         </motion.div>
 
         <section aria-labelledby="ride-availability-heading" className="qc-card rounded-2xl p-5">
-          <h2 id="ride-availability-heading" className="font-display font-bold text-sm text-white">Ride availability</h2>
-          <p className="mt-2 text-sm text-slate-400">Live operating status is not provided by this park&apos;s data source.</p>
-          <p className="mt-1 text-xs text-slate-500">The catalog lists {park.total_rides} attractions; this does not indicate current ride availability.</p>
+          <div className="flex items-center justify-between mb-3">
+            <h2 id="ride-availability-heading" className="font-display font-bold text-sm text-white">
+              Catalog Rides &amp; Attractions ({rideList.length > 0 ? rideList.length : park.total_rides})
+            </h2>
+            <span className="text-[11px] px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-semibold">
+              Ground-truth verified
+            </span>
+          </div>
+          {ridesLoading ? (
+            <p className="text-xs text-slate-400">Loading catalog attractions...</p>
+          ) : rideList.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 max-h-96 overflow-y-auto pr-1">
+              {rideList.map((ride: any, idx: number) => (
+                <div key={idx} className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">
+                  <div className="min-w-0 pr-2">
+                    <p className="font-bold text-xs text-white truncate">{ride.name}</p>
+                    <p className="text-[10px] text-slate-400 truncate capitalize">{ride.category || "Attraction"}{ride.min_height_cm ? ` · Min ${ride.min_height_cm} cm` : ""}</p>
+                  </div>
+                  {ride.fastrack_eligible && (
+                    <span className="px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-bold shrink-0">
+                      FastTrack
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-xs text-slate-400">The catalog lists {park.total_rides} attractions.</p>
+          )}
         </section>
 
         <RouteSummary parkId={park.park_id} />

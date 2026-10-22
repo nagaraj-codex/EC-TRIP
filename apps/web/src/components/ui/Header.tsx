@@ -20,6 +20,7 @@ export const Header: React.FC = () => {
     { href: '/app/plan', label: 'Planner' },
     { href: '/app/compare', label: 'FastTrack' },
     { href: '/app/trips', label: 'Trips' },
+    { href: '/verify', label: 'Verify' },
   ];
 
   const handleLogout = async () => {
@@ -31,12 +32,12 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-100 h-[56px] md:h-[64px] bg-(--qc-surface) border-b border-(--qc-border) w-full">
+    <header className="sticky top-0 z-100 h-14 md:h-16 bg-(--qc-surface) border-b border-(--qc-border) w-full">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-(--qc-primary) text-white px-4 py-2 z-200 rounded-(--qc-radius-button) font-medium">
         Skip to content
       </a>
       
-      <div className="max-w-[1200px] w-full mx-auto px-4 md:px-6 lg:px-8 h-full flex items-center justify-between">
+      <div className="max-w-300 w-full mx-auto px-4 md:px-6 lg:px-8 h-full flex items-center justify-between">
         <div className="flex items-center gap-4 lg:gap-8">
           <Link to="/" className="text-[20px] font-bold text-(--qc-primary) tracking-tight focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--qc-focus) rounded-xs">
             QueueCut
@@ -104,7 +105,7 @@ export const Header: React.FC = () => {
       {isDrawerOpen && (
         <div className="fixed inset-0 z-300 md:hidden">
           <div className="absolute inset-0 bg-surface-900/40 backdrop-blur-xs" onClick={() => setIsDrawerOpen(false)} aria-hidden="true" />
-          <div role="dialog" aria-modal="true" aria-label="Navigation Menu" className="absolute top-0 right-0 bottom-0 w-[280px] bg-(--qc-surface) shadow-(--qc-shadow-raised) flex flex-col focus-visible:outline-hidden">
+          <div role="dialog" aria-modal="true" aria-label="Navigation Menu" className="absolute top-0 right-0 bottom-0 w-70 bg-(--qc-surface) shadow-(--qc-shadow-raised) flex flex-col focus-visible:outline-hidden">
             <div className="flex items-center justify-between p-4 border-b border-(--qc-border)">
               <span className="text-[18px] font-bold text-(--qc-primary)">QueueCut</span>
               <button 

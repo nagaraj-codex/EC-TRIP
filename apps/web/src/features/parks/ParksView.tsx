@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useParksQuery } from "../../lib/apiHooks";
 import { ArrowRight, MapPin, Sparkles } from "lucide-react";
 import { useExploreStore } from "../../store/slices/exploreStore";
 
@@ -7,11 +8,10 @@ interface ParksViewProps {
 }
 
 export default function ParksView({ onPlanTrip }: ParksViewProps) {
-  const { destinations, loadDestinations, isLoading, error } = useExploreStore();
+  const { data: destinations = [], isLoading, error } = useParksQuery();
+  const {  } = useExploreStore();
 
-  useEffect(() => {
-    void loadDestinations();
-  }, [loadDestinations]);
+  
 
   return (
     <div className="mx-auto max-w-6xl space-y-5">

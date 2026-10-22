@@ -129,7 +129,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           onKeyDown={handleKeyDown}
           onClick={() => setIsOpen(!isOpen)}
           className={`
-            w-full h-[48px] px-3 bg-(--qc-surface) text-(--qc-ink) flex items-center justify-between cursor-pointer
+            w-full h-12 px-3 bg-(--qc-surface) text-(--qc-ink) flex items-center justify-between cursor-pointer
             border border-(--qc-border) rounded-(--qc-radius-input)
             transition-[border-color,box-shadow] duration-(--qc-duration-fast) ease-(--qc-ease-out)
             focus-visible:outline-hidden focus-visible:border-(--qc-primary) focus-visible:ring-2 focus-visible:ring-(--qc-focus) focus-visible:ring-offset-0
@@ -163,7 +163,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                   onClick={() => handleSelect(option.value)}
                   onMouseEnter={() => setActiveIndex(index)}
                   className={`
-                    h-[44px] px-3 flex items-center cursor-pointer transition-colors text-[14px]
+                    h-11 px-3 flex items-center cursor-pointer transition-colors text-[14px]
                     ${isActive ? 'bg-(--qc-bg)' : ''}
                     ${isSelected ? 'text-(--qc-primary) font-semibold bg-(--qc-primary-bg)' : 'text-(--qc-ink)'}
                   `}

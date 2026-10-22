@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useParksQuery } from "../lib/apiHooks";
 import { Heart, MapPin, ArrowRight, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useExploreStore } from "../store/slices/exploreStore";
@@ -9,14 +10,13 @@ import ActionButton from "../components/common/ActionButton";
 
 export default function SavedParksPage() {
   const navigate = useNavigate();
-  const { destinations, loadDestinations, isLoading, error } = useExploreStore();
+  const { data: destinations = [], isLoading, error, refetch } = useParksQuery();
+  const {  } = useExploreStore();
   const savedParkIds = useAuthStore((state) => state.savedParkIds);
   const toggleSavedPark = useAuthStore((state) => state.toggleSavedPark);
   const savedParks = destinations.filter((park) => savedParkIds.includes(park.park_id));
 
-  useEffect(() => {
-    void loadDestinations();
-  }, [loadDestinations]);
+  
 
   return (
     <div className="qc-page">
@@ -32,7 +32,7 @@ export default function SavedParksPage() {
       {isLoading ? (
         <Skeleton variant="park" count={3} />
       ) : error && destinations.length === 0 ? (
-        <EmptyState icon={Heart} title="Saved parks could not be loaded." description="Park catalog data is unavailable right now." actionLabel="Retry" onAction={() => void loadDestinations()} />
+        <EmptyState icon={Heart} title="Saved parks could not be loaded." description="Park catalog data is unavailable right now." actionLabel="Retry" onAction={() => void refetch()} />
       ) : savedParks.length === 0 ? (
         <EmptyState icon={Heart} title="No saved parks yet." description="Open a park and save it here for quick access on this device." actionLabel="Explore parks" onAction={() => navigate("/app/explore")} />
       ) : (

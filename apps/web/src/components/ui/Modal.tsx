@@ -82,7 +82,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
         aria-modal="true"
         aria-labelledby="modal-title"
         tabIndex={-1}
-        className="relative bg-(--qc-surface) w-full md:max-w-[480px] rounded-t-(--qc-radius-hero) md:rounded-(--qc-radius-hero) shadow-(--qc-shadow-raised) flex flex-col pointer-events-auto max-h-[90vh] focus-visible:outline-hidden"
+        className="relative bg-(--qc-surface) w-full md:max-w-120 rounded-t-(--qc-radius-hero) md:rounded-(--qc-radius-hero) shadow-(--qc-shadow-raised) flex flex-col pointer-events-auto max-h-[90vh] focus-visible:outline-hidden"
       >
         <div className="flex items-center justify-between p-4 md:p-6 border-b border-(--qc-border) shrink-0">
           <h2 id="modal-title" className="text-[18px] md:text-[22px] font-semibold text-(--qc-ink)">

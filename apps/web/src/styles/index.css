@@ -68,8 +68,12 @@ body {
 
 /* --- Hide Scrollbar (Utility) --- */
 .no-scrollbar {
-  scrollbar-width: none;
   -ms-overflow-style: none;
+}
+@supports (scrollbar-width: none) {
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;

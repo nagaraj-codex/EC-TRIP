@@ -22,6 +22,7 @@ import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
 import PlanMyVisitPage from "./pages/PlanMyVisitPage";
 import SavedParksPage from "./pages/SavedParksPage";
+import VerificationSuitePage from "./pages/VerificationSuitePage";
 
 // Global overlays
 import { ToastContainer } from "./components/ui/Toast";
@@ -89,6 +90,7 @@ export default function App() {
         />
         <Route path="/onboarding" element={<OnboardingPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/verify" element={<VerificationSuitePage />} />
 
         {/* Main app shell — guarded */}
         <Route
@@ -110,6 +112,7 @@ export default function App() {
           <Route path="profile" element={<ProfilePage />} />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="plan" element={<PlanMyVisitPage />} />
+          <Route path="verify" element={<VerificationSuitePage />} />
         </Route>
 
         {/* Fallback */}

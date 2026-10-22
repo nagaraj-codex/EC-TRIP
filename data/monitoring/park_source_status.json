@@ -1,0 +1,210 @@
+{
+  "last_check_utc": "2026-10-22T18:20:38.431Z",
+  "monitor_version": "1.0.0",
+  "parks_monitored": 3,
+  "total_sources_checked": 8,
+  "sources_healthy": 2,
+  "sources_changed": 2,
+  "sources_unavailable": 4,
+  "parks": {
+    "wonderla-chennai": {
+      "park_name": "Wonderla Amusement Park Chennai",
+      "official_website": "https://www.wonderla.com/",
+      "freshness": "FRESH",
+      "last_checked_utc": "2026-10-22T18:20:38.431Z",
+      "sources": [
+        {
+          "category": "operating_hours_and_notices",
+          "url": "https://www.wonderla.com/chennai/",
+          "status": "CHANGED",
+          "http_status": 200,
+          "duration_ms": 501,
+          "title": "Wonderla Chennai | Wonderla",
+          "content_hash": "1d341baa092979ec18328ccfedad30c4bcb70a4260e11e051f00048e05f364b7",
+          "last_modified_header": null,
+          "etag": "W/\"av7f5fakkg4zpj\"",
+          "keywords_detected": [
+            "closure",
+            "timing",
+            "timings",
+            "price",
+            "offer",
+            "discount",
+            "rules",
+            "dress code",
+            "gst",
+            "water ride"
+          ],
+          "error": null,
+          "last_verified_utc": "2026-10-22T18:20:38.431Z"
+        },
+        {
+          "category": "offers_and_terms",
+          "url": "https://www.wonderla.com/offers",
+          "status": "CHANGED",
+          "http_status": 200,
+          "duration_ms": 167,
+          "title": "Offers at Wonderla Amusement Parks &amp; Resort | Discounts | Packages | Wonderla | Wonderla",
+          "content_hash": "0f8a80927752908e61959aea5842b9748f88572727584181081ea464f2bb9f05",
+          "last_modified_header": null,
+          "etag": "W/\"1799pay8sy553qb\"",
+          "keywords_detected": [
+            "closure",
+            "timing",
+            "timings",
+            "price",
+            "offer",
+            "discount",
+            "rules",
+            "dress code",
+            "gst"
+          ],
+          "error": null,
+          "last_verified_utc": "2026-10-22T18:20:38.431Z"
+        }
+      ]
+    },
+    "black-thunder-mettupalayam": {
+      "park_name": "Black Thunder Water Theme Park (Coimbatore / Mettupalayam)",
+      "official_website": "https://www.blackthunder.in/",
+      "freshness": "DEGRADED",
+      "last_checked_utc": "2026-10-22T18:20:38.431Z",
+      "sources": [
+        {
+          "category": "daily_hours_and_advisories",
+          "url": "https://www.blackthunder.in/",
+          "status": "UP",
+          "http_status": 200,
+          "duration_ms": 248,
+          "title": "Black Thunder - Water Theme Park | Amusement Park in Coimbatore",
+          "content_hash": "e4f5ddd6498201b260d7c6ee1d5b1e2d8b80158ea3447b5f6f010a3287283a93",
+          "last_modified_header": "Thu, 01 Oct 2026 04:35:31 GMT",
+          "etag": "W/\"a02c0ee638dc762c0ea4e36c15eb598f\"",
+          "keywords_detected": [
+            "price",
+            "pricing",
+            "tariff",
+            "offer",
+            "discount",
+            "gst",
+            "water ride"
+          ],
+          "error": null,
+          "last_verified_utc": "2026-10-22T18:20:38.431Z"
+        },
+        {
+          "category": "tariff_and_pricing",
+          "url": "https://www.blackthunder.in/tariff/",
+          "status": "UNAVAILABLE",
+          "http_status": 404,
+          "duration_ms": 527,
+          "title": "404-error | Black Thunder Theme Park Pvt Ltd |",
+          "content_hash": "6992f0661b054a1345f15158e66d0fa75e87269c759b137e4b4718198f29e5bf",
+          "last_modified_header": "Thu, 01 Oct 2026 04:35:32 GMT",
+          "etag": "W/\"2adc5004984a914dcaa82161341b683b\"",
+          "keywords_detected": [
+            "price",
+            "tariff",
+            "offer",
+            "gst"
+          ],
+          "error": null,
+          "last_verified_utc": "2026-10-22T18:20:38.431Z"
+        },
+        {
+          "category": "rides_and_attractions",
+          "url": "https://www.blackthunder.in/rides/",
+          "status": "UNAVAILABLE",
+          "http_status": 404,
+          "duration_ms": 167,
+          "title": "404-error | Black Thunder Theme Park Pvt Ltd |",
+          "content_hash": "6992f0661b054a1345f15158e66d0fa75e87269c759b137e4b4718198f29e5bf",
+          "last_modified_header": "Thu, 01 Oct 2026 04:35:32 GMT",
+          "etag": "W/\"2adc5004984a914dcaa82161341b683b\"",
+          "keywords_detected": [
+            "price",
+            "tariff",
+            "offer",
+            "gst"
+          ],
+          "error": null,
+          "last_verified_utc": "2026-10-22T18:20:38.431Z"
+        }
+      ]
+    },
+    "mgm-dizzee-chennai": {
+      "park_name": "MGM Dizzee World Chennai",
+      "official_website": "https://www.mgmdizzeeworld.com/",
+      "freshness": "DEGRADED",
+      "last_checked_utc": "2026-10-22T18:20:38.431Z",
+      "sources": [
+        {
+          "category": "park_overview_and_hours",
+          "url": "https://www.mgmdizzeeworld.com/",
+          "status": "UP",
+          "http_status": 200,
+          "duration_ms": 191,
+          "title": "MGM Dizzee World, Chennai | Amusement Park in Chennai",
+          "content_hash": "e941ecea00bbeb4a12b975004fdcafadab5a416ed12a25a481602dfe8948c52e",
+          "last_modified_header": "Thu, 22 Oct 2026 10:04:37 GMT",
+          "etag": "W/\"48cfe10ed54ebdf79daaf66b282988d1\"",
+          "keywords_detected": [
+            "maintenance",
+            "hours",
+            "price",
+            "offer",
+            "discount",
+            "dress code",
+            "gst"
+          ],
+          "error": null,
+          "last_verified_utc": "2026-10-22T18:20:38.431Z"
+        },
+        {
+          "category": "tickets_and_pricing",
+          "url": "https://www.mgmdizzeeworld.com/tickets/",
+          "status": "UNAVAILABLE",
+          "http_status": 404,
+          "duration_ms": 577,
+          "title": "404 - Page Not Found",
+          "content_hash": "a50917203c4da38253cd632fed939635d1821b282bbcfc5ed32b86dcd8ab60a5",
+          "last_modified_header": "Thu, 22 Oct 2026 10:04:37 GMT",
+          "etag": "W/\"eee745e8dfe48117cf79571970ac8eb4\"",
+          "keywords_detected": [
+            "maintenance",
+            "hours",
+            "price",
+            "offer",
+            "discount",
+            "dress code",
+            "gst"
+          ],
+          "error": null,
+          "last_verified_utc": "2026-10-22T18:20:38.431Z"
+        },
+        {
+          "category": "rides_and_regulations",
+          "url": "https://www.mgmdizzeeworld.com/rides/",
+          "status": "UNAVAILABLE",
+          "http_status": 404,
+          "duration_ms": 151,
+          "title": "404 - Page Not Found",
+          "content_hash": "a50917203c4da38253cd632fed939635d1821b282bbcfc5ed32b86dcd8ab60a5",
+          "last_modified_header": "Thu, 22 Oct 2026 10:04:37 GMT",
+          "etag": "W/\"eee745e8dfe48117cf79571970ac8eb4\"",
+          "keywords_detected": [
+            "maintenance",
+            "hours",
+            "price",
+            "offer",
+            "discount",
+            "dress code",
+            "gst"
+          ],
+          "error": null,
+          "last_verified_utc": "2026-10-22T18:20:38.431Z"
+        }
+      ]
+    }
+  }
+}

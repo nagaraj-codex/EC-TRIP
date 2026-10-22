@@ -1,4 +1,4 @@
-﻿import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Bot, User, Loader2, AlertCircle } from "lucide-react";
 import { apiClient } from "../../services/apiClient";
@@ -156,7 +156,7 @@ export default function AdvisorChatbot() {
                   <p className="font-display font-bold text-sm text-white">QueueCut Advisor</p>
                   <div className="flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <p className="text-slate-500 text-[10px]">AI-powered Â· Gemini</p>
+                    <p className="text-slate-400 text-[10px]">AI-powered &middot; Gemini</p>
                   </div>
                 </div>
               </div>
