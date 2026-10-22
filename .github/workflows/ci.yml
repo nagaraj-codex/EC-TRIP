@@ -35,10 +35,12 @@ jobs:
 
       - name: Run Backend Unit Tests
         working-directory: ./apps/api
-        run: ./mvnw clean test
+        run: |
+          chmod +x ./mvnw
+          ./mvnw clean test
 
   frontend-build:
-    name: Frontend Typecheck & Build (Node 20)
+    name: Frontend Typecheck & Build (Node 22)
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -50,10 +52,10 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js 20
+      - name: Set up Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: "npm"
           cache-dependency-path: ./apps/web/package-lock.json
 
